@@ -1,14 +1,9 @@
 package me.xethh.utils;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class DateBuilder {
     private List<Build> builds=new ArrayList();
-    private Calendar cal;
     private DateBuilder(final Date date){
-        cal=Calendar.getInstance();
         builds.add(new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -18,7 +13,6 @@ public class DateBuilder {
         });
     }
     private DateBuilder(List<Build> builds){
-        cal=Calendar.getInstance();
         this.builds.add(new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -82,13 +76,13 @@ public class DateBuilder {
         });
     }
     /**
-     * Set the month
+     * Set the months
      * @param month should be normally 1,2,...12 where 1=JAN, 2=FEB....
      * @return
      */
-    public DateBuilder month(final int month){
+    public DateBuilder months(final int month){
         if(month<1 || month>12)
-            throw new RuntimeException("Only acception 1-12 as month value");
+            throw new RuntimeException("Only accept 1-12 as month value");
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -98,7 +92,7 @@ public class DateBuilder {
         });
     }
 
-    public DateBuilder minDate(){
+    public DateBuilder minDay(){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -107,7 +101,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder date(final int date){
+    public DateBuilder days(final int date){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -134,7 +128,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder hour(final int hour){
+    public DateBuilder hours(final int hour){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -143,7 +137,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder minMinutes(){
+    public DateBuilder minMinute(){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -152,7 +146,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder maxMinutes(){
+    public DateBuilder maxMinute(){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -188,7 +182,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder second(final int second){
+    public DateBuilder seconds(final int second){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -197,7 +191,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder minMS(){
+    public DateBuilder minMs(){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -206,7 +200,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder maxMS(){
+    public DateBuilder maxMs(){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -226,38 +220,40 @@ public class DateBuilder {
     }
 
     public DateBuilder maxDayTime(){
-        return DateBuilder.get(builds, new Build() {
-            @Override
-            public Build apply(Calendar cal) {
-                cal.set(Calendar.HOUR_OF_DAY,23);
-                cal.set(Calendar.MINUTE,59);
-                cal.set(Calendar.SECOND,59);
-                cal.set(Calendar.MILLISECOND,999);
-                return this;
-            }
-        });
+        return maxHour().maxMinute().maxSecond().maxMs();
     }
 
     public DateBuilder minDayTime(){
-        return DateBuilder.get(builds, new Build() {
-            @Override
-            public Build apply(Calendar cal) {
-                cal.set(Calendar.HOUR_OF_DAY,0);
-                cal.set(Calendar.MINUTE,0);
-                cal.set(Calendar.SECOND,0);
-                cal.set(Calendar.MILLISECOND,0);
-                return this;
-            }
-        });
+        return minHour().minMinute().minSecond().minMs();
+    }
+
+    public DateBuilder toDate(){
+        return minDay();
+    }
+
+    public DateBuilder toTime(){
+        return minYear().minMonth().minDay();
     }
 
     public Date build(){
+        Calendar cal = getCal();
         for(Build build: builds)
             build.apply(cal);
         return cal.getTime();
     }
     public Calendar getCal(){
-        return this.cal;
+        return Calendar.getInstance();
     }
 
+    public List<Build> getBuilds() {
+        return builds;
+    }
+
+    public TimeOperation toTimeOperator(){
+       return TimeOperation.get(this);
+    }
+
+    public DateTimeExtractor extract(){
+        return DateTimeExtractor.get(build());
+    }
 }
