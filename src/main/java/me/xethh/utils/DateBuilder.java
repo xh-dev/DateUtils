@@ -236,13 +236,13 @@ public class DateBuilder {
     }
 
     public Date build(){
+        return getCal().getTime();
+    }
+    public Calendar getCal(){
         Calendar cal = getCal();
         for(Build build: builds)
             build.apply(cal);
-        return cal.getTime();
-    }
-    public Calendar getCal(){
-        return Calendar.getInstance();
+        return cal;
     }
 
     public List<Build> getBuilds() {
