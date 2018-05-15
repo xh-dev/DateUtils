@@ -239,7 +239,7 @@ public class DateBuilder {
         return getCal().getTime();
     }
     public Calendar getCal(){
-        Calendar cal = getCal();
+        Calendar cal = Calendar.getInstance();
         for(Build build: builds)
             build.apply(cal);
         return cal;
