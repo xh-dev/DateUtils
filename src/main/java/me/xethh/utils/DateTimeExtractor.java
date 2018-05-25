@@ -21,6 +21,9 @@ public class DateTimeExtractor {
         }
     }
     private Calendar cal=Calendar.getInstance();
+    /*
+    Constructor
+     */
     private DateTimeExtractor(Date date){
         cal.setTime(date);
     }
@@ -49,5 +52,9 @@ public class DateTimeExtractor {
     }
     public Integer ms(){
         return cal.get(Calendar.MILLISECOND);
+    }
+
+    public DateBuilder asBuilder(){
+        return DateBuilder.get(cal.getTime());
     }
 }

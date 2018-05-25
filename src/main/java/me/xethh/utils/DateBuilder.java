@@ -3,6 +3,9 @@ import java.util.*;
 
 public class DateBuilder {
     private List<Build> builds=new ArrayList();
+    /*
+    Constructors
+     */
     private DateBuilder(final Date date){
         builds.add(new Build() {
             @Override
@@ -32,6 +35,7 @@ public class DateBuilder {
         this(builds);
         this.builds.add(build);
     }
+
     public static DateBuilder get(Date date){
         return new DateBuilder(date);
     }
@@ -44,9 +48,17 @@ public class DateBuilder {
     public static DateBuilder get(List<Build> builds,Build build){
         return new DateBuilder(builds,build);
     }
+
+    /*
+    Generate date
+     */
     public interface Build{
         Build apply(Calendar cal);
     }
+
+    /*
+    Year part
+     */
     public DateBuilder minYear(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -66,6 +78,9 @@ public class DateBuilder {
         });
     }
 
+    /*
+    Month part
+     */
     public DateBuilder minMonth(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -75,6 +90,7 @@ public class DateBuilder {
             }
         });
     }
+
     /**
      * Set the months
      * @param month should be normally 1,2,...12 where 1=JAN, 2=FEB....
@@ -92,6 +108,10 @@ public class DateBuilder {
         });
     }
 
+
+    /*
+    Day part
+     */
     public DateBuilder minDay(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -110,6 +130,14 @@ public class DateBuilder {
             }
         });
     }
+    public DateBuilder firstDayOfMonth(){
+        return minDay();
+    }
+
+
+    /*
+    Hour part
+     */
     public DateBuilder minHour(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -137,6 +165,10 @@ public class DateBuilder {
             }
         });
     }
+
+    /*
+    Minute part
+     */
     public DateBuilder minMinute(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -164,6 +196,10 @@ public class DateBuilder {
             }
         });
     }
+
+    /*
+    Second part
+     */
     public DateBuilder minSecond(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -191,6 +227,10 @@ public class DateBuilder {
             }
         });
     }
+
+    /*
+    Millisecond
+     */
     public DateBuilder minMs(){
         return DateBuilder.get(builds, new Build() {
             @Override
@@ -219,26 +259,23 @@ public class DateBuilder {
         });
     }
 
+    /*
+    Time manipulation
+     */
     public DateBuilder maxDayTime(){
         return maxHour().maxMinute().maxSecond().maxMs();
     }
-
     public DateBuilder minDayTime(){
         return minHour().minMinute().minSecond().minMs();
     }
-
-    public DateBuilder toDate(){
-        return minDay();
-    }
-
-    public DateBuilder toTime(){
+    public DateBuilder timePartOnly(){
         return minYear().minMonth().minDay();
     }
 
     public Date build(){
-        return getCal().getTime();
+        return asCalendar().getTime();
     }
-    public Calendar getCal(){
+    public Calendar asCalendar(){
         Calendar cal = Calendar.getInstance();
         for(Build build: builds)
             build.apply(cal);
@@ -249,11 +286,11 @@ public class DateBuilder {
         return builds;
     }
 
-    public TimeOperation toTimeOperator(){
+    public TimeOperation operate(){
        return TimeOperation.get(this);
     }
 
-    public DateTimeExtractor extract(){
+    public DateTimeExtractor info(){
         return DateTimeExtractor.get(build());
     }
 }

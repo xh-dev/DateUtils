@@ -15,7 +15,7 @@ public class DateUtilsTestTimeExtractor
         DateTimeExtractor extractor =
                 DateBuilder.get()
                         .hours(13).minutes(23).seconds(34).ms(666)
-                        .days(20).months(11).year(2078).extract();
+                        .days(20).months(11).year(2078).info();
         assertEquals(2078,extractor.year().intValue());
         assertEquals(11,extractor.month().toNumber());
         assertEquals(20,extractor.day().intValue());
