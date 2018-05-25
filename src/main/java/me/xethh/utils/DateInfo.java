@@ -11,7 +11,7 @@ public class DateInfo {
     private DateInfo(Date date){
         cal.setTime(date);
     }
-    public static DateInfo get(Date date){
+    public static DateInfo from(Date date){
         return new DateInfo(date);
     }
 
@@ -38,6 +38,16 @@ public class DateInfo {
     }
 
     public DateBuilder asBuilder(){
-        return DateBuilder.get(cal.getTime());
+        return DateBuilder.from(cal.getTime());
+    }
+    public Date asDate(){
+        return cal.getTime();
+    }
+    public Calendar asCalendar(){
+        return cal;
+    }
+    public Long asLong(){
+        return asDate().getTime();
     }
 }
+

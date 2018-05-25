@@ -36,17 +36,26 @@ public class DateBuilder {
         this.builds.add(build);
     }
 
-    public static DateBuilder get(Date date){
+    public static DateBuilder from(Date date){
         return new DateBuilder(date);
     }
-    public static DateBuilder get(){
+    public static DateBuilder raw(){
         return new DateBuilder(new ArrayList());
     }
-    public static DateBuilder get(List<Build> builds){
+    public static DateBuilder from(List<Build> builds){
         return new DateBuilder(builds);
     }
-    public static DateBuilder get(List<Build> builds,Build build){
+    public static DateBuilder from(List<Build> builds, Build build){
         return new DateBuilder(builds,build);
+    }
+    public static DateBuilder now(){
+        return new DateBuilder(new Date());
+    }
+    public static DateBuilder from(Calendar calendar){
+        return from(calendar.getTime());
+    }
+    public static DateBuilder from(Long longDate){
+        return from(new Date(longDate));
     }
 
     /*
@@ -60,7 +69,7 @@ public class DateBuilder {
     Year part
      */
     public DateBuilder minYear(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.YEAR,1970);
@@ -69,7 +78,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder year(final int year){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.YEAR,year);
@@ -82,7 +91,7 @@ public class DateBuilder {
     Month part
      */
     public DateBuilder minMonth(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MONTH,0);
@@ -97,7 +106,7 @@ public class DateBuilder {
      * @return
      */
     public DateBuilder month(final Month month){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MONTH,month.ordinal());
@@ -111,7 +120,7 @@ public class DateBuilder {
     Day part
      */
     public DateBuilder minDay(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.DAY_OF_MONTH,1);
@@ -120,7 +129,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder day(final int date){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.DAY_OF_MONTH,date);
@@ -137,7 +146,7 @@ public class DateBuilder {
     Hour part
      */
     public DateBuilder minHour(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.HOUR_OF_DAY,0);
@@ -146,7 +155,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder maxHour(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.HOUR_OF_DAY,23);
@@ -154,8 +163,8 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder hours(final int hour){
-        return DateBuilder.get(builds, new Build() {
+    public DateBuilder hour(final int hour){
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.HOUR_OF_DAY,hour);
@@ -168,7 +177,7 @@ public class DateBuilder {
     Minute part
      */
     public DateBuilder minMinute(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MINUTE,0);
@@ -177,7 +186,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder maxMinute(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MINUTE,59);
@@ -185,8 +194,8 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder minutes(final int min){
-        return DateBuilder.get(builds, new Build() {
+    public DateBuilder minute(final int min){
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MINUTE,min);
@@ -199,7 +208,7 @@ public class DateBuilder {
     Second part
      */
     public DateBuilder minSecond(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.SECOND,0);
@@ -208,7 +217,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder maxSecond(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.SECOND,59);
@@ -216,8 +225,8 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder seconds(final int second){
-        return DateBuilder.get(builds, new Build() {
+    public DateBuilder second(final int second){
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.SECOND,second);
@@ -230,7 +239,7 @@ public class DateBuilder {
     Millisecond
      */
     public DateBuilder minMs(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MILLISECOND,0);
@@ -239,7 +248,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder maxMs(){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MILLISECOND,999);
@@ -248,7 +257,7 @@ public class DateBuilder {
         });
     }
     public DateBuilder ms(final int ms){
-        return DateBuilder.get(builds, new Build() {
+        return DateBuilder.from(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MILLISECOND,ms);
@@ -279,16 +288,40 @@ public class DateBuilder {
             build.apply(cal);
         return cal;
     }
+    public Long asLong(){
+        return build().getTime();
+    }
+    public DateComparator asComparator(){
+        return DateComparator.from(this);
+    }
 
     public List<Build> getBuilds() {
         return builds;
     }
 
     public TimeOperation operate(){
-       return TimeOperation.get(this);
+       return TimeOperation.from(this);
     }
 
-    public DateInfo info(){
-        return DateInfo.get(build());
+    public DateInfo view(){
+        return DateInfo.from(build());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateBuilder that = (DateBuilder) o;
+        return asLong().equals(that.asLong());
+    }
+
+    @Override
+    public int hashCode() {
+        return 4444;
+    }
+
+    @Override
+    public String toString() {
+        return "DateBuilder[" +DateFormatBuilder.ISO8601.format(build())+']';
     }
 }

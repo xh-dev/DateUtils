@@ -13,20 +13,20 @@ public class TimeOperation {
         this.dateBuilder = dateBuilder;
     }
 
-    public static TimeOperation get(){
-        return new TimeOperation(DateBuilder.get());
+    public static TimeOperation raw(){
+        return new TimeOperation(DateBuilder.raw());
     }
-    public static TimeOperation get(Date date){
-        return new TimeOperation(DateBuilder.get(date));
+    public static TimeOperation from(Date date){
+        return new TimeOperation(DateBuilder.from(date));
     }
-    public static TimeOperation get(DateBuilder builder){
+    public static TimeOperation from(DateBuilder builder){
         return new TimeOperation(builder);
     }
 
     /*
     Convert to other form
      */
-    public DateBuilder builder(){
+    public DateBuilder asBuilder(){
         return dateBuilder;
     }
     public Date asDate(){
@@ -35,12 +35,21 @@ public class TimeOperation {
     public Calendar asCalendar(){
         return dateBuilder.asCalendar();
     }
+    public Long asLong(){
+        return dateBuilder.build().getTime();
+    }
+    public DateComparator asComparator(){
+        return dateBuilder.asComparator();
+    }
+    public DateInfo view(){
+        return dateBuilder.view();
+    }
 
     /*
     Operation
      */
     public TimeOperation addYear(final int years){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.YEAR,years);
@@ -49,7 +58,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation lastYear(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.YEAR,-1);
@@ -58,7 +67,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation nextYear(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.YEAR,1);
@@ -67,7 +76,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation lastMonth(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.MONTH,-1);
@@ -76,7 +85,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation nextMonth(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.MONTH,1);
@@ -85,7 +94,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation addMonths(final int months){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.MONTH,months);
@@ -95,7 +104,7 @@ public class TimeOperation {
     }
 
     public TimeOperation addDays(final int days){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,days);
@@ -104,7 +113,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation yesterday(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,-1);
@@ -113,7 +122,7 @@ public class TimeOperation {
         }));
     }
     public TimeOperation tomorrow(){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,1);
@@ -123,7 +132,7 @@ public class TimeOperation {
     }
 
     public TimeOperation addHours(final int hours){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.HOUR_OF_DAY,hours);
@@ -133,7 +142,7 @@ public class TimeOperation {
     }
 
     public TimeOperation addMins(final int mins){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.MINUTE,mins);
@@ -143,7 +152,7 @@ public class TimeOperation {
     }
 
     public TimeOperation addSecond(final int sec){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.SECOND,sec);
@@ -153,7 +162,7 @@ public class TimeOperation {
     }
 
     public TimeOperation addMS(final int ms){
-        return new TimeOperation(DateBuilder.get(dateBuilder.getBuilds(),new DateBuilder.Build(){
+        return new TimeOperation(DateBuilder.from(dateBuilder.getBuilds(),new DateBuilder.Build(){
             @Override
             public DateBuilder.Build apply(Calendar cal) {
                 cal.add(Calendar.MILLISECOND,ms);

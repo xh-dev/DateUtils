@@ -16,20 +16,20 @@ public class DateUtilsTest
 
     @Test
     public void rawDate(){
-        assertEquals(sdf.format(DateBuilder.get().build()),"1970-01-01T00:00:00.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().build()),"1970-01-01T00:00:00.000+0800");
     }
 
     @Test
     public void timeSetup(){
-        assertEquals(sdf.format(DateBuilder.get().maxMs().build()),"1970-01-01T00:00:00.999+0800");
-        assertEquals(sdf.format(DateBuilder.get().minMs().minMs().build()),"1970-01-01T00:00:00.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().maxMs().build()),"1970-01-01T00:00:00.999+0800");
+        assertEquals(sdf.format(DateBuilder.raw().minMs().minMs().build()),"1970-01-01T00:00:00.000+0800");
 
-        assertEquals(sdf.format(DateBuilder.get().maxSecond().build()),"1970-01-01T00:00:59.000+0800");
-        assertEquals(sdf.format(DateBuilder.get().maxSecond().minSecond().build()),"1970-01-01T00:00:00.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().maxSecond().build()),"1970-01-01T00:00:59.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().maxSecond().minSecond().build()),"1970-01-01T00:00:00.000+0800");
 
-        assertEquals(sdf.format(DateBuilder.get().maxHour().build()),"1970-01-01T23:00:00.000+0800");
-        assertEquals(sdf.format(DateBuilder.get().maxHour().minHour().build()),"1970-01-01T00:00:00.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().maxHour().build()),"1970-01-01T23:00:00.000+0800");
+        assertEquals(sdf.format(DateBuilder.raw().maxHour().minHour().build()),"1970-01-01T00:00:00.000+0800");
 
-        assertEquals(sdf.format(DateBuilder.get().ms(444).seconds(23).hours(14).minutes(40).day(2).month(Month.APR).year(2008).build()),"2008-04-02T14:40:23.444+0800");
+        assertEquals(sdf.format(DateBuilder.raw().ms(444).second(23).hour(14).minute(40).day(2).month(Month.APR).year(2008).build()),"2008-04-02T14:40:23.444+0800");
     }
 }
