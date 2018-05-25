@@ -92,17 +92,15 @@ public class DateBuilder {
     }
 
     /**
-     * Set the months
+     * Set the month
      * @param month should be normally 1,2,...12 where 1=JAN, 2=FEB....
      * @return
      */
-    public DateBuilder months(final int month){
-        if(month<1 || month>12)
-            throw new RuntimeException("Only accept 1-12 as month value");
+    public DateBuilder month(final Month month){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
-                cal.set(Calendar.MONTH,month-1);
+                cal.set(Calendar.MONTH,month.ordinal());
                 return this;
             }
         });
@@ -121,7 +119,7 @@ public class DateBuilder {
             }
         });
     }
-    public DateBuilder days(final int date){
+    public DateBuilder day(final int date){
         return DateBuilder.get(builds, new Build() {
             @Override
             public Build apply(Calendar cal) {
@@ -290,7 +288,7 @@ public class DateBuilder {
        return TimeOperation.get(this);
     }
 
-    public DateTimeExtractor info(){
-        return DateTimeExtractor.get(build());
+    public DateInfo info(){
+        return DateInfo.get(build());
     }
 }

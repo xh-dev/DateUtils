@@ -3,40 +3,23 @@ package me.xethh.utils;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateTimeExtractor {
-    public enum Month{
-        JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC;
-
-        public int toNumber(){
-            return ordinal()+1;
-        }
-
-        public static Month of(int num){
-            for(Month value:Month.values())
-                if(num==value.ordinal())
-                    return value;
-            throw new RuntimeException(String.format("Value[%d] not support for month", num));
-
-
-        }
-    }
+public class DateInfo {
     private Calendar cal=Calendar.getInstance();
     /*
     Constructor
      */
-    private DateTimeExtractor(Date date){
+    private DateInfo(Date date){
         cal.setTime(date);
     }
-    public static DateTimeExtractor get(Date date){
-        return new DateTimeExtractor(date);
+    public static DateInfo get(Date date){
+        return new DateInfo(date);
     }
-
 
     public Integer year(){
         return cal.get(Calendar.YEAR);
     }
     public Month month(){
-        return Month.of(cal.get(Calendar.MONTH));
+        return Month.ofOrdinal(cal.get(Calendar.MONTH));
     }
     public Integer day(){
         return cal.get(Calendar.DAY_OF_MONTH);
