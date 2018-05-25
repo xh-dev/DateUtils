@@ -1,4 +1,4 @@
-package me.xethh.utils;
+package me.xethh.utils.dateManipulation;
 
 /**
  * @author xethhung

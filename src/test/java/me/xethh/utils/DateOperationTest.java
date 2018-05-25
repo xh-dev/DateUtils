@@ -1,10 +1,11 @@
 package me.xethh.utils;
 
+import me.xethh.utils.dateManipulation.DateBuilder;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 
-import static me.xethh.utils.Month.*;
+import static me.xethh.utils.dateManipulation.Month.*;
 import static org.junit.Assert.assertEquals;
 
 /**

@@ -1,4 +1,4 @@
-package me.xethh.utils;
+package me.xethh.utils.dateManipulation;
 import java.util.*;
 
 public class DateBuilder {

@@ -1,8 +1,10 @@
 package me.xethh.utils;
 
+import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateInfo;
 import org.junit.Test;
 
-import static me.xethh.utils.Month.NOV;
+import static me.xethh.utils.dateManipulation.Month.NOV;
 import static org.junit.Assert.assertEquals;
 
 /**
