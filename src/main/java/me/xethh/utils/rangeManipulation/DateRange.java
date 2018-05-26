@@ -17,6 +17,6 @@ public class DateRange {
     }
 
     public boolean isValid(){
-        return DateBuilder.from(start).asComparator().beforeEqual(end);
+        return start.getTime()>end.getTime();
     }
 }
