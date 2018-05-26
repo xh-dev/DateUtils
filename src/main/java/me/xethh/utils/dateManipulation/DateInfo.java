@@ -36,6 +36,10 @@ public class DateInfo {
     public Integer ms(){
         return cal.get(Calendar.MILLISECOND);
     }
+    public Weekday weekday(){
+        return Weekday.values()[cal.get(Calendar.DAY_OF_WEEK)-1];
+    }
+
 
     public DateBuilder asBuilder(){
         return DateBuilder.from(cal.getTime());
