@@ -30,13 +30,13 @@ public class TimeOperation {
         return dateBuilder;
     }
     public Date asDate(){
-        return dateBuilder.build();
+        return dateBuilder.asDate();
     }
     public Calendar asCalendar(){
         return dateBuilder.asCalendar();
     }
     public Long asLong(){
-        return dateBuilder.build().getTime();
+        return dateBuilder.asDate().getTime();
     }
     public DateComparator asComparator(){
         return dateBuilder.asComparator();

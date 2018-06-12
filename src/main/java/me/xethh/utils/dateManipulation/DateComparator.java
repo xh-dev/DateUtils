@@ -29,19 +29,45 @@ public class DateComparator {
         return this.builder;
     }
     public Date asDate(){
-        return this.builder.build();
+        return this.builder.asDate();
     }
     public Long asLong(){
-        return this.builder.build().getTime();
+        return this.builder.asDate().getTime();
     }
     public Calendar asCalendar(){
         return this.builder.asCalendar();
     }
     public DateInfo view(){
-        return DateInfo.from(builder.build());
+        return DateInfo.from(builder.asDate());
     }
     public TimeOperation operate(){
         return TimeOperation.from(builder);
+    }
+
+    public boolean sameYear(DateBuilder builder){
+        return this.builder.minDayTime().view().year().equals(builder.minDayTime().view().year());
+    }
+    public boolean sameYear(Long longDate){
+        return sameYear(DateBuilder.from(longDate));
+    }
+    public boolean sameYear(Date date){
+        return sameYear(DateBuilder.from(date));
+    }
+    public boolean sameYear(Calendar cal){
+        return sameYear(DateBuilder.from(cal));
+    }
+
+    public boolean sameMonth(DateBuilder builder){
+        return this.builder.minDayTime().view().month().equals(builder.minDayTime().view().month());
+    }
+    public boolean sameMonth(Long longDate){
+        return sameMonth(DateBuilder.from(longDate));
+    }
+    public boolean sameMonth(Date date){
+        return sameMonth(DateBuilder.from(date));
+    }
+    public boolean sameMonth(Calendar cal){
+        return sameMonth(DateBuilder.from(cal));
     }
 
     public boolean sameDay(DateBuilder builder){

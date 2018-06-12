@@ -1,4 +1,6 @@
 package me.xethh.utils.dateManipulation;
+import me.xethh.utils.rangeManipulation.DatetimeRange;
+
 import java.util.*;
 
 public class DateBuilder {
@@ -279,7 +281,7 @@ public class DateBuilder {
         return minYear().minMonth().minDay();
     }
 
-    public Date build(){
+    public Date asDate(){
         return asCalendar().getTime();
     }
     public Calendar asCalendar(){
@@ -289,7 +291,7 @@ public class DateBuilder {
         return cal;
     }
     public Long asLong(){
-        return build().getTime();
+        return asDate().getTime();
     }
     public DateComparator asComparator(){
         return DateComparator.from(this);
@@ -304,7 +306,23 @@ public class DateBuilder {
     }
 
     public DateInfo view(){
-        return DateInfo.from(build());
+        return DateInfo.from(asDate());
+    }
+
+    public DatetimeRange rangeTo(DateBuilder date){
+        return rangeTo(date.asDate());
+    }
+
+    public DatetimeRange rangeFrom(DateBuilder date){
+        return rangeFrom(date.asDate());
+    }
+
+    public DatetimeRange rangeTo(Date date){
+        return DatetimeRange.of(asDate(),date);
+    }
+
+    public DatetimeRange rangeFrom(Date date){
+        return DatetimeRange.of(date, asDate());
     }
 
     @Override
@@ -322,6 +340,6 @@ public class DateBuilder {
 
     @Override
     public String toString() {
-        return "DateBuilder[" +DateFormatBuilder.ISO8601.format(build())+']';
+        return "DateBuilder[" +DateFormatBuilder.ISO8601.format(asDate())+']';
     }
 }

@@ -1,6 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.Month;
 import org.junit.Test;
 
 import java.util.Date;
@@ -13,13 +14,46 @@ import static org.junit.Assert.assertEquals;
 public class DateComparatorTest
 {
     @Test
+    public void sameYear(){
+        DateBuilder d1 = DateBuilder.raw().hour(10).minute(20).second(23).ms(345);
+        DateBuilder d2 = d1.operate().addYear(1).asBuilder();
+        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        assertEquals(false,d1.asComparator().sameYear(d2));
+        assertEquals(true,d1.asComparator().sameYear(d3));
+
+        assertEquals(false,d1.asComparator().sameYear(d2.asLong()));
+        assertEquals(true,d1.asComparator().sameYear(d3.asLong()));
+
+        assertEquals(false,d1.asComparator().sameYear(d2.asCalendar()));
+        assertEquals(true,d1.asComparator().sameYear(d3.asCalendar()));
+
+        assertEquals(false,d1.asComparator().sameYear(d2.asDate()));
+        assertEquals(true,d1.asComparator().sameYear(d3.asDate()));
+    }
+
+    @Test
+    public void sameMonth(){
+        DateBuilder d1 = DateBuilder.raw().hour(10).minute(20).second(23).ms(345);
+        DateBuilder d2 = d1.month(Month.JUL);
+        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        assertEquals(false,d1.asComparator().sameMonth(d2));
+        assertEquals(true,d1.asComparator().sameMonth(d3));
+
+        assertEquals(false,d1.asComparator().sameMonth(d2.asLong()));
+        assertEquals(true,d1.asComparator().sameMonth(d3.asLong()));
+
+        assertEquals(false,d1.asComparator().sameMonth(d2.asCalendar()));
+        assertEquals(true,d1.asComparator().sameMonth(d3.asCalendar()));
+
+        assertEquals(false,d1.asComparator().sameMonth(d2.asDate()));
+        assertEquals(true,d1.asComparator().sameMonth(d3.asDate()));
+    }
+
+    @Test
     public void sameDate(){
         DateBuilder d1 = DateBuilder.raw().hour(10).minute(20).second(23).ms(345);
-        System.out.println("d1 ==> "+d1.toString());
         DateBuilder d2 = d1.day(2);
-        System.out.println("d2 ==> "+d2.toString());
         DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
-        System.out.println("d3 ==> "+d3.toString());
         assertEquals(false,d1.asComparator().sameDay(d2));
         assertEquals(true,d1.asComparator().sameDay(d3));
 
@@ -29,8 +63,8 @@ public class DateComparatorTest
         assertEquals(false,d1.asComparator().sameDay(d2.asCalendar()));
         assertEquals(true,d1.asComparator().sameDay(d3.asCalendar()));
 
-        assertEquals(false,d1.asComparator().sameDay(d2.build()));
-        assertEquals(true,d1.asComparator().sameDay(d3.build()));
+        assertEquals(false,d1.asComparator().sameDay(d2.asDate()));
+        assertEquals(true,d1.asComparator().sameDay(d3.asDate()));
     }
 
     @Test
@@ -50,8 +84,8 @@ public class DateComparatorTest
         assertEquals(true,d1.asComparator().sameTime(d2.asCalendar()));
         assertEquals(false,d1.asComparator().sameTime(d3.asCalendar()));
 
-        assertEquals(true,d1.asComparator().sameTime(d2.build()));
-        assertEquals(false,d1.asComparator().sameTime(d3.build()));
+        assertEquals(true,d1.asComparator().sameTime(d2.asDate()));
+        assertEquals(false,d1.asComparator().sameTime(d3.asDate()));
     }
 
     @Test
@@ -71,10 +105,10 @@ public class DateComparatorTest
         assertEquals(false,d1.asComparator().sameHMS(d4));
         assertEquals(true,d1.asComparator().sameHMS(d5));
 
-        assertEquals(false,d1.asComparator().sameHMS(d2.build()));
-        assertEquals(false,d1.asComparator().sameHMS(d3.build()));
-        assertEquals(false,d1.asComparator().sameHMS(d4.build()));
-        assertEquals(true,d1.asComparator().sameHMS(d5.build()));
+        assertEquals(false,d1.asComparator().sameHMS(d2.asDate()));
+        assertEquals(false,d1.asComparator().sameHMS(d3.asDate()));
+        assertEquals(false,d1.asComparator().sameHMS(d4.asDate()));
+        assertEquals(true,d1.asComparator().sameHMS(d5.asDate()));
 
         assertEquals(false,d1.asComparator().sameHMS(d2.asLong()));
         assertEquals(false,d1.asComparator().sameHMS(d3.asLong()));
@@ -101,9 +135,9 @@ public class DateComparatorTest
         assertEquals(false,d1.asComparator().sameHM(d3));
         assertEquals(true,d1.asComparator().sameHM(d5));
 
-        assertEquals(false,d1.asComparator().sameHM(d2.build()));
-        assertEquals(false,d1.asComparator().sameHM(d3.build()));
-        assertEquals(true,d1.asComparator().sameHM(d5.build()));
+        assertEquals(false,d1.asComparator().sameHM(d2.asDate()));
+        assertEquals(false,d1.asComparator().sameHM(d3.asDate()));
+        assertEquals(true,d1.asComparator().sameHM(d5.asDate()));
 
         assertEquals(false,d1.asComparator().sameHM(d2.asLong()));
         assertEquals(false,d1.asComparator().sameHM(d3.asLong()));
@@ -123,8 +157,8 @@ public class DateComparatorTest
 
         assertEquals(false,d1.asComparator().laterThan(d2));
         assertEquals(true,d2.asComparator().laterThan(d1));
-        assertEquals(false,d1.asComparator().laterThan(d2.build()));
-        assertEquals(true,d2.asComparator().laterThan(d1.build()));
+        assertEquals(false,d1.asComparator().laterThan(d2.asDate()));
+        assertEquals(true,d2.asComparator().laterThan(d1.asDate()));
         assertEquals(false,d1.asComparator().laterThan(d2.asLong()));
         assertEquals(true,d2.asComparator().laterThan(d1.asLong()));
         assertEquals(false,d1.asComparator().laterThan(d2.asCalendar()));
@@ -142,8 +176,8 @@ public class DateComparatorTest
 
         assertEquals(true,d1.asComparator().before(d2));
         assertEquals(false,d2.asComparator().before(d1));
-        assertEquals(true,d1.asComparator().before(d2.build()));
-        assertEquals(false,d2.asComparator().before(d1.build()));
+        assertEquals(true,d1.asComparator().before(d2.asDate()));
+        assertEquals(false,d2.asComparator().before(d1.asDate()));
         assertEquals(true,d1.asComparator().before(d2.asLong()));
         assertEquals(false,d2.asComparator().before(d1.asLong()));
         assertEquals(true,d1.asComparator().before(d2.asCalendar()));
@@ -173,9 +207,9 @@ public class DateComparatorTest
         assertEquals(true,d2.asComparator().laterEqualThan(d1.asCalendar()));
         assertEquals(true,d3.asComparator().laterEqualThan(d2.asCalendar()));
 
-        assertEquals(false,d1.asComparator().laterEqualThan(d2.build()));
-        assertEquals(true,d2.asComparator().laterEqualThan(d1.build()));
-        assertEquals(true,d3.asComparator().laterEqualThan(d2.build()));
+        assertEquals(false,d1.asComparator().laterEqualThan(d2.asDate()));
+        assertEquals(true,d2.asComparator().laterEqualThan(d1.asDate()));
+        assertEquals(true,d3.asComparator().laterEqualThan(d2.asDate()));
     }
 
     @Test
@@ -199,8 +233,8 @@ public class DateComparatorTest
         assertEquals(false,d2.asComparator().beforeEqual(d1.asCalendar()));
         assertEquals(true,d3.asComparator().beforeEqual(d2.asCalendar()));
 
-        assertEquals(true,d1.asComparator().beforeEqual(d2.build()));
-        assertEquals(false,d2.asComparator().beforeEqual(d1.build()));
-        assertEquals(true,d3.asComparator().beforeEqual(d2.build()));
+        assertEquals(true,d1.asComparator().beforeEqual(d2.asDate()));
+        assertEquals(false,d2.asComparator().beforeEqual(d1.asDate()));
+        assertEquals(true,d3.asComparator().beforeEqual(d2.asDate()));
     }
 }

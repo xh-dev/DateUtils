@@ -22,7 +22,7 @@ public class DateFormatTest
                 .yyyy().pad(" - ").MM().pad("-").dd().pad("T")
                 .HH().pad(":").mm().pad(":").ss().pad(".").SSS().pad("===").Z().build();
         SimpleDateFormat sdf = new SimpleDateFormat("'Hello' yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
-        Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).build();
+        Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
         assertEquals("Hello 2088 - 11-10T21:56:58.888===+0800",format.format(date));
         assertEquals("Hello 2088 - 11-10T21:56:58.888===+0800",sdf.format(date));
     }
