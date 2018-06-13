@@ -281,6 +281,20 @@ public class DateBuilder {
         return minYear().minMonth().minDay();
     }
 
+    public DateBuilder ymd(int year, Month m, int day){
+        return year(year).month(m).day(day);
+    }
+
+    public DateBuilder hm(int hour, int m){
+        return hour(hour).minute(m).second(0).ms(0);
+    }
+    public DateBuilder hms(int hour, int m, int s){
+        return hour(hour).minute(m).second(s).ms(0);
+    }
+    public DateBuilder hmss(int hour, int m, int s, int ms){
+        return hour(hour).minute(m).second(s).ms(ms);
+    }
+
     public Date asDate(){
         return asCalendar().getTime();
     }
@@ -324,6 +338,8 @@ public class DateBuilder {
     public DatetimeRange rangeFrom(Date date){
         return DatetimeRange.of(date, asDate());
     }
+
+
 
     @Override
     public boolean equals(Object o) {

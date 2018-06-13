@@ -35,6 +35,11 @@ public class DateUtilsTest
         assertEquals(sdf.format(DateBuilder.raw().maxHour().minHour().asDate()),"1970-01-01T00:00:00.000+0800");
 
         assertEquals(sdf.format(DateBuilder.raw().ms(444).second(23).hour(14).minute(40).day(2).month(Month.APR).year(2008).asDate()),"2008-04-02T14:40:23.444+0800");
+
+        assertEquals("2008-04-02T00:00:00.000+0800",sdf.format(DateBuilder.raw().ymd(2008,Month.APR,02).asDate()));
+        assertEquals("2008-04-02T14:23:00.000+0800",sdf.format(DateBuilder.raw().ymd(2008,Month.APR,02).hm(14,23).asDate()));
+        assertEquals("2008-04-02T14:23:45.000+0800",sdf.format(DateBuilder.raw().ymd(2008,Month.APR,02).hms(14,23,45).asDate()));
+        assertEquals("2008-04-02T14:23:45.777+0800",sdf.format(DateBuilder.raw().ymd(2008,Month.APR,02).hmss(14,23,45,777).asDate()));
     }
 
     @Test
