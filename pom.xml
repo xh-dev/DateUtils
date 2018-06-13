@@ -6,7 +6,7 @@
 
   <groupId>me.xethh.utils</groupId>
   <artifactId>DateUtils</artifactId>
-  <version>2.5-DEV</version>
+  <version>2.5-RELEASE</version>
 
   <name>DateUtils</name>
 
