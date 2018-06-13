@@ -1,6 +1,7 @@
 package me.xethh.utils.rangeManipulation;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateComparator;
 import me.xethh.utils.dateManipulation.DateFormatBuilder;
 
 import java.util.Date;
@@ -24,6 +25,10 @@ public class DatetimeRange {
 
     public boolean isValid(){
         return start.getTime()<end.getTime();
+    }
+
+    public boolean isInvalid(){
+        return !isValid();
     }
 
     public DatetimeRange swrap(){
@@ -101,4 +106,56 @@ public class DatetimeRange {
     public Date getEnd() {
         return end;
     }
+
+    public boolean overlapping(DatetimeRange range){
+        if(range==null || range.isInvalid() || isInvalid())
+            return false;
+        if(DateBuilder.from(start).asComparator().beforeEqual(range.start) && DateBuilder.from(end).asComparator().laterEqualThan(range.end))
+            return true;
+        if(DateBuilder.from(range.start).asComparator().beforeEqual(start) && DateBuilder.from(range.end).asComparator().laterEqualThan(end))
+            return true;
+        if(DateBuilder.from(start).asComparator().beforeEqual(range.start) && DateBuilder.from(end).asComparator().laterEqualThan(range.start))
+            return true;
+        if(DateBuilder.from(range.start).asComparator().beforeEqual(start) && DateBuilder.from(range.end).asComparator().laterEqualThan(start))
+            return true;
+        return false;
+    }
+
+    public OverlapType overlappingPattern(DatetimeRange range){
+        if(range==null)
+            return OverlapType.TargetIsNull;
+
+        DateComparator startComparator = DateBuilder.from(start).asComparator();
+        DateComparator endComparator = DateBuilder.from(end).asComparator();
+
+        DateComparator targetStartComparator = DateBuilder.from(range.start).asComparator();
+        DateComparator targetEndComparator = DateBuilder.from(range.end).asComparator();
+
+        if(range.isInvalid())
+            return OverlapType.TargetInvalid;
+        else if(isInvalid())
+            return OverlapType.Invalid;
+        else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.end))
+            return OverlapType.Covering;
+        else if(targetStartComparator.beforeEqual(start) && targetEndComparator.laterEqualThan(end))
+            return OverlapType.CoveredBy;
+        else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.start)) {
+            if (end.getTime() == range.start.getTime())
+                return OverlapType.JoinOnRight;
+            else
+                return OverlapType.OverLapOnRight;
+        }
+        else if(targetStartComparator.beforeEqual(start) && targetEndComparator.laterEqualThan(start)){
+            if(start.getTime()==range.end.getTime())
+                return OverlapType.JoinOnLeft;
+            else
+                return OverlapType.OverlapOnLef;
+        }
+        else if(startComparator.laterThan(range.end))
+            return OverlapType.ComesLater;
+        else
+            return OverlapType.ComesFirst;
+
+    }
+
 }
