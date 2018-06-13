@@ -11,12 +11,13 @@ public enum OverlapType {
     JoinOnRight,    //[10-15] compare to [15-20]
     OverlapOnLef,   //[10-17] compare to [13-20]
     OverLapOnRight, //[13-20] compare to [10-17]
+    Same,           //[5-10] compare to [5-10]
 
     ComesFirst, //[1-5] compare to [6-10]
     ComesLater, //[6-10] compare to [1-5]
 
     TargetIsNull,    //Compare target is null
     TargetInvalid,  //Compare target is not a valid datetime range
-    Invalid,        //datetime range is not valid
+    Invalid,;        //datetime range is not valid
 
 }

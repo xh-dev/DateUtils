@@ -44,8 +44,22 @@ public class DateComparator {
         return TimeOperation.from(builder);
     }
 
+    public boolean sameDatetime(DateBuilder builder){
+        return asLong().equals(builder.asLong());
+    }
+    public boolean sameDatetime(Long longDate){
+        return sameDatetime(DateBuilder.from(longDate));
+    }
+    public boolean sameDatetime(Date date){
+        return sameDatetime(DateBuilder.from(date));
+    }
+    public boolean sameDatetime(Calendar cal){
+        return sameDatetime(DateBuilder.from(cal));
+
+    }
+
     public boolean sameYear(DateBuilder builder){
-        return this.builder.minDayTime().view().year().equals(builder.minDayTime().view().year());
+        return asBuilder().view().year().equals(builder.view().year());
     }
     public boolean sameYear(Long longDate){
         return sameYear(DateBuilder.from(longDate));

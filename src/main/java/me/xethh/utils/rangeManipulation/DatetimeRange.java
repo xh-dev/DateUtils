@@ -135,6 +135,8 @@ public class DatetimeRange {
             return OverlapType.TargetInvalid;
         else if(isInvalid())
             return OverlapType.Invalid;
+        else if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
+            return OverlapType.Same;
         else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.end))
             return OverlapType.Covering;
         else if(targetStartComparator.beforeEqual(start) && targetEndComparator.laterEqualThan(end))
