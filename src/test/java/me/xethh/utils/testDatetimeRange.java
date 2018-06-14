@@ -123,7 +123,7 @@ public class testDatetimeRange
         assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.operate().addDays(-1).asBuilder().rangeTo(start11.operate().addDays(1).asDate())));
         assertEquals(true,
                 start11.rangeTo(start12.asDate()).overlappingPattern(
-                        start11.operate().addDays(-1).asBuilder().rangeTo(start11.operate().addDays(1).asDate()))==OverlapType.OverlapOnLef);
+                        start11.operate().addDays(-1).asBuilder().rangeTo(start11.operate().addDays(1).asDate()))==OverlapType.OverlapOnLeft);
 
         assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.rangeTo(start12)));
         assertEquals(true,start11.rangeTo(start12.asDate()).overlappingPattern(start11.rangeTo(start12))==OverlapType.Same);

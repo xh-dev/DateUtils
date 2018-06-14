@@ -161,7 +161,7 @@ public class DatetimeRange {
             if(start.getTime()==range.end.getTime())
                 return OverlapType.JoinOnLeft;
             else
-                return OverlapType.OverlapOnLef;
+                return OverlapType.OverlapOnLeft;
         }
         else if(startComparator.laterThan(range.end))
             return OverlapType.ComesLater;
