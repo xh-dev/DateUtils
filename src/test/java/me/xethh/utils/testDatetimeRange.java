@@ -75,6 +75,28 @@ public class testDatetimeRange
                         start11.operate().addDays(-2).asBuilder().rangeTo(start12.operate().addDays(2).asBuilder().asDate()))==OverlapType.CoveredBy
         );
 
+        assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.operate().addDays(-2).asBuilder().rangeTo(start12.asDate())));
+        assertEquals(true,
+                start11.rangeTo(start12.asDate()).overlappingPattern(
+                        start11.operate().addDays(-2).asBuilder().rangeTo(start12.asDate()))==OverlapType.CoveredOnRight
+        );
+
+        assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.rangeTo(start12.operate().addDays(2).asDate())));
+        assertEquals(true,
+                start11.rangeTo(start12.asDate()).overlappingPattern(
+                        start11.rangeTo(start12.operate().addDays(2).asDate()))==OverlapType.CoveredOnLeft
+        );
+
+        assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.operate().addDays(1).asBuilder().rangeTo(start12.asDate())));
+        assertEquals(true,start11.rangeTo(
+                start12.asDate()).overlappingPattern(start11.operate().addDays(1).asBuilder().rangeTo(start12.asDate()))==OverlapType.CoveringOnRight
+        );
+
+        assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.rangeTo(start12.operate().addDays(-1).asBuilder().asDate())));
+        assertEquals(true,start11.rangeTo(
+                start12.asDate()).overlappingPattern(start11.rangeTo(start12.operate().addDays(-1).asBuilder().asDate()))==OverlapType.CoveringOnLeft
+        );
+
         assertEquals(true,start11.rangeTo(start12.asDate()).overlapping(start11.operate().addDays(2).asBuilder().rangeTo(start12.operate().addDays(-2).asBuilder().asDate())));
         assertEquals(true,
                 start11.rangeTo(start12.asDate()).overlappingPattern(

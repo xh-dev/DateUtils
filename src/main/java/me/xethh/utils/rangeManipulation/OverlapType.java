@@ -5,8 +5,12 @@ package me.xethh.utils.rangeManipulation;
  * @date 6/13/2018
  */
 public enum OverlapType {
-    Covering,       //[10-20] compare to [12-19]
-    CoveredBy,      //[12-19] compare to [10-20]
+    Covering,           //[10-20] compare to [12-19]
+    CoveringOnLeft,     //[10-20] compare to [10-15]
+    CoveringOnRight,    //[10-20] compare to [15-20]
+    CoveredBy,          //[12-19] compare to [10-20]
+    CoveredOnLeft,      //[10-15] compare to [10-20]
+    CoveredOnRight,     //[15-20] compare to [10-20]
     JoinOnLeft,     //[15-20] compare to [10-15]
     JoinOnRight,    //[10-15] compare to [15-20]
     OverlapOnLef,   //[10-17] compare to [13-20]

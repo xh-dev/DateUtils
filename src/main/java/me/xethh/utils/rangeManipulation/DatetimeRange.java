@@ -137,10 +137,20 @@ public class DatetimeRange {
             return OverlapType.Invalid;
         else if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;
-        else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.end))
-            return OverlapType.Covering;
-        else if(targetStartComparator.beforeEqual(start) && targetEndComparator.laterEqualThan(end))
-            return OverlapType.CoveredBy;
+        else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.end)) {
+            if(startComparator.sameDatetime(range.start))
+                return OverlapType.CoveringOnLeft;
+            else if(endComparator.sameDatetime(range.end))
+                return OverlapType.CoveringOnRight;
+            else return OverlapType.Covering;
+        }
+        else if(targetStartComparator.beforeEqual(start) && targetEndComparator.laterEqualThan(end)) {
+            if(targetStartComparator.sameDatetime(start))
+                return OverlapType.CoveredOnLeft;
+            else if(targetEndComparator.sameDatetime(end))
+                return OverlapType.CoveredOnRight;
+            else return OverlapType.CoveredBy;
+        }
         else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.start)) {
             if (end.getTime() == range.start.getTime())
                 return OverlapType.JoinOnRight;
