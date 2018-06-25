@@ -7,8 +7,15 @@ package me.xethh.utils.dateManipulation;
 public enum Month{
     JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC;
 
-    public int toNumber(){
+    public int toCalNumber(){
         return ordinal()+1;
+    }
+
+    public static Month ofCalendar(int num){
+        for(Month value:Month.values())
+            if(num==value.ordinal()+1)
+                return value;
+        throw new RuntimeException(String.format("Value[%d] not support for calender month", num));
     }
 
     public static Month ofOrdinal(int num){
