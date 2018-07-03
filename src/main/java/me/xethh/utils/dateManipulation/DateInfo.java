@@ -1,5 +1,6 @@
 package me.xethh.utils.dateManipulation;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -52,6 +53,27 @@ public class DateInfo {
     }
     public Long asLong(){
         return asDate().getTime();
+    }
+    public String asNumberDatetime(){
+        return DateFormatBuilder.NUMBER_DATETIME.format(asDate());
+    }
+    public String asNumberDate(){
+        return DateFormatBuilder.NUMBER_DATE.format(asDate());
+    }
+    public String asSimpleDateTime(){
+        return DateFormatBuilder.SIMPLE_DATETIME.format(asDate());
+    }
+    public String asSimpleDate(){
+        return DateFormatBuilder.SIMPLE_DATE.format(asDate());
+    }
+    public String asISO8601(){
+        return DateFormatBuilder.ISO8601.format(asDate());
+    }
+    public String asFormat(DateFormatBuilder builder){
+        return asFormat(builder.build());
+    }
+    public String asFormat(SimpleDateFormat fmt){
+        return fmt.format(asDate());
     }
 }
 

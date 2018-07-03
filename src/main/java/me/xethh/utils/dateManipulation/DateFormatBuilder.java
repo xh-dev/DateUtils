@@ -6,7 +6,10 @@ import java.util.List;
 
 public class DateFormatBuilder {
     public static SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-    public static SimpleDateFormat YYYYMMDD = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat SIMPLE_DATE = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat SIMPLE_DATETIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static SimpleDateFormat NUMBER_DATE = new SimpleDateFormat("yyyyMMdd");
+    public static SimpleDateFormat NUMBER_DATETIME = new SimpleDateFormat("yyyyMMddHHmmss");
     private List<String> strings = new ArrayList<String>();
     private DateFormatBuilder(){
     }
@@ -91,6 +94,15 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(strings,"'"+string+"'");
     }
 
+    public DateFormatBuilder space(){
+        return new DateFormatBuilder(strings," ");
+    }
+    public DateFormatBuilder colen(){
+        return new DateFormatBuilder(strings,":");
+    }
+    public DateFormatBuilder underLine(){
+        return new DateFormatBuilder(strings,"_");
+    }
     public SimpleDateFormat build(){
         String s = "";
         for(String ss:strings)
