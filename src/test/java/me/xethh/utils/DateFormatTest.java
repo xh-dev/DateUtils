@@ -1,5 +1,6 @@
 package me.xethh.utils;
 
+import me.xethh.utils.dateManipulation.BaseTimeZone;
 import me.xethh.utils.dateManipulation.DateBuilder;
 import me.xethh.utils.dateManipulation.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.Month;
@@ -19,8 +20,8 @@ public class DateFormatTest
     public void test(){
         SimpleDateFormat format = DateFormatBuilder.get()
                 .pad("Hello ")
-                .yyyy().pad(" - ").MM().pad("-").dd().pad("T")
-                .HH().pad(":").mm().pad(":").ss().pad(".").SSS().pad("===").Z().build();
+                .year4Digit().pad(" - ").month2Digit().pad("-").dd().pad("T")
+                .hourInDay24().pad(":").minute().pad(":").second().pad(".").ms().pad("===").TimeZoneRFC822().build();
         SimpleDateFormat sdf = new SimpleDateFormat("'Hello' yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
         Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
         assertEquals("Hello 2088 - 11-10T21:56:58.888===+0800",format.format(date));
@@ -37,10 +38,85 @@ public class DateFormatTest
     }
     @Test
     public void test02(){
-        SimpleDateFormat format = DateFormatBuilder.get().yyyy().v1().MM().v1().dd().v2().HH().v3().mm().v3().ss()
+        SimpleDateFormat format = DateFormatBuilder.get().year4Digit().v1().month2Digit().v1().dd().v2().hourInDay24().v3().minute().v3().second()
                 .v1("-").v2("T").v3(":").build();
         Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
         assertEquals("2088-11-10T21:56:58",format.format(date));
     }
+
+    @Test
+    public void testTimeZone(){;
+        DateFormatBuilder format = DateFormatBuilder.get()
+                // General timezone is not available for testing
+                .GeneralTimeZone().v1()
+                .TimeZoneRFC822().v1()
+                .TimeZoneISO8601OneDigit().v1()
+                .TimeZoneISO8601TwoDigit().v1()
+                .TimeZoneISO8601ThreeDigit().v1().year4Digit().month2Digit().dd().hourInDay24().minute().second().v1("||").timeZone(BaseTimeZone.Hongkong);
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(1).minute(23).second(34).timeZone(BaseTimeZone.Hongkong);
+        assertEquals("HKT||+0800||+08||+0800||+08:00||20880110012334",format.build().format(date.asDate()));
+        assertEquals("GMT||+0000||Z||Z||Z||20880109172334",format.timeZone(BaseTimeZone.GMT).build().format(date.asDate()));
+        assertEquals("GMT-08:00||-0800||-08||-0800||-08:00||20880109092334",format.timeZone(BaseTimeZone.Etc_GMT_P8).build().format(date.asDate()));
+        assertEquals("GMT+08:00||+0800||+08||+0800||+08:00||20880110012334",format.timeZone(BaseTimeZone.Etc_GMT_M8).build().format(date.asDate()));
+        assertEquals("UTC||+0000||Z||Z||Z||20880109172334",format.timeZone(BaseTimeZone.UTC).build().format(date.asDate()));
+        date=date.timeZone(BaseTimeZone.Japan);
+        assertEquals("HKT||+0800||+08||+0800||+08:00||20880110002334",format.build().format(date.asDate()));
+        assertEquals("GMT||+0000||Z||Z||Z||20880109162334",format.timeZone(BaseTimeZone.GMT).build().format(date.asDate()));
+        assertEquals("GMT-08:00||-0800||-08||-0800||-08:00||20880109082334",format.timeZone(BaseTimeZone.Etc_GMT_P8).build().format(date.asDate()));
+        assertEquals("GMT+08:00||+0800||+08||+0800||+08:00||20880110002334",format.timeZone(BaseTimeZone.Etc_GMT_M8).build().format(date.asDate()));
+        assertEquals("UTC||+0000||Z||Z||Z||20880109162334",format.timeZone(BaseTimeZone.UTC).build().format(date.asDate()));
+    }
+    @Test
+    public void testAPM(){
+        SimpleDateFormat format = DateFormatBuilder.get().apm().v1("||").build();
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(0);
+        assertEquals("AM",format.format(date.asDate()));
+        assertEquals("AM",format.format(date.operate().addHours(1).asDate()));
+        assertEquals("AM",format.format(date.operate().addHours(11).asDate()));
+        assertEquals("PM",format.format(date.operate().addHours(12).asDate()));
+        assertEquals("PM",format.format(date.operate().addHours(13).asDate()));
+        assertEquals("PM",format.format(date.operate().addHours(23).asDate()));
+        assertEquals("AM",format.format(date.operate().addHours(24).asDate()));
+    }
+
+    @Test
+    public void testHour(){
+        SimpleDateFormat format = DateFormatBuilder.get().hourInDay12().v1().hourInDay24().v1("||").build();
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(0);
+        assertEquals("12||00",format.format(date.asDate()));
+        assertEquals("01||01",format.format(date.operate().addHours(1).asDate()));
+        assertEquals("11||11",format.format(date.operate().addHours(11).asDate()));
+        assertEquals("12||12",format.format(date.operate().addHours(12).asDate()));
+        assertEquals("01||13",format.format(date.operate().addHours(13).asDate()));
+        assertEquals("11||23",format.format(date.operate().addHours(23).asDate()));
+        assertEquals("12||00",format.format(date.operate().addHours(24).asDate()));
+    }
+
+    @Test
+    public void testYear(){
+        SimpleDateFormat format = DateFormatBuilder.get().year2Digit().v1().year4Digit().v1("||").build();
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10);
+        assertEquals("88||2088",format.format(date.asDate()));
+        assertEquals("90||2090",format.format(date.operate().addYear(2).asDate()));
+    }
+
+    @Test
+    public void testMonth(){
+        SimpleDateFormat format = DateFormatBuilder.get().month2Digit().v1().month3Letters().v1().monthFullName().v1("||").build();
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10);
+        assertEquals("01||Jan||January",format.format(date.asDate()));
+        assertEquals("02||Feb||February",format.format(date.operate().addMonths(1).asDate()));
+        assertEquals("03||Mar||March",format.format(date.operate().addMonths(2).asDate()));
+        assertEquals("04||Apr||April",format.format(date.operate().addMonths(3).asDate()));
+        assertEquals("05||May||May",format.format(date.operate().addMonths(4).asDate()));
+        assertEquals("06||Jun||June",format.format(date.operate().addMonths(5).asDate()));
+        assertEquals("07||Jul||July",format.format(date.operate().addMonths(6).asDate()));
+        assertEquals("08||Aug||August",format.format(date.operate().addMonths(7).asDate()));
+        assertEquals("09||Sep||September",format.format(date.operate().addMonths(8).asDate()));
+        assertEquals("10||Oct||October",format.format(date.operate().addMonths(9).asDate()));
+        assertEquals("11||Nov||November",format.format(date.operate().addMonths(10).asDate()));
+        assertEquals("12||Dec||December",format.format(date.operate().addMonths(11).asDate()));
+    }
+
 
 }

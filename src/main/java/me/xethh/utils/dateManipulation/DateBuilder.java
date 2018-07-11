@@ -18,19 +18,20 @@ public class DateBuilder {
         });
     }
     private DateBuilder(List<Build> builds){
-        this.builds.add(new Build() {
-            @Override
-            public Build apply(Calendar cal) {
-                cal.set(Calendar.YEAR,1970);
-                cal.set(Calendar.MONTH,0);
-                cal.set(Calendar.DAY_OF_MONTH,1);
-                cal.set(Calendar.HOUR_OF_DAY,0);
-                cal.set(Calendar.MINUTE,0);
-                cal.set(Calendar.SECOND,0);
-                cal.set(Calendar.MILLISECOND,0);
-                return this;
+        if(builds.size()==0)
+            this.builds.add(new Build() {
+                                @Override
+                                public Build apply(Calendar cal) {
+                    cal.set(Calendar.YEAR,1970);
+                    cal.set(Calendar.MONTH,0);
+                    cal.set(Calendar.DAY_OF_MONTH,1);
+                    cal.set(Calendar.HOUR_OF_DAY,0);
+                    cal.set(Calendar.MINUTE,0);
+                    cal.set(Calendar.SECOND,0);
+                    cal.set(Calendar.MILLISECOND,0);
+                    return this;
             }
-        });
+            });
         this.builds.addAll(builds);
     }
     private DateBuilder(List<Build> builds, Build build){
@@ -263,6 +264,16 @@ public class DateBuilder {
             @Override
             public Build apply(Calendar cal) {
                 cal.set(Calendar.MILLISECOND,ms);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder timeZone(final BaseTimeZone timeZone){
+        return DateBuilder.from(builds, new Build() {
+            @Override
+            public Build apply(Calendar cal) {
+                cal.setTimeZone(timeZone.timeZone());
                 return this;
             }
         });

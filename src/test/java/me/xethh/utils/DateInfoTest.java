@@ -54,7 +54,7 @@ public class DateInfoTest
         assertEquals("2018-05-06",d20180506.asSimpleDate());
         assertEquals("2018-05-06 21:33:55",d20180506.asSimpleDateTime());
         assertEquals("2018-05-06",d20180506.asFormat(new SimpleDateFormat("yyyy-MM-dd")));
-        assertEquals("Hello 2018 05_06:33",d20180506.asFormat(DateFormatBuilder.get().pad("Hello ").yyyy().space().MM().underLine().dd().colen().mm().build()));
+        assertEquals("Hello 2018 05_06:33",d20180506.asFormat(DateFormatBuilder.get().pad("Hello ").year4Digit().space().month2Digit().underLine().dd().colen().minute().build()));
     }
 
 
