@@ -16,7 +16,7 @@ public class DateComparatorTest
     @Test
     public void sameDatetime(){
         DateBuilder d1 = DateBuilder.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.operate().addYear(1).addYear(-1).asBuilder();
+        DateBuilder d2 = d1.addYear(1).addYear(-1);
         DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(true,d1.asComparator().sameDatetime(d2));
         assertEquals(false,d1.asComparator().sameDatetime(d3));
@@ -34,7 +34,7 @@ public class DateComparatorTest
     @Test
     public void sameYear(){
         DateBuilder d1 = DateBuilder.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.operate().addYear(1).asBuilder();
+        DateBuilder d2 = d1.addYear(1);
         DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.asComparator().sameYear(d2));
         assertEquals(true,d1.asComparator().sameYear(d3));

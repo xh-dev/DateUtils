@@ -71,12 +71,12 @@ public class DateFormatTest
         SimpleDateFormat format = DateFormatBuilder.get().apm().v1("||").build();
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("AM",format.format(date.asDate()));
-        assertEquals("AM",format.format(date.operate().addHours(1).asDate()));
-        assertEquals("AM",format.format(date.operate().addHours(11).asDate()));
-        assertEquals("PM",format.format(date.operate().addHours(12).asDate()));
-        assertEquals("PM",format.format(date.operate().addHours(13).asDate()));
-        assertEquals("PM",format.format(date.operate().addHours(23).asDate()));
-        assertEquals("AM",format.format(date.operate().addHours(24).asDate()));
+        assertEquals("AM",format.format(date.addHours(1).asDate()));
+        assertEquals("AM",format.format(date.addHours(11).asDate()));
+        assertEquals("PM",format.format(date.addHours(12).asDate()));
+        assertEquals("PM",format.format(date.addHours(13).asDate()));
+        assertEquals("PM",format.format(date.addHours(23).asDate()));
+        assertEquals("AM",format.format(date.addHours(24).asDate()));
     }
 
     @Test
@@ -84,12 +84,12 @@ public class DateFormatTest
         SimpleDateFormat format = DateFormatBuilder.get().hourInDay12().v1().hourInDay24().v1("||").build();
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("12||00",format.format(date.asDate()));
-        assertEquals("01||01",format.format(date.operate().addHours(1).asDate()));
-        assertEquals("11||11",format.format(date.operate().addHours(11).asDate()));
-        assertEquals("12||12",format.format(date.operate().addHours(12).asDate()));
-        assertEquals("01||13",format.format(date.operate().addHours(13).asDate()));
-        assertEquals("11||23",format.format(date.operate().addHours(23).asDate()));
-        assertEquals("12||00",format.format(date.operate().addHours(24).asDate()));
+        assertEquals("01||01",format.format(date.addHours(1).asDate()));
+        assertEquals("11||11",format.format(date.addHours(11).asDate()));
+        assertEquals("12||12",format.format(date.addHours(12).asDate()));
+        assertEquals("01||13",format.format(date.addHours(13).asDate()));
+        assertEquals("11||23",format.format(date.addHours(23).asDate()));
+        assertEquals("12||00",format.format(date.addHours(24).asDate()));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class DateFormatTest
         SimpleDateFormat format = DateFormatBuilder.get().year2Digit().v1().year4Digit().v1("||").build();
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("88||2088",format.format(date.asDate()));
-        assertEquals("90||2090",format.format(date.operate().addYear(2).asDate()));
+        assertEquals("90||2090",format.format(date.addYear(2).asDate()));
     }
 
     @Test
@@ -105,17 +105,17 @@ public class DateFormatTest
         SimpleDateFormat format = DateFormatBuilder.get().month2Digit().v1().month3Letters().v1().monthFullName().v1("||").build();
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("01||Jan||January",format.format(date.asDate()));
-        assertEquals("02||Feb||February",format.format(date.operate().addMonths(1).asDate()));
-        assertEquals("03||Mar||March",format.format(date.operate().addMonths(2).asDate()));
-        assertEquals("04||Apr||April",format.format(date.operate().addMonths(3).asDate()));
-        assertEquals("05||May||May",format.format(date.operate().addMonths(4).asDate()));
-        assertEquals("06||Jun||June",format.format(date.operate().addMonths(5).asDate()));
-        assertEquals("07||Jul||July",format.format(date.operate().addMonths(6).asDate()));
-        assertEquals("08||Aug||August",format.format(date.operate().addMonths(7).asDate()));
-        assertEquals("09||Sep||September",format.format(date.operate().addMonths(8).asDate()));
-        assertEquals("10||Oct||October",format.format(date.operate().addMonths(9).asDate()));
-        assertEquals("11||Nov||November",format.format(date.operate().addMonths(10).asDate()));
-        assertEquals("12||Dec||December",format.format(date.operate().addMonths(11).asDate()));
+        assertEquals("02||Feb||February",format.format(date.addMonths(1).asDate()));
+        assertEquals("03||Mar||March",format.format(date.addMonths(2).asDate()));
+        assertEquals("04||Apr||April",format.format(date.addMonths(3).asDate()));
+        assertEquals("05||May||May",format.format(date.addMonths(4).asDate()));
+        assertEquals("06||Jun||June",format.format(date.addMonths(5).asDate()));
+        assertEquals("07||Jul||July",format.format(date.addMonths(6).asDate()));
+        assertEquals("08||Aug||August",format.format(date.addMonths(7).asDate()));
+        assertEquals("09||Sep||September",format.format(date.addMonths(8).asDate()));
+        assertEquals("10||Oct||October",format.format(date.addMonths(9).asDate()));
+        assertEquals("11||Nov||November",format.format(date.addMonths(10).asDate()));
+        assertEquals("12||Dec||December",format.format(date.addMonths(11).asDate()));
     }
 
 
@@ -124,6 +124,6 @@ public class DateFormatTest
         SimpleDateFormat format = DateFormatBuilder.get().day1Digit().v1().day2Digit().v1().dayWithDigit(5).v1().day2Digit().dayWithDigit(4).v1("||").build();
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(7);
         assertEquals("7||07||00007||000007",format.format(date.asDate()));
-        assertEquals("11||11||00011||000011",format.format(date.operate().addDays(4).asDate()));
+        assertEquals("11||11||00011||000011",format.format(date.addDays(4).asDate()));
     }
 }

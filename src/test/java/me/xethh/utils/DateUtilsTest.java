@@ -45,11 +45,11 @@ public class DateUtilsTest
     @Test
     public void testToRange(){
         DateBuilder b1 = DateBuilder.raw().day(1);
-        DatetimeRange r1 = b1.operate().addDays(10).asBuilder().rangeTo(b1);
-        DatetimeRange r2 = b1.rangeTo(b1.operate().addDays(10).asBuilder());
-        assertEquals(r1,DatetimeRange.of(b1.operate().addDays(10).asDate(),b1.asDate()));
+        DatetimeRange r1 = b1.addDays(10).rangeTo(b1);
+        DatetimeRange r2 = b1.rangeTo(b1.addDays(10));
+        assertEquals(r1,DatetimeRange.of(b1.addDays(10).asDate(),b1.asDate()));
         assertEquals(r1.isValid(),false);
-        assertEquals(r2,DatetimeRange.of(b1.asDate(),b1.operate().addDays(10).asDate()));
+        assertEquals(r2,DatetimeRange.of(b1.asDate(),b1.addDays(10).asDate()));
         assertEquals(r2.isValid(),true);
         assertNotEquals(r1,r2);
         assertEquals(r1.swrap(),r2);

@@ -326,10 +326,6 @@ public class DateBuilder {
         return builds;
     }
 
-    public TimeOperation operate(){
-       return TimeOperation.from(this);
-    }
-
     public DateInfo view(){
         return DateInfo.from(asDate());
     }
@@ -358,6 +354,133 @@ public class DateBuilder {
         if (o == null || getClass() != o.getClass()) return false;
         DateBuilder that = (DateBuilder) o;
         return asLong().equals(that.asLong());
+    }
+
+    //Time operation
+    /*
+    Operation
+     */
+    public DateBuilder addYear(final int years){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.YEAR,years);
+                return this;
+            }
+        });
+    }
+    public DateBuilder lastYear(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.YEAR,-1);
+                return this;
+            }
+        });
+    }
+    public DateBuilder nextYear(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.YEAR,1);
+                return this;
+            }
+        });
+    }
+    public DateBuilder lastMonth(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.MONTH,-1);
+                return this;
+            }
+        });
+    }
+    public DateBuilder nextMonth(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.MONTH,1);
+                return this;
+            }
+        });
+    }
+    public DateBuilder addMonths(final int months){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.MONTH,months);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder addDays(final int days){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.DAY_OF_MONTH,days);
+                return this;
+            }
+        });
+    }
+    public DateBuilder yesterday(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.DAY_OF_MONTH,-1);
+                return this;
+            }
+        });
+    }
+    public DateBuilder tomorrow(){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.DAY_OF_MONTH,1);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder addHours(final int hours){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.HOUR_OF_DAY,hours);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder addMins(final int mins){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.MINUTE,mins);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder addSecond(final int sec){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.SECOND,sec);
+                return this;
+            }
+        });
+    }
+
+    public DateBuilder addMS(final int ms){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.add(Calendar.MILLISECOND,ms);
+                return this;
+            }
+        });
     }
 
     @Override

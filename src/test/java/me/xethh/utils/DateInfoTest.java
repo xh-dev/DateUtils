@@ -33,13 +33,13 @@ public class DateInfoTest
     public void weekdayTest(){
         DateBuilder d20180506 = DateBuilder.raw().year(2018).month(MAY).day(6);
         assertEquals(Weekday.Sunday,d20180506.view().weekday());
-        assertEquals(Weekday.Monday,d20180506.operate().addDays(1).view().weekday());
-        assertEquals(Weekday.Tuesday,d20180506.operate().addDays(2).view().weekday());
-        assertEquals(Weekday.Wednesday,d20180506.operate().addDays(3).view().weekday());
-        assertEquals(Weekday.Thursday,d20180506.operate().addDays(4).view().weekday());
-        assertEquals(Weekday.Friday,d20180506.operate().addDays(5).view().weekday());
-        assertEquals(Weekday.Saturday,d20180506.operate().addDays(6).view().weekday());
-        assertEquals(Weekday.Sunday,d20180506.operate().addDays(7).view().weekday());
+        assertEquals(Weekday.Monday,d20180506.addDays(1).view().weekday());
+        assertEquals(Weekday.Tuesday,d20180506.addDays(2).view().weekday());
+        assertEquals(Weekday.Wednesday,d20180506.addDays(3).view().weekday());
+        assertEquals(Weekday.Thursday,d20180506.addDays(4).view().weekday());
+        assertEquals(Weekday.Friday,d20180506.addDays(5).view().weekday());
+        assertEquals(Weekday.Saturday,d20180506.addDays(6).view().weekday());
+        assertEquals(Weekday.Sunday,d20180506.addDays(7).view().weekday());
     }
 
 

@@ -40,10 +40,6 @@ public class DateComparator {
     public DateInfo view(){
         return DateInfo.from(builder.asDate());
     }
-    public TimeOperation operate(){
-        return TimeOperation.from(builder);
-    }
-
     public boolean sameDatetime(DateBuilder builder){
         return asLong().equals(builder.asLong());
     }
