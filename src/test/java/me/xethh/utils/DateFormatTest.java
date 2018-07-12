@@ -20,7 +20,7 @@ public class DateFormatTest
     public void test(){
         SimpleDateFormat format = DateFormatBuilder.get()
                 .pad("Hello ")
-                .year4Digit().pad(" - ").month2Digit().pad("-").dd().pad("T")
+                .year4Digit().pad(" - ").month2Digit().pad("-").day2Digit().pad("T")
                 .hourInDay24().pad(":").minute().pad(":").second().pad(".").ms().pad("===").TimeZoneRFC822().build();
         SimpleDateFormat sdf = new SimpleDateFormat("'Hello' yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
         Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
@@ -38,21 +38,21 @@ public class DateFormatTest
     }
     @Test
     public void test02(){
-        SimpleDateFormat format = DateFormatBuilder.get().year4Digit().v1().month2Digit().v1().dd().v2().hourInDay24().v3().minute().v3().second()
+        SimpleDateFormat format = DateFormatBuilder.get().year4Digit().v1().month2Digit().v1().day2Digit().v2().hourInDay24().v3().minute().v3().second()
                 .v1("-").v2("T").v3(":").build();
         Date date = DateBuilder.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
         assertEquals("2088-11-10T21:56:58",format.format(date));
     }
 
     @Test
-    public void testTimeZone(){;
+    public void testTimeZone(){
         DateFormatBuilder format = DateFormatBuilder.get()
                 // General timezone is not available for testing
                 .GeneralTimeZone().v1()
                 .TimeZoneRFC822().v1()
                 .TimeZoneISO8601OneDigit().v1()
                 .TimeZoneISO8601TwoDigit().v1()
-                .TimeZoneISO8601ThreeDigit().v1().year4Digit().month2Digit().dd().hourInDay24().minute().second().v1("||").timeZone(BaseTimeZone.Hongkong);
+                .TimeZoneISO8601ThreeDigit().v1().year4Digit().month2Digit().day2Digit().hourInDay24().minute().second().v1("||").timeZone(BaseTimeZone.Hongkong);
         DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(10).hour(1).minute(23).second(34).timeZone(BaseTimeZone.Hongkong);
         assertEquals("HKT||+0800||+08||+0800||+08:00||20880110012334",format.build().format(date.asDate()));
         assertEquals("GMT||+0000||Z||Z||Z||20880109172334",format.timeZone(BaseTimeZone.GMT).build().format(date.asDate()));
@@ -119,4 +119,11 @@ public class DateFormatTest
     }
 
 
+    @Test
+    public void testDay(){
+        SimpleDateFormat format = DateFormatBuilder.get().day1Digit().v1().day2Digit().v1().dayWithDigit(5).v1().day2Digit().dayWithDigit(4).v1("||").build();
+        DateBuilder date = DateBuilder.raw().year(2088).month(Month.JAN).day(7);
+        assertEquals("7||07||00007||000007",format.format(date.asDate()));
+        assertEquals("11||11||00011||000011",format.format(date.operate().addDays(4).asDate()));
+    }
 }

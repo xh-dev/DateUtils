@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotEquals;
 /**
  * Unit test for simple App.
  */
-public class testDatetimeRange
+public class TestDatetimeRange
 {
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
@@ -39,6 +39,15 @@ public class testDatetimeRange
         DateBuilder builder = DateBuilder.raw().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(true,DatetimeRange.of(builder.asDate(),builder.operate().addDays(30).asDate()).isValid());
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.operate().addDays(-30).asDate()).isValid());
+        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).isValid());
+    }
+
+    @Test
+    public void testTimeRangeSinglePoint(){
+        DateBuilder builder = DateBuilder.raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.operate().addDays(30).asDate()).singlePointRange());
+        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.operate().addDays(-30).asDate()).singlePointRange());
+        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).singlePointRange());
     }
 
     @Test

@@ -114,11 +114,40 @@ public class DateFormatBuilder {
      * e.g. 2018-01-02 == "02"
      * @return {date string}+"dd"
      */
-    public DateFormatBuilder dd(){
+    public DateFormatBuilder dayWithDigit(final int digit){
+        return new DateFormatBuilder(variables, builds,timeZone, new Build() {
+            @Override
+            void apply(StringBuilder str,Map<String,String> variables) {
+                String s = "";
+                for(int i=0;i<digit;i++)
+                    s+="d";
+                str.append(s);
+            }
+        });
+    }
+
+    /**
+     * e.g. 2018-01-02 == "02"
+     * @return {date string}+"dd"
+     */
+    public DateFormatBuilder day2Digit(){
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
                 str.append("dd");
+            }
+        });
+    }
+
+    /**
+     * e.g. 2018-01-02 == "2"
+     * @return {date string}+"d"
+     */
+    public DateFormatBuilder day1Digit(){
+        return new DateFormatBuilder(variables, builds,timeZone, new Build() {
+            @Override
+            void apply(StringBuilder str,Map<String,String> variables) {
+                str.append("d");
             }
         });
     }

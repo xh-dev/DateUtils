@@ -23,8 +23,12 @@ public class DatetimeRange {
         return new DatetimeRange(start,end);
     }
 
+    public boolean singlePointRange(){
+        return start.getTime()==end.getTime();
+    }
+
     public boolean isValid(){
-        return start.getTime()<end.getTime();
+        return start.getTime()<=end.getTime();
     }
 
     public boolean isInvalid(){
