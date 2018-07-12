@@ -1,7 +1,6 @@
 package me.xethh.utils.rangeManipulation;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateComparator;
 import me.xethh.utils.dateManipulation.DateFormatBuilder;
 
 import java.util.Date;
@@ -114,13 +113,13 @@ public class DatetimeRange {
     public boolean overlapping(DatetimeRange range){
         if(range==null || range.isInvalid() || isInvalid())
             return false;
-        if(DateBuilder.from(start).asComparator().beforeEqual(range.start) && DateBuilder.from(end).asComparator().laterEqualThan(range.end))
+        if(DateBuilder.from(start).beforeEqual(range.start) && DateBuilder.from(end).laterEqualThan(range.end))
             return true;
-        if(DateBuilder.from(range.start).asComparator().beforeEqual(start) && DateBuilder.from(range.end).asComparator().laterEqualThan(end))
+        if(DateBuilder.from(range.start).beforeEqual(start) && DateBuilder.from(range.end).laterEqualThan(end))
             return true;
-        if(DateBuilder.from(start).asComparator().beforeEqual(range.start) && DateBuilder.from(end).asComparator().laterEqualThan(range.start))
+        if(DateBuilder.from(start).beforeEqual(range.start) && DateBuilder.from(end).laterEqualThan(range.start))
             return true;
-        if(DateBuilder.from(range.start).asComparator().beforeEqual(start) && DateBuilder.from(range.end).asComparator().laterEqualThan(start))
+        if(DateBuilder.from(range.start).beforeEqual(start) && DateBuilder.from(range.end).laterEqualThan(start))
             return true;
         return false;
     }
@@ -129,11 +128,11 @@ public class DatetimeRange {
         if(range==null)
             return OverlapType.TargetIsNull;
 
-        DateComparator startComparator = DateBuilder.from(start).asComparator();
-        DateComparator endComparator = DateBuilder.from(end).asComparator();
+        DateBuilder startComparator = DateBuilder.from(start);
+        DateBuilder endComparator = DateBuilder.from(end);
 
-        DateComparator targetStartComparator = DateBuilder.from(range.start).asComparator();
-        DateComparator targetEndComparator = DateBuilder.from(range.end).asComparator();
+        DateBuilder targetStartComparator = DateBuilder.from(range.start);
+        DateBuilder targetEndComparator = DateBuilder.from(range.end);
 
         if(range.isInvalid())
             return OverlapType.TargetInvalid;
