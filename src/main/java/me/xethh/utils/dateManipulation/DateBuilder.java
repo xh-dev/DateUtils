@@ -39,6 +39,27 @@ public class DateBuilder {
         this.builds.add(build);
     }
 
+    public static DateBuilder DateY(int year){
+        return DateBuilder.raw().year(year).minMonth().minDay().minDayTime();
+    }
+    public static DateBuilder DateYM(int year,Month month){
+        return DateBuilder.raw().year(year).month(month).minDay().minDayTime();
+    }
+    public static DateBuilder DateYMD(int year, Month month, int day){
+        return DateBuilder.raw().year(year).month(month).day(day).minDayTime();
+    }
+    public static DateBuilder Timehmsms(int hour, int minute, int second, int mSecond){
+        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).second(second).ms(mSecond);
+    }
+    public static DateBuilder Timehms(int hour, int minute, int second){
+        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).second(second).minMs();
+    }
+    public static DateBuilder Timehm(int hour, int minute){
+        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).minSecond().minMs();
+    }
+    public static DateBuilder Timeh(int hour){
+        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minMinute().minSecond().minMs();
+    }
     public static DateBuilder from(Date date){
         return new DateBuilder(date);
     }

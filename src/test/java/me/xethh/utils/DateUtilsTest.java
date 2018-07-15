@@ -17,12 +17,40 @@ import static org.junit.Assert.assertTrue;
 public class DateUtilsTest
 {
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     @Test
     public void rawDate(){
         assertEquals(sdf.format(DateBuilder.raw().asDate()),"1970-01-01T00:00:00.000+0800");
     }
 
+    @Test
+    public void timeSetupV2(){
+        assertEquals(sdf2.format(DateBuilder.raw().DateY(2018).asDate()),"2018-01-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.JAN).asDate()),"2018-01-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.FEB).asDate()),"2018-02-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.MAR).asDate()),"2018-03-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.APR).asDate()),"2018-04-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.MAY).asDate()),"2018-05-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.JUN).asDate()),"2018-06-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.JUL).asDate()),"2018-07-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.AUG).asDate()),"2018-08-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.SEP).asDate()),"2018-09-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.OCT).asDate()),"2018-10-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.NOV).asDate()),"2018-11-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYM(2018,Month.DEC).asDate()),"2018-12-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYMD(2018,Month.DEC,1).asDate()),"2018-12-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYMD(2018,Month.DEC,31).asDate()),"2018-12-31T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().DateYMD(2018,Month.DEC,32).asDate()),"2019-01-01T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timeh(12).asDate()),"1970-01-01T12:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timeh(24).asDate()),"1970-01-02T00:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehm(24,50).asDate()),"1970-01-02T00:50:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehm(24,60).asDate()),"1970-01-02T01:00:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehms(24,60,1).asDate()),"1970-01-02T01:00:01.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehms(24,60,60).asDate()),"1970-01-02T01:01:00.000");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehmsms(24,60,60,100).asDate()),"1970-01-02T01:01:00.100");
+        assertEquals(sdf2.format(DateBuilder.raw().Timehmsms(24,60,60,1000).asDate()),"1970-01-02T01:01:01.000");
+    }
     @Test
     public void timeSetup(){
         assertEquals(sdf.format(DateBuilder.raw().maxMs().asDate()),"1970-01-01T00:00:00.999+0800");
