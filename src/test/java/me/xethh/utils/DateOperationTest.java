@@ -1,11 +1,13 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.Weekday;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 
 import static me.xethh.utils.dateManipulation.Month.*;
+import static me.xethh.utils.dateManipulation.Weekday.Sunday;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -123,5 +125,77 @@ public class DateOperationTest
         assertEquals("2017-12-14T00:00:00.000+0800",sdf.format(DateBuilder.raw().year(2017).month(DEC).day(13).tomorrow().asDate()));
         assertEquals("2018-02-01T00:00:00.000+0800",sdf.format(DateBuilder.raw().year(2018).month(JAN).day(31).tomorrow().asDate()));
         assertEquals("2018-03-01T00:00:00.000+0800",sdf.format(DateBuilder.raw().year(2018).month(FEB).day(28).tomorrow().asDate()));
+    }
+
+    @Test
+    public void nextWeekday(){
+        DateBuilder d = DateBuilder.raw().ymd(2018, JUL, 17);
+        assertEquals("2018-07-22T00:00:00.000+0800",sdf.format(d.nextWeekday(Sunday).asDate()));
+        assertEquals("2018-07-23T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Monday).asDate()));
+        assertEquals("2018-07-24T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Tuesday).asDate()));
+        assertEquals("2018-07-18T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Wednesday).asDate()));
+        assertEquals("2018-07-19T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Thursday).asDate()));
+        assertEquals("2018-07-20T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Friday).asDate()));
+        assertEquals("2018-07-21T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Saturday).asDate()));
+
+        d = DateBuilder.raw().ymd(2018, JUL, 18);
+        assertEquals("2018-07-22T00:00:00.000+0800",sdf.format(d.nextWeekday(Sunday).asDate()));
+        assertEquals("2018-07-23T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Monday).asDate()));
+        assertEquals("2018-07-24T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Tuesday).asDate()));
+        assertEquals("2018-07-25T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Wednesday).asDate()));
+        assertEquals("2018-07-19T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Thursday).asDate()));
+        assertEquals("2018-07-20T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Friday).asDate()));
+        assertEquals("2018-07-21T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Saturday).asDate()));
+    }
+
+    @Test
+    public void prevWeekday(){
+        DateBuilder d = DateBuilder.raw().ymd(2018, JUL, 17);
+        assertEquals("2018-07-15T00:00:00.000+0800",sdf.format(d.prevWeekday(Sunday).asDate()));
+        assertEquals("2018-07-16T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Monday).asDate()));
+        assertEquals("2018-07-10T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Tuesday).asDate()));
+        assertEquals("2018-07-11T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Wednesday).asDate()));
+        assertEquals("2018-07-12T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Thursday).asDate()));
+        assertEquals("2018-07-13T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Friday).asDate()));
+        assertEquals("2018-07-14T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Saturday).asDate()));
+
+        d = DateBuilder.raw().ymd(2018, JUL, 18);
+        assertEquals("2018-07-15T00:00:00.000+0800",sdf.format(d.prevWeekday(Sunday).asDate()));
+        assertEquals("2018-07-16T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Monday).asDate()));
+        assertEquals("2018-07-17T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Tuesday).asDate()));
+        assertEquals("2018-07-11T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Wednesday).asDate()));
+        assertEquals("2018-07-12T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Thursday).asDate()));
+        assertEquals("2018-07-13T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Friday).asDate()));
+        assertEquals("2018-07-14T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Saturday).asDate()));
+    }
+
+    @Test
+    public void testStartOfWeek(){
+        DateBuilder d = DateBuilder.raw().ymd(2018, JUL, 17);
+        DateBuilder d2 = d.addDays(-2);
+        assertEquals(d2.asLong(),d.startOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(-1).startOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(1).startOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(2).startOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(3).startOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(4).startOfWeek(Sunday).asLong());
+        assertEquals(d2.addDays(7).asLong(),d.addDays(5).startOfWeek(Sunday).asLong());
+        assertEquals(d2.addDays(7).asLong(),d.addDays(6).startOfWeek(Sunday).asLong());
+
+    }
+
+    @Test
+    public void testEndOfWeek(){
+        DateBuilder d = DateBuilder.raw().ymd(2018, JUL, 17);
+        DateBuilder d2 = d.addDays(4);
+        assertEquals(d2.asLong(),d.endOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(-1).endOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(1).endOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(2).endOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(3).endOfWeek(Sunday).asLong());
+        assertEquals(d2.asLong(),d.addDays(4).endOfWeek(Sunday).asLong());
+        assertEquals(d2.addDays(7).asLong(),d.addDays(5).endOfWeek(Sunday).asLong());
+        assertEquals(d2.addDays(7).asLong(),d.addDays(6).endOfWeek(Sunday).asLong());
+
     }
 }

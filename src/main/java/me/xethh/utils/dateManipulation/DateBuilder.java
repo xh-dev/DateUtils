@@ -3,6 +3,9 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 
 import java.util.*;
 
+import static me.xethh.utils.dateManipulation.Weekday.Saturday;
+import static me.xethh.utils.dateManipulation.Weekday.Sunday;
+
 public class DateBuilder {
     private List<Build> builds=new ArrayList();
     /*
@@ -447,6 +450,47 @@ public class DateBuilder {
                 return this;
             }
         });
+    }
+
+    public DateBuilder nextWeekday(Weekday day){
+        if(view().weekday()==day)
+            return addDays(7);
+        else{
+            Weekday dayOfThis = view().weekday();
+
+            if(dayOfThis.ordinal()>day.ordinal()){
+                return addDays(Weekday.Saturday.ordinal()-dayOfThis.ordinal()+day.ordinal()-Sunday.ordinal()+1);
+            }
+            else{
+                return addDays(day.ordinal()-dayOfThis.ordinal());
+            }
+        }
+    }
+
+    public DateBuilder prevWeekday(Weekday day){
+        if(view().weekday()==day)
+            return addDays(-7);
+        else{
+            Weekday dayOfThis = view().weekday();
+
+            if(dayOfThis.ordinal()>day.ordinal()){
+                return addDays((dayOfThis.ordinal()-day.ordinal())*-1);
+            }
+            else{
+                return addDays(-1*(dayOfThis.ordinal()+Saturday.ordinal()-day.ordinal()+1));
+            }
+        }
+    }
+
+    public DateBuilder startOfWeek(Weekday startDay){
+        if(view().weekday()==startDay)
+            return this;
+        else
+            return prevWeekday(startDay);
+    }
+
+    public DateBuilder endOfWeek(Weekday startDay){
+        return startOfWeek(startDay).addDays(6);
     }
 
     public DateBuilder addHours(final int hours){
