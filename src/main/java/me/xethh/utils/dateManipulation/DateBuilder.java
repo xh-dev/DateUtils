@@ -39,26 +39,26 @@ public class DateBuilder {
         this.builds.add(build);
     }
 
-    public static DateBuilder DateY(int year){
-        return DateBuilder.raw().year(year).minMonth().minDay().minDayTime();
+    public DateBuilder y(int year){
+        return year(year);
     }
-    public static DateBuilder DateYM(int year,Month month){
-        return DateBuilder.raw().year(year).month(month).minDay().minDayTime();
+    public DateBuilder ym(int year, Month month){
+        return year(year).month(month);
     }
-    public static DateBuilder DateYMD(int year, Month month, int day){
-        return DateBuilder.raw().year(year).month(month).day(day).minDayTime();
+    public DateBuilder ymd(int year, Month month, int day){
+        return year(year).month(month).day(day);
     }
-    public static DateBuilder Timehmsms(int hour, int minute, int second, int mSecond){
-        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).second(second).ms(mSecond);
+    public DateBuilder hmsms(int hour, int minute, int second, int mSecond){
+        return hour(hour).minute(minute).second(second).ms(mSecond);
     }
-    public static DateBuilder Timehms(int hour, int minute, int second){
-        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).second(second).minMs();
+    public DateBuilder hms(int hour, int minute, int second){
+        return hour(hour).minute(minute).second(second).minMs();
     }
-    public static DateBuilder Timehm(int hour, int minute){
-        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minute(minute).minSecond().minMs();
+    public DateBuilder hm(int hour, int minute){
+        return hour(hour).minute(minute).minSecond().minMs();
     }
-    public static DateBuilder Timeh(int hour){
-        return DateBuilder.raw().minYear().minMonth().minDay().hour(hour).minMinute().minSecond().minMs();
+    public DateBuilder h(int hour){
+        return hour(hour).minMinute().minSecond().minMs();
     }
     public static DateBuilder from(Date date){
         return new DateBuilder(date);
@@ -314,20 +314,6 @@ public class DateBuilder {
     }
     public DateBuilder timePartOnly(){
         return minYear().minMonth().minDay();
-    }
-
-    public DateBuilder ymd(int year, Month m, int day){
-        return year(year).month(m).day(day);
-    }
-
-    public DateBuilder hm(int hour, int m){
-        return hour(hour).minute(m).second(0).ms(0);
-    }
-    public DateBuilder hms(int hour, int m, int s){
-        return hour(hour).minute(m).second(s).ms(0);
-    }
-    public DateBuilder hmss(int hour, int m, int s, int ms){
-        return hour(hour).minute(m).second(s).ms(ms);
     }
 
     public Date asDate(){
