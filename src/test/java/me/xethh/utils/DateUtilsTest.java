@@ -1,6 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 import org.junit.Test;
@@ -82,5 +83,34 @@ public class DateUtilsTest
         assertNotEquals(r1,r2);
         assertEquals(r1.swrap(),r2);
         assertEquals(r1,r2.swrap());
+    }
+
+    @Test
+    public void firstDayTest(){
+        DateBuilder b1 = DateBuilder.raw().ymd(2018,Month.JAN,23);
+        SimpleDateFormat sdf2 = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().build();
+        assertEquals("20180101",sdf2.format(b1.firstDayOfMonth().asDate()));
+        assertEquals("20280101",sdf2.format(b1.addYear(10).firstDayOfMonth().asDate()));
+        assertEquals("20280201",sdf2.format(b1.addYear(10).nextMonth().firstDayOfMonth().asDate()));
+    }
+
+    @Test
+    public void endDateTest(){
+        DateBuilder b1 = DateBuilder.raw().ymd(2018,Month.JAN,23);
+        SimpleDateFormat sdf2 = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().build();
+        assertEquals("20180131",sdf2.format(b1.endDayOfMonth().asDate()));
+        assertEquals("20280229",sdf2.format(b1.addYear(10).addMonths(1).endDayOfMonth().asDate()));
+        assertEquals("20280331",sdf2.format(b1.addYear(10).addMonths(2).endDayOfMonth().asDate()));
+        assertEquals("20280430",sdf2.format(b1.addYear(10).addMonths(3).endDayOfMonth().asDate()));
+        assertEquals("20280531",sdf2.format(b1.addYear(10).addMonths(4).endDayOfMonth().asDate()));
+        assertEquals("20280630",sdf2.format(b1.addYear(10).addMonths(5).endDayOfMonth().asDate()));
+        assertEquals("20280731",sdf2.format(b1.addYear(10).addMonths(6).endDayOfMonth().asDate()));
+        assertEquals("20280831",sdf2.format(b1.addYear(10).addMonths(7).endDayOfMonth().asDate()));
+        assertEquals("20280930",sdf2.format(b1.addYear(10).addMonths(8).endDayOfMonth().asDate()));
+        assertEquals("20281031",sdf2.format(b1.addYear(10).addMonths(9).endDayOfMonth().asDate()));
+        assertEquals("20281130",sdf2.format(b1.addYear(10).addMonths(10).endDayOfMonth().asDate()));
+        assertEquals("20281231",sdf2.format(b1.addYear(10).addMonths(11).endDayOfMonth().asDate()));
+        assertEquals("20290131",sdf2.format(b1.addYear(10).addMonths(12).endDayOfMonth().asDate()));
+        assertEquals("20180228",sdf2.format(b1.addMonths(1).endDayOfMonth().asDate()));
     }
 }

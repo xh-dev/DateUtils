@@ -164,6 +164,9 @@ public class DateBuilder {
     public DateBuilder firstDayOfMonth(){
         return minDay();
     }
+    public DateBuilder endDayOfMonth(){
+        return nextMonth().minDay().yesterday();
+    }
 
 
     /*
