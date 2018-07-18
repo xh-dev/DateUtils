@@ -39,16 +39,64 @@ public class DatetimeRange {
         return new DatetimeRange(end,start);
     }
 
-    public DatetimeRange editStartEndDate(BuilderOperation2 start, BuilderOperation2 end){
-       return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),start.oper(DateBuilder.from(getEnd())).asDate());
+    public DatetimeRange editStartEndDate(RangeEditByBuilder start, RangeEditByBuilder end){
+       return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),end.oper(DateBuilder.from(getEnd())).asDate());
     }
 
-    public DatetimeRange editStartDate(BuilderOperation2 start){
+    public DatetimeRange editStartDate(RangeEditByBuilder start){
         return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),getEnd());
     }
+    public DatetimeRange editStartAddYear(int year){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addYear(year).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddMonth(int month){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addMonths(month).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddDay(int day){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addDays(day).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddHour(int hour){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addHours(hour).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddMinute(int minute){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addMins(minute).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddSecond(int second){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addSecond(second).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddMS(int ms){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addMS(ms).asDate(),getEnd());
+    }
+    public DatetimeRange editStartAddTime(long time){
+        return DatetimeRange.of(DateBuilder.from(getStart()).addTime(time).asDate(),getEnd());
+    }
 
-    public DatetimeRange editEndDate(BuilderOperation2 end){
+    public DatetimeRange editEndDate(RangeEditByBuilder end){
         return DatetimeRange.of(getStart(),end.oper(DateBuilder.from(getEnd())).asDate());
+    }
+    public DatetimeRange editEndAddYear(int year){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addYear(year).asDate());
+    }
+    public DatetimeRange editEndAddMonth(int month){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMonths(month).asDate());
+    }
+    public DatetimeRange editEndAddDay(int day){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addDays(day).asDate());
+    }
+    public DatetimeRange editEndAddHour(int hour){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addHours(hour).asDate());
+    }
+    public DatetimeRange editEndAddMinute(int minute){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMins(minute).asDate());
+    }
+    public DatetimeRange editEndAddSecond(int second){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addSecond(second).asDate());
+    }
+    public DatetimeRange editEndAddMS(int ms){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMS(ms).asDate());
+    }
+    public DatetimeRange editEndAddTime(long time){
+        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addTime(time).asDate());
     }
 
     @Override

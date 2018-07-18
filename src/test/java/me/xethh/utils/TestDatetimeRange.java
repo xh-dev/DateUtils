@@ -4,12 +4,12 @@ import me.xethh.utils.dateManipulation.DateBuilder;
 import me.xethh.utils.dateManipulation.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
+import me.xethh.utils.rangeManipulation.RangeEditByBuilder;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import static me.xethh.utils.dateManipulation.Month.APR;
 import static org.junit.Assert.assertEquals;
@@ -175,6 +175,65 @@ public class TestDatetimeRange
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20070401-221200000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
+
+        range = range.editStartEndDate(
+                new RangeEditByBuilder() {
+                    @Override
+                    public DateBuilder oper(DateBuilder builder) {
+                        return builder.addDays(-1).addMS(333);
+                    }
+                },
+                new RangeEditByBuilder() {
+                    @Override
+                    public DateBuilder oper(DateBuilder builder) {
+                        return builder.addDays(3).addYear(2).addMonths(2).addMS(222);
+                    }
+                });
+
+        assertEquals("20880421-000000333",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20900825-000000222",ymdhhmmssSSS.format(range.getEnd()));
+
+        range = range.editStartDate(
+                new RangeEditByBuilder() {
+                    @Override
+                    public DateBuilder oper(DateBuilder builder) {
+                        return builder.addDays(-1).addMS(333);
+                    }
+                });
+        range = range.editEndDate(
+                new RangeEditByBuilder() {
+                    @Override
+                    public DateBuilder oper(DateBuilder builder) {
+                        return builder.addDays(1).addMS(222);
+                    }
+                });
+
+        assertEquals("20880420-000000666",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20900826-000000444",ymdhhmmssSSS.format(range.getEnd()));
+    }
+
+    @Test
+    public void testEditStartAndEndV2(){
+        DateBuilder d = DateBuilder.raw().ymd(2088, APR, 22);
+        DatetimeRange range = d.rangeFromNowTo(d.addMonths(2));
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
+                .year4Digit().month2Digit().day2Digit().v1()
+                .hourInDay24().minute().second().ms().v1("-").build();
+        assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
+
+        range = range.editStartAddYear(1).editStartAddMonth(1).editStartAddDay(1).editStartAddMinute(1).editStartAddHour(1).editStartAddSecond(1).editStartAddMS(1);
+        range = range.editEndAddYear(2).editEndAddMonth(2).editEndAddDay(2).editEndAddMinute(2).editEndAddHour(2).editEndAddSecond(2).editEndAddMS(2);
+
+        assertEquals("20890523-010101001",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20900824-020202002",ymdhhmmssSSS.format(range.getEnd()));
+
+        range = range.editStartAddTime(2000);
+        range = range.editEndAddTime(4000);
+
+        assertEquals("20890523-010103001",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20900824-020206002",ymdhhmmssSSS.format(range.getEnd()));
+
     }
 }

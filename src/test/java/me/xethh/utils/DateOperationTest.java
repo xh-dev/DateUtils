@@ -1,9 +1,11 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.Weekday;
 import org.junit.Test;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import static me.xethh.utils.dateManipulation.Month.*;
@@ -197,5 +199,15 @@ public class DateOperationTest
         assertEquals(d2.addDays(7).asLong(),d.addDays(5).endOfWeek(Sunday).asLong());
         assertEquals(d2.addDays(7).asLong(),d.addDays(6).endOfWeek(Sunday).asLong());
 
+    }
+
+    @Test
+    public void testAddTime(){
+        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        DateBuilder d = DateBuilder.raw().ymd(2018, JUL, 17);
+        assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
+        assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
+        assertEquals("20180717-000001000",sdfx.format(d.addTime(1000).asDate()));
+        assertEquals("20180717-000101000",sdfx.format(d.addTime(61000).asDate()));
     }
 }

@@ -504,6 +504,16 @@ public class DateBuilder {
         return startOfWeek(startDay).addDays(6);
     }
 
+    public DateBuilder addTime(final long time){
+        return new DateBuilder(this.builds,new DateBuilder.Build(){
+            @Override
+            public DateBuilder.Build apply(Calendar cal) {
+                cal.setTimeInMillis(cal.getTimeInMillis()+time);
+                return this;
+            }
+        });
+    }
+
     public DateBuilder addHours(final int hours){
         return new DateBuilder(this.builds,new DateBuilder.Build(){
             @Override
