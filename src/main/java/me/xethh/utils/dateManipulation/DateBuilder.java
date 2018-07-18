@@ -1,7 +1,12 @@
 package me.xethh.utils.dateManipulation;
+
+import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import static me.xethh.utils.dateManipulation.Weekday.Saturday;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
@@ -65,6 +70,10 @@ public class DateBuilder {
     }
     public static DateBuilder from(Date date){
         return new DateBuilder(date);
+    }
+    public static DateBuilder from(Date date,Build build){
+        DateBuilder builder = new DateBuilder(date);
+        return DateBuilder.from(builder.builds,build);
     }
     public static DateBuilder raw(){
         return new DateBuilder(new ArrayList());
@@ -339,23 +348,25 @@ public class DateBuilder {
         return DateInfo.from(asDate());
     }
 
-    public DatetimeRange rangeTo(DateBuilder date){
-        return rangeTo(date.asDate());
+    public DatetimeRange rangeFromNowTo(DateBuilder date){
+        return rangeFromNowTo(date.asDate());
     }
 
-    public DatetimeRange rangeFrom(DateBuilder date){
-        return rangeFrom(date.asDate());
+    public DatetimeRange rangeToNow(DateBuilder date){
+        return rangeToNow(date.asDate());
     }
 
-    public DatetimeRange rangeTo(Date date){
+    public DatetimeRange rangeFromNowTo(Date date){
         return DatetimeRange.of(asDate(),date);
     }
 
-    public DatetimeRange rangeFrom(Date date){
-        return DatetimeRange.of(date, asDate());
+    public DatetimeRange rangeToNow(Date date){
+        return DatetimeRange.of(date,asDate());
     }
 
-
+    public DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end){
+        return DatetimeRange.of(start.oper().asDate(),end.oper().asDate());
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -12,6 +12,7 @@ import java.util.Objects;
  */
 public class DatetimeRange {
 
+
     protected Date start,end;
     private DatetimeRange(Date start, Date end){
         this.start = start;
@@ -36,6 +37,18 @@ public class DatetimeRange {
 
     public DatetimeRange swrap(){
         return new DatetimeRange(end,start);
+    }
+
+    public DatetimeRange editStartEndDate(BuilderOperation2 start, BuilderOperation2 end){
+       return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),start.oper(DateBuilder.from(getEnd())).asDate());
+    }
+
+    public DatetimeRange editStartDate(BuilderOperation2 start){
+        return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),getEnd());
+    }
+
+    public DatetimeRange editEndDate(BuilderOperation2 end){
+        return DatetimeRange.of(getStart(),end.oper(DateBuilder.from(getEnd())).asDate());
     }
 
     @Override

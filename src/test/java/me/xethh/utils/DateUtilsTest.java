@@ -73,8 +73,8 @@ public class DateUtilsTest
     @Test
     public void testToRange(){
         DateBuilder b1 = DateBuilder.raw().day(1);
-        DatetimeRange r1 = b1.addDays(10).rangeTo(b1);
-        DatetimeRange r2 = b1.rangeTo(b1.addDays(10));
+        DatetimeRange r1 = b1.addDays(10).rangeFromNowTo(b1);
+        DatetimeRange r2 = b1.rangeFromNowTo(b1.addDays(10));
         assertEquals(r1,DatetimeRange.of(b1.addDays(10).asDate(),b1.asDate()));
         assertEquals(r1.isValid(),false);
         assertEquals(r2,DatetimeRange.of(b1.asDate(),b1.addDays(10).asDate()));
