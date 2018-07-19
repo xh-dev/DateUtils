@@ -348,19 +348,19 @@ public class DateBuilder {
         return DateInfo.from(asDate());
     }
 
-    public DatetimeRange rangeFromNowTo(DateBuilder date){
-        return rangeFromNowTo(date.asDate());
+    public DatetimeRange rangeTo(DateBuilder date){
+        return rangeTo(date.asDate());
     }
 
-    public DatetimeRange rangeToNow(DateBuilder date){
-        return rangeToNow(date.asDate());
+    public DatetimeRange rangeFrom(DateBuilder date){
+        return rangeFrom(date.asDate());
     }
 
-    public DatetimeRange rangeFromNowTo(Date date){
+    public DatetimeRange rangeTo(Date date){
         return DatetimeRange.of(asDate(),date);
     }
 
-    public DatetimeRange rangeToNow(Date date){
+    public DatetimeRange rangeFrom(Date date){
         return DatetimeRange.of(date,asDate());
     }
 
