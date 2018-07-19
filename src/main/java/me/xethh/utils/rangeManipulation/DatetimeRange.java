@@ -1,6 +1,7 @@
 package me.xethh.utils.rangeManipulation;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateBuilderFactory;
 import me.xethh.utils.dateManipulation.DateFormatBuilder;
 
 import java.util.Date;
@@ -40,63 +41,63 @@ public class DatetimeRange {
     }
 
     public DatetimeRange editStartEndDate(RangeEditByBuilder start, RangeEditByBuilder end){
-       return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),end.oper(DateBuilder.from(getEnd())).asDate());
+       return DatetimeRange.of(start.oper(DateBuilderFactory.from(getStart())).asDate(),end.oper(DateBuilderFactory.from(getEnd())).asDate());
     }
 
     public DatetimeRange editStartDate(RangeEditByBuilder start){
-        return DatetimeRange.of(start.oper(DateBuilder.from(getStart())).asDate(),getEnd());
+        return DatetimeRange.of(start.oper(DateBuilderFactory.from(getStart())).asDate(),getEnd());
     }
     public DatetimeRange editStartAddYear(int year){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addYear(year).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addYear(year).asDate(),getEnd());
     }
     public DatetimeRange editStartAddMonth(int month){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addMonths(month).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMonths(month).asDate(),getEnd());
     }
     public DatetimeRange editStartAddDay(int day){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addDays(day).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addDays(day).asDate(),getEnd());
     }
     public DatetimeRange editStartAddHour(int hour){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addHours(hour).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addHours(hour).asDate(),getEnd());
     }
     public DatetimeRange editStartAddMinute(int minute){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addMins(minute).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMins(minute).asDate(),getEnd());
     }
     public DatetimeRange editStartAddSecond(int second){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addSecond(second).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addSecond(second).asDate(),getEnd());
     }
     public DatetimeRange editStartAddMS(int ms){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addMS(ms).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMS(ms).asDate(),getEnd());
     }
     public DatetimeRange editStartAddTime(long time){
-        return DatetimeRange.of(DateBuilder.from(getStart()).addTime(time).asDate(),getEnd());
+        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addTime(time).asDate(),getEnd());
     }
 
     public DatetimeRange editEndDate(RangeEditByBuilder end){
-        return DatetimeRange.of(getStart(),end.oper(DateBuilder.from(getEnd())).asDate());
+        return DatetimeRange.of(getStart(),end.oper(DateBuilderFactory.from(getEnd())).asDate());
     }
     public DatetimeRange editEndAddYear(int year){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addYear(year).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addYear(year).asDate());
     }
     public DatetimeRange editEndAddMonth(int month){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMonths(month).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMonths(month).asDate());
     }
     public DatetimeRange editEndAddDay(int day){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addDays(day).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addDays(day).asDate());
     }
     public DatetimeRange editEndAddHour(int hour){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addHours(hour).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addHours(hour).asDate());
     }
     public DatetimeRange editEndAddMinute(int minute){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMins(minute).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMins(minute).asDate());
     }
     public DatetimeRange editEndAddSecond(int second){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addSecond(second).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addSecond(second).asDate());
     }
     public DatetimeRange editEndAddMS(int ms){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addMS(ms).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMS(ms).asDate());
     }
     public DatetimeRange editEndAddTime(long time){
-        return DatetimeRange.of(getStart(),DateBuilder.from(getEnd()).addTime(time).asDate());
+        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addTime(time).asDate());
     }
 
     @Override
@@ -132,15 +133,15 @@ public class DatetimeRange {
     }
 
     public boolean dateInRange(Date date){
-        return minStart().minEnd().timeInRange(DateBuilder.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeInRange(DateBuilderFactory.from(date).minDayTime().asDate());
     }
 
     public boolean dateAfterRange(Date date){
-        return minStart().minEnd().timeAfterRange(DateBuilder.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeAfterRange(DateBuilderFactory.from(date).minDayTime().asDate());
     }
 
     public boolean dateBeforeRange(Date date){
-        return minStart().minEnd().timeBeforeRange(DateBuilder.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeBeforeRange(DateBuilderFactory.from(date).minDayTime().asDate());
     }
 
     public DatetimeRange asDateRange(){
@@ -148,19 +149,19 @@ public class DatetimeRange {
     }
 
     public DatetimeRange minStart(){
-        return DatetimeRange.of(DateBuilder.from(start).minDayTime().asDate(),end);
+        return DatetimeRange.of(DateBuilderFactory.from(start).minDayTime().asDate(),end);
     }
 
     public DatetimeRange maxStart(){
-        return DatetimeRange.of(DateBuilder.from(start).maxDayTime().asDate(),end);
+        return DatetimeRange.of(DateBuilderFactory.from(start).maxDayTime().asDate(),end);
     }
 
     public DatetimeRange minEnd(){
-        return DatetimeRange.of(start,DateBuilder.from(end).minDayTime().asDate());
+        return DatetimeRange.of(start,DateBuilderFactory.from(end).minDayTime().asDate());
     }
 
     public DatetimeRange maxEnd(){
-        return DatetimeRange.of(start,DateBuilder.from(end).maxDayTime().asDate());
+        return DatetimeRange.of(start,DateBuilderFactory.from(end).maxDayTime().asDate());
     }
 
     public Date getStart() {
@@ -174,13 +175,13 @@ public class DatetimeRange {
     public boolean overlapping(DatetimeRange range){
         if(range==null || range.isInvalid() || isInvalid())
             return false;
-        if(DateBuilder.from(start).beforeEqual(range.start) && DateBuilder.from(end).laterEqualThan(range.end))
+        if(DateBuilderFactory.from(start).beforeEqual(range.start) && DateBuilderFactory.from(end).laterEqualThan(range.end))
             return true;
-        if(DateBuilder.from(range.start).beforeEqual(start) && DateBuilder.from(range.end).laterEqualThan(end))
+        if(DateBuilderFactory.from(range.start).beforeEqual(start) && DateBuilderFactory.from(range.end).laterEqualThan(end))
             return true;
-        if(DateBuilder.from(start).beforeEqual(range.start) && DateBuilder.from(end).laterEqualThan(range.start))
+        if(DateBuilderFactory.from(start).beforeEqual(range.start) && DateBuilderFactory.from(end).laterEqualThan(range.start))
             return true;
-        if(DateBuilder.from(range.start).beforeEqual(start) && DateBuilder.from(range.end).laterEqualThan(start))
+        if(DateBuilderFactory.from(range.start).beforeEqual(start) && DateBuilderFactory.from(range.end).laterEqualThan(start))
             return true;
         return false;
     }
@@ -189,11 +190,11 @@ public class DatetimeRange {
         if(range==null)
             return OverlapType.TargetIsNull;
 
-        DateBuilder startComparator = DateBuilder.from(start);
-        DateBuilder endComparator = DateBuilder.from(end);
+        DateBuilder startComparator = DateBuilderFactory.from(start);
+        DateBuilder endComparator = DateBuilderFactory.from(end);
 
-        DateBuilder targetStartComparator = DateBuilder.from(range.start);
-        DateBuilder targetEndComparator = DateBuilder.from(range.end);
+        DateBuilder targetStartComparator = DateBuilderFactory.from(range.start);
+        DateBuilder targetEndComparator = DateBuilderFactory.from(range.end);
 
         if(range.isInvalid())
             return OverlapType.TargetInvalid;

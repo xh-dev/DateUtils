@@ -43,7 +43,7 @@ public class DateInfo {
 
 
     public DateBuilder asBuilder(){
-        return DateBuilder.from(cal.getTime());
+        return DateBuilderFactory.from(cal.getTime());
     }
     public Date asDate(){
         return cal.getTime();

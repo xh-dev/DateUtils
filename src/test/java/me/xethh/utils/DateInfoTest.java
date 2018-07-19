@@ -1,6 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateBuilder;
+import me.xethh.utils.dateManipulation.DateBuilderFactory;
 import me.xethh.utils.dateManipulation.DateInfo;
 import me.xethh.utils.dateManipulation.Weekday;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class DateInfoTest
     @Test
     public void extractDate(){
         DateInfo dateInfo =
-                DateBuilder.raw()
+                DateBuilderFactory.raw()
                         .hour(13).minute(23).second(34).ms(666)
                         .day(20).month(NOV).year(2078).view();
         assertEquals(2078,dateInfo.year().intValue());
@@ -31,7 +32,7 @@ public class DateInfoTest
     }
     @Test
     public void weekdayTest(){
-        DateBuilder d20180506 = DateBuilder.raw().year(2018).month(MAY).day(6);
+        DateBuilder d20180506 = DateBuilderFactory.raw().year(2018).month(MAY).day(6);
         assertEquals(Weekday.Sunday,d20180506.view().weekday());
         assertEquals(Weekday.Monday,d20180506.addDays(1).view().weekday());
         assertEquals(Weekday.Tuesday,d20180506.addDays(2).view().weekday());
