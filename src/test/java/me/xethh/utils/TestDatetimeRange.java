@@ -178,37 +178,16 @@ public class TestDatetimeRange
         assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
 
-        range = range.editStartEndDate(
-                new RangeEditByBuilder() {
-                    @Override
-                    public DateBuilder oper(DateBuilder builder) {
-                        return builder.addDays(-1).addMS(333);
-                    }
-                },
-                new RangeEditByBuilder() {
-                    @Override
-                    public DateBuilder oper(DateBuilder builder) {
-                        return builder.addDays(3).addYear(2).addMonths(2).addMS(222);
-                    }
-                });
+        range = range
+                .editStart().addDays(-1).addMS(333).back()
+                .editEnd().addDays(3).addYear(2).addMonths(2).addMS(222).back();
 
         assertEquals("20880421-000000333",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20900825-000000222",ymdhhmmssSSS.format(range.getEnd()));
 
-        range = range.editStartDate(
-                new RangeEditByBuilder() {
-                    @Override
-                    public DateBuilder oper(DateBuilder builder) {
-                        return builder.addDays(-1).addMS(333);
-                    }
-                });
-        range = range.editEndDate(
-                new RangeEditByBuilder() {
-                    @Override
-                    public DateBuilder oper(DateBuilder builder) {
-                        return builder.addDays(1).addMS(222);
-                    }
-                });
+        range = range
+                .editStart().addDays(-1).addMS(333).back()
+                .editEnd().addDays(1).addMS(222).back();
 
         assertEquals("20880420-000000666",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20900826-000000444",ymdhhmmssSSS.format(range.getEnd()));
@@ -224,14 +203,17 @@ public class TestDatetimeRange
         assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
 
-        range = range.editStartAddYear(1).editStartAddMonth(1).editStartAddDay(1).editStartAddMinute(1).editStartAddHour(1).editStartAddSecond(1).editStartAddMS(1);
-        range = range.editEndAddYear(2).editEndAddMonth(2).editEndAddDay(2).editEndAddMinute(2).editEndAddHour(2).editEndAddSecond(2).editEndAddMS(2);
+        range = range
+                .editStart().addYear(1).addMonths(1).addDays(1).addMins(1).addHours(1).addSecond(1).addMS(1).back()
+                .editEnd().addYear(2).addMonths(2).addDays(2).addMins(2).addHours(2).addSecond(2).addMS(2).back();
 
         assertEquals("20890523-010101001",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20900824-020202002",ymdhhmmssSSS.format(range.getEnd()));
 
-        range = range.editStartAddTime(2000);
-        range = range.editEndAddTime(4000);
+        range = range
+                .editStart().addTime(2000).back()
+                .editEnd().addTime(4000).back()
+        ;
 
         assertEquals("20890523-010103001",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20900824-020206002",ymdhhmmssSSS.format(range.getEnd()));

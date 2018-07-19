@@ -1,5 +1,7 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.rangeManipulation.DatetimeRange;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,52 +38,46 @@ public class DateBuilderFactory {
         return from(new Date(longDate));
     }
 
-    public static <T extends DateBuilder<T>> T from(Date date, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class)
-            return (T) from(date);
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Date date, E parent){
+        if(parent instanceof DatetimeRange)
+            return (T) new DatetimeRangeContainedBuilder(date,(DatetimeRange) parent);
         return null;
     }
-    public static <T extends DateBuilder<T>> T from(Date date, Build build, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            DateBuilderImpl builder = new DateBuilderImpl(date);
-            return (T) DateBuilderFactory.from(builder.getBuilds(), build);
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Date date, Build build, E parent){
+        if(parent instanceof DatetimeRange) {
+            DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date,(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(builder.getBuilds(),build,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T>> T raw(Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) new DateBuilderImpl(new ArrayList());
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T raw(E parent){
+        if(parent instanceof DatetimeRange) {
+            return (T) new DatetimeRangeContainedBuilder(new ArrayList(),(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T>> T from(List<Build> builds, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) new DateBuilderImpl(builds);
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(List<Build> builds, E parent){
+        if(parent instanceof DatetimeRange) {
+            return (T) new DatetimeRangeContainedBuilder(builds,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T>> T from(List<Build> builds, Build build, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) new DateBuilderImpl(builds,build);
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(List<Build> builds, Build build, E parent){
+        if(parent instanceof DatetimeRange) {
+            return (T) new DatetimeRangeContainedBuilder(builds,build,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T>> T now(Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) new DateBuilderImpl(new Date());
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T now(E parent){
+        if(parent instanceof DatetimeRange) {
+            return (T) new DatetimeRangeContainedBuilder(new Date(),(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T>> T from(Calendar calendar, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) from(calendar.getTime());
-        }
-        return null;
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Calendar calendar, E parent){
+        return (T) from(calendar.getTime(),parent);
     }
-    public static <T extends DateBuilder<T>> T from(Long longDate, Class<T> clazz){
-        if(clazz == DateBuilderImpl.class) {
-            return (T) from(new Date(longDate));
-        }
-        return null;
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Long longDate, E parent){
+        return (T) from(new Date(longDate),parent);
     }
 }

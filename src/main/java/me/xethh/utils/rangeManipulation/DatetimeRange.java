@@ -1,8 +1,6 @@
 package me.xethh.utils.rangeManipulation;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateBuilderFactory;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.*;
 
 import java.util.Date;
 import java.util.Objects;
@@ -11,8 +9,20 @@ import java.util.Objects;
  * @author xethhung
  * @date 5/25/2018
  */
-public class DatetimeRange {
-
+public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
+    @Override
+    public EDITING getEditingMode() {
+        return editing;
+    }
+    @Override
+    public EDITING clearEditingModo() {
+        this.editing=EDITING.NONE;
+        return editing;
+    }
+    public static enum EDITING{
+        NONE,START,END
+    }
+    private EDITING editing;
 
     protected Date start,end;
     private DatetimeRange(Date start, Date end){
@@ -40,64 +50,13 @@ public class DatetimeRange {
         return new DatetimeRange(end,start);
     }
 
-    public DatetimeRange editStartEndDate(RangeEditByBuilder start, RangeEditByBuilder end){
-       return DatetimeRange.of(start.oper(DateBuilderFactory.from(getStart())).asDate(),end.oper(DateBuilderFactory.from(getEnd())).asDate());
+    public DatetimeRangeContainedBuilder editStart(){
+        this.editing=EDITING.START;
+        return DateBuilderFactory.from(getStart(),this);
     }
-
-    public DatetimeRange editStartDate(RangeEditByBuilder start){
-        return DatetimeRange.of(start.oper(DateBuilderFactory.from(getStart())).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddYear(int year){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addYear(year).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddMonth(int month){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMonths(month).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddDay(int day){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addDays(day).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddHour(int hour){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addHours(hour).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddMinute(int minute){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMins(minute).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddSecond(int second){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addSecond(second).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddMS(int ms){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addMS(ms).asDate(),getEnd());
-    }
-    public DatetimeRange editStartAddTime(long time){
-        return DatetimeRange.of(DateBuilderFactory.from(getStart()).addTime(time).asDate(),getEnd());
-    }
-
-    public DatetimeRange editEndDate(RangeEditByBuilder end){
-        return DatetimeRange.of(getStart(),end.oper(DateBuilderFactory.from(getEnd())).asDate());
-    }
-    public DatetimeRange editEndAddYear(int year){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addYear(year).asDate());
-    }
-    public DatetimeRange editEndAddMonth(int month){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMonths(month).asDate());
-    }
-    public DatetimeRange editEndAddDay(int day){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addDays(day).asDate());
-    }
-    public DatetimeRange editEndAddHour(int hour){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addHours(hour).asDate());
-    }
-    public DatetimeRange editEndAddMinute(int minute){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMins(minute).asDate());
-    }
-    public DatetimeRange editEndAddSecond(int second){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addSecond(second).asDate());
-    }
-    public DatetimeRange editEndAddMS(int ms){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addMS(ms).asDate());
-    }
-    public DatetimeRange editEndAddTime(long time){
-        return DatetimeRange.of(getStart(),DateBuilderFactory.from(getEnd()).addTime(time).asDate());
+    public DatetimeRangeContainedBuilder editEnd(){
+        this.editing=EDITING.END;
+        return DateBuilderFactory.from(getEnd(),this);
     }
 
     @Override
