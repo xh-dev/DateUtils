@@ -3,10 +3,13 @@ package me.xethh.utils;
 import me.xethh.utils.dateManipulation.*;
 import org.junit.Test;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Unit test for simple App.
@@ -122,5 +125,18 @@ public class DateFormatTest
         DateBuilder date = DateBuilderFactory.raw().year(2088).month(Month.JAN).day(7);
         assertEquals("7||07||00007||000007",format.format(date.asDate()));
         assertEquals("11||11||00011||000011",format.format(date.addDays(4).asDate()));
+    }
+
+    @Test
+    public void testTimeDiff(){
+        SimpleDateFormat format = DateFormatBuilder.get().hourInDay24().v1().minute().v1().second().v2().ms().v1(":").v2(".").build();
+        DateBuilder builder = DateBuilderFactory.raw().year(2088).month(Month.JAN).day(7).minDayTime();
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        assertEquals("00:00:00.000",format.format(new Date(0l)));
+        assertEquals("00:02:10.444",format.format(new Date(
+                builder.addMins(4).addSecond(50).addMS(555).asLong()
+               -builder.addMins(2).addSecond(40).addMS(111).asLong())
+                )
+        );
     }
 }
