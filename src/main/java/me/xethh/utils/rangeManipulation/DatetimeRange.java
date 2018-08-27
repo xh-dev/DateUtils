@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /**
  * @author xethhung
- * @date 5/25/2018
+ * Created on 5/25/2018
  */
 public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
     @Override

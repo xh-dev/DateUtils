@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @author xethhung
- * @date 8/3/2018
+ * Created on 8/3/2018
  */
 public class TimeUnit {
     private long diff;

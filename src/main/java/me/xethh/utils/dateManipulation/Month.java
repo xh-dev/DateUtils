@@ -2,7 +2,7 @@ package me.xethh.utils.dateManipulation;
 
 /**
  * @author xethhung
- * @date 5/25/2018
+ * Created on 5/25/2018
  */
 public enum Month{
     JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC;

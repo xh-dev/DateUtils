@@ -2,7 +2,7 @@ package me.xethh.utils.rangeManipulation;
 
 /**
  * @author xethhung
- * @date 6/13/2018
+ * Created on 6/13/2018
  */
 public enum OverlapType {
     Covering,           //[10-20] compare to [12-19]
