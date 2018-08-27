@@ -1,5 +1,6 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -664,6 +665,46 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     }
     public boolean beforeEqual(Calendar calendar){
         return !laterThan(calendar.getTime().getTime());
+    }
+
+    @Override
+    public TimeUnit diffFrom(Date date) {
+        return TimeUnit.timeDiff(date,this.asDate());
+    }
+
+    @Override
+    public TimeUnit diffTo(Date date) {
+        return TimeUnit.timeDiff(this.asDate(),date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(DateBuilder date) {
+        return TimeUnit.timeDiff(date.asDate(),this.asDate());
+    }
+
+    @Override
+    public TimeUnit diffTo(DateBuilder date) {
+        return TimeUnit.timeDiff(this.asDate(),date.asDate());
+    }
+
+    @Override
+    public TimeUnit diffFrom(long date) {
+        return TimeUnit.timeDiff(date,asLong());
+    }
+
+    @Override
+    public TimeUnit diffTo(long date) {
+        return TimeUnit.timeDiff(asLong(),date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(Calendar cal) {
+        return TimeUnit.timeDiff(cal.getTime(),asDate());
+    }
+
+    @Override
+    public TimeUnit diffTo(Calendar cal) {
+        return TimeUnit.timeDiff(asDate(),cal.getTime());
     }
 
     @Override

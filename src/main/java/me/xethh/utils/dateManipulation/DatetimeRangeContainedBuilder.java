@@ -1,5 +1,6 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -642,6 +643,46 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     @Override
     public boolean beforeEqual(Calendar calendar) {
         return builder.beforeEqual(calendar);
+    }
+
+    @Override
+    public TimeUnit diffFrom(Date date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(Date date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(DateBuilder date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(DateBuilder date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(long date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(long date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(Calendar date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(Calendar date) {
+        return builder.diffTo(date);
     }
 
     @Override

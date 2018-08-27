@@ -1,5 +1,6 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -188,4 +189,12 @@ public interface DateBuilder<T extends DateBuilder<T>> {
     public boolean beforeEqual(Long longDate);
     public boolean beforeEqual(Calendar calendar);
 
+    TimeUnit diffFrom(Date date);
+    TimeUnit diffTo(Date date);
+    TimeUnit diffFrom(DateBuilder date);
+    TimeUnit diffTo(DateBuilder date);
+    TimeUnit diffFrom(long date);
+    TimeUnit diffTo(long date);
+    TimeUnit diffFrom(Calendar date);
+    TimeUnit diffTo(Calendar date);
 }

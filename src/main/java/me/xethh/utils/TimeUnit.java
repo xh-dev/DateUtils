@@ -11,33 +11,45 @@ import java.util.Date;
  * @date 8/3/2018
  */
 public class TimeUnit {
-    private long date;
+    private long diff;
 
-    protected TimeUnit(long date){
-        this.date = date;
+    protected TimeUnit(long diff){
+        this.diff = diff;
     }
 
+    public static TimeUnit timeDiff(Date t1, Date t2){
+        return timeDiff(t1.getTime(),t2.getTime());
+    }
+    public static TimeUnit timeDiff(Long t1, Long t2){
+        return new TimeUnit(t2-t1);
+    }
     public static TimeUnit from(Date date){
-        return from(date.getTime());
+        return timeDiff(date,new Date());
     }
-    public static TimeUnit from(long date){
-        return new TimeUnit(date);
+    public static TimeUnit from(long diff){
+        return timeDiff(diff,new Date().getTime());
+    }
+    public static TimeUnit to(Date date){
+        return timeDiff(new Date(),date);
+    }
+    public static TimeUnit to(long diff){
+        return timeDiff(new Date().getTime(),diff);
     }
 
     public Date asDate(){
-        return new Date(date);
+        return new Date(diff);
     }
     public long asLong(){
-        return date;
+        return diff;
     }
 
     public DateBuilder asBuilder(){
-        return DateBuilderFactory.from(date);
+        return DateBuilderFactory.from(diff);
     }
 
     public Calendar asCalendar(){
         Calendar d =Calendar.getInstance();
-        d.setTimeInMillis(date);
+        d.setTimeInMillis(diff);
         return d;
     }
 
@@ -45,76 +57,112 @@ public class TimeUnit {
     private static long SECOND_BASE=60;
     private static long MIN_BASE=60;
     private static long HOUR_BASE=24;
+    private static long WEEK_BASE=7;
 
 
+    public long numberOfWeeks(){
+        return numberOfWeeks(diff);
+    }
+    public long remindOfWeeks(){
+        return remindOfWeeks(diff);
+    }
     public long numberOfDays(){
-        return numberOfDays(date);
+        return numberOfDays(diff);
     }
     public long numberOfHour(){
-        return numberOfHour(date);
+        return numberOfHour(diff);
     }
     public long numberOfMin(){
-        return numberOfMin(date);
+        return numberOfMin(diff);
     }
     public long numberOfSecond(){
-        return numberOfSecond(date);
+        return numberOfSecond(diff);
     }
     public long numberOfMS(){
-        return date;
+        return diff;
     }
 
-    public static long numberOfDays(long date){
-        return date/(MS_BASE*SECOND_BASE*MIN_BASE*HOUR_BASE);
+    public static long numberOfWeeks(long diff){
+        return numberOfDays(diff)/WEEK_BASE;
     }
-    public long numberOfHour(long date){
-        return date/(MS_BASE*SECOND_BASE*MIN_BASE);
+    public static long remindOfWeeks(long diff){
+        return numberOfDays(diff)%WEEK_BASE;
     }
-    public long numberOfMin(long date){
-        return date/(MS_BASE*SECOND_BASE);
+    public static long numberOfDays(long diff){
+        return diff/(MS_BASE*SECOND_BASE*MIN_BASE*HOUR_BASE);
     }
-    public long numberOfSecond(long date){
-        return date/(MS_BASE);
+    public static long numberOfHour(long diff){
+        return diff/(MS_BASE*SECOND_BASE*MIN_BASE);
     }
-
-    public static long eliminateDays(long date){
-        return date%(MS_BASE*SECOND_BASE*MIN_BASE*HOUR_BASE);
+    public static long numberOfMin(long diff){
+        return diff/(MS_BASE*SECOND_BASE);
     }
-    public long eliminateHours(long date){
-        return eliminateDays(date)%(MS_BASE*SECOND_BASE*MIN_BASE);
-    }
-    public long eliminateMin(long date){
-        return eliminateHours(date)%(MS_BASE*SECOND_BASE);
-    }
-    public long eliminateSecond(long date){
-        return eliminateMin(date)%(MS_BASE*SECOND_BASE);
-    }
-    public long eliminateMS(long date){
-        return date%MS_BASE;
+    public static long numberOfSecond(long diff){
+        return diff/(MS_BASE);
     }
 
-    public long hoursOnly(long date){
-        return numberOfHour(eliminateDays(date));
+    public static long eliminateByBase(long diff, long base){
+        return diff%base;
     }
-    public long minOnly(long date){
-        return numberOfMin(eliminateHours(date));
-    }
-    public long secOnly(long date){
-        return numberOfSecond(eliminateMin(date));
-    }
-    public long msOnly(long date){
-        return eliminateSecond(date);
+    public static long numberByBase(long diff, long base){
+        return diff/base;
     }
 
+    public static long eliminateDays(long diff){
+        return diff%(MS_BASE*SECOND_BASE*MIN_BASE*HOUR_BASE);
+    }
+    public static long eliminateHours(long diff){
+        return eliminateDays(diff)%(MS_BASE*SECOND_BASE*MIN_BASE);
+    }
+    public static long eliminateMin(long diff){
+        return eliminateHours(diff)%(MS_BASE*SECOND_BASE);
+    }
+    public static long eliminateSecond(long diff){
+        return eliminateMin(diff)%(MS_BASE);
+    }
+
+    public static long dayOnly(long diff){
+        return numberOfDays(diff);
+    }
+    public static long hoursOnly(long diff){
+        return numberOfHour(eliminateDays(diff));
+    }
+    public static long minOnly(long diff){
+        return numberOfMin(eliminateHours(diff));
+    }
+    public static long secOnly(long diff){
+        return numberOfSecond(eliminateMin(diff));
+    }
+    public static long msOnly(long diff){
+        return eliminateSecond(diff);
+    }
+
+    public long dayOnly(){
+        return dayOnly(diff);
+    }
     public long hoursOnly(){
-        return hoursOnly(date);
+        return hoursOnly(diff);
     }
     public long minOnly(){
-        return minOnly(date);
+        return minOnly(diff);
     }
     public long secOnly(){
-        return secOnly(date);
+        return secOnly(diff);
     }
     public long msOnly(){
-        return msOnly(date);
+        return msOnly(diff);
+    }
+
+    public boolean roundUpDay(){
+        return (hoursOnly()>HOUR_BASE/2)?true:false;
+    }
+    public boolean roundUpHour(){
+        return (minOnly()>MIN_BASE/2)?true:false;
+    }
+    public boolean roundUpMin(){
+        return (secOnly()>SECOND_BASE/2)?true:false;
+    }
+    public boolean roundUpSecond(){
+        return (msOnly()>MS_BASE/2)?true:false;
     }
 }
