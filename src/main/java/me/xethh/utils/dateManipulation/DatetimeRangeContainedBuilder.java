@@ -20,12 +20,12 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
      */
     protected DatetimeRangeContainedBuilder(final Date date,DatetimeRange range){
         this.parent= range;
-        builder= DateBuilderFactory.from(date);
+        builder= DateFactory.from(date);
     }
     protected DatetimeRangeContainedBuilder(List<Build> builds,DatetimeRange range){
         this.parent= range;
         if(builder==null)
-            builder = DateBuilderFactory.raw();
+            builder = DateFactory.raw();
         builder.getBuilds().addAll(builds);
     }
     protected DatetimeRangeContainedBuilder(List<Build> builds, Build build, DatetimeRange range){

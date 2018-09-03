@@ -11,13 +11,13 @@ import java.util.List;
  * @author xethhung
  * Created on 7/19/2018
  */
-public class DateBuilderFactory {
+public class DateFactory {
     public static DateBuilderImpl from(Date date){
         return new DateBuilderImpl(date);
     }
     public static DateBuilderImpl from(Date date, Build build){
         DateBuilderImpl builder = new DateBuilderImpl(date);
-        return DateBuilderFactory.from(builder.getBuilds(),build);
+        return DateFactory.from(builder.getBuilds(),build);
     }
     public static DateBuilderImpl raw(){
         return new DateBuilderImpl(new ArrayList());
@@ -36,6 +36,10 @@ public class DateBuilderFactory {
     }
     public static DateBuilderImpl from(Long longDate){
         return from(new Date(longDate));
+    }
+
+    public static DateFormatBuilder format(){
+        return DateFormatBuilder.get();
     }
 
     public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Date date, E parent){

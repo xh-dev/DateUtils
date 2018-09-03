@@ -1,8 +1,7 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilderFactory;
+import me.xethh.utils.dateManipulation.DateFactory;
 import me.xethh.utils.dateManipulation.DateBuilderImpl;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.Month;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -15,7 +14,7 @@ public class TimeUnitTest
 
     @Test
     public void baseDiffTest(){
-        DateBuilderImpl start = DateBuilderFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
+        DateBuilderImpl start = DateFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
         DateBuilderImpl end = start.addDays(8).addHours(7).addMins(12).addSecond(34).addMS(333);
         TimeUnit tu = start.diffTo(end);
 
@@ -50,7 +49,7 @@ public class TimeUnitTest
 
     @Test
     public void roundUpTest(){
-        DateBuilderImpl start = DateBuilderFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
+        DateBuilderImpl start = DateFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
         DateBuilderImpl end1 = start.addDays(8).addHours(12).addMins(30).addSecond(30).addMS(500);
         DateBuilderImpl end2 = start.addDays(8).addHours(13).addMins(31).addSecond(31).addMS(501);
         TimeUnit tu1 = start.diffTo(end1);
@@ -68,7 +67,7 @@ public class TimeUnitTest
 
     @Test
     public void weekTest(){
-        DateBuilderImpl start = DateBuilderFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
+        DateBuilderImpl start = DateFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
         DateBuilderImpl end1 = start.addDays(300).addHours(12).addMins(30).addSecond(30).addMS(500);
         TimeUnit tu = start.diffTo(end1);
         assertEquals("Weeeks between",42,tu.numberOfWeeks());
@@ -79,9 +78,9 @@ public class TimeUnitTest
 
     @Test
     public void rangeTest(){
-        DateBuilderImpl start = DateBuilderFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
+        DateBuilderImpl start = DateFactory.raw().year(1988).month(Month.AUG).day(11).hour(18).minute(34).second(29).ms(111);
         DateBuilderImpl end = start.addDays(8).addHours(7).addMins(12).addSecond(34).addMS(333);
-        TimeUnit tu = start.rangeTo(DateBuilderFactory.raw()).editStart().diffTo(end);
+        TimeUnit tu = start.rangeTo(DateFactory.raw()).editStart().diffTo(end);
         assertEquals("Ms comparing eliminate second",333,tu.msOnly());
         assertEquals("Ms comparing no eliminate",
                 8*24*60*60*1000

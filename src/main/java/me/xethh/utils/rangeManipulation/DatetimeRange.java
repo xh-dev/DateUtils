@@ -52,11 +52,11 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
 
     public DatetimeRangeContainedBuilder editStart(){
         this.editing=EDITING.START;
-        return DateBuilderFactory.from(getStart(),this);
+        return DateFactory.from(getStart(),this);
     }
     public DatetimeRangeContainedBuilder editEnd(){
         this.editing=EDITING.END;
-        return DateBuilderFactory.from(getEnd(),this);
+        return DateFactory.from(getEnd(),this);
     }
 
     @Override
@@ -92,15 +92,15 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
     }
 
     public boolean dateInRange(Date date){
-        return minStart().minEnd().timeInRange(DateBuilderFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeInRange(DateFactory.from(date).minDayTime().asDate());
     }
 
     public boolean dateAfterRange(Date date){
-        return minStart().minEnd().timeAfterRange(DateBuilderFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeAfterRange(DateFactory.from(date).minDayTime().asDate());
     }
 
     public boolean dateBeforeRange(Date date){
-        return minStart().minEnd().timeBeforeRange(DateBuilderFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeBeforeRange(DateFactory.from(date).minDayTime().asDate());
     }
 
     public DatetimeRange asDateRange(){
@@ -108,19 +108,19 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
     }
 
     public DatetimeRange minStart(){
-        return DatetimeRange.of(DateBuilderFactory.from(start).minDayTime().asDate(),end);
+        return DatetimeRange.of(DateFactory.from(start).minDayTime().asDate(),end);
     }
 
     public DatetimeRange maxStart(){
-        return DatetimeRange.of(DateBuilderFactory.from(start).maxDayTime().asDate(),end);
+        return DatetimeRange.of(DateFactory.from(start).maxDayTime().asDate(),end);
     }
 
     public DatetimeRange minEnd(){
-        return DatetimeRange.of(start,DateBuilderFactory.from(end).minDayTime().asDate());
+        return DatetimeRange.of(start,DateFactory.from(end).minDayTime().asDate());
     }
 
     public DatetimeRange maxEnd(){
-        return DatetimeRange.of(start,DateBuilderFactory.from(end).maxDayTime().asDate());
+        return DatetimeRange.of(start,DateFactory.from(end).maxDayTime().asDate());
     }
 
     public Date getStart() {
@@ -134,13 +134,13 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
     public boolean overlapping(DatetimeRange range){
         if(range==null || range.isInvalid() || isInvalid())
             return false;
-        if(DateBuilderFactory.from(start).beforeEqual(range.start) && DateBuilderFactory.from(end).laterEqualThan(range.end))
+        if(DateFactory.from(start).beforeEqual(range.start) && DateFactory.from(end).laterEqualThan(range.end))
             return true;
-        if(DateBuilderFactory.from(range.start).beforeEqual(start) && DateBuilderFactory.from(range.end).laterEqualThan(end))
+        if(DateFactory.from(range.start).beforeEqual(start) && DateFactory.from(range.end).laterEqualThan(end))
             return true;
-        if(DateBuilderFactory.from(start).beforeEqual(range.start) && DateBuilderFactory.from(end).laterEqualThan(range.start))
+        if(DateFactory.from(start).beforeEqual(range.start) && DateFactory.from(end).laterEqualThan(range.start))
             return true;
-        if(DateBuilderFactory.from(range.start).beforeEqual(start) && DateBuilderFactory.from(range.end).laterEqualThan(start))
+        if(DateFactory.from(range.start).beforeEqual(start) && DateFactory.from(range.end).laterEqualThan(start))
             return true;
         return false;
     }
@@ -153,11 +153,11 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
         if(range.isInvalid())
             return OverlapType.TargetInvalid;
 
-        DateBuilder startComparator = DateBuilderFactory.from(start);
-        DateBuilder endComparator = DateBuilderFactory.from(end);
+        DateBuilder startComparator = DateFactory.from(start);
+        DateBuilder endComparator = DateFactory.from(end);
 
-        DateBuilder targetStartComparator = DateBuilderFactory.from(range.start);
-        DateBuilder targetEndComparator = DateBuilderFactory.from(range.end);
+        DateBuilder targetStartComparator = DateFactory.from(range.start);
+        DateBuilder targetEndComparator = DateFactory.from(range.end);
 
         if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;
