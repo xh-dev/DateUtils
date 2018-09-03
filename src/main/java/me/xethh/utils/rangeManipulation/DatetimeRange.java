@@ -146,8 +146,12 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
     }
 
     public OverlapType overlappingPattern(DatetimeRange range){
-        if(range==null)
+        if(isInvalid())
+            return OverlapType.Invalid;
+        else if(range==null)
             return OverlapType.TargetIsNull;
+        if(range.isInvalid())
+            return OverlapType.TargetInvalid;
 
         DateBuilder startComparator = DateBuilderFactory.from(start);
         DateBuilder endComparator = DateBuilderFactory.from(end);
@@ -155,11 +159,7 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
         DateBuilder targetStartComparator = DateBuilderFactory.from(range.start);
         DateBuilder targetEndComparator = DateBuilderFactory.from(range.end);
 
-        if(range.isInvalid())
-            return OverlapType.TargetInvalid;
-        else if(isInvalid())
-            return OverlapType.Invalid;
-        else if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
+        if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;
         else if(startComparator.beforeEqual(range.start) && endComparator.laterEqualThan(range.end)) {
             if(startComparator.sameDatetime(range.start))
@@ -192,6 +192,14 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
         else
             return OverlapType.ComesFirst;
 
+    }
+
+    public RejectingFilter rejecting(){
+        return new RejectingFilter(this);
+    }
+
+    public AcceptingFilter accepting(){
+        return new AcceptingFilter(this);
     }
 
 }
