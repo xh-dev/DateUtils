@@ -15,7 +15,7 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
         return editing;
     }
     @Override
-    public EDITING clearEditingModo() {
+    public EDITING clearEditingMode() {
         this.editing=EDITING.NONE;
         return editing;
     }

@@ -690,12 +690,12 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
         DatetimeRange range;
         if(parent.getEditingMode()==DatetimeRange.EDITING.START) {
             range = DatetimeRange.of(asDate(),parent.getEnd());
-            range.clearEditingModo();
+            range.clearEditingMode();
             return range;
         }
         if(parent.getEditingMode()==DatetimeRange.EDITING.END) {
             range = DatetimeRange.of(parent.getStart(),asDate());
-            range.clearEditingModo();
+            range.clearEditingMode();
             return range;
         }
         return parent;

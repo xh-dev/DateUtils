@@ -6,5 +6,5 @@ package me.xethh.utils.dateManipulation;
  */
 public interface BuilderContainer<O extends Object>{
     O getEditingMode();
-    O clearEditingModo();
+    O clearEditingMode();
 }
