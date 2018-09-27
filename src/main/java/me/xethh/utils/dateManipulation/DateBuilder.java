@@ -86,7 +86,6 @@ public interface DateBuilder<T extends DateBuilder<T>> {
     Date asDate();
     Calendar asCalendar();
     Long asLong();
-    List<Build> getBuilds();
 
     DateInfo view();
 

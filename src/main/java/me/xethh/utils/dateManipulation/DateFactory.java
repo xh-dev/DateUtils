@@ -17,22 +17,19 @@ public class DateFactory {
     }
     public static DateBuilderImpl from(Date date, Build build){
         DateBuilderImpl builder = new DateBuilderImpl(date);
-        return DateFactory.from(builder.getBuilds(),build);
+        return DateFactory.from(builder.asCalendar(),build);
     }
     public static DateBuilderImpl raw(){
-        return new DateBuilderImpl(new ArrayList());
+        return new DateBuilderImpl();
     }
-    public static DateBuilderImpl from(List<Build> builds){
-        return new DateBuilderImpl(builds);
+    public static DateBuilderImpl from(Calendar cal){
+        return new DateBuilderImpl(cal);
     }
-    public static DateBuilderImpl from(List<Build> builds, Build build){
-        return new DateBuilderImpl(builds,build);
+    public static DateBuilderImpl from(Calendar cal, Build build){
+        return new DateBuilderImpl(cal,build);
     }
     public static DateBuilderImpl now(){
         return new DateBuilderImpl(new Date());
-    }
-    public static DateBuilderImpl from(Calendar calendar){
-        return from(calendar.getTime());
     }
     public static DateBuilderImpl from(Long longDate){
         return from(new Date(longDate));
@@ -50,25 +47,25 @@ public class DateFactory {
     public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Date date, Build build, E parent){
         if(parent instanceof DatetimeRange) {
             DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date,(DatetimeRange) parent);
-            return (T) new DatetimeRangeContainedBuilder(builder.getBuilds(),build,(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(builder.asCalendar(),build,(DatetimeRange) parent);
         }
         return null;
     }
     public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T raw(E parent){
         if(parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(new ArrayList(),(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(DateFactory.raw().asCalendar(),(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(List<Build> builds, E parent){
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Calendar cal, E parent){
         if(parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(builds,(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(cal,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(List<Build> builds, Build build, E parent){
+    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Calendar cal, Build build, E parent){
         if(parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(builds,build,(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(cal,build,(DatetimeRange) parent);
         }
         return null;
     }
@@ -77,9 +74,6 @@ public class DateFactory {
             return (T) new DatetimeRangeContainedBuilder(new Date(),(DatetimeRange) parent);
         }
         return null;
-    }
-    public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Calendar calendar, E parent){
-        return (T) from(calendar.getTime(),parent);
     }
     public static <T extends DateBuilder<T> & BuilderWrapper<E>,E extends BuilderContainer<F>,F extends Object> T from(Long longDate, E parent){
         return (T) from(new Date(longDate),parent);

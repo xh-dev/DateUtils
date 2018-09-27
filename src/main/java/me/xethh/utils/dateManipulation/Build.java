@@ -7,5 +7,5 @@ import java.util.Calendar;
  * Created on 7/19/2018
  */
 public interface Build{
-    Build apply(Calendar cal);
+    Calendar apply(Calendar cal);
 }
