@@ -52,11 +52,11 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
 
     public DatetimeRangeContainedBuilder editStart(){
         this.editing=EDITING.START;
-        return DateFactory.from(getStart(),this);
+        return DateFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(getStart(),this);
     }
     public DatetimeRangeContainedBuilder editEnd(){
         this.editing=EDITING.END;
-        return DateFactory.from(getEnd(),this);
+        return DateFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(getEnd(),this);
     }
 
     @Override
