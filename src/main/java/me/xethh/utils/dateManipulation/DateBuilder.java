@@ -12,6 +12,7 @@ public interface DateBuilder<T extends DateBuilder<T>> {
 
     T y(int year);
     T ym(int year, Month month);
+    T md(Month month, int day);
     T ymd(int year, Month month, int day);
     T hmsms(int hour, int minute, int second, int mSecond);
     T hms(int hour, int minute, int second);

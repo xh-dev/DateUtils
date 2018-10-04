@@ -44,6 +44,13 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
+    public DatetimeRangeContainedBuilder md(Month month, int day) {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.md(month,day);
+        return bd;
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder ymd(int year, Month month, int day) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.ymd(year,month,day);

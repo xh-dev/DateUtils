@@ -45,6 +45,12 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     public DateBuilderImpl ym(int year, Month month){
         return year(year).month(month);
     }
+
+    @Override
+    public DateBuilderImpl md(Month month, int day) {
+        return month(month).day(day);
+    }
+
     public DateBuilderImpl ymd(int year, Month month, int day){
         return year(year).month(month).day(day);
     }

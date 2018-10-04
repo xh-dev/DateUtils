@@ -25,6 +25,15 @@ public class DateInfo {
     public Integer day(){
         return cal.get(Calendar.DAY_OF_MONTH);
     }
+    public Integer weekOfYear(){
+        return cal.get(Calendar.WEEK_OF_YEAR);
+    }
+    public Integer weekOfMonth(){
+        return cal.get(Calendar.WEEK_OF_MONTH);
+    }
+    public Integer dayOfYear(){
+        return cal.get(Calendar.DAY_OF_YEAR);
+    }
     public Integer hour(){
         return cal.get(Calendar.HOUR_OF_DAY);
     }

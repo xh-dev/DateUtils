@@ -40,6 +40,10 @@ public class DateUtilsTest
         assertEquals(sdf2.format(DateFactory.raw().ym(2018,Month.OCT).asDate()),"2018-10-01T00:00:00.000");
         assertEquals(sdf2.format(DateFactory.raw().ym(2018,Month.NOV).asDate()),"2018-11-01T00:00:00.000");
         assertEquals(sdf2.format(DateFactory.raw().ym(2018,Month.DEC).asDate()),"2018-12-01T00:00:00.000");
+        assertEquals(sdf2.format(DateFactory.raw().md(Month.DEC,12).asDate()),"1970-12-12T00:00:00.000");
+        assertEquals(sdf2.format(DateFactory.raw().md(Month.DEC,13).asDate()),"1970-12-13T00:00:00.000");
+        assertEquals(sdf2.format(DateFactory.raw().md(Month.AUG,23).asDate()),"1970-08-23T00:00:00.000");
+        assertEquals(sdf2.format(DateFactory.raw().md(Month.SEP,31).asDate()),"1970-10-01T00:00:00.000");
         assertEquals(sdf2.format(DateFactory.raw().ymd(2018,Month.DEC,1).asDate()),"2018-12-01T00:00:00.000");
         assertEquals(sdf2.format(DateFactory.raw().ymd(2018,Month.DEC,31).asDate()),"2018-12-31T00:00:00.000");
         assertEquals(sdf2.format(DateFactory.raw().ymd(2018,Month.DEC,32).asDate()),"2019-01-01T00:00:00.000");
