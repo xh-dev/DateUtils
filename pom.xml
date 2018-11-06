@@ -8,10 +8,10 @@
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description>A library used for manipulating java.lang.Date object and provide date time related operation</description>
-  <url>https://bitbucket.org/xethhme/dateutils/src/master/</url>
+  <url>https://xeth0102.atlassian.net/wiki/spaces/DAT/overview</url>
   <groupId>me.xethh.utils</groupId>
   <artifactId>DateUtils</artifactId>
-  <version>3.8.0-RELEASE</version>
+  <version>3.8.2-RELEASE</version>
   <licenses>
     <license>
       <name>The Apache License, Version 2.0</name>
@@ -21,7 +21,7 @@
   <developers>
     <developer>
       <name>Xeth Hung</name>
-      <email>xeth0102@gmail.com</email>
+      <email>admin@xethh.me</email>
       <organizationUrl>http://blog.xethh.me</organizationUrl>
     </developer>
   </developers>
