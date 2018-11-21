@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateInfo {
-    private Calendar cal=Calendar.getInstance();
+    private Calendar cal=Calendar.getInstance(DateFactory.defaultTimezone());
     /*
     Constructor
      */

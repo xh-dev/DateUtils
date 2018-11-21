@@ -18,7 +18,7 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     Constructors
      */
     protected DateBuilderImpl(){
-        cal = Calendar.getInstance();
+        cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.set(Calendar.YEAR,1970);
         cal.set(Calendar.MONTH,0);
         cal.set(Calendar.DAY_OF_MONTH,1);
@@ -28,7 +28,7 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
         cal.set(Calendar.MILLISECOND,0);
     }
     protected DateBuilderImpl(final Date date){
-        cal = Calendar.getInstance();
+        cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.setTime(date);
     }
     protected DateBuilderImpl(Calendar cal){
