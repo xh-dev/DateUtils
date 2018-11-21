@@ -4,9 +4,11 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public interface DateBuilder<T extends DateBuilder<T>> {
 
@@ -32,8 +34,8 @@ public interface DateBuilder<T extends DateBuilder<T>> {
 
     /**
      * Set the month
-     * @param month should be normally 1,2,...12 where 1=JAN, 2=FEB....
-     * @return
+     * @param month should be enum of Month
+     * @return DateBuilder Object
      */
     T month(final Month month);
 
@@ -80,13 +82,39 @@ public interface DateBuilder<T extends DateBuilder<T>> {
     /*
     Time manipulation
      */
+
+    /**
+     * Cast the date builder object to maximum day time of the day up to millisecond
+     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.999
+     * @return maximum date time value up to millisecond
+     */
     T maxDayTime();
+    /**
+     * Cast the date builder object to maximum day time of the day up to second
+     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.000
+     * @return maximum date time value up to second
+     */
+    T maxDayTimeSec();
+    /**
+     * Cast the date builder object to maximum day time of the day up to minutes
+     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:00.000
+     * @return maximum date time value up to minutes
+     */
+    T maxDayTimeMin();
+    /**
+     * Cast the date builder object to minimum day time of the day up to millisecond
+     * 2018-11-12 23:33:44.444 to 2018-11-12 00:00:00.000
+     * @return minimum date time value up to millisecond
+     */
     T minDayTime();
     T timePartOnly();
 
     Date asDate();
     Calendar asCalendar();
     Long asLong();
+    java.sql.Date asSqlDate();
+    java.sql.Time asSqlTime();
+    java.sql.Timestamp asSqlTimestamp();
 
     DateInfo view();
 
@@ -197,4 +225,13 @@ public interface DateBuilder<T extends DateBuilder<T>> {
     TimeUnit diffTo(long date);
     TimeUnit diffFrom(Calendar date);
     TimeUnit diffTo(Calendar date);
+
+    String format(String format);
+    String format(DateFormatBuilder.Format format);
+    String format(SimpleDateFormat fmt);
+    String format(DateFormatBuilder fmtBuilder);
+
+    String format(TimeZone timeZone, String format);
+    String format(TimeZone timeZone, DateFormatBuilder.Format format);
+    String format(TimeZone timeZone, SimpleDateFormat fmt);
 }

@@ -4,13 +4,59 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DateFormatBuilder {
-    private static String VARIABLE_PREFIX = "/***xxxxdafd/";
-    public static SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-    public static SimpleDateFormat SIMPLE_DATE = new SimpleDateFormat("yyyy-MM-dd");
-    public static SimpleDateFormat SIMPLE_DATETIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static SimpleDateFormat NUMBER_DATE = new SimpleDateFormat("yyyyMMdd");
-    public static SimpleDateFormat NUMBER_DATETIME = new SimpleDateFormat("yyyyMMddHHmmss");
+    public enum Format{
+        ISO8601("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
+        SIMPLE_DATE("yyyy-MM-dd"),
+        SIMPLE_DATETIME("yyyy-MM-dd HH:mm:ss"),
+        FULL_DATETIME("yyyy-MM-dd HH:mm:ss.SSS"),
+        NUMBER_DATE("yyyyMMdd"),
+        NUMBER_DATETIME("yyyyMMddHHmmss");
+        
+        private String formatString;
+        private Format(String formatString){
+            this.formatString=formatString;
+        }
+        
+        public String format(){
+            return formatString;
+        }
+        
+    }
 
+    private static String VARIABLE_PREFIX = "/***xxxxdafd/";
+    public static SimpleDateFormat ISO8601(){return new SimpleDateFormat(Format.ISO8601.format());}
+    public static SimpleDateFormat SIMPLE_DATE(){return new SimpleDateFormat(Format.SIMPLE_DATE.format());}
+    public static SimpleDateFormat SIMPLE_DATETIME(){return new SimpleDateFormat(Format.SIMPLE_DATETIME.format());}
+    public static SimpleDateFormat NUMBER_DATE(){return new SimpleDateFormat(Format.NUMBER_DATE.format());}
+    public static SimpleDateFormat NUMBER_DATETIME(){return new SimpleDateFormat(Format.NUMBER_DATETIME.format());}
+    public static SimpleDateFormat FULL_DATETIME(){return new SimpleDateFormat(Format.FULL_DATETIME.format());}
+
+    public static String YEAR_4_DIGIT = "yyyy";
+    public static String YEAR_2_DIGIT = "yy";
+    public static String MONTH_2_DIGIT = "MM";
+    public static String MONTH_3_LETTER = "MMM";
+    public static String FULL_MONTH_NAME = "MMMM";
+    public static String DAY_1_DIGIT="d";
+    public static String DAY_2_DIGIT="dd";
+    public static String HOUR_IN_DAY24="HH";
+    public static String HOUR_IN_DAY12="hh";
+    public static String APM="a";
+    public static String MINUTE="mm";
+    public static String SECOND="ss";
+    public static String MILLISECOND="SSS";
+    public static String GENERAL_TIMEZONE="z";
+    public static String TIMEZONE_RFC822="Z";
+    public static String TIMEZONE_ISO8601_1DIGIT="X";
+    public static String TIMEZONE_ISO8601_2DIGIT="XX";
+    public static String TIMEZONE_ISO8601_3DIGIT="XXX";
+    
+    public static String HYPHEN="-";
+    public static String COLON =":";
+    public static String UNDERLINE="_";
+    public static String SPACE=" ";
+    public static String DOT=".";
+
+    
     abstract class Build{
         abstract void apply(StringBuilder str,Map<String,String> variables);
         protected String getVariable(Map<String,String> variables, String k){
@@ -28,15 +74,15 @@ public class DateFormatBuilder {
 
     private Map<String,String> variables = new HashMap<>();
     private List<Build> builds = new ArrayList<>();
-    private BaseTimeZone timeZone;
+    private TimeZone timeZone;
     private DateFormatBuilder(){
     }
-    protected DateFormatBuilder(Map<String,String> variables, List<Build> build,BaseTimeZone timeZone){
+    protected DateFormatBuilder(Map<String,String> variables, List<Build> build,TimeZone timeZone){
         this.builds.addAll(build);
         this.variables.putAll(variables);
         this.timeZone = timeZone;
     }
-    protected DateFormatBuilder(Map<String,String> variables, List<Build> builds,BaseTimeZone timeZone, Build newBuild){
+    protected DateFormatBuilder(Map<String,String> variables, List<Build> builds,TimeZone timeZone, Build newBuild){
         this(variables,builds,timeZone);
         this.builds.add(newBuild);
     }
@@ -53,7 +99,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("yyyy");
+                str.append(YEAR_4_DIGIT);
             }
         });
     }
@@ -66,7 +112,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("yy");
+                str.append(YEAR_2_DIGIT);
             }
         });
     }
@@ -79,7 +125,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("MM");
+                str.append(MONTH_2_DIGIT);
             }
         });
     }
@@ -92,7 +138,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("MMM");
+                str.append(MONTH_3_LETTER);
             }
         });
     }
@@ -105,13 +151,14 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("MMMM");
+                str.append(FULL_MONTH_NAME);
             }
         });
     }
 
     /**
      * e.g. 2018-01-02 == "02"
+     * @param digit number of digit to pad
      * @return {date string}+"dd"
      */
     public DateFormatBuilder dayWithDigit(final int digit){
@@ -134,7 +181,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("dd");
+                str.append(DAY_2_DIGIT);
             }
         });
     }
@@ -147,7 +194,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("d");
+                str.append(DAY_1_DIGIT);
             }
         });
     }
@@ -161,7 +208,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("HH");
+                str.append(HOUR_IN_DAY24);
             }
         });
     }
@@ -175,7 +222,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("hh");
+                str.append(HOUR_IN_DAY12);
             }
         });
     }
@@ -189,7 +236,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("a");
+                str.append(APM);
             }
         });
     }
@@ -202,7 +249,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("mm");
+                str.append(MINUTE);
             }
         });
     }
@@ -215,7 +262,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("ss");
+                str.append(SECOND);
             }
         });
     }
@@ -228,7 +275,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("SSS");
+                str.append(MILLISECOND);
             }
         });
     }
@@ -242,7 +289,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("z");
+                str.append(GENERAL_TIMEZONE);
             }
         });
     }
@@ -254,7 +301,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("Z");
+                str.append(TIMEZONE_RFC822);
             }
         });
     }
@@ -266,7 +313,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("X");
+                str.append(TIMEZONE_ISO8601_1DIGIT);
             }
         });
     }
@@ -278,7 +325,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("XX");
+                str.append(TIMEZONE_ISO8601_2DIGIT);
             }
         });
     }
@@ -290,13 +337,22 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("XXX");
+                str.append(TIMEZONE_ISO8601_3DIGIT);
+            }
+        });
+    }
+    public DateFormatBuilder custFormat(final String string){
+        return new DateFormatBuilder(variables, builds,timeZone, new Build() {
+            @Override
+            void apply(StringBuilder str,Map<String,String> variables) {
+                str.append(string);
             }
         });
     }
 
     /**
      * e.g. HELLO 2018-01-02T03:04:05.444+0800 == "HELLO"
+     * @param string string to be padded
      * @return {date string}+"'HELLO '"
      */
     public DateFormatBuilder pad(final String string){
@@ -308,19 +364,35 @@ public class DateFormatBuilder {
         });
     }
 
+    public DateFormatBuilder hyphen(){
+        return new DateFormatBuilder(variables, builds,timeZone, new Build() {
+            @Override
+            void apply(StringBuilder str,Map<String,String> variables) {
+                str.append(HYPHEN);
+            }
+        });
+    }
     public DateFormatBuilder space(){
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append(" ");
+                str.append(SPACE);
             }
         });
     }
-    public DateFormatBuilder colen(){
+    public DateFormatBuilder colon(){
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append(":");
+                str.append(COLON);
+            }
+        });
+    }
+    public DateFormatBuilder dot(){
+        return new DateFormatBuilder(variables, builds,timeZone, new Build() {
+            @Override
+            void apply(StringBuilder str,Map<String,String> variables) {
+                str.append(DOT);
             }
         });
     }
@@ -328,7 +400,7 @@ public class DateFormatBuilder {
         return new DateFormatBuilder(variables, builds,timeZone, new Build() {
             @Override
             void apply(StringBuilder str,Map<String,String> variables) {
-                str.append("_");
+                str.append(UNDERLINE);
             }
         });
     }
@@ -477,6 +549,10 @@ public class DateFormatBuilder {
         return builder;
     }
     public DateFormatBuilder timeZone(BaseTimeZone timeZone){
+        DateFormatBuilder builder = new DateFormatBuilder(variables,builds,timeZone.timeZone());
+        return builder;
+    }
+    public DateFormatBuilder timeZone(TimeZone timeZone){
         DateFormatBuilder builder = new DateFormatBuilder(variables,builds,timeZone);
         return builder;
     }
@@ -486,7 +562,7 @@ public class DateFormatBuilder {
         for(Build ss: builds)
             ss.apply(s,variables);
         SimpleDateFormat sdf = new SimpleDateFormat(s.toString());
-        sdf.setTimeZone(timeZone==null? TimeZone.getDefault():timeZone.timeZone());
+        sdf.setTimeZone(timeZone==null? TimeZone.getDefault():timeZone);
         return sdf;
     }
 }

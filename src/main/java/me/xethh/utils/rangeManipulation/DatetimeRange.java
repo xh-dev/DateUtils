@@ -76,7 +76,7 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
 
     @Override
     public String toString() {
-        return String.format("DatetimeRange[%s to %s]", DateFormatBuilder.ISO8601.format(start),DateFormatBuilder.ISO8601.format(end));
+        return String.format("DatetimeRange[%s to %s]", DateFormatBuilder.ISO8601().format(start),DateFormatBuilder.ISO8601().format(end));
     }
 
     public boolean timeInRange(Date date){

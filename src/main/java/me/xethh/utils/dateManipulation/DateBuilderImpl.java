@@ -4,10 +4,10 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static me.xethh.utils.dateManipulation.Weekday.Saturday;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
@@ -18,7 +18,7 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     Constructors
      */
     protected DateBuilderImpl(){
-        cal = Calendar.getInstance();
+        cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.set(Calendar.YEAR,1970);
         cal.set(Calendar.MONTH,0);
         cal.set(Calendar.DAY_OF_MONTH,1);
@@ -28,7 +28,7 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
         cal.set(Calendar.MILLISECOND,0);
     }
     protected DateBuilderImpl(final Date date){
-        cal = Calendar.getInstance();
+        cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.setTime(date);
     }
     protected DateBuilderImpl(Calendar cal){
@@ -101,11 +101,6 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
         });
     }
 
-    /**
-     * Set the month
-     * @param month should be normally 1,2,...12 where 1=JAN, 2=FEB....
-     * @return
-     */
     public DateBuilderImpl month(final Month month){
         return DateFactory.from(cal, new Build() {
             @Override
@@ -300,9 +295,21 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     public DateBuilderImpl maxDayTime(){
         return maxHour().maxMinute().maxSecond().maxMs();
     }
+
+    @Override
+    public DateBuilderImpl maxDayTimeSec() {
+        return maxHour().maxMinute().maxSecond().minMs();
+    }
+
+    @Override
+    public DateBuilderImpl maxDayTimeMin() {
+        return maxHour().maxMinute().minSecond().minMs();
+    }
+
     public DateBuilderImpl minDayTime(){
         return minHour().minMinute().minSecond().minMs();
     }
+
     public DateBuilderImpl timePartOnly(){
         return minYear().minMonth().minDay();
     }
@@ -316,6 +323,22 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     public Long asLong(){
         return asDate().getTime();
     }
+
+    @Override
+    public java.sql.Date asSqlDate() {
+        return new java.sql.Date(asLong());
+    }
+
+    @Override
+    public Time asSqlTime() {
+        return new java.sql.Time(asLong());
+    }
+
+    @Override
+    public Timestamp asSqlTimestamp() {
+        return new java.sql.Timestamp(asLong());
+    }
+
     public DateInfo view(){
         return DateInfo.from(asDate());
     }
@@ -726,12 +749,48 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     }
 
     @Override
+    public String format(String format) {
+        return format(DateFormatBuilder.get().custFormat(format));
+    }
+
+    @Override
+    public String format(DateFormatBuilder.Format format) {
+        return format(DateFormatBuilder.get().custFormat(format.format()));
+    }
+
+    @Override
+    public String format(SimpleDateFormat fmt) {
+        return fmt.format(asDate());
+    }
+
+    @Override
+    public String format(DateFormatBuilder fmtBuilder) {
+        return fmtBuilder.build().format(asDate());
+    }
+
+    @Override
+    public String format(TimeZone timeZone, String format) {
+        return format(DateFormatBuilder.get().custFormat(format).timeZone(timeZone));
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
+        return format(DateFormatBuilder.get().custFormat(format.format()).timeZone(timeZone));
+    }
+
+    @Override
+    public String format(TimeZone timeZone, SimpleDateFormat fmt) {
+        fmt.setTimeZone(timeZone);
+        return format(fmt);
+    }
+
+    @Override
     public int hashCode() {
         return 4444;
     }
 
     @Override
     public String toString() {
-        return "DateBuilder[" +DateFormatBuilder.ISO8601.format(asDate())+']';
+        return "DateBuilder[" +DateFormatBuilder.ISO8601().format(asDate())+']';
     }
 }

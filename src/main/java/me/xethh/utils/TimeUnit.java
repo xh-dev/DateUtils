@@ -48,7 +48,7 @@ public class TimeUnit {
     }
 
     public Calendar asCalendar(){
-        Calendar d =Calendar.getInstance();
+        Calendar d =Calendar.getInstance(DateFactory.defaultTimezone());
         d.setTimeInMillis(diff);
         return d;
     }

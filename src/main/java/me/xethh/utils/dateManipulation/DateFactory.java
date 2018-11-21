@@ -2,16 +2,16 @@ package me.xethh.utils.dateManipulation;
 
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author xethhung
  * Created on 7/19/2018
  */
 public class DateFactory {
+    public static TimeZone defaultTimezone(){
+        return TimeZone.getDefault();
+    }
     public static DateBuilderImpl from(Date date){
         return new DateBuilderImpl(date);
     }

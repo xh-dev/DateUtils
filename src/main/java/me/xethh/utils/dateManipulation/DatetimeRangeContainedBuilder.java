@@ -4,9 +4,13 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author xethhung
@@ -240,6 +244,20 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
+    public DatetimeRangeContainedBuilder maxDayTimeSec() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.maxDayTimeSec();
+        return bd;
+    }
+
+    @Override
+    public DatetimeRangeContainedBuilder maxDayTimeMin() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.maxDayTimeMin();
+        return bd;
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder minDayTime() {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.minDayTime();
@@ -266,6 +284,21 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     @Override
     public Long asLong() {
         return builder.asLong();
+    }
+
+    @Override
+    public java.sql.Date asSqlDate() {
+        return builder.asSqlDate();
+    }
+
+    @Override
+    public Time asSqlTime() {
+        return builder.asSqlTime();
+    }
+
+    @Override
+    public Timestamp asSqlTimestamp() {
+        return builder.asSqlTimestamp();
     }
 
     @Override
@@ -682,6 +715,41 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     @Override
     public TimeUnit diffTo(Calendar date) {
         return builder.diffTo(date);
+    }
+
+    @Override
+    public String format(String format) {
+        return this.builder.format(format);
+    }
+
+    @Override
+    public String format(DateFormatBuilder.Format format) {
+        return this.builder.format(format);
+    }
+
+    @Override
+    public String format(SimpleDateFormat fmt) {
+        return fmt.format(asDate());
+    }
+
+    @Override
+    public String format(DateFormatBuilder fmtBuilder) {
+        return fmtBuilder.build().format(asDate());
+    }
+
+    @Override
+    public String format(TimeZone timeZone, String format) {
+        return this.format(timeZone,format);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
+        return this.format(timeZone,format);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, SimpleDateFormat fmt) {
+        return this.format(timeZone,fmt);
     }
 
     @Override
