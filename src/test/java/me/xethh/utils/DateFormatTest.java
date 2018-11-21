@@ -24,15 +24,21 @@ public class DateFormatTest
         assertEquals("V1V2V3V4V5V6V7V8V9V104Y",format.format(date));
     }
     @Test
+    public void testCustFormat(){
+        SimpleDateFormat format = DateFactory.format().custFormat("yyyyMMdd").build();
+        Date date = DateFactory.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
+        assertEquals("20881110",format.format(date));
+    }
+    @Test
     public void test(){
         SimpleDateFormat format = DateFormatBuilder.get()
-                .pad("Hello ")
-                .year4Digit().pad(" - ").month2Digit().pad("-").day2Digit().pad("T")
-                .hourInDay24().pad(":").minute().pad(":").second().pad(".").ms().pad("===").TimeZoneRFC822().build();
-        SimpleDateFormat sdf = new SimpleDateFormat("'Hello' yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
+                .pad("Hello ").dot().underLine().colon()
+                .year4Digit().space().hyphen().space().month2Digit().hyphen().day2Digit().pad("T")
+                .hourInDay24().colon().minute().colon().second().dot().ms().pad("===").TimeZoneRFC822().build();
+        SimpleDateFormat sdf = new SimpleDateFormat("'Hello' ._:yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
         Date date = DateFactory.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
-        assertEquals("Hello 2088 - 11-10T21:56:58.888===+0800",format.format(date));
-        assertEquals("Hello 2088 - 11-10T21:56:58.888===+0800",sdf.format(date));
+        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0800",format.format(date));
+        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0800",sdf.format(date));
     }
 
     @Test

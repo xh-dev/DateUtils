@@ -64,19 +64,19 @@ public class DateInfo {
         return asDate().getTime();
     }
     public String asNumberDatetime(){
-        return DateFormatBuilder.NUMBER_DATETIME.format(asDate());
+        return DateFormatBuilder.NUMBER_DATETIME().format(asDate());
     }
     public String asNumberDate(){
-        return DateFormatBuilder.NUMBER_DATE.format(asDate());
+        return DateFormatBuilder.NUMBER_DATE().format(asDate());
     }
     public String asSimpleDateTime(){
-        return DateFormatBuilder.SIMPLE_DATETIME.format(asDate());
+        return DateFormatBuilder.SIMPLE_DATETIME().format(asDate());
     }
     public String asSimpleDate(){
-        return DateFormatBuilder.SIMPLE_DATE.format(asDate());
+        return DateFormatBuilder.SIMPLE_DATE().format(asDate());
     }
     public String asISO8601(){
-        return DateFormatBuilder.ISO8601.format(asDate());
+        return DateFormatBuilder.ISO8601().format(asDate());
     }
     public String asFormat(DateFormatBuilder builder){
         return asFormat(builder.build());
