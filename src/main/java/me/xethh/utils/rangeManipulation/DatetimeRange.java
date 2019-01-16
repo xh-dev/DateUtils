@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author xethhung
  * Created on 5/25/2018
  */
-public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
+public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
     @Override
     public EDITING getEditingMode() {
         return editing;
