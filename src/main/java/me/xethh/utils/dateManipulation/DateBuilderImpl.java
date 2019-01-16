@@ -366,9 +366,21 @@ public class DateBuilderImpl implements DateBuilder<DateBuilderImpl> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DateBuilderImpl that = (DateBuilderImpl) o;
-        return asLong().equals(that.asLong());
+        if(o == null ) return false;
+        if (o instanceof Date){
+            return asLong().equals(((Date) o).getTime());
+        }
+        if (o instanceof Calendar){
+            return asLong().equals(((Calendar) o).getTimeInMillis());
+        }
+        if (o instanceof Long){
+            return asLong().equals(o);
+        }
+        if (o instanceof DateBuilder){
+            return asLong().equals(((DateBuilder) o).asLong());
+        }
+        else
+            return false;
     }
 
     //Time operation

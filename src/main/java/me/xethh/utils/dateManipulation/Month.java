@@ -11,6 +11,10 @@ public enum Month{
         return ordinal()+1;
     }
 
+    public int toJavaCalNumber(){
+        return ordinal();
+    }
+
     public static Month ofCalendar(int num){
         for(Month value:Month.values())
             if(num==value.ordinal()+1)
