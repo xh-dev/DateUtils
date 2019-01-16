@@ -10,7 +10,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-public interface DateBuilder<T extends DateBuilder<T>> extends CalendarDateBuilder<T>{
+public interface DateBuilder<T extends DateBuilder<T>>
+        extends CalendarDateBuilder<T>, CalendarTimeBuilder<T>
+{
     @Override
     T y(int year);
 
@@ -86,70 +88,68 @@ public interface DateBuilder<T extends DateBuilder<T>> extends CalendarDateBuild
     @Override
     T endOfWeek(Weekday startDay);
 
+    @Override
     T hmsms(int hour, int minute, int second, int mSecond);
+
+    @Override
     T hms(int hour, int minute, int second);
+
+    @Override
     T hm(int hour, int minute);
+
+    @Override
     T h(int hour);
 
-
-    /*
-    Hour part
-     */
+    @Override
     T minHour();
+
+    @Override
     T maxHour();
+
+    @Override
     T hour(final int hour);
 
-    /*
-    Minute part
-     */
+    @Override
     T minMinute();
+
+    @Override
     T maxMinute();
+
+    @Override
     T minute(final int min);
 
-    /*
-    Second part
-     */
+    @Override
     T minSecond();
+
+    @Override
     T maxSecond();
+
+    @Override
     T second(final int second);
 
-    /*
-    Millisecond
-     */
+    @Override
     T minMs();
+
+    @Override
     T maxMs();
+
+    @Override
     T ms(final int ms);
+
+    @Override
+    T maxDayTime();
+
+    @Override
+    T maxDayTimeSec();
+
+    @Override
+    T maxDayTimeMin();
+
+    @Override
+    T minDayTime();
 
     T timeZone(final BaseTimeZone timeZone);
 
-    /*
-    Time manipulation
-     */
-
-    /**
-     * Cast the date builder object to maximum day time of the day up to millisecond
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.999
-     * @return maximum date time value up to millisecond
-     */
-    T maxDayTime();
-    /**
-     * Cast the date builder object to maximum day time of the day up to second
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.000
-     * @return maximum date time value up to second
-     */
-    T maxDayTimeSec();
-    /**
-     * Cast the date builder object to maximum day time of the day up to minutes
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:00.000
-     * @return maximum date time value up to minutes
-     */
-    T maxDayTimeMin();
-    /**
-     * Cast the date builder object to minimum day time of the day up to millisecond
-     * 2018-11-12 23:33:44.444 to 2018-11-12 00:00:00.000
-     * @return minimum date time value up to millisecond
-     */
-    T minDayTime();
     T timePartOnly();
 
     Date asDate();
