@@ -16,7 +16,7 @@ import java.util.TimeZone;
  * Created on 7/19/2018
  */
 public class DatetimeRangeContainedBuilder implements ContainerWrapper<DatetimeRangeContainedBuilder,DatetimeRange> {
-    private DateBuilderImpl builder;
+    private DateBuilder builder;
     DatetimeRange parent;
     /*
     Constructors
