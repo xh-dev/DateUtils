@@ -10,43 +10,86 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-public interface DateBuilder<T extends DateBuilder<T>> {
-
+public interface DateBuilder<T extends DateBuilder<T>> extends CalendarDateBuilder<T>{
+    @Override
     T y(int year);
+
+    @Override
     T ym(int year, Month month);
+
+    @Override
     T md(Month month, int day);
+
+    @Override
     T ymd(int year, Month month, int day);
+
+    @Override
+    T minYear();
+
+    @Override
+    T year(final int year);
+
+    @Override
+    T minMonth();
+
+    @Override
+    T month(final Month month);
+
+    @Override
+    T minDay();
+
+    @Override
+    T day(final int date);
+
+    @Override
+    T firstDayOfMonth();
+
+    @Override
+    T endDayOfMonth();
+
+    @Override
+    T addYear(final int years);
+
+    @Override
+    T lastYear();
+
+    @Override
+    T nextYear();
+
+    @Override
+    T lastMonth();
+
+    @Override
+    T nextMonth();
+
+    @Override
+    T addMonths(final int months);
+
+    @Override
+    T addDays(final int days);
+
+    @Override
+    T yesterday();
+
+    @Override
+    T tomorrow();
+
+    @Override
+    T nextWeekday(Weekday day);
+
+    @Override
+    T prevWeekday(Weekday day);
+
+    @Override
+    T startOfWeek(Weekday startDay);
+
+    @Override
+    T endOfWeek(Weekday startDay);
+
     T hmsms(int hour, int minute, int second, int mSecond);
     T hms(int hour, int minute, int second);
     T hm(int hour, int minute);
     T h(int hour);
-
-    /*
-    Year part
-     */
-    T minYear();
-    T year(final int year);
-
-    /*
-    Month part
-     */
-    T minMonth();
-
-    /**
-     * Set the month
-     * @param month should be enum of Month
-     * @return DateBuilder Object
-     */
-    T month(final Month month);
-
-
-    /*
-    Day part
-     */
-    T minDay();
-    T day(final int date);
-    T firstDayOfMonth();
-    T endDayOfMonth();
 
 
     /*
@@ -128,28 +171,6 @@ public interface DateBuilder<T extends DateBuilder<T>> {
 
     DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
 
-    //Time operation
-    /*
-    Operation
-     */
-    T addYear(final int years);
-    T lastYear();
-    T nextYear();
-    T lastMonth();
-    T nextMonth();
-    T addMonths(final int months);
-
-    T addDays(final int days);
-    T yesterday();
-    T tomorrow();
-
-    T nextWeekday(Weekday day);
-
-    T prevWeekday(Weekday day);
-
-    T startOfWeek(Weekday startDay);
-
-    T endOfWeek(Weekday startDay);
     T addTime(final long time);
 
     T addHours(final int hours);
