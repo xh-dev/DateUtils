@@ -10,103 +10,146 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-public interface DateBuilder<T extends DateBuilder<T>> {
-
+public interface DateBuilder<T extends DateBuilder<T>>
+        extends CalendarDateBuilder<T>, CalendarTimeBuilder<T>
+{
+    @Override
     T y(int year);
-    T ym(int year, Month month);
-    T md(Month month, int day);
-    T ymd(int year, Month month, int day);
-    T hmsms(int hour, int minute, int second, int mSecond);
-    T hms(int hour, int minute, int second);
-    T hm(int hour, int minute);
-    T h(int hour);
 
-    /*
-    Year part
-     */
+    @Override
+    T ym(int year, Month month);
+
+    @Override
+    T md(Month month, int day);
+
+    @Override
+    T ymd(int year, Month month, int day);
+
+    @Override
     T minYear();
+
+    @Override
     T year(final int year);
 
-    /*
-    Month part
-     */
+    @Override
     T minMonth();
 
-    /**
-     * Set the month
-     * @param month should be enum of Month
-     * @return DateBuilder Object
-     */
+    @Override
     T month(final Month month);
 
-
-    /*
-    Day part
-     */
+    @Override
     T minDay();
+
+    @Override
     T day(final int date);
+
+    @Override
     T firstDayOfMonth();
+
+    @Override
     T endDayOfMonth();
 
+    @Override
+    T addYear(final int years);
 
-    /*
-    Hour part
-     */
+    @Override
+    T lastYear();
+
+    @Override
+    T nextYear();
+
+    @Override
+    T lastMonth();
+
+    @Override
+    T nextMonth();
+
+    @Override
+    T addMonths(final int months);
+
+    @Override
+    T addDays(final int days);
+
+    @Override
+    T yesterday();
+
+    @Override
+    T tomorrow();
+
+    @Override
+    T nextWeekday(Weekday day);
+
+    @Override
+    T prevWeekday(Weekday day);
+
+    @Override
+    T startOfWeek(Weekday startDay);
+
+    @Override
+    T endOfWeek(Weekday startDay);
+
+    @Override
+    T hmsms(int hour, int minute, int second, int mSecond);
+
+    @Override
+    T hms(int hour, int minute, int second);
+
+    @Override
+    T hm(int hour, int minute);
+
+    @Override
+    T h(int hour);
+
+    @Override
     T minHour();
+
+    @Override
     T maxHour();
+
+    @Override
     T hour(final int hour);
 
-    /*
-    Minute part
-     */
+    @Override
     T minMinute();
+
+    @Override
     T maxMinute();
+
+    @Override
     T minute(final int min);
 
-    /*
-    Second part
-     */
+    @Override
     T minSecond();
+
+    @Override
     T maxSecond();
+
+    @Override
     T second(final int second);
 
-    /*
-    Millisecond
-     */
+    @Override
     T minMs();
+
+    @Override
     T maxMs();
+
+    @Override
     T ms(final int ms);
+
+    @Override
+    T maxDayTime();
+
+    @Override
+    T maxDayTimeSec();
+
+    @Override
+    T maxDayTimeMin();
+
+    @Override
+    T minDayTime();
 
     T timeZone(final BaseTimeZone timeZone);
 
-    /*
-    Time manipulation
-     */
-
-    /**
-     * Cast the date builder object to maximum day time of the day up to millisecond
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.999
-     * @return maximum date time value up to millisecond
-     */
-    T maxDayTime();
-    /**
-     * Cast the date builder object to maximum day time of the day up to second
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:59.000
-     * @return maximum date time value up to second
-     */
-    T maxDayTimeSec();
-    /**
-     * Cast the date builder object to maximum day time of the day up to minutes
-     * 2018-11-12 23:33:44.444 to 2018-11-12 23:59:00.000
-     * @return maximum date time value up to minutes
-     */
-    T maxDayTimeMin();
-    /**
-     * Cast the date builder object to minimum day time of the day up to millisecond
-     * 2018-11-12 23:33:44.444 to 2018-11-12 00:00:00.000
-     * @return minimum date time value up to millisecond
-     */
-    T minDayTime();
     T timePartOnly();
 
     Date asDate();
@@ -128,28 +171,6 @@ public interface DateBuilder<T extends DateBuilder<T>> {
 
     DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
 
-    //Time operation
-    /*
-    Operation
-     */
-    T addYear(final int years);
-    T lastYear();
-    T nextYear();
-    T lastMonth();
-    T nextMonth();
-    T addMonths(final int months);
-
-    T addDays(final int days);
-    T yesterday();
-    T tomorrow();
-
-    T nextWeekday(Weekday day);
-
-    T prevWeekday(Weekday day);
-
-    T startOfWeek(Weekday startDay);
-
-    T endOfWeek(Weekday startDay);
     T addTime(final long time);
 
     T addHours(final int hours);

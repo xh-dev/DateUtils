@@ -9,15 +9,14 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 /**
  * @author xethhung
  * Created on 7/19/2018
  */
-public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeContainedBuilder>,BuilderWrapper<DatetimeRange> {
-    private DateBuilderImpl builder;
+public class DatetimeRangeContainedBuilder implements ContainerWrapper<DatetimeRangeContainedBuilder,DatetimeRange> {
+    private DateBuilder builder;
     DatetimeRange parent;
     /*
     Constructors
