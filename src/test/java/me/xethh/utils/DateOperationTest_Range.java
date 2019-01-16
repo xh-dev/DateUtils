@@ -1,9 +1,6 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.Weekday;
+import me.xethh.utils.dateManipulation.*;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -204,7 +201,7 @@ public class DateOperationTest_Range
 
     @Test
     public void testAddTime(){
-        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
         DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));

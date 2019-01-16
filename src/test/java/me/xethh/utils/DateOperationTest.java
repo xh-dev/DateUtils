@@ -201,7 +201,7 @@ public class DateOperationTest
 
     @Test
     public void testAddTime(){
-        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
         DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
         assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
@@ -211,7 +211,7 @@ public class DateOperationTest
 
     @Test
     public void testMaxMinDayTime(){
-        SimpleDateFormat sdfx = DateFormatBuilder.ISO8601();
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
         DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",sdfx.format(d.asDate()));
         assertEquals("1988-01-02T00:00:00.000+0800",sdfx.format(d.minDayTime().asDate()));
@@ -222,7 +222,7 @@ public class DateOperationTest
 
     @Test
     public void testFormattingWithTimezone(){
-        SimpleDateFormat baseFormat = DateFormatBuilder.ISO8601();
+        SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
         DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T05:11:33.888+0000",d.format(BaseTimeZone.UTC.timeZone(),formatEnum.format()));
@@ -238,19 +238,19 @@ public class DateOperationTest
     }
     @Test
     public void testFormatting(){
-        SimpleDateFormat baseFormat = DateFormatBuilder.ISO8601();
+        SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
         DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(formatEnum.format()));
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(formatEnum));
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(baseFormat));
-        assertEquals("1988-01-02T13:11:33.888+0800",d.format(DateFormatBuilder.get().custFormat(formatEnum.format())));
+        assertEquals("1988-01-02T13:11:33.888+0800",d.format(DateFormatBuilderImpl.get().custFormat(formatEnum.format())));
 
-        assertEquals("1988-01-02T00:00:00.000+0800",d.minDayTime().format(DateFormatBuilder.get().year4Digit().hyphen().month2Digit().hyphen().day2Digit().pad("T").custFormat("HH:mm:ss.SSSZ").build()));
+        assertEquals("1988-01-02T00:00:00.000+0800",d.minDayTime().format(DateFormatBuilderImpl.get().year4Digit().hyphen().month2Digit().hyphen().day2Digit().pad("T").custFormat("HH:mm:ss.SSSZ").build()));
     }
     @Test
     public void testSqlDate(){
-        SimpleDateFormat sdfx = DateFormatBuilder.ISO8601();
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
         DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02",d.asSqlDate().toString());
         assertEquals("13:11:33",d.asSqlTime().toString());

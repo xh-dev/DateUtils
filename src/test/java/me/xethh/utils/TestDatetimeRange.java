@@ -1,9 +1,6 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.Month;
+import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
@@ -160,7 +157,7 @@ public class TestDatetimeRange
                     }
                 }
         );
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20070312-221200000",ymdhhmmssSSS.format(range.getStart()));
@@ -171,7 +168,7 @@ public class TestDatetimeRange
     public void testEditWithStartAneEnd(){
         DateBuilder d = DateFactory.raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
@@ -196,7 +193,7 @@ public class TestDatetimeRange
     public void testEditStartAndEndV2(){
         DateBuilder d = DateFactory.raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));

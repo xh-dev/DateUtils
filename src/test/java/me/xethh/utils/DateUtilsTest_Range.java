@@ -1,9 +1,6 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.Month;
+import me.xethh.utils.dateManipulation.*;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -74,7 +71,7 @@ public class DateUtilsTest_Range
     @Test
     public void firstDayTest(){
         DateBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23).rangeTo(new Date()).editStart();
-        SimpleDateFormat sdf2 = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().build();
+        SimpleDateFormat sdf2 = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().build();
         assertEquals("20180101",sdf2.format(b1.firstDayOfMonth().asDate()));
         assertEquals("20280101",sdf2.format(b1.addYear(10).firstDayOfMonth().asDate()));
         assertEquals("20280201",sdf2.format(b1.addYear(10).nextMonth().firstDayOfMonth().asDate()));
@@ -83,7 +80,7 @@ public class DateUtilsTest_Range
     @Test
     public void endDateTest(){
         DateBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23).rangeTo(new Date()).editStart();
-        SimpleDateFormat sdf2 = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().build();
+        SimpleDateFormat sdf2 = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().build();
         assertEquals("20180131",sdf2.format(b1.endDayOfMonth().asDate()));
         assertEquals("20280229",sdf2.format(b1.addYear(10).addMonths(1).endDayOfMonth().asDate()));
         assertEquals("20280331",sdf2.format(b1.addYear(10).addMonths(2).endDayOfMonth().asDate()));

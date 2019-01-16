@@ -31,7 +31,7 @@ public class DateFormatTest
     }
     @Test
     public void test(){
-        SimpleDateFormat format = DateFormatBuilder.get()
+        SimpleDateFormat format = DateFormatBuilderImpl.get()
                 .pad("Hello ").dot().underLine().colon()
                 .year4Digit().space().hyphen().space().month2Digit().hyphen().day2Digit().pad("T")
                 .hourInDay24().colon().minute().colon().second().dot().ms().pad("===").TimeZoneRFC822().build();
@@ -43,7 +43,7 @@ public class DateFormatTest
 
     @Test
     public void test01(){
-        SimpleDateFormat format = DateFormatBuilder.get().v1().v2().v3().v4().v5().v6().v7().v8().v9().v10().v("XXX").v("yyyy")
+        SimpleDateFormat format = DateFormatBuilderImpl.get().v1().v2().v3().v4().v5().v6().v7().v8().v9().v10().v("XXX").v("yyyy")
                 .v1("V1").v2("V2").v3("V3").v4("V4").v5("V5")
                 .v6("V6").v7("V7").v8("V8").v9("V9").v10("V10").v("yyyy","4Y").build();
         Date date = DateFactory.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
@@ -51,7 +51,7 @@ public class DateFormatTest
     }
     @Test
     public void test02(){
-        SimpleDateFormat format = DateFormatBuilder.get().year4Digit().v1().month2Digit().v1().day2Digit().v2().hourInDay24().v3().minute().v3().second()
+        SimpleDateFormat format = DateFormatBuilderImpl.get().year4Digit().v1().month2Digit().v1().day2Digit().v2().hourInDay24().v3().minute().v3().second()
                 .v1("-").v2("T").v3(":").build();
         Date date = DateFactory.raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
         assertEquals("2088-11-10T21:56:58",format.format(date));
@@ -59,7 +59,7 @@ public class DateFormatTest
 
     @Test
     public void testTimeZone(){
-        DateFormatBuilder format = DateFormatBuilder.get()
+        DateFormatBuilder format = DateFormatBuilderImpl.get()
                 // General timezone is not available for testing
                 .GeneralTimeZone().v1()
                 .TimeZoneRFC822().v1()
@@ -81,7 +81,7 @@ public class DateFormatTest
     }
     @Test
     public void testAPM(){
-        SimpleDateFormat format = DateFormatBuilder.get().apm().v1("||").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().apm().v1("||").build();
         DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("AM",format.format(date.asDate()));
         assertEquals("AM",format.format(date.addHours(1).asDate()));
@@ -94,7 +94,7 @@ public class DateFormatTest
 
     @Test
     public void testHour(){
-        SimpleDateFormat format = DateFormatBuilder.get().hourInDay12().v1().hourInDay24().v1("||").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().hourInDay12().v1().hourInDay24().v1("||").build();
         DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("12||00",format.format(date.asDate()));
         assertEquals("01||01",format.format(date.addHours(1).asDate()));
@@ -107,7 +107,7 @@ public class DateFormatTest
 
     @Test
     public void testYear(){
-        SimpleDateFormat format = DateFormatBuilder.get().year2Digit().v1().year4Digit().v1("||").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().year2Digit().v1().year4Digit().v1("||").build();
         DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("88||2088",format.format(date.asDate()));
         assertEquals("90||2090",format.format(date.addYear(2).asDate()));
@@ -115,7 +115,7 @@ public class DateFormatTest
 
     @Test
     public void testMonth(){
-        SimpleDateFormat format = DateFormatBuilder.get().month2Digit().v1().month3Letters().v1().monthFullName().v1("||").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().month2Digit().v1().month3Letters().v1().monthFullName().v1("||").build();
         DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("01||Jan||January",format.format(date.asDate()));
         assertEquals("02||Feb||February",format.format(date.addMonths(1).asDate()));
@@ -134,7 +134,7 @@ public class DateFormatTest
 
     @Test
     public void testDay(){
-        SimpleDateFormat format = DateFormatBuilder.get().day1Digit().v1().day2Digit().v1().dayWithDigit(5).v1().day2Digit().dayWithDigit(4).v1("||").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().day1Digit().v1().day2Digit().v1().dayWithDigit(5).v1().day2Digit().dayWithDigit(4).v1("||").build();
         DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(7);
         assertEquals("7||07||00007||000007",format.format(date.asDate()));
         assertEquals("11||11||00011||000011",format.format(date.addDays(4).asDate()));
@@ -142,7 +142,7 @@ public class DateFormatTest
 
     @Test
     public void testTimeDiff(){
-        SimpleDateFormat format = DateFormatBuilder.get().hourInDay24().v1().minute().v1().second().v2().ms().v1(":").v2(".").build();
+        SimpleDateFormat format = DateFormatBuilderImpl.get().hourInDay24().v1().minute().v1().second().v2().ms().v1(":").v2(".").build();
         DateBuilder builder = DateFactory.raw().year(2088).month(Month.JAN).day(7).minDayTime();
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         assertEquals("00:00:00.000",format.format(new Date(0l)));

@@ -762,12 +762,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String format(String format) {
-        return format(DateFormatBuilder.get().custFormat(format));
+        return format(DateFormatBuilderImpl.get().custFormat(format));
     }
 
     @Override
     public String format(DateFormatBuilder.Format format) {
-        return format(DateFormatBuilder.get().custFormat(format.format()));
+        return format(DateFormatBuilderImpl.get().custFormat(format.format()));
     }
 
     @Override
@@ -782,12 +782,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String format(TimeZone timeZone, String format) {
-        return format(DateFormatBuilder.get().custFormat(format).timeZone(timeZone));
+        return format(DateFormatBuilderImpl.get().custFormat(format).timeZone(timeZone));
     }
 
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
-        return format(DateFormatBuilder.get().custFormat(format.format()).timeZone(timeZone));
+        return format(DateFormatBuilderImpl.get().custFormat(format.format()).timeZone(timeZone));
     }
 
     @Override
@@ -803,6 +803,6 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String toString() {
-        return "DateBuilder[" +DateFormatBuilder.ISO8601().format(asDate())+']';
+        return "DateBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
     }
 }
