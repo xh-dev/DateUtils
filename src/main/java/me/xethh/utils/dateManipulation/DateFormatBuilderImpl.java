@@ -15,7 +15,7 @@ public class DateFormatBuilderImpl implements DateFormatBuilder {
     private Map<String,String> variables = new HashMap<>();
     private List<InternalFormatBuild> internalFormatBuilds = new ArrayList<>();
     private TimeZone timeZone;
-    private DateFormatBuilderImpl(){
+    protected DateFormatBuilderImpl(){
     }
     protected DateFormatBuilderImpl(Map<String,String> variables, List<InternalFormatBuild> internalFormatBuild, TimeZone timeZone){
         this.internalFormatBuilds.addAll(internalFormatBuild);

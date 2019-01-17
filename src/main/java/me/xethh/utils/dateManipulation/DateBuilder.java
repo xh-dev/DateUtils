@@ -251,6 +251,7 @@ public interface DateBuilder<T extends DateBuilder<T>>
     String format(DateFormatBuilder.Format format);
     String format(SimpleDateFormat fmt);
     String format(DateFormatBuilder fmtBuilder);
+    FormatBuilderWrapper format();
 
     String format(TimeZone timeZone, String format);
     String format(TimeZone timeZone, DateFormatBuilder.Format format);

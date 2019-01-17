@@ -737,6 +737,11 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
+    public FormatBuilderWrapper format() {
+        return new FormatBuilderWrapper(this);
+    }
+
+    @Override
     public String format(TimeZone timeZone, String format) {
         return this.format(timeZone,format);
     }

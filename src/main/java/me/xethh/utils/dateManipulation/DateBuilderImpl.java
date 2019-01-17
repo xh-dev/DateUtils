@@ -781,6 +781,11 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
+    public FormatBuilderWrapper format() {
+        return new FormatBuilderWrapper(this);
+    }
+
+    @Override
     public String format(TimeZone timeZone, String format) {
         return format(DateFormatBuilderImpl.get().custFormat(format).timeZone(timeZone));
     }
