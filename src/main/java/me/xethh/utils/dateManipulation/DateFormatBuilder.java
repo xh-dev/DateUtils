@@ -4,30 +4,30 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public interface DateFormatBuilder {
-    public static String YEAR_4_DIGIT = "yyyy";
-    public static String YEAR_2_DIGIT = "yy";
-    public static String MONTH_2_DIGIT = "MM";
-    public static String MONTH_3_LETTER = "MMM";
-    public static String FULL_MONTH_NAME = "MMMM";
-    public static String DAY_1_DIGIT="d";
-    public static String DAY_2_DIGIT="dd";
-    public static String HOUR_IN_DAY24="HH";
-    public static String HOUR_IN_DAY12="hh";
-    public static String APM="a";
-    public static String MINUTE="mm";
-    public static String SECOND="ss";
-    public static String MILLISECOND="SSS";
-    public static String GENERAL_TIMEZONE="z";
-    public static String TIMEZONE_RFC822="Z";
-    public static String TIMEZONE_ISO8601_1DIGIT="X";
-    public static String TIMEZONE_ISO8601_2DIGIT="XX";
-    public static String TIMEZONE_ISO8601_3DIGIT="XXX";
+    String YEAR_4_DIGIT = "yyyy";
+    String YEAR_2_DIGIT = "yy";
+    String MONTH_2_DIGIT = "MM";
+    String MONTH_3_LETTER = "MMM";
+    String FULL_MONTH_NAME = "MMMM";
+    String DAY_1_DIGIT="d";
+    String DAY_2_DIGIT="dd";
+    String HOUR_IN_DAY24="HH";
+    String HOUR_IN_DAY12="hh";
+    String APM="a";
+    String MINUTE="mm";
+    String SECOND="ss";
+    String MILLISECOND="SSS";
+    String GENERAL_TIMEZONE="z";
+    String TIMEZONE_RFC822="Z";
+    String TIMEZONE_ISO8601_1DIGIT="X";
+    String TIMEZONE_ISO8601_2DIGIT="XX";
+    String TIMEZONE_ISO8601_3DIGIT="XXX";
 
-    public static String HYPHEN="-";
-    public static String COLON =":";
-    public static String UNDERLINE="_";
-    public static String SPACE=" ";
-    public static String DOT=".";
+    String HYPHEN="-";
+    String COLON =":";
+    String UNDERLINE="_";
+    String SPACE=" ";
+    String DOT=".";
 
     enum Format{
         ISO8601("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
@@ -38,7 +38,7 @@ public interface DateFormatBuilder {
         NUMBER_DATETIME("yyyyMMddHHmmss");
         
         private String formatString;
-        private Format(String formatString){
+        Format(String formatString){
             this.formatString=formatString;
         }
         
