@@ -51,7 +51,7 @@ public interface DateFormatBuilder {
         }
         
     }
-    abstract class Build{
+    abstract class InternalFormatBuild {
         abstract void apply(StringBuilder str,Map<String,String> variables);
         protected String getVariable(Map<String,String> variables, String k){
             return quote(variables.get(k) != null ? variables.get(k) : "");
