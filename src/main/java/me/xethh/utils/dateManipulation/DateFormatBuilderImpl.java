@@ -12,22 +12,6 @@ public class DateFormatBuilderImpl implements DateFormatBuilder {
     public static SimpleDateFormat NUMBER_DATETIME(){return new SimpleDateFormat(DateFormatBuilder.Format.NUMBER_DATETIME.format());}
     public static SimpleDateFormat FULL_DATETIME(){return new SimpleDateFormat(DateFormatBuilder.Format.FULL_DATETIME.format());}
 
-
-    abstract class Build{
-        abstract void apply(StringBuilder str,Map<String,String> variables);
-        protected String getVariable(Map<String,String> variables, String k){
-            return quote(variables.get(k) != null ? variables.get(k) : "");
-        }
-        protected String quote(String k){
-            StringBuilder s = new StringBuilder();
-            for(char c : k.toCharArray())
-                if((c>=65 && c<=90) || (c>=97 && c<=122))
-                    s.append('\'').append(c).append('\'');
-                else s.append(c);
-            return s.toString();
-        }
-    }
-
     private Map<String,String> variables = new HashMap<>();
     private List<Build> builds = new ArrayList<>();
     private TimeZone timeZone;

@@ -70,162 +70,162 @@ public interface DateFormatBuilder {
      * e.g. 2018-01-02 == "2018"
      * @return {date string}+"yyyy"
      */
-    public DateFormatBuilder year4Digit();
+    DateFormatBuilder year4Digit();
 
     /**
      * e.g. 2018-01-02 == "18"
      * @return {date string}+"yy"
      */
-    public DateFormatBuilder year2Digit();
+    DateFormatBuilder year2Digit();
 
     /**
      * e.g. 2018-01-02 == "01"
      * @return {date string}+"MM"
      */
-    public DateFormatBuilder month2Digit();
+    DateFormatBuilder month2Digit();
 
     /**
      * e.g. 2018-01-02 == "Jan"
      * @return {date string}+"MMM"
      */
-    public DateFormatBuilder month3Letters();
+    DateFormatBuilder month3Letters();
 
     /**
      * e.g. 2018-01-02 == "January"
      * @return {date string}+"MMMMM"
      */
-    public DateFormatBuilder monthFullName();
+    DateFormatBuilder monthFullName();
 
     /**
      * e.g. 2018-01-02 == "02"
      * @param digit number of digit to pad
      * @return {date string}+"dd"
      */
-    public DateFormatBuilder dayWithDigit(final int digit);
+    DateFormatBuilder dayWithDigit(final int digit);
 
     /**
      * e.g. 2018-01-02 == "02"
      * @return {date string}+"dd"
      */
-    public DateFormatBuilder day2Digit();
+    DateFormatBuilder day2Digit();
 
     /**
      * e.g. 2018-01-02 == "2"
      * @return {date string}+"d"
      */
-    public DateFormatBuilder day1Digit();
+    DateFormatBuilder day1Digit();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "03"
      * Range(00-23)
      * @return {date string}+"HH"
      */
-    public DateFormatBuilder hourInDay24();
+    DateFormatBuilder hourInDay24();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "3"
      * Range(01-12)
      * @return {date string}+"hh"
      */
-    public DateFormatBuilder hourInDay12();
+    DateFormatBuilder hourInDay12();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "AM"
      * Range[AM,PM]
      * @return {date string}+"a"
      */
-    public DateFormatBuilder apm();
+    DateFormatBuilder apm();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "04"
      * @return {date string}+"mm"
      */
-    public DateFormatBuilder minute();
+    DateFormatBuilder minute();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "05"
      * @return {date string}+"ss"
      */
-    public DateFormatBuilder second();
+    DateFormatBuilder second();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "444"
      * @return {date string}+"SSS"
      */
-    public DateFormatBuilder ms();
+    DateFormatBuilder ms();
 
     /**
      * Display GMT only when gmt time, it could be PST or something others
      * e.g. 2018-01-02T03:04:05.444+0800 == "GMT+08:00"
      * @return {date string}+"z"
      */
-    public DateFormatBuilder GeneralTimeZone();
+    DateFormatBuilder GeneralTimeZone();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "+0800"
      * @return {date string}+"Z"
      */
-    public DateFormatBuilder TimeZoneRFC822();
+    DateFormatBuilder TimeZoneRFC822();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "+08"
      * @return {date string}+"X"
      */
-    public DateFormatBuilder TimeZoneISO8601OneDigit();
+    DateFormatBuilder TimeZoneISO8601OneDigit();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "+0800"
      * @return {date string}+"XX"
      */
-    public DateFormatBuilder TimeZoneISO8601TwoDigit();
+    DateFormatBuilder TimeZoneISO8601TwoDigit();
 
     /**
      * e.g. 2018-01-02T03:04:05.444+0800 == "+08:00"
      * @return {date string}+"XXX"
      */
-    public DateFormatBuilder TimeZoneISO8601ThreeDigit();
+    DateFormatBuilder TimeZoneISO8601ThreeDigit();
 
-    public DateFormatBuilder custFormat(final String string);
+    DateFormatBuilder custFormat(final String string);
 
     /**
      * e.g. HELLO 2018-01-02T03:04:05.444+0800 == "HELLO"
      * @param string string to be padded
      * @return {date string}+"'HELLO '"
      */
-    public DateFormatBuilder pad(final String string);
+    DateFormatBuilder pad(final String string);
 
-    public DateFormatBuilder hyphen();
-    public DateFormatBuilder space();
-    public DateFormatBuilder colon();
-    public DateFormatBuilder dot();
-    public DateFormatBuilder underLine();
-    public DateFormatBuilder v1();
-    public DateFormatBuilder v2();
-    public DateFormatBuilder v3();
-    public DateFormatBuilder v4();
-    public DateFormatBuilder v5();
-    public DateFormatBuilder v6();
-    public DateFormatBuilder v7();
-    public DateFormatBuilder v8();
-    public DateFormatBuilder v9();
-    public DateFormatBuilder v10();
-    public DateFormatBuilder v(final String v);
-    public DateFormatBuilder v1(String v);
-    public DateFormatBuilder v2(String v);
-    public DateFormatBuilder v3(String v);
-    public DateFormatBuilder v4(String v);
-    public DateFormatBuilder v5(String v);
-    public DateFormatBuilder v6(String v);
-    public DateFormatBuilder v7(String v);
-    public DateFormatBuilder v8(String v);
-    public DateFormatBuilder v9(String v);
-    public DateFormatBuilder v10(String v);
-    public DateFormatBuilder v(String k,String v);
+    DateFormatBuilder hyphen();
+    DateFormatBuilder space();
+    DateFormatBuilder colon();
+    DateFormatBuilder dot();
+    DateFormatBuilder underLine();
+    DateFormatBuilder v1();
+    DateFormatBuilder v2();
+    DateFormatBuilder v3();
+    DateFormatBuilder v4();
+    DateFormatBuilder v5();
+    DateFormatBuilder v6();
+    DateFormatBuilder v7();
+    DateFormatBuilder v8();
+    DateFormatBuilder v9();
+    DateFormatBuilder v10();
+    DateFormatBuilder v(final String v);
+    DateFormatBuilder v1(String v);
+    DateFormatBuilder v2(String v);
+    DateFormatBuilder v3(String v);
+    DateFormatBuilder v4(String v);
+    DateFormatBuilder v5(String v);
+    DateFormatBuilder v6(String v);
+    DateFormatBuilder v7(String v);
+    DateFormatBuilder v8(String v);
+    DateFormatBuilder v9(String v);
+    DateFormatBuilder v10(String v);
+    DateFormatBuilder v(String k, String v);
 
-    public String getVariable(String k);
-    public DateFormatBuilder setVariable(String k,String v);
-    public DateFormatBuilder timeZone(BaseTimeZone timeZone);
-    public DateFormatBuilder timeZone(TimeZone timeZone);
+    String getVariable(String k);
+    DateFormatBuilder setVariable(String k, String v);
+    DateFormatBuilder timeZone(BaseTimeZone timeZone);
+    DateFormatBuilder timeZone(TimeZone timeZone);
 
-    public SimpleDateFormat build();
+    SimpleDateFormat build();
 }
