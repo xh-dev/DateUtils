@@ -1,6 +1,7 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.datetime;
 
 import me.xethh.utils.TimeUnit;
+import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -9,10 +10,10 @@ import java.util.Date;
 
 public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
         extends
-            CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
-            CommonDateRepresentation,
-            TImeUnitConverter,
-            FormatterBuilder
+        CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
+        CommonDateRepresentation,
+        TImeUnitConverter,
+        FormatterBuilder
 {
     @Override
     T y(int year);

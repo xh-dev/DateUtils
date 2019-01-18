@@ -1,6 +1,6 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DatetimeBuilder;
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.DateFactory;
 
 import java.util.Calendar;

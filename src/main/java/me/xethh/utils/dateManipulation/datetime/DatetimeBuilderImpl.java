@@ -1,6 +1,7 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.datetime;
 
 import me.xethh.utils.TimeUnit;
+import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -17,7 +18,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     /*
     Constructors
      */
-    protected DatetimeBuilderImpl(){
+    public DatetimeBuilderImpl(){
         cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.set(Calendar.YEAR,1970);
         cal.set(Calendar.MONTH,0);
@@ -27,14 +28,14 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         cal.set(Calendar.SECOND,0);
         cal.set(Calendar.MILLISECOND,0);
     }
-    protected DatetimeBuilderImpl(final Date date){
+    public DatetimeBuilderImpl(final Date date){
         cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.setTime(date);
     }
-    protected DatetimeBuilderImpl(Calendar cal){
+    public DatetimeBuilderImpl(Calendar cal){
         this.cal = (Calendar) cal.clone();
     }
-    protected DatetimeBuilderImpl(Calendar cal, Build build){
+    public DatetimeBuilderImpl(Calendar cal, Build build){
         this(cal);
         build.apply(this.cal);
     }

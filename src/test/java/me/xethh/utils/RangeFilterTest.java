@@ -1,7 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.DateFactory;
-import me.xethh.utils.dateManipulation.DatetimeBuilderImpl;
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.rangeManipulation.AcceptingFilter;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
