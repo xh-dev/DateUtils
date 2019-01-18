@@ -1,7 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.DatetimeFactory;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.Month;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

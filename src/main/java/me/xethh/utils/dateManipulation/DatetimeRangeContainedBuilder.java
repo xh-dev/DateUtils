@@ -2,6 +2,7 @@ package me.xethh.utils.dateManipulation;
 
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -22,15 +23,15 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     /*
     Constructors
      */
-    protected DatetimeRangeContainedBuilder(final Date date,DatetimeRange range){
+    public DatetimeRangeContainedBuilder(final Date date,DatetimeRange range){
         this.parent= range;
-        builder= DateFactory.from(date);
+        builder= DatetimeFactory.from(date);
     }
-    protected DatetimeRangeContainedBuilder(Calendar cal,DatetimeRange range){
+    public DatetimeRangeContainedBuilder(Calendar cal,DatetimeRange range){
         this.parent= range;
-        builder = DateFactory.from(cal);
+        builder = DatetimeFactory.from(cal);
     }
-    protected DatetimeRangeContainedBuilder(Calendar cal, Build build, DatetimeRange range){
+    public DatetimeRangeContainedBuilder(Calendar cal, Build build, DatetimeRange range){
         this(build.apply(cal),range);
     }
     @Override
@@ -325,17 +326,17 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
 
     @Override
     public DatetimeRange rangeTo(Date date) {
-        return rangeTo(DateFactory.from(date));
+        return rangeTo(DatetimeFactory.from(date));
     }
 
     @Override
     public DatetimeRange rangeTo(Long dateLong) {
-        return rangeTo(DateFactory.from(dateLong));
+        return rangeTo(DatetimeFactory.from(dateLong));
     }
 
     @Override
     public DatetimeRange rangeTo(Calendar cal) {
-        return rangeTo(DateFactory.from(cal));
+        return rangeTo(DatetimeFactory.from(cal));
     }
 
     @Override
@@ -345,17 +346,17 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
 
     @Override
     public DatetimeRange rangeFrom(Date date) {
-        return rangeFrom(DateFactory.from(date));
+        return rangeFrom(DatetimeFactory.from(date));
     }
 
     @Override
     public DatetimeRange rangeFrom(Long dateLong) {
-        return rangeFrom(DateFactory.from(dateLong));
+        return rangeFrom(DatetimeFactory.from(dateLong));
     }
 
     @Override
     public DatetimeRange rangeFrom(Calendar cal) {
-        return rangeFrom(DateFactory.from(cal));
+        return rangeFrom(DatetimeFactory.from(cal));
     }
 
     @Override

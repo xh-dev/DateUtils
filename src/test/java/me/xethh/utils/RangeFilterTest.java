@@ -1,6 +1,6 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DatetimeFactory;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.rangeManipulation.AcceptingFilter;
 import me.xethh.utils.rangeManipulation.DatetimeRange;

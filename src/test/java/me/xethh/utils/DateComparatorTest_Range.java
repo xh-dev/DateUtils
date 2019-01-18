@@ -1,7 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.Month;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class DateComparatorTest_Range
 {
     @Test
     public void sameDatetime(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         DatetimeBuilder d2 = d1.addYear(1).addYear(-1);
         DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(true,d1.sameDatetime(d2));
@@ -35,7 +35,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameYear(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         DatetimeBuilder d2 = d1.addYear(1);
         DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameYear(d2));
@@ -53,7 +53,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameMonth(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         DatetimeBuilder d2 = d1.month(Month.JUL);
         DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameMonth(d2));
@@ -71,7 +71,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameDate(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         DatetimeBuilder d2 = d1.day(2);
         DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameDay(d2));
@@ -89,7 +89,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameTime(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2);
         System.out.println("d2 ==> "+d2.toString());
@@ -110,7 +110,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameHMS(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(20).second(1);
         System.out.println("d2 ==> "+d2.toString());
@@ -143,7 +143,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void sameHM(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
@@ -170,7 +170,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void laterThan(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
@@ -189,7 +189,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void before(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
@@ -208,7 +208,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void laterEqualThan(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
@@ -234,7 +234,7 @@ public class DateComparatorTest_Range
 
     @Test
     public void beforeEqual(){
-        DatetimeBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DateFactory.raw()).editStart();
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.raw()).editStart();
         System.out.println("d1 ==> "+d1.toString());
         DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
