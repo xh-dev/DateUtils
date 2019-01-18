@@ -314,6 +314,17 @@ public class DateBuilderImpl implements DateBuilder {
         return minYear().minMonth().minDay();
     }
 
+    @Override
+    public DateBuilder now() {
+        return DateFactory.from(cal, new Build() {
+            @Override
+            public Calendar apply(Calendar cal) {
+                cal.setTimeInMillis(Calendar.getInstance(DateFactory.defaultTimezone()).getTimeInMillis());
+                return cal;
+            }
+        });
+    }
+
     public Date asDate(){
         return asCalendar().getTime();
     }
@@ -353,6 +364,11 @@ public class DateBuilderImpl implements DateBuilder {
 
     public DatetimeRange rangeTo(Date date){
         return DatetimeRange.of(asDate(),date);
+    }
+
+    @Override
+    public DatetimeRange rangeToSelf() {
+        return rangeTo(now());
     }
 
     public DatetimeRange rangeFrom(Date date){

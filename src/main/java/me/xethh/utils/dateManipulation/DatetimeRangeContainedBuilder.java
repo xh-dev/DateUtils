@@ -271,6 +271,13 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
+    public DatetimeRangeContainedBuilder now() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.now();
+        return bd;
+    }
+
+    @Override
     public Date asDate() {
         return builder.asDate();
     }
@@ -318,6 +325,11 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     @Override
     public DatetimeRange rangeTo(Date date) {
         return DatetimeRange.of(builder.asDate(),date);
+    }
+
+    @Override
+    public DatetimeRange rangeToSelf() {
+        return builder.rangeToSelf();
     }
 
     @Override

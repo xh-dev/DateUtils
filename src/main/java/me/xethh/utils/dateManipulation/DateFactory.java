@@ -35,11 +35,24 @@ public class DateFactory {
         return from(new Date(longDate));
     }
 
+    public static DatetimeRange rangeOnNow(){
+        return DateFactory.now().rangeTo(now());
+    }
+    public static DatetimeRange rangeOn(DateBuilder dateBuilder){
+        return dateBuilder.rangeToSelf();
+    }
+    public static DatetimeRange rangeOn(Date date){
+        return rangeOn(DateFactory.from(date));
+    }
+    public static DatetimeRange rangeOn(Long dateLong){
+        return rangeOn(DateFactory.from(dateLong));
+    }
+    public static DatetimeRange rangeOn(Calendar cal){
+        return rangeOn(DateFactory.from(cal));
+    }
+
     public static DateFormatBuilder format(){
         return DateFormatBuilderImpl.get();
-    }
-    public static DatetimeRange rawRange(){
-        return now().rangeTo(now());
     }
 
     public static <T extends DateBuilder<T> & DateContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, E parent){

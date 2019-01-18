@@ -152,6 +152,8 @@ public interface DateBuilder<T extends DateBuilder<T>>
 
     T timePartOnly();
 
+    T now();
+
     Date asDate();
     Calendar asCalendar();
     Long asLong();
@@ -166,6 +168,8 @@ public interface DateBuilder<T extends DateBuilder<T>>
     DatetimeRange rangeFrom(T date);
 
     DatetimeRange rangeTo(Date date);
+
+    DatetimeRange rangeToSelf();
 
     DatetimeRange rangeFrom(Date date);
 
