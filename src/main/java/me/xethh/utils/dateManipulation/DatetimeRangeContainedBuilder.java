@@ -457,8 +457,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameDatetime(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameDatetime(builder.builder);
+    public boolean sameDatetime(DateBuilder builder) {
+        return this.builder.sameDatetime(builder);
     }
 
     @Override
@@ -477,8 +477,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameYear(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameYear(builder.builder);
+    public boolean sameYear(DateBuilder builder) {
+        return this.builder.sameYear(builder);
     }
 
     @Override
@@ -497,8 +497,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameMonth(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameMonth(builder.builder);
+    public boolean sameMonth(DateBuilder builder) {
+        return this.builder.sameMonth(builder);
     }
 
     @Override
@@ -517,8 +517,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameDay(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameDay(builder.builder);
+    public boolean sameDay(DateBuilder builder) {
+        return this.builder.sameDay(builder);
     }
 
     @Override
@@ -537,8 +537,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameTime(DatetimeRangeContainedBuilder dateBuilder) {
-        return this.builder.sameTime(dateBuilder.builder);
+    public boolean sameTime(DateBuilder dateBuilder) {
+        return this.builder.sameTime(dateBuilder);
     }
 
     @Override
@@ -557,8 +557,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameHMS(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.sameHMS(dateBuilder.builder);
+    public boolean sameHMS(DateBuilder dateBuilder) {
+        return builder.sameHMS(dateBuilder);
     }
 
     @Override
@@ -577,8 +577,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameHM(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.sameHM(dateBuilder.builder);
+    public boolean sameHM(DateBuilder dateBuilder) {
+        return builder.sameHM(dateBuilder);
     }
 
     @Override
@@ -597,8 +597,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean laterThan(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.laterThan(dateBuilder.builder);
+    public boolean laterThan(DateBuilder dateBuilder) {
+        return builder.laterThan(dateBuilder);
     }
 
     @Override
@@ -617,8 +617,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean laterEqualThan(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.laterEqualThan(dateBuilder.builder);
+    public boolean laterEqualThan(DateBuilder dateBuilder) {
+        return builder.laterEqualThan(dateBuilder);
     }
 
     @Override
@@ -637,8 +637,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean before(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.before(dateBuilder.builder);
+    public boolean before(DateBuilder dateBuilder) {
+        return builder.before(dateBuilder);
     }
 
     @Override
@@ -657,8 +657,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean beforeEqual(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.beforeEqual(dateBuilder.builder);
+    public boolean beforeEqual(DateBuilder dateBuilder) {
+        return builder.beforeEqual(dateBuilder);
     }
 
     @Override

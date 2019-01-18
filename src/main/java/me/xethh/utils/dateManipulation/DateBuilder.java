@@ -182,58 +182,58 @@ public interface DateBuilder<T extends DateBuilder<T>>
     T addMS(final int ms);
 
     //Compare operation
-    boolean sameDatetime(T builder);
+    boolean sameDatetime(DateBuilder builder);
     boolean sameDatetime(Long longDate);
     boolean sameDatetime(Date date);
     boolean sameDatetime(Calendar cal);
 
-    boolean sameYear(T builder);
+    boolean sameYear(DateBuilder builder);
     boolean sameYear(Long longDate);
     boolean sameYear(Date date);
     boolean sameYear(Calendar cal);
 
-    boolean sameMonth(T builder);
+    boolean sameMonth(DateBuilder builder);
     boolean sameMonth(Long longDate);
 
     boolean sameMonth(Date date);
     boolean sameMonth(Calendar cal);
 
-    boolean sameDay(T builder);
+    boolean sameDay(DateBuilder builder);
     boolean sameDay(Long longDate);
     boolean sameDay(Date date);
     boolean sameDay(Calendar cal);
 
-    boolean sameTime(T dateBuilder);
+    boolean sameTime(DateBuilder dateBuilder);
     boolean sameTime(Long dateLong);
     boolean sameTime(Date date);
     boolean sameTime(Calendar calendar);
 
-    boolean sameHMS(T dateBuilder);
+    boolean sameHMS(DateBuilder dateBuilder);
     boolean sameHMS(Long dateLong);
     boolean sameHMS(Date date);
     boolean sameHMS(Calendar calendar);
 
-    boolean sameHM(T dateBuilder);
+    boolean sameHM(DateBuilder dateBuilder);
     boolean sameHM(Long dateLong);
     boolean sameHM(Date date);
     boolean sameHM(Calendar calendar);
 
-    boolean laterThan(T dateBuilder);
+    boolean laterThan(DateBuilder dateBuilder);
     boolean laterThan(Date date);
     boolean laterThan(Long longDate);
     boolean laterThan(Calendar calendar);
 
-    boolean laterEqualThan(T dateBuilder);
+    boolean laterEqualThan(DateBuilder dateBuilder);
     boolean laterEqualThan(Date date);
     boolean laterEqualThan(Long longDate);
     boolean laterEqualThan(Calendar calendar);
 
-    boolean before(T dateBuilder);
+    boolean before(DateBuilder dateBuilder);
     boolean before(Date date);
     boolean before(Long longDate);
     boolean before(Calendar calendar);
 
-    boolean beforeEqual(T dateBuilder);
+    boolean beforeEqual(DateBuilder dateBuilder);
     boolean beforeEqual(Date date);
     boolean beforeEqual(Long longDate);
     boolean beforeEqual(Calendar calendar);
