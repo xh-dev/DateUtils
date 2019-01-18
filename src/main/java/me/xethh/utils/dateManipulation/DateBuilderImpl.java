@@ -846,4 +846,8 @@ public class DateBuilderImpl implements DateBuilder {
     public String toString() {
         return "DateBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
     }
+
+    public static void main(String[] args){
+        System.out.println("123");
+    }
 }

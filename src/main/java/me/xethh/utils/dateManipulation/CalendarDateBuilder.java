@@ -1,5 +1,8 @@
 package me.xethh.utils.dateManipulation;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     T y(int year);
     T ym(int year, Month month);
@@ -55,4 +58,29 @@ public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     T startOfWeek(Weekday startDay);
 
     T endOfWeek(Weekday startDay);
+
+    boolean sameYear(Long longDate);
+    boolean sameYear(Date date);
+    boolean sameYear(Calendar cal);
+
+    boolean sameMonth(Long longDate);
+    boolean sameMonth(Date date);
+    boolean sameMonth(Calendar cal);
+
+    boolean sameDay(Long longDate);
+    boolean sameDay(Date date);
+    boolean sameDay(Calendar cal);
+
+    boolean laterThan(Date date);
+    boolean laterThan(Long longDate);
+    boolean laterThan(Calendar calendar);
+    boolean laterEqualThan(Date date);
+    boolean laterEqualThan(Long longDate);
+    boolean laterEqualThan(Calendar calendar);
+    boolean before(Date date);
+    boolean before(Long longDate);
+    boolean before(Calendar calendar);
+    boolean beforeEqual(Date date);
+    boolean beforeEqual(Long longDate);
+    boolean beforeEqual(Calendar calendar);
 }

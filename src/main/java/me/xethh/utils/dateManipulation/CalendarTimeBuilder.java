@@ -1,5 +1,8 @@
 package me.xethh.utils.dateManipulation;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     T hmsms(int hour, int minute, int second, int mSecond);
     T hms(int hour, int minute, int second);
@@ -63,4 +66,29 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * @return minimum date time value up to millisecond
      */
     T minDayTime();
+
+    boolean sameTime(Long dateLong);
+    boolean sameTime(Date date);
+    boolean sameTime(Calendar calendar);
+
+    boolean sameHMS(Long dateLong);
+    boolean sameHMS(Date date);
+    boolean sameHMS(Calendar calendar);
+
+    boolean sameHM(Long dateLong);
+    boolean sameHM(Date date);
+    boolean sameHM(Calendar calendar);
+
+    boolean laterThan(Date date);
+    boolean laterThan(Long longDate);
+    boolean laterThan(Calendar calendar);
+    boolean laterEqualThan(Date date);
+    boolean laterEqualThan(Long longDate);
+    boolean laterEqualThan(Calendar calendar);
+    boolean before(Date date);
+    boolean before(Long longDate);
+    boolean before(Calendar calendar);
+    boolean beforeEqual(Date date);
+    boolean beforeEqual(Long longDate);
+    boolean beforeEqual(Calendar calendar);
 }

@@ -7,11 +7,10 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 public interface DateBuilder<T extends DateBuilder<T>>
-        extends CalendarDateBuilder<T>, CalendarTimeBuilder<T>
+        extends CalendarDateBuilder<T>, CalendarTimeBuilder<T>, CommonDateRepresentation, TImeUnitConverter
 {
     @Override
     T y(int year);
@@ -154,12 +153,6 @@ public interface DateBuilder<T extends DateBuilder<T>>
 
     T now();
 
-    Date asDate();
-    Calendar asCalendar();
-    Long asLong();
-    java.sql.Date asSqlDate();
-    java.sql.Time asSqlTime();
-    java.sql.Timestamp asSqlTimestamp();
 
     DateInfo view();
 
@@ -196,69 +189,25 @@ public interface DateBuilder<T extends DateBuilder<T>>
     boolean sameDatetime(Calendar cal);
 
     boolean sameYear(DateBuilder builder);
-    boolean sameYear(Long longDate);
-    boolean sameYear(Date date);
-    boolean sameYear(Calendar cal);
-
     boolean sameMonth(DateBuilder builder);
-    boolean sameMonth(Long longDate);
-
-    boolean sameMonth(Date date);
-    boolean sameMonth(Calendar cal);
-
     boolean sameDay(DateBuilder builder);
-    boolean sameDay(Long longDate);
-    boolean sameDay(Date date);
-    boolean sameDay(Calendar cal);
-
     boolean sameTime(DateBuilder dateBuilder);
-    boolean sameTime(Long dateLong);
-    boolean sameTime(Date date);
-    boolean sameTime(Calendar calendar);
-
     boolean sameHMS(DateBuilder dateBuilder);
-    boolean sameHMS(Long dateLong);
-    boolean sameHMS(Date date);
-    boolean sameHMS(Calendar calendar);
-
     boolean sameHM(DateBuilder dateBuilder);
-    boolean sameHM(Long dateLong);
-    boolean sameHM(Date date);
-    boolean sameHM(Calendar calendar);
+
 
     boolean laterThan(DateBuilder dateBuilder);
-    boolean laterThan(Date date);
-    boolean laterThan(Long longDate);
-    boolean laterThan(Calendar calendar);
-
     boolean laterEqualThan(DateBuilder dateBuilder);
-    boolean laterEqualThan(Date date);
-    boolean laterEqualThan(Long longDate);
-    boolean laterEqualThan(Calendar calendar);
-
     boolean before(DateBuilder dateBuilder);
-    boolean before(Date date);
-    boolean before(Long longDate);
-    boolean before(Calendar calendar);
-
     boolean beforeEqual(DateBuilder dateBuilder);
-    boolean beforeEqual(Date date);
-    boolean beforeEqual(Long longDate);
-    boolean beforeEqual(Calendar calendar);
 
-    TimeUnit diffFrom(Date date);
-    TimeUnit diffTo(Date date);
     TimeUnit diffFrom(DateBuilder date);
     TimeUnit diffTo(DateBuilder date);
-    TimeUnit diffFrom(long date);
-    TimeUnit diffTo(long date);
-    TimeUnit diffFrom(Calendar date);
-    TimeUnit diffTo(Calendar date);
 
     String format(String format);
     String format(DateFormatBuilder.Format format);
-    String format(SimpleDateFormat fmt);
     String format(DateFormatBuilder fmtBuilder);
+    String format(SimpleDateFormat fmt);
     FormatBuilderWrapper format();
 
     String format(TimeZone timeZone, String format);
