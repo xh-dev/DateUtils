@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author xethhung
  * Created on 5/25/2018
  */
-public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
+public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
     @Override
     public EDITING getEditingMode() {
         return editing;
@@ -76,7 +76,7 @@ public class DatetimeRange implements BuilderContainer<DatetimeRange.EDITING> {
 
     @Override
     public String toString() {
-        return String.format("DatetimeRange[%s to %s]", DateFormatBuilder.ISO8601().format(start),DateFormatBuilder.ISO8601().format(end));
+        return String.format("DatetimeRange[%s to %s]", DateFormatBuilderImpl.ISO8601().format(start),DateFormatBuilderImpl.ISO8601().format(end));
     }
 
     public boolean timeInRange(Date date){

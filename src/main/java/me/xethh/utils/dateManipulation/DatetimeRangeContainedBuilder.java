@@ -9,15 +9,14 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 /**
  * @author xethhung
  * Created on 7/19/2018
  */
-public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeContainedBuilder>,BuilderWrapper<DatetimeRange> {
-    private DateBuilderImpl builder;
+public class DatetimeRangeContainedBuilder implements DateContainerWrapper<DatetimeRangeContainedBuilder,DatetimeRange> {
+    private DateBuilder builder;
     DatetimeRange parent;
     /*
     Constructors
@@ -272,6 +271,13 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
+    public DatetimeRangeContainedBuilder now() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.now();
+        return bd;
+    }
+
+    @Override
     public Date asDate() {
         return builder.asDate();
     }
@@ -307,23 +313,48 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public DatetimeRange rangeTo(DatetimeRangeContainedBuilder date) {
-        return DatetimeRange.of(builder.asDate(),date.asDate());
+    public DatetimeRange rangeTo(DateBuilder date) {
+        return builder.rangeTo(date);
     }
 
     @Override
-    public DatetimeRange rangeFrom(DatetimeRangeContainedBuilder date) {
-        return DatetimeRange.of(date.asDate(),builder.asDate());
+    public DatetimeRange rangeFrom(DateBuilder date) {
+        return builder.rangeFrom(date);
     }
 
     @Override
     public DatetimeRange rangeTo(Date date) {
-        return DatetimeRange.of(builder.asDate(),date);
+        return rangeTo(DateFactory.from(date));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Long dateLong) {
+        return rangeTo(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Calendar cal) {
+        return rangeTo(DateFactory.from(cal));
+    }
+
+    @Override
+    public DatetimeRange rangeToSelf() {
+        return builder.rangeToSelf();
     }
 
     @Override
     public DatetimeRange rangeFrom(Date date) {
-        return DatetimeRange.of(date,builder.asDate());
+        return rangeFrom(DateFactory.from(date));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Long dateLong) {
+        return rangeFrom(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Calendar cal) {
+        return rangeFrom(DateFactory.from(cal));
     }
 
     @Override
@@ -458,8 +489,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameDatetime(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameDatetime(builder.builder);
+    public boolean sameDatetime(DateBuilder builder) {
+        return this.builder.sameDatetime(builder);
     }
 
     @Override
@@ -478,8 +509,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameYear(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameYear(builder.builder);
+    public boolean sameYear(DateBuilder builder) {
+        return this.builder.sameYear(builder);
     }
 
     @Override
@@ -498,8 +529,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameMonth(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameMonth(builder.builder);
+    public boolean sameMonth(DateBuilder builder) {
+        return this.builder.sameMonth(builder);
     }
 
     @Override
@@ -518,8 +549,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameDay(DatetimeRangeContainedBuilder builder) {
-        return this.builder.sameDay(builder.builder);
+    public boolean sameDay(DateBuilder builder) {
+        return this.builder.sameDay(builder);
     }
 
     @Override
@@ -538,8 +569,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameTime(DatetimeRangeContainedBuilder dateBuilder) {
-        return this.builder.sameTime(dateBuilder.builder);
+    public boolean sameTime(DateBuilder dateBuilder) {
+        return this.builder.sameTime(dateBuilder);
     }
 
     @Override
@@ -558,8 +589,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameHMS(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.sameHMS(dateBuilder.builder);
+    public boolean sameHMS(DateBuilder dateBuilder) {
+        return builder.sameHMS(dateBuilder);
     }
 
     @Override
@@ -578,8 +609,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean sameHM(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.sameHM(dateBuilder.builder);
+    public boolean sameHM(DateBuilder dateBuilder) {
+        return builder.sameHM(dateBuilder);
     }
 
     @Override
@@ -598,8 +629,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean laterThan(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.laterThan(dateBuilder.builder);
+    public boolean laterThan(DateBuilder dateBuilder) {
+        return builder.laterThan(dateBuilder);
     }
 
     @Override
@@ -618,8 +649,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean laterEqualThan(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.laterEqualThan(dateBuilder.builder);
+    public boolean laterEqualThan(DateBuilder dateBuilder) {
+        return builder.laterEqualThan(dateBuilder);
     }
 
     @Override
@@ -638,8 +669,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean before(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.before(dateBuilder.builder);
+    public boolean before(DateBuilder dateBuilder) {
+        return builder.before(dateBuilder);
     }
 
     @Override
@@ -658,8 +689,8 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     }
 
     @Override
-    public boolean beforeEqual(DatetimeRangeContainedBuilder dateBuilder) {
-        return builder.beforeEqual(dateBuilder.builder);
+    public boolean beforeEqual(DateBuilder dateBuilder) {
+        return builder.beforeEqual(dateBuilder);
     }
 
     @Override
@@ -735,6 +766,11 @@ public class DatetimeRangeContainedBuilder implements DateBuilder<DatetimeRangeC
     @Override
     public String format(DateFormatBuilder fmtBuilder) {
         return fmtBuilder.build().format(asDate());
+    }
+
+    @Override
+    public FormatBuilderWrapper format() {
+        return new FormatBuilderWrapper(this);
     }
 
     @Override

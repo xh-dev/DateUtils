@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
@@ -16,8 +16,8 @@ public class TestTimeZone
 
     @Test
     public void testTimezone(){
-        DateFormatBuilder dfBuilder = DateFormatBuilder.get().custFormat(DateFormatBuilder.Format.ISO8601.format());
-        DateBuilderImpl db = DateFactory.raw().ymd(1987, Month.FEB, 9).hmsms(12, 12, 44, 777);
+        DateFormatBuilder dfBuilder = DateFormatBuilderImpl.get().custFormat(DateFormatBuilder.Format.ISO8601.format());
+        DateBuilder db = DateFactory.raw().ymd(1987, Month.FEB, 9).hmsms(12, 12, 44, 777);
         //Test with time diff
         assertEquals(db.timeZone(BaseTimeZone.UTC).asLong().longValue(),db.timeZone(BaseTimeZone.Hongkong).asLong()+(28800000l));
 
@@ -66,11 +66,11 @@ public class TestTimeZone
         assertEquals(gmt0inMS-offset9h, t2.timeZone(BaseTimeZone.Japan).asLong().longValue());
 
 
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Hongkong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Hong_Kong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Shanghai.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
@@ -80,11 +80,11 @@ public class TestTimeZone
         assertEquals("2018-01-01 22:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Seoul.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 22:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Japan.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
 
-        assertEquals("2017-12-31 21:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
+        assertEquals("2017-12-31 21:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Hongkong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Asia_Hong_Kong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Asia_Shanghai.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
@@ -94,6 +94,30 @@ public class TestTimeZone
         assertEquals("2018-01-01 14:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Asia_Seoul.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 14:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Japan.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
 
+    }
+
+    @Test
+    public void testTimeZone(){
+        Calendar cal = Calendar.getInstance(BaseTimeZone.Hongkong.timeZone());
+        DateBuilder nowTime = DateFactory.now().ymd(2019, Month.FEB, 27).hmsms(13, 34, 44, 888).timeZone(BaseTimeZone.Hongkong);
+        cal.set(Calendar.YEAR, nowTime.view().year());
+        cal.set(Calendar.MONTH, nowTime.view().month().toJavaCalNumber());
+        cal.set(Calendar.DAY_OF_MONTH, nowTime.view().day());
+        cal.set(Calendar.HOUR_OF_DAY, nowTime.view().hour());
+        cal.set(Calendar.MINUTE, nowTime.view().min());
+        cal.set(Calendar.SECOND, nowTime.view().second());
+        cal.set(Calendar.MILLISECOND, nowTime.view().ms());
+
+        assertTrue(nowTime.equals(cal.getTime()));
+        //cal.setTimeZone will not trigger time update
+        cal.setTimeZone(BaseTimeZone.Japan.timeZone());
+        assertTrue(nowTime.equals(cal.getTime()));
+        //cal.set() will trigger time update
+        cal.set(Calendar.HOUR_OF_DAY, nowTime.view().hour());
+        assertFalse(nowTime.equals(cal.getTime()));
+        //cal.set() will trigger time update
+        cal.set(Calendar.HOUR_OF_DAY, nowTime.view().hour()+1);
+        assertTrue(nowTime.equals(cal.getTime()));
     }
 
 

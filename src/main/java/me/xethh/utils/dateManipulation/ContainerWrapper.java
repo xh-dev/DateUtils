@@ -4,6 +4,6 @@ package me.xethh.utils.dateManipulation;
  * @author xethhung
  * Created on 7/19/2018
  */
-public interface BuilderWrapper<T extends BuilderContainer>{
+public interface ContainerWrapper<T extends EditModeStatus>{
     T back();
 }
