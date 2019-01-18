@@ -4,13 +4,15 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 public interface DateBuilder<T extends DateBuilder<T>>
-        extends CalendarDateBuilder<T>, CalendarTimeBuilder<T>, CommonDateRepresentation, TImeUnitConverter
+        extends
+            CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
+            CommonDateRepresentation,
+            TImeUnitConverter,
+            FormatterBuilder
 {
     @Override
     T y(int year);
@@ -204,13 +206,4 @@ public interface DateBuilder<T extends DateBuilder<T>>
     TimeUnit diffFrom(DateBuilder date);
     TimeUnit diffTo(DateBuilder date);
 
-    String format(String format);
-    String format(DateFormatBuilder.Format format);
-    String format(DateFormatBuilder fmtBuilder);
-    String format(SimpleDateFormat fmt);
-    FormatBuilderWrapper format();
-
-    String format(TimeZone timeZone, String format);
-    String format(TimeZone timeZone, DateFormatBuilder.Format format);
-    String format(TimeZone timeZone, SimpleDateFormat fmt);
 }
