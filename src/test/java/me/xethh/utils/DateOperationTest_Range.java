@@ -130,7 +130,7 @@ public class DateOperationTest_Range
 
     @Test
     public void nextWeekday(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("2018-07-22T00:00:00.000+0800",sdf.format(d.nextWeekday(Sunday).asDate()));
         assertEquals("2018-07-23T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-24T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Tuesday).asDate()));
@@ -151,7 +151,7 @@ public class DateOperationTest_Range
 
     @Test
     public void prevWeekday(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("2018-07-15T00:00:00.000+0800",sdf.format(d.prevWeekday(Sunday).asDate()));
         assertEquals("2018-07-16T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-10T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Tuesday).asDate()));
@@ -172,8 +172,8 @@ public class DateOperationTest_Range
 
     @Test
     public void testStartOfWeek(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
-        DateBuilder d2 = d.addDays(-2);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilder d2 = d.addDays(-2);
         assertEquals(d2.asLong(),d.startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(-1).startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(1).startOfWeek(Sunday).asLong());
@@ -187,8 +187,8 @@ public class DateOperationTest_Range
 
     @Test
     public void testEndOfWeek(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
-        DateBuilder d2 = d.addDays(4);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilder d2 = d.addDays(4);
         assertEquals(d2.asLong(),d.endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(-1).endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(1).endOfWeek(Sunday).asLong());
@@ -203,7 +203,7 @@ public class DateOperationTest_Range
     @Test
     public void testAddTime(){
         SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
         assertEquals("20180717-000001000",sdfx.format(d.addTime(1000).asDate()));

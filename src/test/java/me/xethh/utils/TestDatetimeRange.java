@@ -21,14 +21,14 @@ public class TestDatetimeRange
 
     @Test
     public void baseTest(){
-        DateBuilder builder = DateFactory.now().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DateFactory.now().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0800 to 2018-02-17T00:00:00.000+0800]",DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).toString());
         assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0800 to 2018-01-18T00:00:00.000+0800]",DatetimeRange.of(builder.addDays(30).asDate(),builder.asDate()).toString());
     }
 
     @Test
     public void testIsValid(){
-        DateBuilder builder = DateFactory.now().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DateFactory.now().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(true,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isValid());
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).isValid());
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isInvalid());
@@ -37,7 +37,7 @@ public class TestDatetimeRange
 
     @Test
     public void testTimeRange(){
-        DateBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(true,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isValid());
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).isValid());
         assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).isValid());
@@ -45,7 +45,7 @@ public class TestDatetimeRange
 
     @Test
     public void testTimeRangeSinglePoint(){
-        DateBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).singlePointRange());
         assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).singlePointRange());
         assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).singlePointRange());
@@ -53,17 +53,17 @@ public class TestDatetimeRange
 
     @Test
     public void testTimeRangeOperateDaytime(){
-        DateBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DateFactory.raw().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeRange.of(builder.asDate(),builder.addDays(2).asDate()));
         assertNotEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeRange.of(builder.asDate(),builder.addDays(2).addMins(2).asDate()));
     }
 
     @Test
     public void testOverlap(){
-        DateBuilder start11 = DateFactory.raw().year(2018).month(Month.JAN).day(10).minDayTime();
-        DateBuilder start12 = start11.addDays(5);
-        DateBuilder start21 = start11.addDays(5).addDays(3);
-        DateBuilder start22 = start11.addDays(5).addDays(3).addDays(3);
+        DatetimeBuilder start11 = DateFactory.raw().year(2018).month(Month.JAN).day(10).minDayTime();
+        DatetimeBuilder start12 = start11.addDays(5);
+        DatetimeBuilder start21 = start11.addDays(5).addDays(3);
+        DatetimeBuilder start22 = start11.addDays(5).addDays(3).addDays(3);
         assertEquals(false,start11.rangeTo(start12.asDate()).overlapping(null));
         assertEquals(true,start11.rangeTo(start12.asDate()).overlappingPattern(null)==OverlapType.TargetIsNull);
 
@@ -141,18 +141,18 @@ public class TestDatetimeRange
 
     @Test
     public void testRangeWithBuilder(){
-        final DateBuilder builder = DateFactory.raw().ymd(2007, MAR, 22).hm(22, 12);
+        final DatetimeBuilder builder = DateFactory.raw().ymd(2007, MAR, 22).hm(22, 12);
         DatetimeRange range = builder.rangeWithBuilder(
                 new BuilderOperation() {
                     @Override
-                    public DateBuilder oper() {
+                    public DatetimeBuilder oper() {
                         return builder.addDays(-10);
                     }
                 }
                 ,
                 new BuilderOperation() {
                     @Override
-                    public DateBuilder oper() {
+                    public DatetimeBuilder oper() {
                         return builder.addDays(10);
                     }
                 }
@@ -166,7 +166,7 @@ public class TestDatetimeRange
 
     @Test
     public void testEditWithStartAneEnd(){
-        DateBuilder d = DateFactory.raw().ymd(2088, APR, 22);
+        DatetimeBuilder d = DateFactory.raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
         SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
@@ -191,7 +191,7 @@ public class TestDatetimeRange
 
     @Test
     public void testEditStartAndEndV2(){
-        DateBuilder d = DateFactory.raw().ymd(2088, APR, 22);
+        DatetimeBuilder d = DateFactory.raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
         SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()

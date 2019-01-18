@@ -7,7 +7,7 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 import java.util.Calendar;
 import java.util.Date;
 
-public interface DateBuilder<T extends DateBuilder<T>>
+public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
         extends
             CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
             CommonDateRepresentation,
@@ -158,9 +158,9 @@ public interface DateBuilder<T extends DateBuilder<T>>
 
     DateInfo view();
 
-    DatetimeRange rangeTo(DateBuilder date);
+    DatetimeRange rangeTo(DatetimeBuilder date);
 
-    DatetimeRange rangeFrom(DateBuilder date);
+    DatetimeRange rangeFrom(DatetimeBuilder date);
 
     DatetimeRange rangeTo(Date date);
     DatetimeRange rangeTo(Long dateLong);
@@ -185,25 +185,25 @@ public interface DateBuilder<T extends DateBuilder<T>>
     T addMS(final int ms);
 
     //Compare operation
-    boolean sameDatetime(DateBuilder builder);
+    boolean sameDatetime(DatetimeBuilder builder);
     boolean sameDatetime(Long longDate);
     boolean sameDatetime(Date date);
     boolean sameDatetime(Calendar cal);
 
-    boolean sameYear(DateBuilder builder);
-    boolean sameMonth(DateBuilder builder);
-    boolean sameDay(DateBuilder builder);
-    boolean sameTime(DateBuilder dateBuilder);
-    boolean sameHMS(DateBuilder dateBuilder);
-    boolean sameHM(DateBuilder dateBuilder);
+    boolean sameYear(DatetimeBuilder builder);
+    boolean sameMonth(DatetimeBuilder builder);
+    boolean sameDay(DatetimeBuilder builder);
+    boolean sameTime(DatetimeBuilder datetimeBuilder);
+    boolean sameHMS(DatetimeBuilder datetimeBuilder);
+    boolean sameHM(DatetimeBuilder datetimeBuilder);
 
 
-    boolean laterThan(DateBuilder dateBuilder);
-    boolean laterEqualThan(DateBuilder dateBuilder);
-    boolean before(DateBuilder dateBuilder);
-    boolean beforeEqual(DateBuilder dateBuilder);
+    boolean laterThan(DatetimeBuilder datetimeBuilder);
+    boolean laterEqualThan(DatetimeBuilder datetimeBuilder);
+    boolean before(DatetimeBuilder datetimeBuilder);
+    boolean beforeEqual(DatetimeBuilder datetimeBuilder);
 
-    TimeUnit diffFrom(DateBuilder date);
-    TimeUnit diffTo(DateBuilder date);
+    TimeUnit diffFrom(DatetimeBuilder date);
+    TimeUnit diffTo(DatetimeBuilder date);
 
 }

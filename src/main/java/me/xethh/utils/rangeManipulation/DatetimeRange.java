@@ -153,11 +153,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
         if(range.isInvalid())
             return OverlapType.TargetInvalid;
 
-        DateBuilder startComparator = DateFactory.from(start);
-        DateBuilder endComparator = DateFactory.from(end);
+        DatetimeBuilder startComparator = DateFactory.from(start);
+        DatetimeBuilder endComparator = DateFactory.from(end);
 
-        DateBuilder targetStartComparator = DateFactory.from(range.start);
-        DateBuilder targetEndComparator = DateFactory.from(range.end);
+        DatetimeBuilder targetStartComparator = DateFactory.from(range.start);
+        DatetimeBuilder targetEndComparator = DateFactory.from(range.end);
 
         if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;

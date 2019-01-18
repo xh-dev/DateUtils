@@ -12,12 +12,12 @@ import java.util.*;
 import static me.xethh.utils.dateManipulation.Weekday.Saturday;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
 
-public class DateBuilderImpl implements DateBuilder {
+public class DatetimeBuilderImpl implements DatetimeBuilder {
     private Calendar cal;
     /*
     Constructors
      */
-    protected DateBuilderImpl(){
+    protected DatetimeBuilderImpl(){
         cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.set(Calendar.YEAR,1970);
         cal.set(Calendar.MONTH,0);
@@ -27,49 +27,49 @@ public class DateBuilderImpl implements DateBuilder {
         cal.set(Calendar.SECOND,0);
         cal.set(Calendar.MILLISECOND,0);
     }
-    protected DateBuilderImpl(final Date date){
+    protected DatetimeBuilderImpl(final Date date){
         cal = Calendar.getInstance(DateFactory.defaultTimezone());
         cal.setTime(date);
     }
-    protected DateBuilderImpl(Calendar cal){
+    protected DatetimeBuilderImpl(Calendar cal){
         this.cal = (Calendar) cal.clone();
     }
-    protected DateBuilderImpl(Calendar cal, Build build){
+    protected DatetimeBuilderImpl(Calendar cal, Build build){
         this(cal);
         build.apply(this.cal);
     }
 
-    public DateBuilder y(int year){
+    public DatetimeBuilder y(int year){
         return year(year);
     }
-    public DateBuilder ym(int year, Month month){
+    public DatetimeBuilder ym(int year, Month month){
         return year(year).month(month);
     }
 
     @Override
-    public DateBuilder md(Month month, int day) {
+    public DatetimeBuilder md(Month month, int day) {
         return month(month).day(day);
     }
 
-    public DateBuilder ymd(int year, Month month, int day){
+    public DatetimeBuilder ymd(int year, Month month, int day){
         return year(year).month(month).day(day);
     }
-    public DateBuilder hmsms(int hour, int minute, int second, int mSecond){
+    public DatetimeBuilder hmsms(int hour, int minute, int second, int mSecond){
         return hour(hour).minute(minute).second(second).ms(mSecond);
     }
-    public DateBuilder hms(int hour, int minute, int second){
+    public DatetimeBuilder hms(int hour, int minute, int second){
         return hour(hour).minute(minute).second(second).minMs();
     }
-    public DateBuilder hm(int hour, int minute){
+    public DatetimeBuilder hm(int hour, int minute){
         return hour(hour).minute(minute).minSecond().minMs();
     }
-    public DateBuilder h(int hour){
+    public DatetimeBuilder h(int hour){
         return hour(hour).minMinute().minSecond().minMs();
     }
     /*
     Year part
      */
-    public DateBuilder minYear(){
+    public DatetimeBuilder minYear(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -78,7 +78,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder year(final int year){
+    public DatetimeBuilder year(final int year){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -91,7 +91,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Month part
      */
-    public DateBuilder minMonth(){
+    public DatetimeBuilder minMonth(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -101,7 +101,7 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder month(final Month month){
+    public DatetimeBuilder month(final Month month){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -115,7 +115,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Day part
      */
-    public DateBuilder minDay(){
+    public DatetimeBuilder minDay(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -125,7 +125,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder day(final int date){
+    public DatetimeBuilder day(final int date){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -135,10 +135,10 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder firstDayOfMonth(){
+    public DatetimeBuilder firstDayOfMonth(){
         return minDay();
     }
-    public DateBuilder endDayOfMonth(){
+    public DatetimeBuilder endDayOfMonth(){
         return nextMonth().minDay().yesterday();
     }
 
@@ -146,7 +146,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Hour part
      */
-    public DateBuilder minHour(){
+    public DatetimeBuilder minHour(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -156,7 +156,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder maxHour(){
+    public DatetimeBuilder maxHour(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -166,7 +166,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder hour(final int hour){
+    public DatetimeBuilder hour(final int hour){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -180,7 +180,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Minute part
      */
-    public DateBuilder minMinute(){
+    public DatetimeBuilder minMinute(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -190,7 +190,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder maxMinute(){
+    public DatetimeBuilder maxMinute(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -200,7 +200,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder minute(final int min){
+    public DatetimeBuilder minute(final int min){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -214,7 +214,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Second part
      */
-    public DateBuilder minSecond(){
+    public DatetimeBuilder minSecond(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -224,7 +224,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder maxSecond(){
+    public DatetimeBuilder maxSecond(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -234,7 +234,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder second(final int second){
+    public DatetimeBuilder second(final int second){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -248,7 +248,7 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Millisecond
      */
-    public DateBuilder minMs(){
+    public DatetimeBuilder minMs(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -258,7 +258,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder maxMs(){
+    public DatetimeBuilder maxMs(){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -268,7 +268,7 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder ms(final int ms){
+    public DatetimeBuilder ms(final int ms){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -278,7 +278,7 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder timeZone(final BaseTimeZone timeZone){
+    public DatetimeBuilder timeZone(final BaseTimeZone timeZone){
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -292,30 +292,30 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Time manipulation
      */
-    public DateBuilder maxDayTime(){
+    public DatetimeBuilder maxDayTime(){
         return maxHour().maxMinute().maxSecond().maxMs();
     }
 
     @Override
-    public DateBuilder maxDayTimeSec() {
+    public DatetimeBuilder maxDayTimeSec() {
         return maxHour().maxMinute().maxSecond().minMs();
     }
 
     @Override
-    public DateBuilder maxDayTimeMin() {
+    public DatetimeBuilder maxDayTimeMin() {
         return maxHour().maxMinute().minSecond().minMs();
     }
 
-    public DateBuilder minDayTime(){
+    public DatetimeBuilder minDayTime(){
         return minHour().minMinute().minSecond().minMs();
     }
 
-    public DateBuilder timePartOnly(){
+    public DatetimeBuilder timePartOnly(){
         return minYear().minMonth().minDay();
     }
 
     @Override
-    public DateBuilder now() {
+    public DatetimeBuilder now() {
         return DateFactory.from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
@@ -354,11 +354,11 @@ public class DateBuilderImpl implements DateBuilder {
         return DateInfo.from(asDate());
     }
 
-    public DatetimeRange rangeTo(DateBuilder date){
+    public DatetimeRange rangeTo(DatetimeBuilder date){
         return rangeTo(date.asDate());
     }
 
-    public DatetimeRange rangeFrom(DateBuilder date){
+    public DatetimeRange rangeFrom(DatetimeBuilder date){
         return rangeFrom(date.asDate());
     }
 
@@ -412,8 +412,8 @@ public class DateBuilderImpl implements DateBuilder {
         if (o instanceof Long){
             return asLong().equals(o);
         }
-        if (o instanceof DateBuilder){
-            return asLong().equals(((DateBuilder) o).asLong());
+        if (o instanceof DatetimeBuilder){
+            return asLong().equals(((DatetimeBuilder) o).asLong());
         }
         else
             return false;
@@ -423,8 +423,8 @@ public class DateBuilderImpl implements DateBuilder {
     /*
     Operation
      */
-    public DateBuilder addYear(final int years){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addYear(final int years){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,years);
@@ -433,8 +433,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder lastYear(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder lastYear(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,-1);
@@ -443,8 +443,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder nextYear(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder nextYear(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,1);
@@ -453,8 +453,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder lastMonth(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder lastMonth(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,-1);
@@ -463,8 +463,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder nextMonth(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder nextMonth(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,1);
@@ -473,8 +473,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder addMonths(final int months){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addMonths(final int months){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,months);
@@ -484,8 +484,8 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder addDays(final int days){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addDays(final int days){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,days);
@@ -494,8 +494,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder yesterday(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder yesterday(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,-1);
@@ -504,8 +504,8 @@ public class DateBuilderImpl implements DateBuilder {
             }
         });
     }
-    public DateBuilder tomorrow(){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder tomorrow(){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,1);
@@ -515,7 +515,7 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder nextWeekday(Weekday day){
+    public DatetimeBuilder nextWeekday(Weekday day){
         if(view().weekday()==day)
             return addDays(7);
         else{
@@ -530,7 +530,7 @@ public class DateBuilderImpl implements DateBuilder {
         }
     }
 
-    public DateBuilder prevWeekday(Weekday day){
+    public DatetimeBuilder prevWeekday(Weekday day){
         if(view().weekday()==day)
             return addDays(-7);
         else{
@@ -545,19 +545,19 @@ public class DateBuilderImpl implements DateBuilder {
         }
     }
 
-    public DateBuilder startOfWeek(Weekday startDay){
+    public DatetimeBuilder startOfWeek(Weekday startDay){
         if(view().weekday()==startDay)
             return this;
         else
             return prevWeekday(startDay);
     }
 
-    public DateBuilder endOfWeek(Weekday startDay){
+    public DatetimeBuilder endOfWeek(Weekday startDay){
         return startOfWeek(startDay).addDays(6);
     }
 
-    public DateBuilder addTime(final long time){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addTime(final long time){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.setTimeInMillis(cal.getTimeInMillis()+time);
@@ -567,8 +567,8 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder addHours(final int hours){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addHours(final int hours){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.HOUR_OF_DAY,hours);
@@ -578,8 +578,8 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder addMins(final int mins){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addMins(final int mins){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MINUTE,mins);
@@ -589,8 +589,8 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder addSecond(final int sec){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addSecond(final int sec){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.SECOND,sec);
@@ -600,8 +600,8 @@ public class DateBuilderImpl implements DateBuilder {
         });
     }
 
-    public DateBuilder addMS(final int ms){
-        return new DateBuilderImpl(asCalendar(), new Build(){
+    public DatetimeBuilder addMS(final int ms){
+        return new DatetimeBuilderImpl(asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MILLISECOND,ms);
@@ -612,7 +612,7 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     //Compare operation
-    public boolean sameDatetime(DateBuilder builder){
+    public boolean sameDatetime(DatetimeBuilder builder){
         return asLong().equals(builder.asLong());
     }
     public boolean sameDatetime(Long longDate){
@@ -626,7 +626,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     }
 
-    public boolean sameYear(DateBuilder builder){
+    public boolean sameYear(DatetimeBuilder builder){
         return view().year().equals(builder.view().year());
     }
     public boolean sameYear(Long longDate){
@@ -639,7 +639,7 @@ public class DateBuilderImpl implements DateBuilder {
         return sameYear(DateFactory.from(cal));
     }
 
-    public boolean sameMonth(DateBuilder builder){
+    public boolean sameMonth(DatetimeBuilder builder){
         return this.minDayTime().view().month().equals(builder.minDayTime().view().month());
     }
     public boolean sameMonth(Long longDate){
@@ -652,7 +652,7 @@ public class DateBuilderImpl implements DateBuilder {
         return sameMonth(DateFactory.from(cal));
     }
 
-    public boolean sameDay(DateBuilder builder){
+    public boolean sameDay(DatetimeBuilder builder){
         return this.minDayTime().equals(builder.minDayTime());
     }
     public boolean sameDay(Long longDate){
@@ -665,8 +665,8 @@ public class DateBuilderImpl implements DateBuilder {
         return sameDay(DateFactory.from(cal));
     }
 
-    public boolean sameTime(DateBuilder dateBuilder){
-        return timePartOnly().equals(dateBuilder.timePartOnly());
+    public boolean sameTime(DatetimeBuilder datetimeBuilder){
+        return timePartOnly().equals(datetimeBuilder.timePartOnly());
     }
     public boolean sameTime(Long dateLong){
         return sameTime(DateFactory.from(dateLong));
@@ -678,8 +678,8 @@ public class DateBuilderImpl implements DateBuilder {
         return sameTime(DateFactory.from(calendar).timePartOnly());
     }
 
-    public boolean sameHMS(DateBuilder dateBuilder){
-        return timePartOnly().minMs().equals(dateBuilder.timePartOnly().minMs());
+    public boolean sameHMS(DatetimeBuilder datetimeBuilder){
+        return timePartOnly().minMs().equals(datetimeBuilder.timePartOnly().minMs());
     }
     public boolean sameHMS(Long dateLong){
         return sameHMS(DateFactory.from(dateLong));
@@ -691,8 +691,8 @@ public class DateBuilderImpl implements DateBuilder {
         return sameHMS(DateFactory.from(calendar).timePartOnly());
     }
 
-    public boolean sameHM(DateBuilder dateBuilder){
-        return timePartOnly().minSecond().minMs().equals(dateBuilder.timePartOnly().minSecond().minMs());
+    public boolean sameHM(DatetimeBuilder datetimeBuilder){
+        return timePartOnly().minSecond().minMs().equals(datetimeBuilder.timePartOnly().minSecond().minMs());
     }
     public boolean sameHM(Long dateLong){
         return sameHM(DateFactory.from(dateLong));
@@ -704,8 +704,8 @@ public class DateBuilderImpl implements DateBuilder {
         return sameHM(DateFactory.from(calendar).timePartOnly());
     }
 
-    public boolean laterThan(DateBuilder dateBuilder){
-        return laterThan(dateBuilder.asLong());
+    public boolean laterThan(DatetimeBuilder datetimeBuilder){
+        return laterThan(datetimeBuilder.asLong());
     }
     public boolean laterThan(Date date){
         return laterThan(date.getTime());
@@ -717,8 +717,8 @@ public class DateBuilderImpl implements DateBuilder {
         return laterThan(calendar.getTime().getTime());
     }
 
-    public boolean laterEqualThan(DateBuilder dateBuilder){
-        return laterEqualThan(dateBuilder.asLong());
+    public boolean laterEqualThan(DatetimeBuilder datetimeBuilder){
+        return laterEqualThan(datetimeBuilder.asLong());
     }
     public boolean laterEqualThan(Date date){
         return laterEqualThan(date.getTime());
@@ -730,8 +730,8 @@ public class DateBuilderImpl implements DateBuilder {
         return laterEqualThan(calendar.getTime().getTime());
     }
 
-    public boolean before(DateBuilder dateBuilder){
-        return !laterEqualThan(dateBuilder.asLong());
+    public boolean before(DatetimeBuilder datetimeBuilder){
+        return !laterEqualThan(datetimeBuilder.asLong());
     }
     public boolean before(Date date){
         return !laterEqualThan(date.getTime());
@@ -743,8 +743,8 @@ public class DateBuilderImpl implements DateBuilder {
         return !laterEqualThan(calendar.getTime().getTime());
     }
 
-    public boolean beforeEqual(DateBuilder dateBuilder){
-        return !laterThan(dateBuilder.asLong());
+    public boolean beforeEqual(DatetimeBuilder datetimeBuilder){
+        return !laterThan(datetimeBuilder.asLong());
     }
     public boolean beforeEqual(Date date){
         return !laterThan(date.getTime());
@@ -767,12 +767,12 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
-    public TimeUnit diffFrom(DateBuilder date) {
+    public TimeUnit diffFrom(DatetimeBuilder date) {
         return TimeUnit.timeDiff(date.asDate(),this.asDate());
     }
 
     @Override
-    public TimeUnit diffTo(DateBuilder date) {
+    public TimeUnit diffTo(DatetimeBuilder date) {
         return TimeUnit.timeDiff(this.asDate(),date.asDate());
     }
 
@@ -844,7 +844,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String toString() {
-        return "DateBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
+        return "DatetimeBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
     }
 
     public static void main(String[] args){

@@ -51,7 +51,7 @@ public class DateInfo {
     }
 
 
-    public DateBuilder asBuilder(){
+    public DatetimeBuilder asBuilder(){
         return DateFactory.from(cal.getTime());
     }
     public Date asDate(){

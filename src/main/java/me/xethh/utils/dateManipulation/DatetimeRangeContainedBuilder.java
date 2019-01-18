@@ -15,8 +15,8 @@ import java.util.TimeZone;
  * @author xethhung
  * Created on 7/19/2018
  */
-public class DatetimeRangeContainedBuilder implements DateContainerWrapper<DatetimeRangeContainedBuilder,DatetimeRange> {
-    private DateBuilder builder;
+public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<DatetimeRangeContainedBuilder,DatetimeRange> {
+    private DatetimeBuilder builder;
     DatetimeRange parent;
     /*
     Constructors
@@ -313,12 +313,12 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public DatetimeRange rangeTo(DateBuilder date) {
+    public DatetimeRange rangeTo(DatetimeBuilder date) {
         return builder.rangeTo(date);
     }
 
     @Override
-    public DatetimeRange rangeFrom(DateBuilder date) {
+    public DatetimeRange rangeFrom(DatetimeBuilder date) {
         return builder.rangeFrom(date);
     }
 
@@ -489,7 +489,7 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameDatetime(DateBuilder builder) {
+    public boolean sameDatetime(DatetimeBuilder builder) {
         return this.builder.sameDatetime(builder);
     }
 
@@ -509,7 +509,7 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameYear(DateBuilder builder) {
+    public boolean sameYear(DatetimeBuilder builder) {
         return this.builder.sameYear(builder);
     }
 
@@ -529,7 +529,7 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameMonth(DateBuilder builder) {
+    public boolean sameMonth(DatetimeBuilder builder) {
         return this.builder.sameMonth(builder);
     }
 
@@ -549,7 +549,7 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameDay(DateBuilder builder) {
+    public boolean sameDay(DatetimeBuilder builder) {
         return this.builder.sameDay(builder);
     }
 
@@ -569,8 +569,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameTime(DateBuilder dateBuilder) {
-        return this.builder.sameTime(dateBuilder);
+    public boolean sameTime(DatetimeBuilder datetimeBuilder) {
+        return this.builder.sameTime(datetimeBuilder);
     }
 
     @Override
@@ -589,8 +589,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameHMS(DateBuilder dateBuilder) {
-        return builder.sameHMS(dateBuilder);
+    public boolean sameHMS(DatetimeBuilder datetimeBuilder) {
+        return builder.sameHMS(datetimeBuilder);
     }
 
     @Override
@@ -609,8 +609,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean sameHM(DateBuilder dateBuilder) {
-        return builder.sameHM(dateBuilder);
+    public boolean sameHM(DatetimeBuilder datetimeBuilder) {
+        return builder.sameHM(datetimeBuilder);
     }
 
     @Override
@@ -629,8 +629,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean laterThan(DateBuilder dateBuilder) {
-        return builder.laterThan(dateBuilder);
+    public boolean laterThan(DatetimeBuilder datetimeBuilder) {
+        return builder.laterThan(datetimeBuilder);
     }
 
     @Override
@@ -649,8 +649,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean laterEqualThan(DateBuilder dateBuilder) {
-        return builder.laterEqualThan(dateBuilder);
+    public boolean laterEqualThan(DatetimeBuilder datetimeBuilder) {
+        return builder.laterEqualThan(datetimeBuilder);
     }
 
     @Override
@@ -669,8 +669,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean before(DateBuilder dateBuilder) {
-        return builder.before(dateBuilder);
+    public boolean before(DatetimeBuilder datetimeBuilder) {
+        return builder.before(datetimeBuilder);
     }
 
     @Override
@@ -689,8 +689,8 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public boolean beforeEqual(DateBuilder dateBuilder) {
-        return builder.beforeEqual(dateBuilder);
+    public boolean beforeEqual(DatetimeBuilder datetimeBuilder) {
+        return builder.beforeEqual(datetimeBuilder);
     }
 
     @Override
@@ -719,12 +719,12 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public TimeUnit diffFrom(DateBuilder date) {
+    public TimeUnit diffFrom(DatetimeBuilder date) {
         return builder.diffFrom(date);
     }
 
     @Override
-    public TimeUnit diffTo(DateBuilder date) {
+    public TimeUnit diffTo(DatetimeBuilder date) {
         return builder.diffTo(date);
     }
 

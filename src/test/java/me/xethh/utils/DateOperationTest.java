@@ -3,7 +3,6 @@ package me.xethh.utils;
 import me.xethh.utils.dateManipulation.*;
 import org.junit.Test;
 
-import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 
 import static me.xethh.utils.dateManipulation.Month.*;
@@ -129,7 +128,7 @@ public class DateOperationTest
 
     @Test
     public void nextWeekday(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
         assertEquals("2018-07-22T00:00:00.000+0800",sdf.format(d.nextWeekday(Sunday).asDate()));
         assertEquals("2018-07-23T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-24T00:00:00.000+0800",sdf.format(d.nextWeekday(Weekday.Tuesday).asDate()));
@@ -150,7 +149,7 @@ public class DateOperationTest
 
     @Test
     public void prevWeekday(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
         assertEquals("2018-07-15T00:00:00.000+0800",sdf.format(d.prevWeekday(Sunday).asDate()));
         assertEquals("2018-07-16T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-10T00:00:00.000+0800",sdf.format(d.prevWeekday(Weekday.Tuesday).asDate()));
@@ -171,8 +170,8 @@ public class DateOperationTest
 
     @Test
     public void testStartOfWeek(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
-        DateBuilder d2 = d.addDays(-2);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
+        DatetimeBuilder d2 = d.addDays(-2);
         assertEquals(d2.asLong(),d.startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(-1).startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(1).startOfWeek(Sunday).asLong());
@@ -186,8 +185,8 @@ public class DateOperationTest
 
     @Test
     public void testEndOfWeek(){
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
-        DateBuilder d2 = d.addDays(4);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
+        DatetimeBuilder d2 = d.addDays(4);
         assertEquals(d2.asLong(),d.endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(-1).endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(),d.addDays(1).endOfWeek(Sunday).asLong());
@@ -202,7 +201,7 @@ public class DateOperationTest
     @Test
     public void testAddTime(){
         SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
-        DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
+        DatetimeBuilder d = DateFactory.raw().ymd(2018, JUL, 17);
         assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
         assertEquals("20180717-000001000",sdfx.format(d.addTime(1000).asDate()));
@@ -212,7 +211,7 @@ public class DateOperationTest
     @Test
     public void testMaxMinDayTime(){
         SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
-        DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
+        DatetimeBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",sdfx.format(d.asDate()));
         assertEquals("1988-01-02T00:00:00.000+0800",sdfx.format(d.minDayTime().asDate()));
         assertEquals("1988-01-02T23:59:59.999+0800",sdfx.format(d.maxDayTime().asDate()));
@@ -224,7 +223,7 @@ public class DateOperationTest
     public void testFormattingWithTimezone(){
         SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
-        DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
+        DatetimeBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T05:11:33.888+0000",d.format(BaseTimeZone.UTC.timeZone(),formatEnum.format()));
         assertEquals("1988-01-02T05:11:33.888+0000",d.format(BaseTimeZone.UTC.timeZone(),formatEnum));
         assertEquals("1988-01-02T05:11:33.888+0000",d.format(BaseTimeZone.UTC.timeZone(),baseFormat));
@@ -240,7 +239,7 @@ public class DateOperationTest
     public void testFormatting(){
         SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
-        DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
+        DatetimeBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(formatEnum.format()));
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(formatEnum));
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(baseFormat));
@@ -251,7 +250,7 @@ public class DateOperationTest
     @Test
     public void testSqlDate(){
         SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
-        DateBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
+        DatetimeBuilder d = DateFactory.raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02",d.asSqlDate().toString());
         assertEquals("13:11:33",d.asSqlTime().toString());
         assertEquals("1988-01-02 13:11:33.888",d.asSqlTimestamp().toString());

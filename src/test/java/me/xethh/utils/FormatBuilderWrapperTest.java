@@ -73,7 +73,7 @@ public class FormatBuilderWrapperTest
                 .TimeZoneISO8601OneDigit().v1()
                 .TimeZoneISO8601TwoDigit().v1()
                 .TimeZoneISO8601ThreeDigit().v1().year4Digit().month2Digit().day2Digit().hourInDay24().minute().second().v1("||").timeZone(BaseTimeZone.Hongkong);
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(1).minute(23).second(34).timeZone(BaseTimeZone.Hongkong);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(1).minute(23).second(34).timeZone(BaseTimeZone.Hongkong);
         assertEquals("HKT||+0800||+08||+0800||+08:00||20880110012334",format.build().format(date.asDate()));
         assertEquals("GMT||+0000||Z||Z||Z||20880109172334",format.timeZone(BaseTimeZone.GMT).build().format(date.asDate()));
         assertEquals("GMT-08:00||-0800||-08||-0800||-08:00||20880109092334",format.timeZone(BaseTimeZone.Etc_GMT_P8).build().format(date.asDate()));
@@ -89,7 +89,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testAPM(){
         SimpleDateFormat format = DateFactory.now().format().apm().v1("||").build();
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("AM",format.format(date.asDate()));
         assertEquals("AM",format.format(date.addHours(1).asDate()));
         assertEquals("AM",format.format(date.addHours(11).asDate()));
@@ -102,7 +102,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testHour(){
         SimpleDateFormat format = DateFactory.now().format().hourInDay12().v1().hourInDay24().v1("||").build();
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10).hour(0);
         assertEquals("12||00",format.format(date.asDate()));
         assertEquals("01||01",format.format(date.addHours(1).asDate()));
         assertEquals("11||11",format.format(date.addHours(11).asDate()));
@@ -115,7 +115,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testYear(){
         SimpleDateFormat format = DateFactory.now().format().year2Digit().v1().year4Digit().v1("||").build();
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("88||2088",format.format(date.asDate()));
         assertEquals("90||2090",format.format(date.addYear(2).asDate()));
     }
@@ -123,7 +123,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testMonth(){
         SimpleDateFormat format = DateFactory.now().format().month2Digit().v1().month3Letters().v1().monthFullName().v1("||").build();
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(10);
         assertEquals("01||Jan||January",format.format(date.asDate()));
         assertEquals("02||Feb||February",format.format(date.addMonths(1).asDate()));
         assertEquals("03||Mar||March",format.format(date.addMonths(2).asDate()));
@@ -142,7 +142,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testDay(){
         SimpleDateFormat format = DateFactory.now().format().day1Digit().v1().day2Digit().v1().dayWithDigit(5).v1().day2Digit().dayWithDigit(4).v1("||").build();
-        DateBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(7);
+        DatetimeBuilder date = DateFactory.raw().year(2088).month(Month.JAN).day(7);
         assertEquals("7||07||00007||000007",format.format(date.asDate()));
         assertEquals("11||11||00011||000011",format.format(date.addDays(4).asDate()));
     }
@@ -150,7 +150,7 @@ public class FormatBuilderWrapperTest
     @Test
     public void testTimeDiff(){
         SimpleDateFormat format = DateFactory.now().format().hourInDay24().v1().minute().v1().second().v2().ms().v1(":").v2(".").build();
-        DateBuilder builder = DateFactory.raw().year(2088).month(Month.JAN).day(7).minDayTime();
+        DatetimeBuilder builder = DateFactory.raw().year(2088).month(Month.JAN).day(7).minDayTime();
         format.setTimeZone(TimeZone.getTimeZone("GMT"));
         assertEquals("00:00:00.000",format.format(new Date(0l)));
         assertEquals("00:02:10.444",format.format(new Date(

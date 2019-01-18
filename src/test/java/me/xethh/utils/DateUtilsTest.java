@@ -74,7 +74,7 @@ public class DateUtilsTest
 
     @Test
     public void testToRange(){
-        DateBuilder b1 = DateFactory.raw().day(1);
+        DatetimeBuilder b1 = DateFactory.raw().day(1);
         DatetimeRange r1 = b1.addDays(10).rangeTo(b1);
         DatetimeRange r2 = b1.rangeTo(b1.addDays(10));
         assertEquals(r1,DatetimeRange.of(b1.addDays(10).asDate(),b1.asDate()));
@@ -88,7 +88,7 @@ public class DateUtilsTest
 
     @Test
     public void firstDayTest(){
-        DateBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23);
+        DatetimeBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23);
         SimpleDateFormat sdf2 = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().build();
         assertEquals("20180101",sdf2.format(b1.firstDayOfMonth().asDate()));
         assertEquals("20280101",sdf2.format(b1.addYear(10).firstDayOfMonth().asDate()));
@@ -97,7 +97,7 @@ public class DateUtilsTest
 
     @Test
     public void endDateTest(){
-        DateBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23);
+        DatetimeBuilder b1 = DateFactory.raw().ymd(2018,Month.JAN,23);
         SimpleDateFormat sdf2 = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().build();
         assertEquals("20180131",sdf2.format(b1.endDayOfMonth().asDate()));
         assertEquals("20280229",sdf2.format(b1.addYear(10).addMonths(1).endDayOfMonth().asDate()));
