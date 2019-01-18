@@ -1,6 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.rangeManipulation.DatetimeRange;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.util.Date;
 import static me.xethh.utils.dateManipulation.Month.*;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Unit test for simple App.
@@ -207,5 +209,21 @@ public class DateOperationTest_Range
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
         assertEquals("20180717-000001000",sdfx.format(d.addTime(1000).asDate()));
         assertEquals("20180717-000101000",sdfx.format(d.addTime(61000).asDate()));
+    }
+
+    public void testDateFactoryRangeMethod(){
+        DatetimeRange range = DateFactory.rawRange()
+                .editStart().ymd(1988, JAN, 01).back()
+                .editEnd().ymd(1987, JAN, 01).back();
+        assertFalse(range.isValid());
+        assertFalse(range.swrap().isValid());
+
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        DatetimeRangeContainedBuilder dStart = DateFactory.rawRange()
+                .editStart().ymd(2018, JUL, 17);
+        assertEquals("20180717-000000001",sdfx.format(dStart.addTime(1).asDate()));
+        assertEquals("20180717-000000002",sdfx.format(dStart.addTime(2).asDate()));
+        assertEquals("20180717-000001000",sdfx.format(dStart.addTime(1000).asDate()));
+        assertEquals("20180717-000101000",sdfx.format(dStart.addTime(61000).asDate()));
     }
 }

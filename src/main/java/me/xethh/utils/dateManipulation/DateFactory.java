@@ -38,6 +38,9 @@ public class DateFactory {
     public static DateFormatBuilder format(){
         return DateFormatBuilderImpl.get();
     }
+    public static DatetimeRange rawRange(){
+        return now().rangeTo(now());
+    }
 
     public static <T extends DateBuilder<T> & DateContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, E parent){
         if(parent instanceof DatetimeRange)
