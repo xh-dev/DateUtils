@@ -10,7 +10,7 @@ import java.util.*;
  * @author xethhung
  * Created on 7/19/2018
  */
-public class DateFactory {
+public class DatetimeFactory {
     public static TimeZone defaultTimezone(){
         return TimeZone.getDefault();
     }
@@ -19,7 +19,7 @@ public class DateFactory {
     }
     public static DatetimeBuilderImpl from(Date date, Build build){
         DatetimeBuilderImpl builder = new DatetimeBuilderImpl(date);
-        return DateFactory.from(builder.asCalendar(),build);
+        return DatetimeFactory.from(builder.asCalendar(),build);
     }
     public static DatetimeBuilderImpl raw(){
         return new DatetimeBuilderImpl();
@@ -38,19 +38,19 @@ public class DateFactory {
     }
 
     public static DatetimeRange rangeOnNow(){
-        return DateFactory.now().rangeTo(now());
+        return DatetimeFactory.now().rangeTo(now());
     }
     public static DatetimeRange rangeOn(DatetimeBuilder datetimeBuilder){
         return datetimeBuilder.rangeToSelf();
     }
     public static DatetimeRange rangeOn(Date date){
-        return rangeOn(DateFactory.from(date));
+        return rangeOn(DatetimeFactory.from(date));
     }
     public static DatetimeRange rangeOn(Long dateLong){
-        return rangeOn(DateFactory.from(dateLong));
+        return rangeOn(DatetimeFactory.from(dateLong));
     }
     public static DatetimeRange rangeOn(Calendar cal){
-        return rangeOn(DateFactory.from(cal));
+        return rangeOn(DatetimeFactory.from(cal));
     }
 
     public static DateFormatBuilder format(){
@@ -71,7 +71,7 @@ public class DateFactory {
     }
     public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T raw(E parent){
         if(parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(DateFactory.raw().asCalendar(),(DatetimeRange) parent);
+            return (T) new DatetimeRangeContainedBuilder(DatetimeFactory.raw().asCalendar(),(DatetimeRange) parent);
         }
         return null;
     }

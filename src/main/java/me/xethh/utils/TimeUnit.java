@@ -1,7 +1,7 @@
 package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
+import me.xethh.utils.dateManipulation.DatetimeFactory;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -44,11 +44,11 @@ public class TimeUnit {
     }
 
     public DatetimeBuilder asBuilder(){
-        return DateFactory.from(diff);
+        return DatetimeFactory.from(diff);
     }
 
     public Calendar asCalendar(){
-        Calendar d =Calendar.getInstance(DateFactory.defaultTimezone());
+        Calendar d =Calendar.getInstance(DatetimeFactory.defaultTimezone());
         d.setTimeInMillis(diff);
         return d;
     }
