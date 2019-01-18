@@ -163,15 +163,19 @@ public interface DateBuilder<T extends DateBuilder<T>>
 
     DateInfo view();
 
-    DatetimeRange rangeTo(T date);
+    DatetimeRange rangeTo(DateBuilder date);
 
-    DatetimeRange rangeFrom(T date);
+    DatetimeRange rangeFrom(DateBuilder date);
 
     DatetimeRange rangeTo(Date date);
+    DatetimeRange rangeTo(Long dateLong);
+    DatetimeRange rangeTo(Calendar cal);
 
     DatetimeRange rangeToSelf();
 
     DatetimeRange rangeFrom(Date date);
+    DatetimeRange rangeFrom(Long dateLong);
+    DatetimeRange rangeFrom(Calendar cal);
 
     DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
 

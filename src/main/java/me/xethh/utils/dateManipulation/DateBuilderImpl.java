@@ -363,7 +363,17 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     public DatetimeRange rangeTo(Date date){
-        return DatetimeRange.of(asDate(),date);
+        return DatetimeRange.of(asDate(), date);
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Long dateLong) {
+        return rangeTo(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Calendar cal) {
+        return rangeTo(DateFactory.from(cal));
     }
 
     @Override
@@ -372,7 +382,17 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     public DatetimeRange rangeFrom(Date date){
-        return DatetimeRange.of(date,asDate());
+        return DatetimeRange.of(date, asDate());
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Long dateLong) {
+        return rangeFrom(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Calendar cal) {
+        return rangeFrom(DateFactory.from(cal));
     }
 
     public DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end){

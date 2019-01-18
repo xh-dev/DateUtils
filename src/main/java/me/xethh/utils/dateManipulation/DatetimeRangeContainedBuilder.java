@@ -313,18 +313,28 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
     }
 
     @Override
-    public DatetimeRange rangeTo(DatetimeRangeContainedBuilder date) {
-        return DatetimeRange.of(builder.asDate(),date.asDate());
+    public DatetimeRange rangeTo(DateBuilder date) {
+        return builder.rangeTo(date);
     }
 
     @Override
-    public DatetimeRange rangeFrom(DatetimeRangeContainedBuilder date) {
-        return DatetimeRange.of(date.asDate(),builder.asDate());
+    public DatetimeRange rangeFrom(DateBuilder date) {
+        return builder.rangeFrom(date);
     }
 
     @Override
     public DatetimeRange rangeTo(Date date) {
-        return DatetimeRange.of(builder.asDate(),date);
+        return rangeTo(DateFactory.from(date));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Long dateLong) {
+        return rangeTo(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Calendar cal) {
+        return rangeTo(DateFactory.from(cal));
     }
 
     @Override
@@ -334,7 +344,17 @@ public class DatetimeRangeContainedBuilder implements DateContainerWrapper<Datet
 
     @Override
     public DatetimeRange rangeFrom(Date date) {
-        return DatetimeRange.of(date,builder.asDate());
+        return rangeFrom(DateFactory.from(date));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Long dateLong) {
+        return rangeFrom(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Calendar cal) {
+        return rangeFrom(DateFactory.from(cal));
     }
 
     @Override
