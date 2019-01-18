@@ -91,4 +91,15 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     boolean beforeEqual(Date date);
     boolean beforeEqual(Long longDate);
     boolean beforeEqual(Calendar calendar);
+
+    T addTime(final long time);
+
+    T addHours(final int hours);
+
+    T addMins(final int mins);
+
+    T addSecond(final int sec);
+
+    T addMS(final int ms);
+
 }

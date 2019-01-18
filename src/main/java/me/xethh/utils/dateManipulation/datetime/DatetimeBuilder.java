@@ -175,16 +175,6 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
 
     DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
 
-    T addTime(final long time);
-
-    T addHours(final int hours);
-
-    T addMins(final int mins);
-
-    T addSecond(final int sec);
-
-    T addMS(final int ms);
-
     //Compare operation
     boolean sameDatetime(DatetimeBuilder builder);
     boolean sameDatetime(Long longDate);
@@ -207,4 +197,18 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     TimeUnit diffFrom(DatetimeBuilder date);
     TimeUnit diffTo(DatetimeBuilder date);
 
+    @Override
+    T addTime(final long time);
+
+    @Override
+    T addHours(final int hours);
+
+    @Override
+    T addMins(final int mins);
+
+    @Override
+    T addSecond(final int sec);
+
+    @Override
+    T addMS(final int ms);
 }
