@@ -1,9 +1,7 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.Weekday;
+import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.rangeManipulation.DatetimeRange;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -11,7 +9,7 @@ import java.util.Date;
 
 import static me.xethh.utils.dateManipulation.Month.*;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
@@ -204,11 +202,50 @@ public class DateOperationTest_Range
 
     @Test
     public void testAddTime(){
-        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
         DateBuilder d = DateFactory.raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("20180717-000000001",sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002",sdfx.format(d.addTime(2).asDate()));
         assertEquals("20180717-000001000",sdfx.format(d.addTime(1000).asDate()));
         assertEquals("20180717-000101000",sdfx.format(d.addTime(61000).asDate()));
+    }
+
+    public void testDateFactoryRangeMethod(){
+        DatetimeRange range = DateFactory.rangeOnNow()
+                .editStart().ymd(1988, JAN, 01).back()
+                .editEnd().ymd(1987, JAN, 01).back();
+        assertFalse(range.isValid());
+        assertFalse(range.swrap().isValid());
+
+        range = DateFactory.rangeOnNow();
+        assertTrue(range.getStart().equals(range.getEnd()));
+
+        range = DateFactory.rangeOn(DateFactory.raw().ymd(2022,FEB, 18).maxDayTime());
+        assertTrue(range.getStart().equals(range.getEnd()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getStart()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getEnd()));
+
+        range = DateFactory.rangeOn(DateFactory.raw().ymd(2022,FEB, 18).maxDayTime().asDate());
+        assertTrue(range.getStart().equals(range.getEnd()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getStart()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getEnd()));
+
+        range = DateFactory.rangeOn(DateFactory.raw().ymd(2022,FEB, 18).maxDayTime().asLong());
+        assertTrue(range.getStart().equals(range.getEnd()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getStart()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getEnd()));
+
+        range = DateFactory.rangeOn(DateFactory.raw().ymd(2022,FEB, 18).maxDayTime().asCalendar());
+        assertTrue(range.getStart().equals(range.getEnd()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getStart()));
+        assertEquals("2022-02-18T23:59:59.999",sdf.format(range.getEnd()));
+
+        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        DatetimeRangeContainedBuilder dStart = DateFactory.rangeOnNow()
+                .editStart().ymd(2018, JUL, 17);
+        assertEquals("20180717-000000001",sdfx.format(dStart.addTime(1).asDate()));
+        assertEquals("20180717-000000002",sdfx.format(dStart.addTime(2).asDate()));
+        assertEquals("20180717-000001000",sdfx.format(dStart.addTime(1000).asDate()));
+        assertEquals("20180717-000101000",sdfx.format(dStart.addTime(61000).asDate()));
     }
 }

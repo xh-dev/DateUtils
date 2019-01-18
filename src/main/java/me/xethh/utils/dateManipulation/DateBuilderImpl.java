@@ -314,6 +314,17 @@ public class DateBuilderImpl implements DateBuilder {
         return minYear().minMonth().minDay();
     }
 
+    @Override
+    public DateBuilder now() {
+        return DateFactory.from(cal, new Build() {
+            @Override
+            public Calendar apply(Calendar cal) {
+                cal.setTimeInMillis(Calendar.getInstance(DateFactory.defaultTimezone()).getTimeInMillis());
+                return cal;
+            }
+        });
+    }
+
     public Date asDate(){
         return asCalendar().getTime();
     }
@@ -352,11 +363,36 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     public DatetimeRange rangeTo(Date date){
-        return DatetimeRange.of(asDate(),date);
+        return DatetimeRange.of(asDate(), date);
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Long dateLong) {
+        return rangeTo(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Calendar cal) {
+        return rangeTo(DateFactory.from(cal));
+    }
+
+    @Override
+    public DatetimeRange rangeToSelf() {
+        return rangeTo(now());
     }
 
     public DatetimeRange rangeFrom(Date date){
-        return DatetimeRange.of(date,asDate());
+        return DatetimeRange.of(date, asDate());
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Long dateLong) {
+        return rangeFrom(DateFactory.from(dateLong));
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Calendar cal) {
+        return rangeFrom(DateFactory.from(cal));
     }
 
     public DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end){
@@ -762,12 +798,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String format(String format) {
-        return format(DateFormatBuilder.get().custFormat(format));
+        return format(DateFormatBuilderImpl.get().custFormat(format));
     }
 
     @Override
     public String format(DateFormatBuilder.Format format) {
-        return format(DateFormatBuilder.get().custFormat(format.format()));
+        return format(DateFormatBuilderImpl.get().custFormat(format.format()));
     }
 
     @Override
@@ -781,13 +817,18 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
+    public FormatBuilderWrapper format() {
+        return new FormatBuilderWrapper(this);
+    }
+
+    @Override
     public String format(TimeZone timeZone, String format) {
-        return format(DateFormatBuilder.get().custFormat(format).timeZone(timeZone));
+        return format(DateFormatBuilderImpl.get().custFormat(format).timeZone(timeZone));
     }
 
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
-        return format(DateFormatBuilder.get().custFormat(format.format()).timeZone(timeZone));
+        return format(DateFormatBuilderImpl.get().custFormat(format.format()).timeZone(timeZone));
     }
 
     @Override
@@ -803,6 +844,6 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String toString() {
-        return "DateBuilder[" +DateFormatBuilder.ISO8601().format(asDate())+']';
+        return "DateBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
     }
 }

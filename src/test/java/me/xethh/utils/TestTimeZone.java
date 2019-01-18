@@ -16,7 +16,7 @@ public class TestTimeZone
 
     @Test
     public void testTimezone(){
-        DateFormatBuilder dfBuilder = DateFormatBuilder.get().custFormat(DateFormatBuilder.Format.ISO8601.format());
+        DateFormatBuilder dfBuilder = DateFormatBuilderImpl.get().custFormat(DateFormatBuilder.Format.ISO8601.format());
         DateBuilder db = DateFactory.raw().ymd(1987, Month.FEB, 9).hmsms(12, 12, 44, 777);
         //Test with time diff
         assertEquals(db.timeZone(BaseTimeZone.UTC).asLong().longValue(),db.timeZone(BaseTimeZone.Hongkong).asLong()+(28800000l));
@@ -66,11 +66,11 @@ public class TestTimeZone
         assertEquals(gmt0inMS-offset9h, t2.timeZone(BaseTimeZone.Japan).asLong().longValue());
 
 
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Hongkong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Hong_Kong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 21:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Shanghai.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
@@ -80,11 +80,11 @@ public class TestTimeZone
         assertEquals("2018-01-01 22:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Asia_Seoul.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 22:21:33.789", t2.timeZone(BaseTimeZone.UTC).format(BaseTimeZone.Japan.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
 
-        assertEquals("2017-12-31 21:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilder.FULL_DATETIME()));
-        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilder.FULL_DATETIME()));
+        assertEquals("2017-12-31 21:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_P8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.UTC.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.GMT.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 05:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Greenwich.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
+        assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Etc_GMT_M8.timeZone(),DateFormatBuilderImpl.FULL_DATETIME()));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Hongkong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Asia_Hong_Kong.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-01-01 13:21:33.789", t2.timeZone(BaseTimeZone.Hongkong).format(BaseTimeZone.Asia_Shanghai.timeZone(),DateFormatBuilder.Format.FULL_DATETIME));
