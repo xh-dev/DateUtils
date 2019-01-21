@@ -168,8 +168,6 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     DatetimeRange rangeFrom(Long dateLong);
     DatetimeRange rangeFrom(Calendar cal);
 
-    DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
-
     //Compare operation
     boolean sameDatetime(DatetimeBuilder builder);
     boolean sameDatetime(Long longDate);

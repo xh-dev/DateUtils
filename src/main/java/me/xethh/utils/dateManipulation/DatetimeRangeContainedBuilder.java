@@ -360,11 +360,6 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
-    public DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end) {
-        return DatetimeRange.of(start.oper().asDate(),end.oper().asDate());
-    }
-
-    @Override
     public DatetimeRangeContainedBuilder addYear(int years) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.addYear(years);
