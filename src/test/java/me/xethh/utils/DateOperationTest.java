@@ -257,4 +257,12 @@ public class DateOperationTest
         assertEquals("13:11:33",d.asSqlTime().toString());
         assertEquals("1988-01-02 13:11:33.888",d.asSqlTimestamp().toString());
     }
+
+    @Test
+    public void testAsBuild(){
+        DatetimeBuilder datetimeBuilder = DatetimeFactory.raw().ymd(1988, JAN, 19).hmsms(23, 22, 44, 100);
+        assertEquals("1988-01-19 00:00:00.000",datetimeBuilder.asDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+        assertEquals("1988-01-19 00:00:00.000",datetimeBuilder.rangeToSelf().editStart().asDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+
+    }
 }

@@ -142,31 +142,6 @@ public class TestDatetimeRange
     }
 
     @Test
-    public void testRangeWithBuilder(){
-        final DatetimeBuilder builder = DatetimeFactory.raw().ymd(2007, MAR, 22).hm(22, 12);
-        DatetimeRange range = builder.rangeWithBuilder(
-                new BuilderOperation() {
-                    @Override
-                    public DatetimeBuilder oper() {
-                        return builder.addDays(-10);
-                    }
-                }
-                ,
-                new BuilderOperation() {
-                    @Override
-                    public DatetimeBuilder oper() {
-                        return builder.addDays(10);
-                    }
-                }
-        );
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
-                .year4Digit().month2Digit().day2Digit().v1()
-                .hourInDay24().minute().second().ms().v1("-").build();
-        assertEquals("20070312-221200000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20070401-221200000",ymdhhmmssSSS.format(range.getEnd()));
-    }
-
-    @Test
     public void testEditWithStartAneEnd(){
         DatetimeBuilder d = DatetimeFactory.raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));

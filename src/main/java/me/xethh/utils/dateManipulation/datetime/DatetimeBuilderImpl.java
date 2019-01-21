@@ -2,6 +2,8 @@ package me.xethh.utils.dateManipulation.datetime;
 
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
+import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -313,6 +315,11 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     public DatetimeBuilder timePartOnly(){
         return minYear().minMonth().minDay();
+    }
+
+    @Override
+    public DateBuilder asDateBuilder() {
+        return DateFactory.from(this);
     }
 
     @Override

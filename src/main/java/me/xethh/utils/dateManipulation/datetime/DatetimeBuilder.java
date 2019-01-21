@@ -2,6 +2,7 @@ package me.xethh.utils.dateManipulation.datetime;
 
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -210,4 +211,6 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
 
     @Override
     T timePartOnly();
+
+    DateBuilder asDateBuilder();
 }

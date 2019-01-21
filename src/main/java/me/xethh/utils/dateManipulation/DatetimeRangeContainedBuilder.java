@@ -1,6 +1,8 @@
 package me.xethh.utils.dateManipulation;
 
 import me.xethh.utils.TimeUnit;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
+import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
@@ -270,6 +272,11 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.timePartOnly();
         return bd;
+    }
+
+    @Override
+    public DateBuilder asDateBuilder() {
+        return DateFactory.from(builder);
     }
 
     @Override
