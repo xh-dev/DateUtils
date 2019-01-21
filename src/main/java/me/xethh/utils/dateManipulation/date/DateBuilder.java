@@ -1,16 +1,17 @@
-package me.xethh.utils.dateManipulation.datetime;
+package me.xethh.utils.dateManipulation.date;
 
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
+public interface DateBuilder<T extends DateBuilder<T>>
         extends
-        CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
+        CalendarDateBuilder<T>,
         CommonDateRepresentation,
         TImeUnitConverter,
         FormatterBuilder
@@ -90,72 +91,15 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     @Override
     T endOfWeek(Weekday startDay);
 
-    @Override
-    T hmsms(int hour, int minute, int second, int mSecond);
-
-    @Override
-    T hms(int hour, int minute, int second);
-
-    @Override
-    T hm(int hour, int minute);
-
-    @Override
-    T h(int hour);
-
-    @Override
-    T minHour();
-
-    @Override
-    T maxHour();
-
-    @Override
-    T hour(final int hour);
-
-    @Override
-    T minMinute();
-
-    @Override
-    T maxMinute();
-
-    @Override
-    T minute(final int min);
-
-    @Override
-    T minSecond();
-
-    @Override
-    T maxSecond();
-
-    @Override
-    T second(final int second);
-
-    @Override
-    T minMs();
-
-    @Override
-    T maxMs();
-
-    @Override
-    T ms(final int ms);
-
-    @Override
-    T maxDayTime();
-
-    @Override
-    T maxDayTimeSec();
-
-    @Override
-    T maxDayTimeMin();
-
-    @Override
-    T minDayTime();
     T now();
 
 
     DateInfo view();
 
+    DatetimeRange rangeTo(DateBuilder date);
     DatetimeRange rangeTo(DatetimeBuilder date);
 
+    DatetimeRange rangeFrom(DateBuilder date);
     DatetimeRange rangeFrom(DatetimeBuilder date);
 
     DatetimeRange rangeTo(Date date);
@@ -168,48 +112,26 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     DatetimeRange rangeFrom(Long dateLong);
     DatetimeRange rangeFrom(Calendar cal);
 
-    DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end);
-
-    //Compare operation
-    boolean sameDatetime(DatetimeBuilder builder);
-    boolean sameDatetime(Long longDate);
-    boolean sameDatetime(Date date);
-    boolean sameDatetime(Calendar cal);
-
+    boolean sameYear(DateBuilder builder);
     boolean sameYear(DatetimeBuilder builder);
+    boolean sameMonth(DateBuilder builder);
     boolean sameMonth(DatetimeBuilder builder);
+    boolean sameDay(DateBuilder builder);
     boolean sameDay(DatetimeBuilder builder);
-    boolean sameTime(DatetimeBuilder datetimeBuilder);
-    boolean sameHMS(DatetimeBuilder datetimeBuilder);
-    boolean sameHM(DatetimeBuilder datetimeBuilder);
 
-
+    boolean laterThan(DateBuilder datetimeBuilder);
     boolean laterThan(DatetimeBuilder datetimeBuilder);
+    boolean laterEqualThan(DateBuilder datetimeBuilder);
     boolean laterEqualThan(DatetimeBuilder datetimeBuilder);
+    boolean before(DateBuilder datetimeBuilder);
     boolean before(DatetimeBuilder datetimeBuilder);
+    boolean beforeEqual(DateBuilder datetimeBuilder);
     boolean beforeEqual(DatetimeBuilder datetimeBuilder);
 
+    TimeUnit diffFrom(DateBuilder date);
     TimeUnit diffFrom(DatetimeBuilder date);
+    TimeUnit diffTo(DateBuilder date);
     TimeUnit diffTo(DatetimeBuilder date);
 
-    @Override
-    T addTime(final long time);
-
-    @Override
-    T addHours(final int hours);
-
-    @Override
-    T addMins(final int mins);
-
-    @Override
-    T addSecond(final int sec);
-
-    @Override
-    T addMS(final int ms);
-
-    @Override
-    T timeZone(final BaseTimeZone timeZone);
-
-    @Override
-    T timePartOnly();
+    DatetimeBuilder asDatetimeBuilder();
 }

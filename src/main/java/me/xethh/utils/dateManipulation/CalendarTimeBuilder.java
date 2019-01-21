@@ -102,4 +102,9 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     T addMS(final int ms);
 
+    T timeZone(final BaseTimeZone timeZone);
+
+    T timePartOnly();
+
+
 }
