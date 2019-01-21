@@ -1,11 +1,14 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateInfo {
-    private Calendar cal=Calendar.getInstance(DateFactory.defaultTimezone());
+    private Calendar cal=Calendar.getInstance(DatetimeFactory.defaultTimezone());
     /*
     Constructor
      */
@@ -51,8 +54,8 @@ public class DateInfo {
     }
 
 
-    public DateBuilder asBuilder(){
-        return DateFactory.from(cal.getTime());
+    public DatetimeBuilder asBuilder(){
+        return DatetimeFactory.from(cal.getTime());
     }
     public Date asDate(){
         return cal.getTime();

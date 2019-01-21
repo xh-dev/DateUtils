@@ -23,7 +23,7 @@ public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     /**
      * Set the month
      * @param month should be enum of Month
-     * @return DateBuilder Object
+     * @return DatetimeBuilder Object
      */
     T month(final Month month);
 

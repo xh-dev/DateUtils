@@ -1,5 +1,7 @@
 package me.xethh.utils.dateManipulation;
 
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
+
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
@@ -8,13 +10,13 @@ import java.util.TimeZone;
  * Created on 7/19/2018
  */
 public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<FormatBuilderWrapper>{
-    DateBuilder builder;
+    DatetimeBuilder builder;
     DateFormatBuilder formatBuilder;
-    public FormatBuilderWrapper(DateBuilder builder){
+    public FormatBuilderWrapper(DatetimeBuilder builder){
         this.builder = builder;
         this.formatBuilder = DateFormatBuilderImpl.get();
     }
-    public FormatBuilderWrapper(DateBuilder builder, DateFormatBuilder formatBuilder){
+    public FormatBuilderWrapper(DatetimeBuilder builder, DateFormatBuilder formatBuilder){
         this.builder = builder;
         this.formatBuilder = formatBuilder;
     }

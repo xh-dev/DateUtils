@@ -1,7 +1,7 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.DateBuilder;
-import me.xethh.utils.dateManipulation.DateFactory;
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
+import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.Month;
 import org.junit.Test;
 
@@ -17,9 +17,9 @@ public class DateComparatorTest
 {
     @Test
     public void sameDatetime(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.addYear(1).addYear(-1);
-        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d2 = d1.addYear(1).addYear(-1);
+        DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(true,d1.sameDatetime(d2));
         assertEquals(false,d1.sameDatetime(d3));
 
@@ -35,9 +35,9 @@ public class DateComparatorTest
 
     @Test
     public void sameYear(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.addYear(1);
-        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d2 = d1.addYear(1);
+        DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameYear(d2));
         assertEquals(true,d1.sameYear(d3));
 
@@ -53,9 +53,9 @@ public class DateComparatorTest
 
     @Test
     public void sameMonth(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.month(Month.JUL);
-        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d2 = d1.month(Month.JUL);
+        DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameMonth(d2));
         assertEquals(true,d1.sameMonth(d3));
 
@@ -71,9 +71,9 @@ public class DateComparatorTest
 
     @Test
     public void sameDate(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
-        DateBuilder d2 = d1.day(2);
-        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d2 = d1.day(2);
+        DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         assertEquals(false,d1.sameDay(d2));
         assertEquals(true,d1.sameDay(d3));
 
@@ -89,11 +89,11 @@ public class DateComparatorTest
 
     @Test
     public void sameTime(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2);
+        DatetimeBuilder d2 = d1.day(2);
         System.out.println("d2 ==> "+d2.toString());
-        DateBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
+        DatetimeBuilder d3 = d1.hour(3).minute(21).second(56).ms(221);
         System.out.println("d3 ==> "+d3.toString());
         assertEquals(true,d1.sameTime(d2));
         assertEquals(false,d1.sameTime(d3));
@@ -110,15 +110,15 @@ public class DateComparatorTest
 
     @Test
     public void sameHMS(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(20).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(20).second(1);
         System.out.println("d2 ==> "+d2.toString());
-        DateBuilder d3 = d1.day(2).hour(10).minute(11).second(23);
+        DatetimeBuilder d3 = d1.day(2).hour(10).minute(11).second(23);
         System.out.println("d3 ==> "+d3.toString());
-        DateBuilder d4 = d1.day(2).hour(11).minute(20).second(23);
+        DatetimeBuilder d4 = d1.day(2).hour(11).minute(20).second(23);
         System.out.println("d4 ==> "+d4.toString());
-        DateBuilder d5 = d1.day(2).hour(10).minute(20).second(23);
+        DatetimeBuilder d5 = d1.day(2).hour(10).minute(20).second(23);
         System.out.println("d5 ==> "+d5.toString());
         assertEquals(false,d1.sameHMS(d2));
         assertEquals(false,d1.sameHMS(d3));
@@ -143,13 +143,13 @@ public class DateComparatorTest
 
     @Test
     public void sameHM(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
-        DateBuilder d3 = d1.day(2).hour(11).minute(20).second(23);
+        DatetimeBuilder d3 = d1.day(2).hour(11).minute(20).second(23);
         System.out.println("d3 ==> "+d3.toString());
-        DateBuilder d5 = d1.day(2).hour(10).minute(20).second(3);
+        DatetimeBuilder d5 = d1.day(2).hour(10).minute(20).second(3);
         System.out.println("d5 ==> "+d5.toString());
         assertEquals(false,d1.sameHM(d2));
         assertEquals(false,d1.sameHM(d3));
@@ -170,9 +170,9 @@ public class DateComparatorTest
 
     @Test
     public void laterThan(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
 
         assertEquals(false,d1.laterThan(d2));
@@ -189,9 +189,9 @@ public class DateComparatorTest
 
     @Test
     public void before(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
 
         assertEquals(true,d1.before(d2));
@@ -208,11 +208,11 @@ public class DateComparatorTest
 
     @Test
     public void laterEqualThan(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
-        DateBuilder d3 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d3 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d3 ==> "+d3.toString());
 
         assertEquals(false,d1.laterEqualThan(d2));
@@ -234,11 +234,11 @@ public class DateComparatorTest
 
     @Test
     public void beforeEqual(){
-        DateBuilder d1 = DateFactory.raw().hour(10).minute(20).second(23).ms(345);
+        DatetimeBuilder d1 = DatetimeFactory.raw().hour(10).minute(20).second(23).ms(345);
         System.out.println("d1 ==> "+d1.toString());
-        DateBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d2 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d2 ==> "+d2.toString());
-        DateBuilder d3 = d1.day(2).hour(10).minute(21).second(1);
+        DatetimeBuilder d3 = d1.day(2).hour(10).minute(21).second(1);
         System.out.println("d3 ==> "+d3.toString());
 
         assertEquals(true,d1.beforeEqual(d2));
