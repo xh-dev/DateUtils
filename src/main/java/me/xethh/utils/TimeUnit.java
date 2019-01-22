@@ -11,6 +11,54 @@ import java.util.Date;
  * Created on 8/3/2018
  */
 public class TimeUnit {
+    public TimeUnit add(TimeUnit other){
+        return new TimeUnit(this.diff+other.diff);
+    }
+    public TimeUnit addDay(int day){
+        return add(day(day));
+    }
+    public TimeUnit addHour(int hour){
+        return add(hour(hour));
+    }
+    public TimeUnit addMinute(int minute){
+        return add(minute(minute));
+    }
+    public TimeUnit addSecond(int second){
+        return add(second(second));
+    }
+    public TimeUnit addMS(int ms){
+        return add(ms(ms));
+    }
+    public static TimeUnit day(){
+        return day(1);
+    }
+    public static TimeUnit day(int day){
+        return new TimeUnit(day * MS_BASE*SECOND_BASE*MIN_BASE*HOUR_BASE);
+    }
+    public static TimeUnit hour(){
+        return hour(1);
+    }
+    public static TimeUnit hour(int hour){
+        return new TimeUnit(hour * MS_BASE*SECOND_BASE*MIN_BASE);
+    }
+    public static TimeUnit minute(){
+        return minute(1);
+    }
+    public static TimeUnit minute(int minute){
+        return new TimeUnit(minute * MS_BASE*SECOND_BASE);
+    }
+    public static TimeUnit second(){
+        return second(1);
+    }
+    public static TimeUnit second(int second){
+        return new TimeUnit(second * MS_BASE);
+    }
+    public static TimeUnit ms(){
+        return ms(1);
+    }
+    public static TimeUnit ms(int ms){
+        return new TimeUnit(ms);
+    }
     private long diff;
 
     protected TimeUnit(long diff){
@@ -164,5 +212,10 @@ public class TimeUnit {
     }
     public boolean roundUpSecond(){
         return (msOnly()>MS_BASE/2)?true:false;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("TimeUnit[%d days | %d hours | %d minutes | %d seconds | %d ms]", numberOfDays(), numberOfHour(), numberOfMin(), numberOfSecond(), numberOfMS());
     }
 }
