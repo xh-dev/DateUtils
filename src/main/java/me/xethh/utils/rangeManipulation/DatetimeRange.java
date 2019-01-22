@@ -56,11 +56,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
 
     public DatetimeRangeContainedBuilder editStart(){
         this.editing=EDITING.START;
-        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(getStart(),this);
+        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(startAsDate(),this);
     }
     public DatetimeRangeContainedBuilder editEnd(){
         this.editing=EDITING.END;
-        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(getEnd(),this);
+        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(endAsDate(),this);
     }
 
     @Override
@@ -127,11 +127,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
         return DatetimeRange.of(start, DatetimeFactory.from(end).maxDayTime().asDate());
     }
 
-    public Date getStart() {
+    public Date startAsDate() {
         return start;
     }
 
-    public Date getEnd() {
+    public Date endAsDate() {
         return end;
     }
     public DatetimeBuilder startAsDTBuilder(){

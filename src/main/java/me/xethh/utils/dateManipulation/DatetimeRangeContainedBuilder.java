@@ -796,12 +796,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     public DatetimeRange back() {
         DatetimeRange range;
         if(parent.getEditingMode()==DatetimeRange.EDITING.START) {
-            range = DatetimeRange.of(asDate(),parent.getEnd());
+            range = DatetimeRange.of(asDate(),parent.endAsDate());
             range.clearEditingMode();
             return range;
         }
         if(parent.getEditingMode()==DatetimeRange.EDITING.END) {
-            range = DatetimeRange.of(parent.getStart(),asDate());
+            range = DatetimeRange.of(parent.startAsDate(),asDate());
             range.clearEditingMode();
             return range;
         }
