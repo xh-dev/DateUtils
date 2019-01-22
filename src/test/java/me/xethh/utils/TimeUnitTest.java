@@ -107,4 +107,75 @@ public class TimeUnitTest
         assertEquals("Hour comparing no eliminate",
                 8,tu.numberOfDays());
     }
+
+    @Test
+    public void testTimeUnit(){
+        TimeUnit d = TimeUnit.day();
+        assertEquals(1,d.numberOfDays());
+        assertEquals(24,d.numberOfHour());
+        assertEquals(1440,d.numberOfMin());
+        assertEquals(86400,d.numberOfSecond());
+        assertEquals(86400000,d.numberOfMS());
+
+        d = TimeUnit.day(7);
+        assertEquals(7,d.numberOfDays());
+        assertEquals(1,d.numberOfWeeks());
+        d = TimeUnit.day(9);
+        assertEquals(9,d.numberOfDays());
+        assertEquals(1,d.numberOfWeeks());
+        d = TimeUnit.day(14);
+        assertEquals(14,d.numberOfDays());
+        assertEquals(2,d.numberOfWeeks());
+        d = TimeUnit.day(15);
+        assertEquals(15,d.numberOfDays());
+        assertEquals(2,d.numberOfWeeks());
+
+        d=TimeUnit.hour();
+        assertEquals(1,d.numberOfHour());
+        assertEquals(60,d.numberOfMin());
+        assertEquals(3600,d.numberOfSecond());
+        assertEquals(3600000,d.numberOfMS());
+
+        d=TimeUnit.hour(10);
+        assertEquals(10,d.numberOfHour());
+        assertEquals(600,d.numberOfMin());
+        assertEquals(36000,d.numberOfSecond());
+        assertEquals(36000000,d.numberOfMS());
+
+        d=TimeUnit.hour(168);
+        assertEquals(168,d.numberOfHour());
+        assertEquals(10080,d.numberOfMin());
+        assertEquals(604800,d.numberOfSecond());
+        assertEquals(604800000,d.numberOfMS());
+        assertEquals(1,d.numberOfWeeks());
+
+        d=TimeUnit.minute(1);
+        assertEquals(1,d.numberOfMin());
+        assertEquals(60,d.numberOfSecond());
+        assertEquals(60000,d.numberOfMS());
+
+        d=TimeUnit.second(1);
+        assertEquals(1,d.numberOfSecond());
+        assertEquals(1000,d.numberOfMS());
+
+        d=TimeUnit.ms(1);
+        assertEquals(1,d.numberOfMS());
+
+    }
+
+    @Test
+    public void testToString(){
+        TimeUnit d = TimeUnit.day();
+        assertEquals("TimeUnit[1 days | 24 hours | 1440 minutes | 86400 seconds | 86400000 ms]",d.toString());
+        d = TimeUnit.day().addDay(1);
+        assertEquals("TimeUnit[2 days | 48 hours | 2880 minutes | 172800 seconds | 172800000 ms]",d.toString());
+        d = TimeUnit.day().addHour(24);
+        assertEquals("TimeUnit[2 days | 48 hours | 2880 minutes | 172800 seconds | 172800000 ms]",d.toString());
+        d = TimeUnit.day().addMinute(1440);
+        assertEquals("TimeUnit[2 days | 48 hours | 2880 minutes | 172800 seconds | 172800000 ms]",d.toString());
+        d = TimeUnit.day().addSecond(86400);
+        assertEquals("TimeUnit[2 days | 48 hours | 2880 minutes | 172800 seconds | 172800000 ms]",d.toString());
+        d = TimeUnit.day().addMS(86400000);
+        assertEquals("TimeUnit[2 days | 48 hours | 2880 minutes | 172800 seconds | 172800000 ms]",d.toString());
+    }
 }
