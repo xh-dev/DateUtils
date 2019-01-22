@@ -386,7 +386,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeRange rangeToSelf() {
-        return rangeTo(now());
+        return rangeTo(this);
     }
 
     public DatetimeRange rangeFrom(Date date){

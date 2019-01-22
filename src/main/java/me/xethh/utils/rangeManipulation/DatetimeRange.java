@@ -1,6 +1,8 @@
 package me.xethh.utils.rangeManipulation;
 
 import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
+import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 
@@ -131,6 +133,18 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
 
     public Date getEnd() {
         return end;
+    }
+    public DatetimeBuilder startAsDTBuilder(){
+        return DatetimeFactory.from(start);
+    }
+    public DatetimeBuilder endAsDTBuilder(){
+        return DatetimeFactory.from(end);
+    }
+    public DateBuilder startAsDateBuilder(){
+        return DateFactory.from(start);
+    }
+    public DateBuilder endAsDateBuilder(){
+        return DateFactory.from(end);
     }
 
     public boolean overlapping(DatetimeRange range){

@@ -8,10 +8,10 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
 import org.junit.Test;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import static me.xethh.utils.dateManipulation.Month.APR;
-import static me.xethh.utils.dateManipulation.Month.MAR;
+import static me.xethh.utils.dateManipulation.Month.*;
 import static org.junit.Assert.*;
 
 /**
@@ -237,5 +237,29 @@ public class TestDatetimeRange
         assertTrue(range.isValid());
         assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getStart()));
         assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getEnd()));
+    }
+
+    @Test
+    public void testDateRange(){
+        DatetimeRange range = DatetimeFactory.raw().ymd(2018, NOV, 3).hmsms(22, 23, 44, 888).rangeToSelf()
+                .editEnd()
+                .addYear(2)
+                .addMonths(13)
+                .addDays(6)
+                .addHours(6)
+                .addMins(7)
+                .addSecond(24)
+                .addMS(10)
+                .back();
+        SimpleDateFormat formatter = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
+        assertEquals("2018-11-03 22:23:44.888",formatter.format(range.getStart()));
+        assertEquals("2018-11-03 22:23:44.888",range.startAsDTBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+        assertEquals("2018-11-03 00:00:00.000",range.startAsDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+
+        // assertEquals("2020-11-03 22:23:44.888",formatter.format(range.getEnd()));
+        assertEquals("2021-12-10 04:31:08.898",formatter.format(range.getEnd()));
+        // assertEquals("2022-01-10 02:23:44.888",range.startAsDTBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+        // assertEquals("2022-01-10 00:00:00.000",range.startAsDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+
     }
 }
