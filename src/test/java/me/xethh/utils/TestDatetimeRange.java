@@ -3,12 +3,12 @@ package me.xethh.utils;
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
-import me.xethh.utils.rangeManipulation.BuilderOperation;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
 import org.junit.Test;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import static me.xethh.utils.dateManipulation.Month.*;
@@ -148,22 +148,22 @@ public class TestDatetimeRange
         SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
-        assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = range
                 .editStart().addDays(-1).addMS(333).back()
                 .editEnd().addDays(3).addYear(2).addMonths(2).addMS(222).back();
 
-        assertEquals("20880421-000000333",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20900825-000000222",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20880421-000000333",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20900825-000000222",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = range
                 .editStart().addDays(-1).addMS(333).back()
                 .editEnd().addDays(1).addMS(222).back();
 
-        assertEquals("20880420-000000666",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20900826-000000444",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20880420-000000666",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20900826-000000444",ymdhhmmssSSS.format(range.endAsDate()));
     }
 
     @Test
@@ -173,23 +173,23 @@ public class TestDatetimeRange
         SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
-        assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20880422-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20880622-000000000",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = range
                 .editStart().addYear(1).addMonths(1).addDays(1).addMins(1).addHours(1).addSecond(1).addMS(1).back()
                 .editEnd().addYear(2).addMonths(2).addDays(2).addMins(2).addHours(2).addSecond(2).addMS(2).back();
 
-        assertEquals("20890523-010101001",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20900824-020202002",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20890523-010101001",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20900824-020202002",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = range
                 .editStart().addTime(2000).back()
                 .editEnd().addTime(4000).back()
         ;
 
-        assertEquals("20890523-010103001",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20900824-020206002",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20890523-010103001",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20900824-020206002",ymdhhmmssSSS.format(range.endAsDate()));
 
     }
 
@@ -200,43 +200,43 @@ public class TestDatetimeRange
                 .hourInDay24().minute().second().ms().v1("-").build();
         DatetimeRange range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime());
         assertTrue(range.isInvalid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getEnd()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.endAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.startAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asDate());
         assertTrue(range.isInvalid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getEnd()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.endAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.startAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asLong());
         assertTrue(range.isInvalid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getEnd()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.endAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.startAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asCalendar());
         assertTrue(range.isInvalid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getEnd()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getStart()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.endAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.startAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime());
         assertTrue(range.isValid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asDate());
         assertTrue(range.isValid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asLong());
         assertTrue(range.isValid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.endAsDate()));
 
         range = DatetimeFactory.now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.now().ymd(2018, APR, 15).minDayTime().asCalendar());
         assertTrue(range.isValid());
-        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.getStart()));
-        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.getEnd()));
+        assertEquals("20180315-000000000",ymdhhmmssSSS.format(range.startAsDate()));
+        assertEquals("20180415-000000000",ymdhhmmssSSS.format(range.endAsDate()));
     }
 
     @Test
@@ -252,12 +252,12 @@ public class TestDatetimeRange
                 .addMS(10)
                 .back();
         SimpleDateFormat formatter = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2018-11-03 22:23:44.888",formatter.format(range.getStart()));
+        assertEquals("2018-11-03 22:23:44.888",formatter.format(range.startAsDate()));
         assertEquals("2018-11-03 22:23:44.888",range.startAsDTBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
         assertEquals("2018-11-03 00:00:00.000",range.startAsDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
 
-        // assertEquals("2020-11-03 22:23:44.888",formatter.format(range.getEnd()));
-        assertEquals("2021-12-10 04:31:08.898",formatter.format(range.getEnd()));
+        // assertEquals("2020-11-03 22:23:44.888",formatter.format(range.endAsDate()));
+        assertEquals("2021-12-10 04:31:08.898",formatter.format(range.endAsDate()));
         // assertEquals("2022-01-10 02:23:44.888",range.startAsDTBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
         // assertEquals("2022-01-10 00:00:00.000",range.startAsDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
 

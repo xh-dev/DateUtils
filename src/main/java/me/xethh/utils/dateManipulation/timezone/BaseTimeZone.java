@@ -1,4 +1,4 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.timezone;
 
 import java.util.TimeZone;
 

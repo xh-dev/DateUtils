@@ -1,4 +1,6 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.buildInterfaces;
+
+import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 
 import java.util.Calendar;
 import java.util.Date;

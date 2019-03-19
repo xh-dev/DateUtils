@@ -1,4 +1,4 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.buildInterfaces;
 
 import java.util.Calendar;
 import java.util.Date;

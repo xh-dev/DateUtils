@@ -1,7 +1,6 @@
 package me.xethh.utils.date;
 
-import me.xethh.utils.TimeUnit;
-import me.xethh.utils.dateManipulation.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.DateInfo;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
@@ -421,62 +420,62 @@ public class DateTest
         DatetimeRange dr = DateFactory.now().ymd(2019,JAN,1).rangeTo(DateFactory.now().ymd(2019,JAN,1).addDays(10));
         assertTrue(dr.isValid());
         SimpleDateFormat fmt = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getEnd()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.endAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeTo(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10));
         assertTrue(dr.isValid());
         fmt = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getEnd()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.endAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeTo(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asDate());
         assertTrue(dr.isValid());
         fmt = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getEnd()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.endAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeTo(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asCalendar());
         assertTrue(dr.isValid());
         fmt = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getEnd()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.endAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeTo(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asLong());
         assertTrue(dr.isValid());
         fmt = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getEnd()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.endAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeFrom(DateFactory.now().ymd(2019,JAN,1).addDays(10));
         assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.startAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeFrom(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10));
         assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.startAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeFrom(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asDate());
         assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.startAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeFrom(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asCalendar());
         assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.startAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeFrom(DatetimeFactory.raw().ymd(2019,JAN,1).addDays(10).asLong());
         assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-11 00:00:00.000",fmt.format(dr.startAsDate()));
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeToSelf();
         assertTrue(dr.isValid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getEnd()));
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.getStart()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
+        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
     }
 
     @Test
