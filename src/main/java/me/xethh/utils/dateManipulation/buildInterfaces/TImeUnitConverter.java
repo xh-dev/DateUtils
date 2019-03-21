@@ -1,4 +1,4 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.buildInterfaces;
 
 import me.xethh.utils.TimeUnit;
 

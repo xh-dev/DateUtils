@@ -1,5 +1,7 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.dataInfo;
 
+import me.xethh.utils.dateManipulation.Month;
+import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;

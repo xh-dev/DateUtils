@@ -2,7 +2,7 @@ package me.xethh.utils;
 
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
-import me.xethh.utils.dateManipulation.DateInfo;
+import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.Weekday;
 import org.junit.Test;
 

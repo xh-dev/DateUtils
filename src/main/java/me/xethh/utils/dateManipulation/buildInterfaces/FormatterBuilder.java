@@ -1,6 +1,7 @@
-package me.xethh.utils.dateManipulation;
+package me.xethh.utils.dateManipulation.buildInterfaces;
 
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.formatBuilder.FormatBuilderWrapper;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
