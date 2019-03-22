@@ -1,4 +1,4 @@
-package me.xethh.utils;
+package me.xethh.utils.v6;
 
 import me.xethh.utils.dateManipulation.Weekday;
 import org.junit.Test;
