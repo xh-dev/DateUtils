@@ -32,11 +32,11 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
      */
     public DatetimeRangeContainedBuilder(final Date date,DatetimeRange range){
         this.parent= range;
-        builder= DatetimeFactory.from(date);
+        builder= DatetimeFactory.instance().from(date);
     }
     public DatetimeRangeContainedBuilder(Calendar cal,DatetimeRange range){
         this.parent= range;
-        builder = DatetimeFactory.from(cal);
+        builder = DatetimeFactory.instance().from(cal);
     }
     public DatetimeRangeContainedBuilder(Calendar cal, Build build, DatetimeRange range){
         this(build.apply(cal),range);
@@ -338,17 +338,17 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
 
     @Override
     public DatetimeRange rangeTo(Date date) {
-        return rangeTo(DatetimeFactory.from(date));
+        return rangeTo(DatetimeFactory.instance().from(date));
     }
 
     @Override
     public DatetimeRange rangeTo(Long dateLong) {
-        return rangeTo(DatetimeFactory.from(dateLong));
+        return rangeTo(DatetimeFactory.instance().from(dateLong));
     }
 
     @Override
     public DatetimeRange rangeTo(Calendar cal) {
-        return rangeTo(DatetimeFactory.from(cal));
+        return rangeTo(DatetimeFactory.instance().from(cal));
     }
 
     @Override
@@ -358,17 +358,17 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
 
     @Override
     public DatetimeRange rangeFrom(Date date) {
-        return rangeFrom(DatetimeFactory.from(date));
+        return rangeFrom(DatetimeFactory.instance().from(date));
     }
 
     @Override
     public DatetimeRange rangeFrom(Long dateLong) {
-        return rangeFrom(DatetimeFactory.from(dateLong));
+        return rangeFrom(DatetimeFactory.instance().from(dateLong));
     }
 
     @Override
     public DatetimeRange rangeFrom(Calendar cal) {
-        return rangeFrom(DatetimeFactory.from(cal));
+        return rangeFrom(DatetimeFactory.instance().from(cal));
     }
 
     @Override

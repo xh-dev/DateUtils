@@ -20,19 +20,19 @@ import java.util.TimeZone;
 public class DateBuilderImpl implements DateBuilder {
     private DatetimeBuilder builder;
     public DateBuilderImpl(){
-        this(DatetimeFactory.raw());
+        this(DatetimeFactory.instance().raw());
     }
     public DateBuilderImpl(Date builder, Build build){
-        this(DatetimeFactory.from(builder,build));
+        this(DatetimeFactory.instance().from(builder,build));
     }
     public DateBuilderImpl(Date builder){
-        this(DatetimeFactory.from(builder));
+        this(DatetimeFactory.instance().from(builder));
     }
     public DateBuilderImpl(Calendar cal, Build build){
-        this(DatetimeFactory.from(cal,build));
+        this(DatetimeFactory.instance().from(cal,build));
     }
     public DateBuilderImpl(Calendar cal){
-        this(DatetimeFactory.from(cal));
+        this(DatetimeFactory.instance().from(cal));
     }
     public DateBuilderImpl(DatetimeBuilder builder){
         this.builder = builder.minDayTime();

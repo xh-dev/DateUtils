@@ -58,11 +58,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
 
     public DatetimeRangeContainedBuilder editStart(){
         this.editing=EDITING.START;
-        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(startAsDate(),this);
+        return DatetimeFactory.instance().<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(startAsDate(),this);
     }
     public DatetimeRangeContainedBuilder editEnd(){
         this.editing=EDITING.END;
-        return DatetimeFactory.<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(endAsDate(),this);
+        return DatetimeFactory.instance().<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(endAsDate(),this);
     }
 
     @Override
@@ -98,15 +98,15 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
     }
 
     public boolean dateInRange(Date date){
-        return minStart().minEnd().timeInRange(DatetimeFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeInRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
     public boolean dateAfterRange(Date date){
-        return minStart().minEnd().timeAfterRange(DatetimeFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeAfterRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
     public boolean dateBeforeRange(Date date){
-        return minStart().minEnd().timeBeforeRange(DatetimeFactory.from(date).minDayTime().asDate());
+        return minStart().minEnd().timeBeforeRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
     public DatetimeRange asDateRange(){
@@ -114,19 +114,19 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
     }
 
     public DatetimeRange minStart(){
-        return DatetimeRange.of(DatetimeFactory.from(start).minDayTime().asDate(),end);
+        return DatetimeRange.of(DatetimeFactory.instance().from(start).minDayTime().asDate(),end);
     }
 
     public DatetimeRange maxStart(){
-        return DatetimeRange.of(DatetimeFactory.from(start).maxDayTime().asDate(),end);
+        return DatetimeRange.of(DatetimeFactory.instance().from(start).maxDayTime().asDate(),end);
     }
 
     public DatetimeRange minEnd(){
-        return DatetimeRange.of(start, DatetimeFactory.from(end).minDayTime().asDate());
+        return DatetimeRange.of(start, DatetimeFactory.instance().from(end).minDayTime().asDate());
     }
 
     public DatetimeRange maxEnd(){
-        return DatetimeRange.of(start, DatetimeFactory.from(end).maxDayTime().asDate());
+        return DatetimeRange.of(start, DatetimeFactory.instance().from(end).maxDayTime().asDate());
     }
 
     public Date startAsDate() {
@@ -137,10 +137,10 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
         return end;
     }
     public DatetimeBuilder startAsDTBuilder(){
-        return DatetimeFactory.from(start);
+        return DatetimeFactory.instance().from(start);
     }
     public DatetimeBuilder endAsDTBuilder(){
-        return DatetimeFactory.from(end);
+        return DatetimeFactory.instance().from(end);
     }
     public DateBuilder startAsDateBuilder(){
         return DateFactory.from(start);
@@ -152,13 +152,13 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
     public boolean overlapping(DatetimeRange range){
         if(range==null || range.isInvalid() || isInvalid())
             return false;
-        if(DatetimeFactory.from(start).beforeEqual(range.start) && DatetimeFactory.from(end).laterEqualThan(range.end))
+        if(DatetimeFactory.instance().from(start).beforeEqual(range.start) && DatetimeFactory.instance().from(end).laterEqualThan(range.end))
             return true;
-        if(DatetimeFactory.from(range.start).beforeEqual(start) && DatetimeFactory.from(range.end).laterEqualThan(end))
+        if(DatetimeFactory.instance().from(range.start).beforeEqual(start) && DatetimeFactory.instance().from(range.end).laterEqualThan(end))
             return true;
-        if(DatetimeFactory.from(start).beforeEqual(range.start) && DatetimeFactory.from(end).laterEqualThan(range.start))
+        if(DatetimeFactory.instance().from(start).beforeEqual(range.start) && DatetimeFactory.instance().from(end).laterEqualThan(range.start))
             return true;
-        if(DatetimeFactory.from(range.start).beforeEqual(start) && DatetimeFactory.from(range.end).laterEqualThan(start))
+        if(DatetimeFactory.instance().from(range.start).beforeEqual(start) && DatetimeFactory.instance().from(range.end).laterEqualThan(start))
             return true;
         return false;
     }
@@ -171,11 +171,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
         if(range.isInvalid())
             return OverlapType.TargetInvalid;
 
-        DatetimeBuilder startComparator = DatetimeFactory.from(start);
-        DatetimeBuilder endComparator = DatetimeFactory.from(end);
+        DatetimeBuilder startComparator = DatetimeFactory.instance().from(start);
+        DatetimeBuilder endComparator = DatetimeFactory.instance().from(end);
 
-        DatetimeBuilder targetStartComparator = DatetimeFactory.from(range.start);
-        DatetimeBuilder targetEndComparator = DatetimeFactory.from(range.end);
+        DatetimeBuilder targetStartComparator = DatetimeFactory.instance().from(range.start);
+        DatetimeBuilder targetEndComparator = DatetimeFactory.instance().from(range.end);
 
         if(startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;

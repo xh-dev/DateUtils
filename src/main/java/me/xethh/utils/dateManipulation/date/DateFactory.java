@@ -18,6 +18,7 @@ import java.util.Date;
  * Created on 7/19/2018
  */
 public class DateFactory {
+
     public static DateBuilder from(DatetimeBuilder date){
         return new DateBuilderImpl(date);
     }
@@ -31,7 +32,7 @@ public class DateFactory {
         return new DateBuilderImpl(date,build);
     }
     public static DateBuilder now(){
-        return new DateBuilderImpl(DatetimeFactory.now());
+        return new DateBuilderImpl(DatetimeFactory.instance().now());
     }
     public static DateBuilder raw(){
         return new DateBuilderImpl();
@@ -43,14 +44,14 @@ public class DateFactory {
         return new DateBuilderImpl(cal,build);
     }
     public static DateBuilder today(){
-        return new DateBuilderImpl(DatetimeFactory.now());
+        return new DateBuilderImpl(DatetimeFactory.instance().now());
     }
     public static DateBuilder from(Long longDate){
-        return from(DatetimeFactory.from(longDate));
+        return from(DatetimeFactory.instance().from(longDate));
     }
 
     public static DatetimeRange rangeOnNow(){
-        return DatetimeFactory.now().rangeTo(DatetimeFactory.now());
+        return DatetimeFactory.instance().now().rangeTo(DatetimeFactory.instance().now());
     }
     public static DatetimeRange rangeOn(DateBuilder dateBuilder){
         return dateBuilder.rangeToSelf();

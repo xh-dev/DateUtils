@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateInfo {
-    private Calendar cal=Calendar.getInstance(DatetimeFactory.defaultTimezone());
+    private Calendar cal=Calendar.getInstance(DatetimeFactory.instance().defaultTimezone());
     /*
     Constructor
      */
@@ -59,7 +59,7 @@ public class DateInfo {
 
 
     public DatetimeBuilder asBuilder(){
-        return DatetimeFactory.from(cal.getTime());
+        return DatetimeFactory.instance().from(cal.getTime());
     }
     public Date asDate(){
         return cal.getTime();

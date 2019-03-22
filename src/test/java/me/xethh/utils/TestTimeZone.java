@@ -22,27 +22,27 @@ public class TestTimeZone
     @Test
     public void testTimezone(){
         DateFormatBuilder dfBuilder = DateFormatBuilderImpl.get().custFormat(DateFormatBuilder.Format.ISO8601.format());
-        DatetimeBuilder db = DatetimeFactory.raw().ymd(1987, Month.FEB, 9).hmsms(12, 12, 44, 777);
+        DatetimeBuilder db = DatetimeFactory.instance().raw().ymd(1987, Month.FEB, 9).hmsms(12, 12, 44, 777);
         //Test with time diff
         assertEquals(db.timeZone(BaseTimeZone.UTC).asLong().longValue(),db.timeZone(BaseTimeZone.Hongkong).asLong()+(28800000l));
 
-        assertEquals(28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Etc_GMT_P8).asLong().longValue());
-        assertEquals(0l, DatetimeFactory.raw().timeZone(BaseTimeZone.GMT).asLong().longValue());
-        assertEquals(0l, DatetimeFactory.raw().timeZone(BaseTimeZone.UTC).asLong().longValue());
-        assertEquals(0l, DatetimeFactory.raw().timeZone(BaseTimeZone.Greenwich).asLong().longValue());
-        assertEquals(-28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Etc_GMT_M8).asLong().longValue());
-        assertEquals(-28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Hongkong).asLong().longValue());
-        assertEquals(-28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Asia_Hong_Kong).asLong().longValue());
-        assertEquals(-28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Asia_Taipei).asLong().longValue());
-        assertEquals(-28800000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Asia_Shanghai).asLong().longValue());
+        assertEquals(28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Etc_GMT_P8).asLong().longValue());
+        assertEquals(0l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.GMT).asLong().longValue());
+        assertEquals(0l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.UTC).asLong().longValue());
+        assertEquals(0l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Greenwich).asLong().longValue());
+        assertEquals(-28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Etc_GMT_M8).asLong().longValue());
+        assertEquals(-28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Hongkong).asLong().longValue());
+        assertEquals(-28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Asia_Hong_Kong).asLong().longValue());
+        assertEquals(-28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Asia_Taipei).asLong().longValue());
+        assertEquals(-28800000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Asia_Shanghai).asLong().longValue());
         //Singapore changed timezone from 1982-01-01 from +07:00 to +08:00
-        assertEquals(-27000000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Singapore).asLong().longValue());
-        assertEquals(-27000000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Asia_Singapore).asLong().longValue());
-        assertEquals(-32400000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Asia_Seoul).asLong().longValue());
-        assertEquals(-32400000l, DatetimeFactory.raw().timeZone(BaseTimeZone.Japan).asLong().longValue());
+        assertEquals(-27000000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Singapore).asLong().longValue());
+        assertEquals(-27000000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Asia_Singapore).asLong().longValue());
+        assertEquals(-32400000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Asia_Seoul).asLong().longValue());
+        assertEquals(-32400000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Japan).asLong().longValue());
 
         //Test dateformat
-        DatetimeBuilder t2 = DatetimeFactory.raw().ymd(2018, Month.JAN, 01).hmsms(13, 21, 33, 789);
+        DatetimeBuilder t2 = DatetimeFactory.instance().raw().ymd(2018, Month.JAN, 01).hmsms(13, 21, 33, 789);
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         cal.set(Calendar.YEAR,2018);
         cal.set(Calendar.MONTH,0);
@@ -104,7 +104,7 @@ public class TestTimeZone
     @Test
     public void testTimeZone(){
         Calendar cal = Calendar.getInstance(BaseTimeZone.Hongkong.timeZone());
-        DatetimeBuilder nowTime = DatetimeFactory.now().ymd(2019, Month.FEB, 27).hmsms(13, 34, 44, 888).timeZone(BaseTimeZone.Hongkong);
+        DatetimeBuilder nowTime = DatetimeFactory.instance().now().ymd(2019, Month.FEB, 27).hmsms(13, 34, 44, 888).timeZone(BaseTimeZone.Hongkong);
         cal.set(Calendar.YEAR, nowTime.view().year());
         cal.set(Calendar.MONTH, nowTime.view().month().toJavaCalNumber());
         cal.set(Calendar.DAY_OF_MONTH, nowTime.view().day());

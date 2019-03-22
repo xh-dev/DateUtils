@@ -18,7 +18,7 @@ public class DateInfoTest
     @Test
     public void extractDate(){
         DateInfo dateInfo =
-                DatetimeFactory.raw()
+                DatetimeFactory.instance().raw()
                         .hour(13).minute(23).second(34).ms(666)
                         .day(20).month(NOV).year(2078).view();
         assertEquals(2078,dateInfo.year().intValue());
@@ -31,7 +31,7 @@ public class DateInfoTest
     }
     @Test
     public void weekdayTest(){
-        DatetimeBuilder d20180506 = DatetimeFactory.raw().year(2018).month(MAY).day(6);
+        DatetimeBuilder d20180506 = DatetimeFactory.instance().raw().year(2018).month(MAY).day(6);
         assertEquals(Weekday.Sunday,d20180506.view().weekday());
         assertEquals(Weekday.Monday,d20180506.addDays(1).view().weekday());
         assertEquals(Weekday.Tuesday,d20180506.addDays(2).view().weekday());

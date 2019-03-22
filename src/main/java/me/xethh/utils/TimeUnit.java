@@ -92,11 +92,11 @@ public class TimeUnit {
     }
 
     public DatetimeBuilder asBuilder(){
-        return DatetimeFactory.from(diff);
+        return DatetimeFactory.instance().from(diff);
     }
 
     public Calendar asCalendar(){
-        Calendar d =Calendar.getInstance(DatetimeFactory.defaultTimezone());
+        Calendar d =Calendar.getInstance(DatetimeFactory.instance().defaultTimezone());
         d.setTimeInMillis(diff);
         return d;
     }
