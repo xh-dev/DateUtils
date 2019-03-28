@@ -4,7 +4,6 @@ import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateBuilderImpl;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import org.junit.Test;
 
@@ -161,6 +160,8 @@ public class DateBuilderImplTest {
         Date d2 = new Date();
         assertEquals(DateFormatBuilderImpl.get().year4Digit().hyphen().month2Digit().hyphen().day2Digit().build().format(d2)+"T00:00:00.000+0800",sdf.format(d1));
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
+        assertTrue(db.md(JUL,23).equals(db.md(JUL,23)));
+        assertFalse(db.md(AUG,23).equals(db.md(JUL,23)));
     }
 
 }

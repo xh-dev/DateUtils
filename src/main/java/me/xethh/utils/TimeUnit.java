@@ -5,6 +5,7 @@ import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author xethhung
@@ -212,6 +213,19 @@ public class TimeUnit {
     }
     public boolean roundUpSecond(){
         return (msOnly()>MS_BASE/2)?true:false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TimeUnit timeUnit = (TimeUnit) o;
+        return diff == timeUnit.diff;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(diff);
     }
 
     @Override

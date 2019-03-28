@@ -296,25 +296,7 @@ public class DatetimeBuilderImplTest {
         // T timeZone(final BaseTimeZone timeZone);
         // T timePartOnly();
         assertEquals("1970-01-01T12:33:55.999+0800",sdf.format(db.y(2999).day(30).hmsms(12,33,55,999).timePartOnly().asDate()));
-
-
-
-
-
-
-
         assertEquals("1971-02-02T01:01:01.001+0800",sdf.format(db.addYear(1).addMonths(1).addDays(1).addHours(1).addMins(1).addSecond(1).addMS(1).asDate()));
-
-
-
-
-
-
-
-
-
-
-
 
         Date d1 = db.now().asDate();
         Date d2 = new Date();
@@ -322,6 +304,9 @@ public class DatetimeBuilderImplTest {
 
         //Test if the db object is immutable
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
+
+        assertTrue(db.md(JUL,23).hmsms(1,20,30,500).equals(db.month(JUL).day(23).addHours(1).addMins(20).addSecond(30).addMS(500)));
+        assertFalse(db.md(JUL,24).hmsms(1,20,30,500).equals(db.month(JUL).day(23).addHours(1).addMins(20).addSecond(30).addMS(500)));
     }
 
 }

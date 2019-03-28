@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class DateBuilderImpl implements DateBuilder {
@@ -545,5 +546,18 @@ public class DateBuilderImpl implements DateBuilder {
     @Override
     public TimeUnit diffTo(Calendar date) {
         return builder.diffTo(date);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateBuilderImpl builder1 = (DateBuilderImpl) o;
+        return Objects.equals(builder, builder1.builder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(builder);
     }
 }
