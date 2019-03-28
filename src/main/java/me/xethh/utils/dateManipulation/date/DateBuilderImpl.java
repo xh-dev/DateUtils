@@ -224,7 +224,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public boolean laterEqualThan(Date date) {
-        return laterEqualThan(date);
+        return builder.laterEqualThan(date);
     }
 
     @Override
@@ -239,7 +239,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public boolean before(Date date) {
-        return builder.laterEqualThan(date);
+        return builder.before(date);
     }
 
     @Override
@@ -330,6 +330,26 @@ public class DateBuilderImpl implements DateBuilder {
     @Override
     public DatetimeRange rangeFrom(Calendar cal) {
         return builder.rangeFrom(cal);
+    }
+
+    @Override
+    public boolean sameDate(DateBuilder builder) {
+        return this.builder.sameDate(builder.asDatetimeBuilder());
+    }
+
+    @Override
+    public boolean sameDate(Long longDate) {
+        return builder.sameDate(longDate);
+    }
+
+    @Override
+    public boolean sameDate(Date date) {
+        return builder.sameDate(date);
+    }
+
+    @Override
+    public boolean sameDate(Calendar cal) {
+        return builder.sameDate(cal);
     }
 
     @Override
