@@ -224,6 +224,12 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     T timeZone(final TimeZone timeZone);
 
     @Override
+    T swrapTimeZone(final BaseTimeZone timeZone);
+
+    @Override
+    T swrapTimeZone(final TimeZone timeZone);
+
+    @Override
     T timePartOnly();
 
     DateBuilder asDateBuilder();

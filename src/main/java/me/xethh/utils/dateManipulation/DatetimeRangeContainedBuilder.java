@@ -252,6 +252,18 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
+    public DatetimeRangeContainedBuilder swrapTimeZone(BaseTimeZone timeZone) {
+        return swrapTimeZone(timeZone.timeZone());
+    }
+
+    @Override
+    public DatetimeRangeContainedBuilder swrapTimeZone(TimeZone timeZone) {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.swrapTimeZone(timeZone);
+        return bd;
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder maxDayTime() {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.maxDayTime();

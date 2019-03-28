@@ -110,6 +110,8 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     T timeZone(final BaseTimeZone timeZone);
     T timeZone(final TimeZone timeZone);
+    T swrapTimeZone(final BaseTimeZone timeZone);
+    T swrapTimeZone(final TimeZone timeZone);
 
     T timePartOnly();
 

@@ -299,6 +299,12 @@ public class DatetimeBuilderImplTest {
         assertEquals("1970-01-01T08:00:00.000+0800",sdf.format(db.timeZone(BaseTimeZone.UTC).asDate()));
         // T timeZone(final TimeZone timeZone);
         assertEquals("1970-01-01T08:00:00.000+0800",sdf.format(db.timeZone(TimeZone.getTimeZone("UTC")).asDate()));
+
+        // T swrapTimeZone(final BaseTimeZone timeZone);
+        // Extract time on Hong Kong timezone first and then swrap to UTC, and the +0800 is from dateformat
+        assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.timeZone(BaseTimeZone.Hongkong).swrapTimeZone(BaseTimeZone.UTC).asDate()));
+        // T timeZone(final TimeZone timeZone);
+        assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.timeZone(BaseTimeZone.Hongkong).swrapTimeZone(TimeZone.getTimeZone("UTC")).asDate()));
         // T timePartOnly();
         assertEquals("1970-01-01T12:33:55.999+0800",sdf.format(db.y(2999).day(30).hmsms(12,33,55,999).timePartOnly().asDate()));
         assertEquals("1971-02-02T01:01:01.001+0800",sdf.format(db.addYear(1).addMonths(1).addDays(1).addHours(1).addMins(1).addSecond(1).addMS(1).asDate()));
