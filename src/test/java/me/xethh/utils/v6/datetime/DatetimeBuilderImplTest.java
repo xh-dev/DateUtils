@@ -5,6 +5,7 @@ import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -294,6 +295,10 @@ public class DatetimeBuilderImplTest {
         assertEquals("1969-12-31T23:59:59.990+0800",sdf.format(db.addMS(-10).asDate()));
         assertEquals("1969-12-31T23:59:59.999+0800",sdf.format(db.addMS(-1).asDate()));
         // T timeZone(final BaseTimeZone timeZone);
+        // Extract time on time UTC instead of HKD or default timezone, and the +0800 is from dateformat
+        assertEquals("1970-01-01T08:00:00.000+0800",sdf.format(db.timeZone(BaseTimeZone.UTC).asDate()));
+        // T timeZone(final TimeZone timeZone);
+        assertEquals("1970-01-01T08:00:00.000+0800",sdf.format(db.timeZone(TimeZone.getTimeZone("UTC")).asDate()));
         // T timePartOnly();
         assertEquals("1970-01-01T12:33:55.999+0800",sdf.format(db.y(2999).day(30).hmsms(12,33,55,999).timePartOnly().asDate()));
         assertEquals("1971-02-02T01:01:01.001+0800",sdf.format(db.addYear(1).addMonths(1).addDays(1).addHours(1).addMins(1).addSecond(1).addMS(1).asDate()));

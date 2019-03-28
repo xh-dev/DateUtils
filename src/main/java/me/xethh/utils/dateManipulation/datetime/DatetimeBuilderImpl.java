@@ -3,6 +3,7 @@ package me.xethh.utils.dateManipulation.datetime;
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
+import me.xethh.utils.dateManipulation.buildInterfaces.CalendarTimeBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
@@ -321,6 +322,17 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
             @Override
             public Calendar apply(Calendar cal) {
                 cal.setTimeZone(timeZone.timeZone());
+                return cal;
+            }
+        });
+    }
+
+    @Override
+    public DatetimeBuilder timeZone(final TimeZone timeZone) {
+        return DatetimeFactory.instance().from(cal, new Build() {
+            @Override
+            public Calendar apply(Calendar cal) {
+                cal.setTimeZone(timeZone);
                 return cal;
 
             }

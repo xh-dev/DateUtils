@@ -10,6 +10,7 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
         extends
@@ -218,6 +219,9 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
 
     @Override
     T timeZone(final BaseTimeZone timeZone);
+
+    @Override
+    T timeZone(final TimeZone timeZone);
 
     @Override
     T timePartOnly();

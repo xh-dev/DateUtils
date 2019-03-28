@@ -4,6 +4,7 @@ import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     T hmsms(int hour, int minute, int second, int mSecond);
@@ -108,6 +109,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     T addMS(final int ms);
 
     T timeZone(final BaseTimeZone timeZone);
+    T timeZone(final TimeZone timeZone);
 
     T timePartOnly();
 
