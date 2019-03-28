@@ -5,7 +5,7 @@ import me.xethh.utils.TimeUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-public interface TImeUnitConverter {
+public interface TimeUnitConverter {
     TimeUnit diffFrom(Date date);
     TimeUnit diffTo(Date date);
     TimeUnit diffFrom(long date);

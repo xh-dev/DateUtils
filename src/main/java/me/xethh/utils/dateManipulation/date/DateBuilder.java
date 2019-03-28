@@ -5,7 +5,7 @@ import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
 import me.xethh.utils.dateManipulation.buildInterfaces.CommonDateRepresentation;
 import me.xethh.utils.dateManipulation.buildInterfaces.FormatterBuilder;
-import me.xethh.utils.dateManipulation.buildInterfaces.TImeUnitConverter;
+import me.xethh.utils.dateManipulation.buildInterfaces.TimeUnitConverter;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
@@ -17,7 +17,7 @@ public interface DateBuilder<T extends DateBuilder<T>>
         extends
         CalendarDateBuilder<T>,
         CommonDateRepresentation,
-        TImeUnitConverter,
+        TimeUnitConverter,
         FormatterBuilder
 {
     @Override
@@ -115,6 +115,11 @@ public interface DateBuilder<T extends DateBuilder<T>>
     DatetimeRange rangeFrom(Date date);
     DatetimeRange rangeFrom(Long dateLong);
     DatetimeRange rangeFrom(Calendar cal);
+
+    boolean sameDate(DateBuilder builder);
+    boolean sameDate(Long longDate);
+    boolean sameDate(Date date);
+    boolean sameDate(Calendar cal);
 
     boolean sameYear(DateBuilder builder);
     boolean sameYear(DatetimeBuilder builder);

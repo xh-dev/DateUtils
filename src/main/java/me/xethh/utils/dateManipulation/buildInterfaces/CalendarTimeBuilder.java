@@ -69,6 +69,9 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      */
     T minDayTime();
 
+    boolean sameDatetime(Long longDate);
+    boolean sameDatetime(Date date);
+    boolean sameDatetime(Calendar cal);
     boolean sameTime(Long dateLong);
     boolean sameTime(Date date);
     boolean sameTime(Calendar calendar);

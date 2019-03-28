@@ -15,7 +15,7 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
         extends
         CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
         CommonDateRepresentation,
-        TImeUnitConverter,
+        TimeUnitConverter,
         FormatterBuilder
 {
     @Override
@@ -172,9 +172,17 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     DatetimeRange rangeFrom(Calendar cal);
 
     //Compare operation
+    boolean sameDate(DatetimeBuilder builder);
+    boolean sameDate(Long longDate);
+    boolean sameDate(Date date);
+    boolean sameDate(Calendar cal);
+
     boolean sameDatetime(DatetimeBuilder builder);
+    @Override
     boolean sameDatetime(Long longDate);
+    @Override
     boolean sameDatetime(Date date);
+    @Override
     boolean sameDatetime(Calendar cal);
 
     boolean sameYear(DatetimeBuilder builder);

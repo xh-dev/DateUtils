@@ -372,6 +372,26 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
+    public boolean sameDate(DatetimeBuilder builder) {
+        return this.builder.sameDate(builder);
+    }
+
+    @Override
+    public boolean sameDate(Long longDate) {
+        return this.builder.sameDate(longDate);
+    }
+
+    @Override
+    public boolean sameDate(Date date) {
+        return this.builder.sameDate(date);
+    }
+
+    @Override
+    public boolean sameDate(Calendar cal) {
+        return this.builder.sameDate(cal);
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder addYear(int years) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.addYear(years);

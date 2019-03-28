@@ -74,6 +74,10 @@ public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     boolean sameDay(Date date);
     boolean sameDay(Calendar cal);
 
+    boolean sameDate(Long longDate);
+    boolean sameDate(Date date);
+    boolean sameDate(Calendar cal);
+
     boolean laterThan(Date date);
     boolean laterThan(Long longDate);
     boolean laterThan(Calendar calendar);
