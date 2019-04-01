@@ -74,7 +74,7 @@ public class DatetimeFactory {
     }
 
     public DatetimeRange rangeOnNow(){
-        return now().rangeTo(now());
+        return rangeOn(now());
     }
     public DatetimeRange rangeOn(DatetimeBuilder datetimeBuilder){
         return datetimeBuilder.rangeToSelf();

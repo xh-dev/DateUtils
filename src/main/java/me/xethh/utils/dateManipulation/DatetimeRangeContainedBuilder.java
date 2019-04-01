@@ -163,7 +163,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     @Override
     public DatetimeRangeContainedBuilder maxHour() {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
-        bd.builder.maxHour();
+        bd.builder = bd.builder.maxHour();
         return bd;
     }
 
