@@ -315,7 +315,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public DatetimeRange rangeToSelf() {
-        return builder.rangeTo(builder.asDate());
+        return builder.minDayTime().rangeTo(builder.maxDayTime().asDate());
     }
 
     @Override

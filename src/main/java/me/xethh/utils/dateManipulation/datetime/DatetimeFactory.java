@@ -63,6 +63,9 @@ public class DatetimeFactory {
     public DatetimeBuilderImpl from(Calendar cal, Build build){
         return new DatetimeBuilderImpl(cal,build);
     }
+    public DatetimeBuilderImpl from(Long longDate, Build build){
+        return new DatetimeBuilderImpl(from(longDate).asCalendar(),build);
+    }
     public DatetimeBuilderImpl now(){
         return new DatetimeBuilderImpl(timeZone, new Date());
     }

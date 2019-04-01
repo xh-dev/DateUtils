@@ -230,4 +230,5 @@ public interface DateFormatBuilder<X extends DateFormatBuilder> {
     X timeZone(TimeZone timeZone);
 
     SimpleDateFormat build();
+
 }

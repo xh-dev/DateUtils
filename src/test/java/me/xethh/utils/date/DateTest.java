@@ -474,8 +474,8 @@ public class DateTest
 
         dr = DateFactory.now().ymd(2019,JAN,1).rangeToSelf();
         assertTrue(dr.isValid());
-        assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.endAsDate()));
         assertEquals("2019-01-01 00:00:00.000",fmt.format(dr.startAsDate()));
+        assertEquals("2019-01-01 23:59:59.999",fmt.format(dr.endAsDate()));
     }
 
     @Test

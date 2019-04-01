@@ -51,7 +51,7 @@ public class DateFactory {
     }
 
     public static DatetimeRange rangeOnNow(){
-        return DatetimeFactory.instance().now().rangeTo(DatetimeFactory.instance().now());
+        return DatetimeFactory.instance().now().minDayTime().rangeTo(DatetimeFactory.instance().now().maxDayTime());
     }
     public static DatetimeRange rangeOn(DateBuilder dateBuilder){
         return dateBuilder.rangeToSelf();
