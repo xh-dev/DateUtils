@@ -1,4 +1,4 @@
-package me.xethh.utils;
+package me.xethh.utils.v6.operations;
 
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
