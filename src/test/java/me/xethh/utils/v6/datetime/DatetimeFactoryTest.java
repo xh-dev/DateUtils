@@ -14,6 +14,7 @@ import java.util.Calendar;
 import static org.junit.Assert.assertEquals;
 
 public class DatetimeFactoryTest {
+
     @Test
     public void datetimeFactoryDefaultTest(){
         DatetimeFactory df = DatetimeFactory.instance();

@@ -6,6 +6,7 @@ import me.xethh.utils.dateManipulation.buildInterfaces.DatetimeContainerWrapper;
 import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
 import java.util.*;
@@ -30,6 +31,9 @@ public class DatetimeFactory {
         this.timeZone = TimeZone.getDefault();
         addDatetimeMap(this);
     }
+    public static DatetimeFactory instance(BaseTimeZone baseTimeZone){
+        return instance(baseTimeZone.timeZone());
+    }
     public static DatetimeFactory instance(TimeZone timeZone){
         if(factoryMap.get(timeZone)==null){
             return new DatetimeFactory(timeZone);
@@ -44,6 +48,9 @@ public class DatetimeFactory {
     public static DatetimeFactory instance(){
         if(_instance==null)
             _instance = new DatetimeFactory();
+        else if(!_instance.getTimeZone().equals(TimeZone.getDefault())){
+            _instance = instance(TimeZone.getDefault());
+        }
         return _instance;
     }
 
@@ -131,5 +138,30 @@ public class DatetimeFactory {
     }
     public <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Long longDate, E parent){
         return (T) from(new Date(longDate),parent);
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    public static DatetimeFactory get_instance() {
+        return _instance;
+    }
+
+    public static Map<TimeZone, DatetimeFactory> getFactoryMap() {
+        return factoryMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DatetimeFactory that = (DatetimeFactory) o;
+        return timeZone.equals(that.timeZone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeZone);
     }
 }

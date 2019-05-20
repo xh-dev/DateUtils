@@ -8,16 +8,54 @@ import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author xethhung
  * Created on 7/19/2018
  */
 public class DateFactory {
+    protected DateFactory(TimeZone timezone){
+        this.timeZone = timezone;
+    }
+    public static DateFactory _instance;
+    private TimeZone timeZone;
+    private static Map<TimeZone, DateFactory> factoryMap = new WeakHashMap<>();
+    public static DateFactory instance(BaseTimeZone baseTimezone){
+        return instance(baseTimezone.timeZone());
+    }
+    public static DateFactory instance(TimeZone timezone){
+        return new DateFactory(timezone);
+    }
+    public static DateFactory instance(){
+        if(_instance==null){
+            return new DateFactory(TimeZone.getDefault());
+        }
+        else if(!_instance.getTimeZone().equals(TimeZone.getDefault())){
+            _instance = instance(TimeZone.getDefault());
+        }
+        return _instance;
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateFactory that = (DateFactory) o;
+        return timeZone.equals(that.timeZone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeZone);
+    }
 
     public static DateBuilder from(DatetimeBuilder date){
         return new DateBuilderImpl(date);
