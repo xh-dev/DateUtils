@@ -27,7 +27,7 @@ public class DateTest
     @Test
     public void extractDate(){
         DateBuilderImpl builder = new DateBuilderImpl();
-        DatetimeBuilderImpl nowTime = DatetimeFactory.instance().from(new Date());
+        DatetimeBuilder nowTime = DatetimeFactory.instance().from(new Date());
         DateBuilder nowDate = builder.now();
         assertEquals(nowTime.view().year(), nowDate.view().year());
         assertEquals(nowTime.view().month(), nowDate.view().month());

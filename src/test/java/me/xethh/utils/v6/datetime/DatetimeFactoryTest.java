@@ -2,6 +2,7 @@ package me.xethh.utils.v6.datetime;
 
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
@@ -17,7 +18,7 @@ public class DatetimeFactoryTest {
     public void datetimeFactoryDefaultTest(){
         DatetimeFactory df = DatetimeFactory.instance();
         SimpleDateFormat sdf = DateFormatBuilderImpl.ISO8601();
-        DatetimeBuilderImpl db = df.raw();
+        DatetimeBuilder db = df.raw();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
         DatetimeBuilderImpl dateBuilder = new DatetimeBuilderImpl(df.defaultTimezone());
 

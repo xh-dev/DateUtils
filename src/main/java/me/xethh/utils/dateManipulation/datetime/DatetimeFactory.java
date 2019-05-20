@@ -47,29 +47,29 @@ public class DatetimeFactory {
         return _instance;
     }
 
-    public DatetimeBuilderImpl from(Date date){
+    public DatetimeBuilder from(Date date){
         return new DatetimeBuilderImpl(timeZone, date);
     }
-    public DatetimeBuilderImpl from(Date date, Build build){
+    public DatetimeBuilder from(Date date, Build build){
         DatetimeBuilderImpl builder = new DatetimeBuilderImpl(timeZone,date);
         return from(builder.asCalendar(),build);
     }
-    public DatetimeBuilderImpl raw(){
+    public DatetimeBuilder raw(){
         return new DatetimeBuilderImpl(timeZone);
     }
-    public DatetimeBuilderImpl from(Calendar cal){
+    public DatetimeBuilder from(Calendar cal){
         return new DatetimeBuilderImpl(cal);
     }
-    public DatetimeBuilderImpl from(Calendar cal, Build build){
+    public DatetimeBuilder from(Calendar cal, Build build){
         return new DatetimeBuilderImpl(cal,build);
     }
-    public DatetimeBuilderImpl from(Long longDate, Build build){
+    public DatetimeBuilder from(Long longDate, Build build){
         return new DatetimeBuilderImpl(from(longDate).asCalendar(),build);
     }
-    public DatetimeBuilderImpl now(){
+    public DatetimeBuilder now(){
         return new DatetimeBuilderImpl(timeZone, new Date());
     }
-    public DatetimeBuilderImpl from(Long longDate){
+    public DatetimeBuilder from(Long longDate){
         return from(new Date(longDate));
     }
 

@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.range;
 
+import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.rangeManipulation.AcceptingFilter;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class RangeFilterTest {
     @Test
     public void testAcceptingFilter(){
-        DatetimeBuilderImpl db1 = DatetimeFactory.instance().now();
+        DatetimeBuilder db1 = DatetimeFactory.instance().now();
 
         // 0 to 2
         DatetimeRange dbSame = db1.rangeTo(db1.addDays(2));
@@ -135,7 +136,7 @@ public class RangeFilterTest {
 
     @Test
     public void testRejectingFilter(){
-        DatetimeBuilderImpl db1 = DatetimeFactory.instance().now();
+        DatetimeBuilder db1 = DatetimeFactory.instance().now();
 
         // 0.1 to 1.1
         DatetimeRange dbCovering = db1.addHours(1).rangeTo(db1.addDays(1).addHours(1));
