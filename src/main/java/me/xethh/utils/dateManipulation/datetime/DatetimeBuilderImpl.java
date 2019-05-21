@@ -41,12 +41,12 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         this(timeZone);
         cal.setTime(date);
     }
-    public DatetimeBuilderImpl(Calendar cal){
-        this(cal.getTimeZone());
+    protected DatetimeBuilderImpl(TimeZone timeZone, Calendar cal){
+        this(timeZone);
         this.cal = (Calendar) cal.clone();
     }
-    public DatetimeBuilderImpl(Calendar cal, Build build){
-        this(cal);
+    protected DatetimeBuilderImpl(TimeZone timeZone, Calendar cal, Build build){
+        this(timeZone, cal);
         build.apply(this.cal);
     }
 
@@ -504,7 +504,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
      */
     @Override
     public DatetimeBuilder addYear(final int years){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,years);
@@ -515,7 +515,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder lastYear(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,-1);
@@ -526,7 +526,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder nextYear(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.YEAR,1);
@@ -537,7 +537,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder lastMonth(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,-1);
@@ -548,7 +548,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder nextMonth(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,1);
@@ -559,7 +559,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder addMonths(final int months){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MONTH,months);
@@ -571,7 +571,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addDays(final int days){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,days);
@@ -582,7 +582,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder yesterday(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,-1);
@@ -593,7 +593,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
     @Override
     public DatetimeBuilder tomorrow(){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.DAY_OF_MONTH,1);
@@ -650,7 +650,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addTime(final long time){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.setTimeInMillis(cal.getTimeInMillis()+time);
@@ -662,7 +662,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addHours(final int hours){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.HOUR_OF_DAY,hours);
@@ -674,7 +674,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addMins(final int mins){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MINUTE,mins);
@@ -686,7 +686,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addSecond(final int sec){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.SECOND,sec);
@@ -698,7 +698,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeBuilder addMS(final int ms){
-        return new DatetimeBuilderImpl(asCalendar(), new Build(){
+        return new DatetimeBuilderImpl(asCalendar().getTimeZone(), asCalendar(), new Build(){
             @Override
             public Calendar apply(Calendar cal) {
                 cal.add(Calendar.MILLISECOND,ms);

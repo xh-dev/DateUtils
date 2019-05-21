@@ -64,17 +64,17 @@ public class DatetimeFactory {
     public DatetimeBuilder raw(){
         return new DatetimeBuilderImpl(timeZone);
     }
-    public DatetimeBuilder from(Calendar cal){
-        return new DatetimeBuilderImpl(cal);
-    }
-    public DatetimeBuilder from(Calendar cal, Build build){
-        return new DatetimeBuilderImpl(cal,build);
-    }
-    public DatetimeBuilder from(Long longDate, Build build){
-        return new DatetimeBuilderImpl(from(longDate).asCalendar(),build);
-    }
     public DatetimeBuilder now(){
         return new DatetimeBuilderImpl(timeZone, new Date());
+    }
+    public DatetimeBuilder from(Calendar cal){
+        return new DatetimeBuilderImpl(timeZone, cal);
+    }
+    public DatetimeBuilder from(Calendar cal, Build build){
+        return new DatetimeBuilderImpl(timeZone, cal,build);
+    }
+    public DatetimeBuilder from(Long longDate, Build build){
+        return new DatetimeBuilderImpl(timeZone, from(longDate).asCalendar(),build);
     }
     public DatetimeBuilder from(Long longDate){
         return from(new Date(longDate));
