@@ -5,6 +5,7 @@ import me.xethh.utils.dateManipulation.Weekday;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     T y(int year);
@@ -90,4 +91,6 @@ public interface CalendarDateBuilder <T extends CalendarDateBuilder<T>>{
     boolean beforeEqual(Date date);
     boolean beforeEqual(Long longDate);
     boolean beforeEqual(Calendar calendar);
+
+    TimeZone getTimeZone();
 }

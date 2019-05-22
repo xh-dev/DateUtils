@@ -4,6 +4,7 @@ import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
 import me.xethh.utils.dateManipulation.buildInterfaces.DatetimeContainerWrapper;
 import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
@@ -78,6 +79,12 @@ public class DatetimeFactory {
     }
     public DatetimeBuilder from(Long longDate){
         return from(new Date(longDate));
+    }
+    public DatetimeBuilder from(DatetimeBuilder db){
+        return new DatetimeBuilderImpl(db.getTimeZone(), db.asCalendar());
+    }
+    public DatetimeBuilder from(DateBuilder db){
+        return new DatetimeBuilderImpl(db.getTimeZone(), db.asCalendar());
     }
 
     public DatetimeRange rangeOnNow(){

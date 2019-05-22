@@ -1,9 +1,9 @@
 package me.xethh.utils.dateManipulation.datetime;
 
 import me.xethh.utils.TimeUnit;
-import me.xethh.utils.dateManipulation.*;
+import me.xethh.utils.dateManipulation.Month;
+import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
-import me.xethh.utils.dateManipulation.buildInterfaces.CalendarTimeBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
@@ -17,7 +17,9 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import static me.xethh.utils.dateManipulation.Weekday.Saturday;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
@@ -1007,4 +1009,8 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         return "DatetimeBuilder[" +DateFormatBuilder.Format.ISO8601.getFormatter().format(asDate())+']';
     }
 
+    @Override
+    public TimeZone getTimeZone(){
+        return cal.getTimeZone();
+    }
 }

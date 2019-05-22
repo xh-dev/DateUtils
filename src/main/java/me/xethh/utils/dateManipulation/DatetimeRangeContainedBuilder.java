@@ -757,6 +757,11 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
+    public TimeZone getTimeZone() {
+        return builder.getTimeZone();
+    }
+
+    @Override
     public TimeUnit diffFrom(Date date) {
         return builder.diffFrom(date);
     }

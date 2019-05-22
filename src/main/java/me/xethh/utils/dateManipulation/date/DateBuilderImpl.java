@@ -269,6 +269,11 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
+    public TimeZone getTimeZone() {
+        return asCalendar().getTimeZone();
+    }
+
+    @Override
     public DateBuilder now() {
         return new DateBuilderImpl(builder.now());
     }
