@@ -6,7 +6,6 @@ import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +25,7 @@ public class DatetimeFactoryTest {
 
         assertEquals("2088-01-14T20:11:44.777+0800",
                 sdf.format(df.from(
-                        dateBuildersr.ymd(2088, Month.JAN, 14).hmsms(20,11,44,777).asCalendar()
+                        dateBuilder.ymd(2088, Month.JAN, 14).hmsms(20,11,44,777).asCalendar()
                 ).asDate())
         );
 
