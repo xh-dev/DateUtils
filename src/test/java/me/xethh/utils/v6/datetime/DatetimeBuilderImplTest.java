@@ -4,6 +4,7 @@ import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class DatetimeBuilderImplTest {
     @Test
     public void normalTest(){
         DatetimeBuilder db = new DatetimeBuilderImpl(TimeZone.getDefault());
-        SimpleDateFormat sdf = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
         assertEquals("1971-02-02T00:00:00.000+0800",sdf.format(db.addYear(1).addMonths(1).addDays(1).asDate()));
 
@@ -157,7 +158,7 @@ public class DatetimeBuilderImplTest {
     @Test
     public void normalTest_Time(){
         DatetimeBuilder db = new DatetimeBuilderImpl(TimeZone.getDefault());
-        SimpleDateFormat sdf = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
 
 
@@ -204,7 +205,7 @@ public class DatetimeBuilderImplTest {
         // T minDayTime();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.hmsms(23,34,55,999).minDayTime().asDate()));
 
-        sdf = DateFormatBuilderImpl.ISO8601();
+        sdf = DateFormatBuilderFactory.ISO8601();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
         // boolean sameDatetime(Long longDate);
         assertTrue(db.md(JUL,23).hmsms(1,20,30,500).sameDatetime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asLong()));

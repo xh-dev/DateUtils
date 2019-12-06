@@ -4,6 +4,7 @@ import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import org.junit.Test;
@@ -215,7 +216,7 @@ public class DateOperationTest
 
     @Test
     public void testMaxMinDayTime(){
-        SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat sdfx = DateFormatBuilderFactory.ISO8601();
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",sdfx.format(d.asDate()));
         assertEquals("1988-01-02T00:00:00.000+0800",sdfx.format(d.minDayTime().asDate()));
@@ -226,7 +227,7 @@ public class DateOperationTest
 
     @Test
     public void testFormattingWithTimezone(){
-        SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat baseFormat = DateFormatBuilderFactory.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T05:11:33.888+0000",d.format(BaseTimeZone.UTC.timeZone(),formatEnum.format()));
@@ -242,7 +243,7 @@ public class DateOperationTest
     }
     @Test
     public void testFormatting(){
-        SimpleDateFormat baseFormat = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat baseFormat = DateFormatBuilderFactory.ISO8601();
         DateFormatBuilder.Format formatEnum = DateFormatBuilder.Format.ISO8601;
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02T13:11:33.888+0800",d.format(formatEnum.format()));
@@ -254,7 +255,7 @@ public class DateOperationTest
     }
     @Test
     public void testSqlDate(){
-        SimpleDateFormat sdfx = DateFormatBuilderImpl.ISO8601();
+        SimpleDateFormat sdfx = DateFormatBuilderFactory.ISO8601();
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(1988,JAN,02).hmsms(13,11,33,888);
         assertEquals("1988-01-02",d.asSqlDate().toString());
         assertEquals("13:11:33",d.asSqlTime().toString());

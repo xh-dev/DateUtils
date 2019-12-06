@@ -5,6 +5,7 @@ import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 
 import java.text.SimpleDateFormat;
@@ -71,19 +72,19 @@ public class DateInfo {
         return asDate().getTime();
     }
     public String asNumberDatetime(){
-        return DateFormatBuilderImpl.NUMBER_DATETIME().format(asDate());
+        return DateFormatBuilderFactory.NUMBER_DATETIME().format(asDate());
     }
     public String asNumberDate(){
-        return DateFormatBuilderImpl.NUMBER_DATE().format(asDate());
+        return DateFormatBuilderFactory.NUMBER_DATE().format(asDate());
     }
     public String asSimpleDateTime(){
-        return DateFormatBuilderImpl.SIMPLE_DATETIME().format(asDate());
+        return DateFormatBuilderFactory.SIMPLE_DATETIME().format(asDate());
     }
     public String asSimpleDate(){
-        return DateFormatBuilderImpl.SIMPLE_DATE().format(asDate());
+        return DateFormatBuilderFactory.SIMPLE_DATE().format(asDate());
     }
     public String asISO8601(){
-        return DateFormatBuilderImpl.ISO8601().format(asDate());
+        return DateFormatBuilderFactory.ISO8601().format(asDate());
     }
     public String asFormat(DateFormatBuilder builder){
         return asFormat(builder.build());

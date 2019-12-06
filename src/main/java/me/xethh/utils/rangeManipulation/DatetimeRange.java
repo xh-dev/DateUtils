@@ -6,6 +6,7 @@ import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 
 import java.util.Date;
@@ -82,7 +83,7 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
 
     @Override
     public String toString() {
-        return String.format("DatetimeRange[%s to %s]", DateFormatBuilderImpl.ISO8601().format(start),DateFormatBuilderImpl.ISO8601().format(end));
+        return String.format("DatetimeRange[%s to %s]", DateFormatBuilderFactory.ISO8601().format(start),DateFormatBuilderFactory.ISO8601().format(end));
     }
 
     public boolean timeInRange(Date date){
