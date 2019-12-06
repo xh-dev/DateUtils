@@ -336,12 +336,12 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
 
     @Override
-    public DatetimeBuilder swrapTimeZone(BaseTimeZone timeZone) {
-        return swrapTimeZone(timeZone.timeZone());
+    public DatetimeBuilder swapTimeZone(BaseTimeZone timeZone) {
+        return swapTimeZone(timeZone.timeZone());
     }
 
     @Override
-    public DatetimeBuilder swrapTimeZone(final TimeZone timeZone) {
+    public DatetimeBuilder swapTimeZone(final TimeZone timeZone) {
         return DatetimeFactory.instance().from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {

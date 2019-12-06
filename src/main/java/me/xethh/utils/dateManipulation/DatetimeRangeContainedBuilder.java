@@ -252,14 +252,14 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
-    public DatetimeRangeContainedBuilder swrapTimeZone(BaseTimeZone timeZone) {
-        return swrapTimeZone(timeZone.timeZone());
+    public DatetimeRangeContainedBuilder swapTimeZone(BaseTimeZone timeZone) {
+        return swapTimeZone(timeZone.timeZone());
     }
 
     @Override
-    public DatetimeRangeContainedBuilder swrapTimeZone(TimeZone timeZone) {
+    public DatetimeRangeContainedBuilder swapTimeZone(TimeZone timeZone) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
-        bd.builder=bd.builder.swrapTimeZone(timeZone);
+        bd.builder=bd.builder.swapTimeZone(timeZone);
         return bd;
     }
 
