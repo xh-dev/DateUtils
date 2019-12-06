@@ -62,7 +62,7 @@ public class TimeUnit {
     }
     private long diff;
 
-    protected TimeUnit(long diff){
+    public TimeUnit(long diff){
         this.diff = diff;
     }
 
