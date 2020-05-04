@@ -13,17 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestCommonDateRepresentation {
-    public static <T extends CommonDateRepresentation> void test(T db){
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2020);
-        cal.set(Calendar.MONTH, MAY.toJavaCalNumber());
-        cal.set(Calendar.DAY_OF_MONTH, 12);
-
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        Date d = cal.getTime();
+    public static <T extends CommonDateRepresentation> void test(T db, Date d){
 
         assertTrue(db.asDate().getTime() == d.getTime());
         assertTrue(db.asCalendar().getTimeInMillis() == d.getTime());
