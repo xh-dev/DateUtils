@@ -3,6 +3,7 @@ package me.xethh.utils.dateManipulation.date;
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
+import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
@@ -44,6 +45,11 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
+    public DateBuilder m(Month month) {
+        return new DateBuilderImpl(builder.m(month));
+    }
+
+    @Override
     public DateBuilder ym(int year, Month month) {
         return new DateBuilderImpl(builder.ym(year,month));
     }
@@ -56,6 +62,11 @@ public class DateBuilderImpl implements DateBuilder {
     @Override
     public DateBuilder ymd(int year, Month month, int day) {
         return new DateBuilderImpl(builder.ymd(year, month, day));
+    }
+
+    @Override
+    public DateBuilder d(int day) {
+        return new DateBuilderImpl(builder.d(day));
     }
 
     @Override
@@ -76,6 +87,11 @@ public class DateBuilderImpl implements DateBuilder {
     @Override
     public DateBuilder month(Month month) {
         return new DateBuilderImpl(builder.month(month));
+    }
+
+    @Override
+    public DateBuilder maxMonth() {
+        return new DateBuilderImpl(builder.maxMonth());
     }
 
     @Override
@@ -144,13 +160,13 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
-    public DateBuilder nextWeekday(Weekday day) {
-        return new DateBuilderImpl(builder.nextWeekday(day));
+    public DateBuilder nextWeekday(Weekday startDay) {
+        return new DateBuilderImpl(builder.nextWeekday(startDay));
     }
 
     @Override
-    public DateBuilder prevWeekday(Weekday day) {
-        return new DateBuilderImpl(builder.prevWeekday(day));
+    public DateBuilder prevWeekday(Weekday startDay) {
+        return new DateBuilderImpl(builder.prevWeekday(startDay));
     }
 
     @Override
@@ -519,13 +535,18 @@ public class DateBuilderImpl implements DateBuilder {
     }
 
     @Override
+    public String format(TimeZone timeZone, DateFormatBuilder fmtBuilder) {
+        return builder.format(timeZone, fmtBuilder);
+    }
+
+    @Override
     public String format(TimeZone timeZone, SimpleDateFormat fmt) {
         return builder.format(timeZone,fmt);
     }
 
     @Override
     public TimeUnit diffFrom(Date date) {
-        return builder.diffTo(date);
+        return builder.diffFrom(date);
     }
 
     @Override
@@ -540,12 +561,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public TimeUnit diffTo(long date) {
-        return diffTo(date);
+        return builder.diffTo(date);
     }
 
     @Override
     public TimeUnit diffFrom(Calendar date) {
-        return diffFrom(date);
+        return builder.diffFrom(date);
     }
 
     @Override

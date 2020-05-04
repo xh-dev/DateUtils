@@ -13,6 +13,10 @@ import me.xethh.utils.rangeManipulation.DatetimeRange;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * DateBuilder interface ind
+ * @param <T>
+ */
 public interface DateBuilder<T extends DateBuilder<T>>
         extends
         CalendarDateBuilder<T>,
@@ -84,10 +88,10 @@ public interface DateBuilder<T extends DateBuilder<T>>
     T tomorrow();
 
     @Override
-    T nextWeekday(Weekday day);
+    T nextWeekday(Weekday startDay);
 
     @Override
-    T prevWeekday(Weekday day);
+    T prevWeekday(Weekday startDay);
 
     @Override
     T startOfWeek(Weekday startDay);

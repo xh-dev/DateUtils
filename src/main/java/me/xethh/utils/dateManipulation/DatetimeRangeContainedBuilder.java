@@ -49,6 +49,13 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
+    public DatetimeRangeContainedBuilder m(Month month) {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.m(month);
+        return bd;
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder ym(int year, Month month) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.ym(year,month);
@@ -66,6 +73,13 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     public DatetimeRangeContainedBuilder ymd(int year, Month month, int day) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.ymd(year,month,day);
+        return bd;
+    }
+
+    @Override
+    public DatetimeRangeContainedBuilder d(int day) {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.d(day);
         return bd;
     }
 
@@ -122,6 +136,13 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     public DatetimeRangeContainedBuilder month(Month month) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.month(month);
+        return bd;
+    }
+
+    @Override
+    public DatetimeRangeContainedBuilder maxMonth() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.maxMonth();
         return bd;
     }
 
@@ -474,16 +495,16 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     }
 
     @Override
-    public DatetimeRangeContainedBuilder nextWeekday(Weekday day) {
+    public DatetimeRangeContainedBuilder nextWeekday(Weekday startDay) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
-        bd.builder=bd.builder.nextWeekday(day);
+        bd.builder=bd.builder.nextWeekday(startDay);
         return bd;
     }
 
     @Override
-    public DatetimeRangeContainedBuilder prevWeekday(Weekday day) {
+    public DatetimeRangeContainedBuilder prevWeekday(Weekday startDay) {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
-        bd.builder=bd.builder.prevWeekday(day);
+        bd.builder=bd.builder.prevWeekday(startDay);
         return bd;
     }
 
@@ -834,6 +855,11 @@ public class DatetimeRangeContainedBuilder implements DatetimeContainerWrapper<D
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
         return this.format(timeZone,format);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilder fmtBuilder) {
+        return this.format(timeZone, fmtBuilder.build());
     }
 
     @Override

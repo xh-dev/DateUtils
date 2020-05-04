@@ -1,15 +1,24 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
+import me.xethh.utils.dateManipulation.date.DateBuilder;
+import me.xethh.utils.dateManipulation.date.DateBuilderImpl;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
+import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.v6.date.TestCalendarDateBuilder;
+import me.xethh.utils.v6.date.TestCommonDateRepresentation;
+import me.xethh.utils.v6.date.TestFormatBuilder;
+import me.xethh.utils.v6.date.TestTimeUnitConverter;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -321,4 +330,34 @@ public class DatetimeBuilderImplTest {
         assertFalse(db.md(JUL,24).hmsms(1,20,30,500).equals(db.month(JUL).day(23).addHours(1).addMins(20).addSecond(30).addMS(500)));
     }
 
+
+    @Test
+    public void testFormatterBuilder() {
+        DatetimeBuilder db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1,2,3,4);
+        TestFormatBuilder.test(db);
+    }
+
+    @Test
+    public void testTimeUnitConverter() {
+        DatetimeBuilder db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1,2,3,4);
+        TestTimeUnitConverter.test(db);
+    }
+
+    @Test
+    public void testCommonDateRepresentation() {
+        DatetimeBuilder db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1,2,3,4);
+        TestCommonDateRepresentation.test(db);
+    }
+
+    @Test
+    public void testCalendarDateBuilder() {
+        DatetimeBuilderImpl db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone());
+        TestCalendarDateBuilder.test(db);
+    }
+
+    @Test
+    public void testCalendarTimeBuilder(){
+        DatetimeBuilder builder = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7,8,9,10);
+        TestCalendarTimeBuilder.test(builder);
+    }
 }

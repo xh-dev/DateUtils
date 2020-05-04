@@ -23,10 +23,16 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     T y(int year);
 
     @Override
+    T m(Month month);
+
+    @Override
     T ym(int year, Month month);
 
     @Override
     T md(Month month, int day);
+
+    @Override
+    T d(int day);
 
     @Override
     T ymd(int year, Month month, int day);
@@ -42,6 +48,9 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
 
     @Override
     T month(final Month month);
+
+    @Override
+    T maxMonth();
 
     @Override
     T minDay();
@@ -83,10 +92,10 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     T tomorrow();
 
     @Override
-    T nextWeekday(Weekday day);
+    T nextWeekday(Weekday startDay);
 
     @Override
-    T prevWeekday(Weekday day);
+    T prevWeekday(Weekday startDay);
 
     @Override
     T startOfWeek(Weekday startDay);

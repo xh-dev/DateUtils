@@ -4,6 +4,7 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
+import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
@@ -21,6 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static me.xethh.utils.dateManipulation.Month.DEC;
+import static me.xethh.utils.dateManipulation.Month.JAN;
 import static me.xethh.utils.dateManipulation.Weekday.Saturday;
 import static me.xethh.utils.dateManipulation.Weekday.Sunday;
 
@@ -56,6 +59,12 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     public DatetimeBuilder y(int year){
         return year(year);
     }
+
+    @Override
+    public DatetimeBuilder m(Month month) {
+        return month(month);
+    }
+
     @Override
     public DatetimeBuilder ym(int year, Month month){
         return year(year).month(month);
@@ -70,6 +79,12 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     public DatetimeBuilder ymd(int year, Month month, int day){
         return year(year).month(month).day(day);
     }
+
+    @Override
+    public DatetimeBuilder d(int day) {
+        return day(day);
+    }
+
     @Override
     public DatetimeBuilder hmsms(int hour, int minute, int second, int mSecond){
         return hour(hour).minute(minute).second(second).ms(mSecond);
@@ -118,7 +133,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         return DatetimeFactory.instance().from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
-                cal.set(Calendar.MONTH,0);
+                cal.set(Calendar.MONTH,JAN.toJavaCalNumber());
                 return cal;
             }
         });
@@ -130,6 +145,17 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
             @Override
             public Calendar apply(Calendar cal) {
                 cal.set(Calendar.MONTH,month.ordinal());
+                return cal;
+            }
+        });
+    }
+
+    @Override
+    public DatetimeBuilder maxMonth() {
+        return DatetimeFactory.instance().from(cal, new Build() {
+            @Override
+            public Calendar apply(Calendar cal) {
+                cal.set(Calendar.MONTH, DEC.toJavaCalNumber());
                 return cal;
             }
         });
@@ -606,33 +632,33 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     }
 
     @Override
-    public DatetimeBuilder nextWeekday(Weekday day){
-        if(view().weekday()==day)
+    public DatetimeBuilder nextWeekday(Weekday startDay){
+        if(view().weekday()== startDay)
             return addDays(7);
         else{
             Weekday dayOfThis = view().weekday();
 
-            if(dayOfThis.ordinal()>day.ordinal()){
-                return addDays(Weekday.Saturday.ordinal()-dayOfThis.ordinal()+day.ordinal()-Sunday.ordinal()+1);
+            if(dayOfThis.ordinal()> startDay.ordinal()){
+                return addDays(Weekday.Saturday.ordinal()-dayOfThis.ordinal()+ startDay.ordinal()-Sunday.ordinal()+1);
             }
             else{
-                return addDays(day.ordinal()-dayOfThis.ordinal());
+                return addDays(startDay.ordinal()-dayOfThis.ordinal());
             }
         }
     }
 
     @Override
-    public DatetimeBuilder prevWeekday(Weekday day){
-        if(view().weekday()==day)
+    public DatetimeBuilder prevWeekday(Weekday startDay){
+        if(view().weekday()== startDay)
             return addDays(-7);
         else{
             Weekday dayOfThis = view().weekday();
 
-            if(dayOfThis.ordinal()>day.ordinal()){
-                return addDays((dayOfThis.ordinal()-day.ordinal())*-1);
+            if(dayOfThis.ordinal()> startDay.ordinal()){
+                return addDays((dayOfThis.ordinal()- startDay.ordinal())*-1);
             }
             else{
-                return addDays(-1*(dayOfThis.ordinal()+Saturday.ordinal()-day.ordinal()+1));
+                return addDays(-1*(dayOfThis.ordinal()+Saturday.ordinal()- startDay.ordinal()+1));
             }
         }
     }
@@ -991,6 +1017,11 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
         return format(DateFormatBuilderImpl.get().custFormat(format.format()).timeZone(timeZone));
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilder fmtBuilder) {
+        return format(fmtBuilder.timeZone(timeZone));
     }
 
     @Override

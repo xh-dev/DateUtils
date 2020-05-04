@@ -15,5 +15,6 @@ public interface FormatterBuilder {
 
     String format(TimeZone timeZone, String format);
     String format(TimeZone timeZone, DateFormatBuilder.Format format);
+    String format(TimeZone timeZone, DateFormatBuilder fmtBuilder);
     String format(TimeZone timeZone, SimpleDateFormat fmt);
 }
