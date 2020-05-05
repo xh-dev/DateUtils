@@ -7,6 +7,7 @@ import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
+import me.xethh.utils.rangeManipulation.range.Range;
 
 import java.util.Date;
 import java.util.Objects;
@@ -15,20 +16,7 @@ import java.util.Objects;
  * @author xethhung
  * Created on 5/25/2018
  */
-public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
-    @Override
-    public EDITING getEditingMode() {
-        return editing;
-    }
-    @Override
-    public EDITING clearEditingMode() {
-        this.editing=EDITING.NONE;
-        return editing;
-    }
-    public static enum EDITING{
-        NONE,START,END
-    }
-    private EDITING editing;
+public class DatetimeRange extends Range {
 
     protected Date start,end;
     private DatetimeRange(Date start, Date end){
