@@ -36,19 +36,17 @@ public class DatetimeRange extends Range {
     }
 
     @Override
-    public boolean isInvalid() {
-        return !isValid();
-    }
-
     public DatetimeRange swrap() {
         return new DatetimeRange(end, start);
     }
 
+    @Override
     public DatetimeRangeContainedBuilder editStart() {
         this.editing = EDITING.START;
         return DatetimeFactory.from(startAsDate(), this);
     }
 
+    @Override
     public DatetimeRangeContainedBuilder editEnd() {
         this.editing = EDITING.END;
         return DatetimeFactory.from(endAsDate(), this);
@@ -65,7 +63,6 @@ public class DatetimeRange extends Range {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(start, end);
     }
 
@@ -90,18 +87,22 @@ public class DatetimeRange extends Range {
         return start.getTime() > date.getTime() && end.getTime() > date.getTime();
     }
 
+    @Override
     public boolean dateInRange(Date date) {
         return asDateRange().timeInRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
+    @Override
     public boolean dateAfterRange(Date date) {
         return asDateRange().timeAfterRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
+    @Override
     public boolean dateBeforeRange(Date date) {
         return asDateRange().timeBeforeRange(DatetimeFactory.instance().from(date).minDayTime().asDate());
     }
 
+    @Override
     public DatetimeRange asDateRange() {
         return
                 editStart()
@@ -111,30 +112,37 @@ public class DatetimeRange extends Range {
                         .back();
     }
 
+    @Override
     public Date startAsDate() {
         return start;
     }
 
+    @Override
     public Date endAsDate() {
         return end;
     }
 
+    @Override
     public DatetimeBuilder startAsDTBuilder() {
         return DatetimeFactory.instance().from(start);
     }
 
+    @Override
     public DatetimeBuilder endAsDTBuilder() {
         return DatetimeFactory.instance().from(end);
     }
 
+    @Override
     public DateBuilder startAsDateBuilder() {
         return DateFactory.from(start);
     }
 
+    @Override
     public DateBuilder endAsDateBuilder() {
         return DateFactory.from(end);
     }
 
+    @Override
     public boolean overlapping(DatetimeRange range) {
         if (range == null || range.isInvalid() || isInvalid())
             return false;
@@ -149,6 +157,7 @@ public class DatetimeRange extends Range {
         return false;
     }
 
+    @Override
     public OverlapType overlappingPattern(DatetimeRange range) {
         if (isInvalid())
             return OverlapType.Invalid;
@@ -194,10 +203,12 @@ public class DatetimeRange extends Range {
 
     }
 
+    @Override
     public RejectingFilter rejecting() {
         return new RejectingFilter(this);
     }
 
+    @Override
     public AcceptingFilter accepting() {
         return new AcceptingFilter(this);
     }

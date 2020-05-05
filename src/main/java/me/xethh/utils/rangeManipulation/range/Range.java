@@ -1,14 +1,17 @@
 package me.xethh.utils.rangeManipulation.range;
 
+import me.xethh.utils.dateManipulation.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
 import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 
 public abstract class Range implements
-        EditModeStatus<DatetimeRange.EDITING>,
+        EditModeStatus<Range.EDITING>,
         RangeValidator,
-        TimeRangeOperation
+        TimeRangeOperation,
+        BackWrapper<DatetimeRangeContainedBuilder, DatetimeRange>,
+        DatetimeRangeRepresentation
 {
-    public static enum EDITING{
+    public enum EDITING{
         NONE,START,END
     }
     @Override
