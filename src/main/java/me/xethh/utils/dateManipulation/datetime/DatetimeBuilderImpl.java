@@ -468,7 +468,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeRange rangeTo(Date date){
-        return DatetimeRange.of(asDate(), date);
+        return DatetimeFactory.rangeOf(asDate(), date);
     }
 
     @Override
@@ -488,7 +488,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DatetimeRange rangeFrom(Date date){
-        return DatetimeRange.of(date, asDate());
+        return DatetimeFactory.rangeOf(date, asDate());
     }
 
     @Override
@@ -503,7 +503,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
 
     public DatetimeRange rangeWithBuilder(BuilderOperation start, BuilderOperation end){
-        return DatetimeRange.of(start.oper().asDate(),end.oper().asDate());
+        return DatetimeFactory.rangeOf(start.oper().asDate(),end.oper().asDate());
     }
 
     @Override

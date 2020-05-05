@@ -80,9 +80,9 @@ public class DateUtilsTest
         DatetimeBuilder b1 = DatetimeFactory.instance().raw().day(1);
         DatetimeRange r1 = b1.addDays(10).rangeTo(b1);
         DatetimeRange r2 = b1.rangeTo(b1.addDays(10));
-        assertEquals(r1,DatetimeRange.of(b1.addDays(10).asDate(),b1.asDate()));
+        assertEquals(r1,DatetimeFactory.rangeOf(b1.addDays(10).asDate(),b1.asDate()));
         assertEquals(r1.isValid(),false);
-        assertEquals(r2,DatetimeRange.of(b1.asDate(),b1.addDays(10).asDate()));
+        assertEquals(r2,DatetimeFactory.rangeOf(b1.asDate(),b1.addDays(10).asDate()));
         assertEquals(r2.isValid(),true);
         assertNotEquals(r1,r2);
         assertEquals(r1.swrap(),r2);

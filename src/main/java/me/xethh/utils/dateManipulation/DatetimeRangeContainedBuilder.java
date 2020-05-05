@@ -871,12 +871,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     public DatetimeRange back() {
         DatetimeRange range;
         if(parent.getEditingMode()==DatetimeRange.EDITING.START) {
-            range = DatetimeRange.of(asDate(),parent.endAsDate());
+            range = DatetimeFactory.rangeOf(asDate(),parent.endAsDate());
             range.clearEditingMode();
             return range;
         }
         if(parent.getEditingMode()==DatetimeRange.EDITING.END) {
-            range = DatetimeRange.of(parent.startAsDate(),asDate());
+            range = DatetimeFactory.rangeOf(parent.startAsDate(),asDate());
             range.clearEditingMode();
             return range;
         }

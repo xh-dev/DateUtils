@@ -24,40 +24,40 @@ public class TestDatetimeRange
     @Test
     public void baseTest(){
         DatetimeBuilder builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0800 to 2018-02-17T00:00:00.000+0800]",DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).toString());
-        assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0800 to 2018-01-18T00:00:00.000+0800]",DatetimeRange.of(builder.addDays(30).asDate(),builder.asDate()).toString());
+        assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0800 to 2018-02-17T00:00:00.000+0800]",DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(30).asDate()).toString());
+        assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0800 to 2018-01-18T00:00:00.000+0800]",DatetimeFactory.rangeOf(builder.addDays(30).asDate(),builder.asDate()).toString());
     }
 
     @Test
     public void testIsValid(){
         DatetimeBuilder builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isValid());
-        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).isValid());
-        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isInvalid());
-        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).isInvalid());
+        assertEquals(true,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(30).asDate()).isValid());
+        assertEquals(false,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(-30).asDate()).isValid());
+        assertEquals(false,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(30).asDate()).isInvalid());
+        assertEquals(true,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(-30).asDate()).isInvalid());
     }
 
     @Test
     public void testTimeRange(){
         DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).isValid());
-        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).isValid());
-        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).isValid());
+        assertEquals(true,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(30).asDate()).isValid());
+        assertEquals(false,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(-30).asDate()).isValid());
+        assertEquals(true,DatetimeFactory.rangeOf(builder.asDate(),builder.asDate()).isValid());
     }
 
     @Test
     public void testTimeRangeSinglePoint(){
         DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(30).asDate()).singlePointRange());
-        assertEquals(false,DatetimeRange.of(builder.asDate(),builder.addDays(-30).asDate()).singlePointRange());
-        assertEquals(true,DatetimeRange.of(builder.asDate(),builder.asDate()).singlePointRange());
+        assertEquals(false,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(30).asDate()).singlePointRange());
+        assertEquals(false,DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(-30).asDate()).singlePointRange());
+        assertEquals(true,DatetimeFactory.rangeOf(builder.asDate(),builder.asDate()).singlePointRange());
     }
 
     @Test
     public void testTimeRangeOperateDaytime(){
         DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeRange.of(builder.asDate(),builder.addDays(2).asDate()));
-        assertNotEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeRange.of(builder.asDate(),builder.addDays(2).addMins(2).asDate()));
+        assertEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(2).asDate()));
+        assertNotEquals(builder.rangeTo(builder.addDays(2).asDate()),DatetimeFactory.rangeOf(builder.asDate(),builder.addDays(2).addMins(2).asDate()));
     }
 
     @Test

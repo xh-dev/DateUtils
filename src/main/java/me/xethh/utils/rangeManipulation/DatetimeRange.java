@@ -19,13 +19,9 @@ import java.util.Objects;
 public class DatetimeRange extends Range {
 
     protected Date start,end;
-    private DatetimeRange(Date start, Date end){
+    public DatetimeRange(Date start, Date end){
         this.start = start;
         this.end = end;
-    }
-
-    public static DatetimeRange of(Date start, Date end){
-        return new DatetimeRange(start,end);
     }
 
     public boolean singlePointRange(){
@@ -102,19 +98,19 @@ public class DatetimeRange extends Range {
     }
 
     public DatetimeRange minStart(){
-        return DatetimeRange.of(DatetimeFactory.instance().from(start).minDayTime().asDate(),end);
+        return DatetimeFactory.rangeOf(DatetimeFactory.instance().from(start).minDayTime().asDate(),end);
     }
 
     public DatetimeRange maxStart(){
-        return DatetimeRange.of(DatetimeFactory.instance().from(start).maxDayTime().asDate(),end);
+        return DatetimeFactory.rangeOf(DatetimeFactory.instance().from(start).maxDayTime().asDate(),end);
     }
 
     public DatetimeRange minEnd(){
-        return DatetimeRange.of(start, DatetimeFactory.instance().from(end).minDayTime().asDate());
+        return DatetimeFactory.rangeOf(start, DatetimeFactory.instance().from(end).minDayTime().asDate());
     }
 
     public DatetimeRange maxEnd(){
-        return DatetimeRange.of(start, DatetimeFactory.instance().from(end).maxDayTime().asDate());
+        return DatetimeFactory.rangeOf(start, DatetimeFactory.instance().from(end).maxDayTime().asDate());
     }
 
     public Date startAsDate() {
