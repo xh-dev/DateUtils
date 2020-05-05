@@ -2,7 +2,7 @@ package me.xethh.utils.v6.timezone;
 
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;

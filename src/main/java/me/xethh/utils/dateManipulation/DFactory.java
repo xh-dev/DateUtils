@@ -1,7 +1,7 @@
 package me.xethh.utils.dateManipulation;
 
 import me.xethh.utils.dateManipulation.date.DateFactory;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 
 public class DFactory {
     public static DatetimeFactory datetime(){

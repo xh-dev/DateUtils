@@ -4,7 +4,7 @@ import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class DatetimeFactoryTest {
+public class DatetimeFactoryImplTest {
 
     @Test
     public void datetimeFactoryDefaultTest(){
@@ -21,7 +21,7 @@ public class DatetimeFactoryTest {
         SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         DatetimeBuilder db = df.raw();
         assertEquals("1970-01-01T00:00:00.000+0800",sdf.format(db.asDate()));
-        DatetimeBuilderImpl dateBuilder = new DatetimeBuilderImpl(df.defaultTimezone());
+        DatetimeBuilderImpl dateBuilder = new DatetimeBuilderImpl(df.getTimezone());
 
         assertEquals("2088-01-14T20:11:44.777+0800",
                 sdf.format(df.from(

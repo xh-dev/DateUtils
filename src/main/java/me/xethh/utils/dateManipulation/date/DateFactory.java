@@ -2,10 +2,10 @@ package me.xethh.utils.dateManipulation.date;
 
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
-import me.xethh.utils.dateManipulation.buildInterfaces.DatetimeContainerWrapper;
+import me.xethh.utils.dateManipulation.buildInterfaces.DatetimeBackWrapper;
 import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
@@ -111,43 +111,43 @@ public class DateFactory {
         return DateFormatBuilderImpl.get();
     }
 
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, E parent){
         if(parent instanceof DatetimeRange)
             return (T) new DatetimeRangeContainedBuilder(date,(DatetimeRange) parent);
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, Build build, E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Date date, Build build, E parent){
         if(parent instanceof DatetimeRange) {
             DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date,(DatetimeRange) parent);
             return (T) new DatetimeRangeContainedBuilder(builder.asCalendar(),build,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T raw(E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T raw(E parent){
         if(parent instanceof DatetimeRange) {
             return (T) new DatetimeRangeContainedBuilder(DateFactory.raw().asCalendar(),(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Calendar cal, E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Calendar cal, E parent){
         if(parent instanceof DatetimeRange) {
             return (T) new DatetimeRangeContainedBuilder(cal,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Calendar cal, Build build, E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Calendar cal, Build build, E parent){
         if(parent instanceof DatetimeRange) {
             return (T) new DatetimeRangeContainedBuilder(cal,build,(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T,E>,E extends EditModeStatus<F>,F extends Object> T now(E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T,E>,E extends EditModeStatus<F>,F extends Object> T now(E parent){
         if(parent instanceof DatetimeRange) {
             return (T) new DatetimeRangeContainedBuilder(new Date(),(DatetimeRange) parent);
         }
         return null;
     }
-    public static <T extends DatetimeBuilder<T> & DatetimeContainerWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Long longDate, E parent){
+    public static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>,E extends EditModeStatus<F>,F extends Object> T from(Long longDate, E parent){
         return (T) from(new Date(longDate),parent);
     }
 }

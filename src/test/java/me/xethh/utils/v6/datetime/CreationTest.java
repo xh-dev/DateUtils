@@ -3,7 +3,7 @@ package me.xethh.utils.v6.datetime;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import org.junit.Test;
 
@@ -27,10 +27,10 @@ public class CreationTest {
         TimeZone.setDefault(BaseTimeZone.Asia_Hong_Kong.timeZone());
         DatetimeFactory df1 = DatetimeFactory.instance();
         DatetimeFactory df = DatetimeFactory.instance();
-        assertEquals(BaseTimeZone.Asia_Hong_Kong.timeZone(),df.getTimeZone());
+        assertEquals(BaseTimeZone.Asia_Hong_Kong.timeZone(),df.getTimezone());
         TimeZone.setDefault(BaseTimeZone.Asia_Seoul.timeZone());
         df = DatetimeFactory.instance();
-        assertEquals(BaseTimeZone.Asia_Seoul.timeZone(),df.getTimeZone());
+        assertEquals(BaseTimeZone.Asia_Seoul.timeZone(),df.getTimezone());
         TimeZone.setDefault(BaseTimeZone.Asia_Hong_Kong.timeZone());
         DatetimeFactory df2 = DatetimeFactory.instance();
         assertEquals(df1, df2);

@@ -5,9 +5,8 @@ import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 
 import java.util.Date;
 import java.util.Objects;
@@ -59,11 +58,11 @@ public class DatetimeRange implements EditModeStatus<DatetimeRange.EDITING> {
 
     public DatetimeRangeContainedBuilder editStart(){
         this.editing=EDITING.START;
-        return DatetimeFactory.instance().<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(startAsDate(),this);
+        return DatetimeFactory.from(startAsDate(),this);
     }
     public DatetimeRangeContainedBuilder editEnd(){
         this.editing=EDITING.END;
-        return DatetimeFactory.instance().<DatetimeRangeContainedBuilder,DatetimeRange,EDITING>from(endAsDate(),this);
+        return DatetimeFactory.from(endAsDate(),this);
     }
 
     @Override

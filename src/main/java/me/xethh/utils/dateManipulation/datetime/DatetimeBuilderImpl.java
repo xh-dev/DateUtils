@@ -4,7 +4,6 @@ import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
-import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.date.DateFactory;
@@ -12,6 +11,7 @@ import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.formatBuilder.FormatBuilderWrapper;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.rangeManipulation.BuilderOperation;
 import me.xethh.utils.rangeManipulation.DatetimeRange;
 
@@ -46,11 +46,11 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         this(timeZone);
         cal.setTime(date);
     }
-    protected DatetimeBuilderImpl(TimeZone timeZone, Calendar cal){
+    public DatetimeBuilderImpl(TimeZone timeZone, Calendar cal){
         this(timeZone);
         this.cal = (Calendar) cal.clone();
     }
-    protected DatetimeBuilderImpl(TimeZone timeZone, Calendar cal, Build build){
+    public DatetimeBuilderImpl(TimeZone timeZone, Calendar cal, Build build){
         this(timeZone, cal);
         build.apply(this.cal);
     }
@@ -417,7 +417,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
         return DatetimeFactory.instance().from(cal, new Build() {
             @Override
             public Calendar apply(Calendar cal) {
-                cal.setTimeInMillis(Calendar.getInstance(DatetimeFactory.instance().defaultTimezone()).getTimeInMillis());
+                cal.setTimeInMillis(Calendar.getInstance(DatetimeFactory.instance().getTimezone()).getTimeInMillis());
                 return cal;
             }
         });

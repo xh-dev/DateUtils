@@ -3,17 +3,16 @@ package me.xethh.utils.dateManipulation.dataInfo;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.dateManipulation.datetime.DatetimeFactory;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateInfo {
-    private Calendar cal=Calendar.getInstance(DatetimeFactory.instance().defaultTimezone());
+    private Calendar cal=Calendar.getInstance(DatetimeFactory.instance().getTimezone());
     /*
     Constructor
      */
