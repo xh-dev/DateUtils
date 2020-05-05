@@ -849,12 +849,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public String format(TimeZone timeZone, String format) {
-        return this.format(timeZone,format);
+        return builder.format(timeZone,format);
     }
 
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
-        return this.format(timeZone,format);
+        return builder.format(timeZone,format);
     }
 
     @Override
@@ -864,7 +864,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public String format(TimeZone timeZone, SimpleDateFormat fmt) {
-        return this.format(timeZone,fmt);
+        return builder.format(timeZone,fmt);
     }
 
     @Override
