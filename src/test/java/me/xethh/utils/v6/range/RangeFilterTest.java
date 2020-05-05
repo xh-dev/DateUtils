@@ -2,8 +2,8 @@ package me.xethh.utils.v6.range;
 
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.rangeManipulation.AcceptingFilter;
-import me.xethh.utils.rangeManipulation.DatetimeRange;
+import me.xethh.utils.rangeManipulation.datetime.AcceptingFilter;
+import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 import me.xethh.utils.rangeManipulation.OverlapType;
 import org.junit.Test;
 

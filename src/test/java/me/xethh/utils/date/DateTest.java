@@ -8,7 +8,7 @@ import me.xethh.utils.dateManipulation.date.DateBuilderImpl;
 import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.rangeManipulation.DatetimeRange;
+import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;

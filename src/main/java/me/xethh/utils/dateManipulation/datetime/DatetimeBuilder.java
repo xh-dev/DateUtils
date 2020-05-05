@@ -6,7 +6,7 @@ import me.xethh.utils.dateManipulation.buildInterfaces.*;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
-import me.xethh.utils.rangeManipulation.DatetimeRange;
+import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 
 import java.util.Calendar;
 import java.util.Date;

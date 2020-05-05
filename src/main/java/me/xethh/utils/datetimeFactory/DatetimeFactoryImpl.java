@@ -7,7 +7,7 @@ import me.xethh.utils.dateManipulation.buildInterfaces.EditModeStatus;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
-import me.xethh.utils.rangeManipulation.DatetimeRange;
+import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 
 import java.util.*;
 

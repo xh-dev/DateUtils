@@ -8,7 +8,7 @@ import me.xethh.utils.dateManipulation.buildInterfaces.FormatterBuilder;
 import me.xethh.utils.dateManipulation.buildInterfaces.TimeUnitConverter;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.rangeManipulation.DatetimeRange;
+import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
 
 import java.util.Calendar;
 import java.util.Date;

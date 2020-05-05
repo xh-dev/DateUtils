@@ -1,4 +1,7 @@
-package me.xethh.utils.rangeManipulation;
+package me.xethh.utils.rangeManipulation.datetime;
+
+import me.xethh.utils.rangeManipulation.OverlapType;
+import me.xethh.utils.rangeManipulation.range.RangeFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +12,7 @@ import java.util.List;
  * @author xethhung
  * Created on 8/30/2018
  */
-public class AcceptingFilter implements RangeFilter<AcceptingFilter>{
+public class AcceptingFilter implements RangeFilter<AcceptingFilter> {
     private DatetimeRange range;
     private List<OverlapType> acceptList = new LinkedList();
     public AcceptingFilter(DatetimeRange range){
