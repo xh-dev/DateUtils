@@ -3,6 +3,7 @@ package me.xethh.utils.dateManipulation.date;
 import me.xethh.utils.TimeUnit;
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
+import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
@@ -101,6 +102,11 @@ public class DateBuilderImpl implements DateBuilder {
     @Override
     public DateBuilder day(int date) {
         return new DateBuilderImpl(builder.day(date));
+    }
+
+    @Override
+    public CalendarDateBuilder maxDay() {
+        return new DateBuilderImpl(builder.maxDay());
     }
 
     @Override

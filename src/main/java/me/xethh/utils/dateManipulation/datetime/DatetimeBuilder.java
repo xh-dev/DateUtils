@@ -59,6 +59,9 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     T day(final int date);
 
     @Override
+    T maxDay();
+
+    @Override
     T firstDayOfMonth();
 
     @Override

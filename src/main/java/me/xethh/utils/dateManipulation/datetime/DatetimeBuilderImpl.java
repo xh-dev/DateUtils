@@ -187,13 +187,19 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
             }
         });
     }
+
+    @Override
+    public DatetimeBuilder maxDay() {
+        return nextMonth().minDay().yesterday();
+    }
+
     @Override
     public DatetimeBuilder firstDayOfMonth(){
         return minDay();
     }
     @Override
     public DatetimeBuilder endDayOfMonth(){
-        return nextMonth().minDay().yesterday();
+        return maxDay();
     }
 
 
@@ -453,7 +459,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DateInfo view(){
-        return DateInfo.from(asDate());
+        return DateInfo.from(getTimeZone(), asDate());
     }
 
     @Override

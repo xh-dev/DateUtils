@@ -10,7 +10,7 @@ import java.util.TimeZone;
 public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Return the date of current time
-     * @return
+     * @return current time builder
      */
     T now();
 
@@ -18,7 +18,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * alias of year(final int year)
      *
      * @param year
-     * @return
+     * @return builder of year updated
      */
     T y(int year);
 
@@ -26,7 +26,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * alias of month(final Month month)
      *
      * @param month
-     * @return
+     * @return builder of month updated
      */
     T m(Month month);
 
@@ -35,7 +35,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      *
      * @param year
      * @param month
-     * @return
+     * @return builder of year and month updated
      */
     T ym(int year, Month month);
 
@@ -44,7 +44,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      *
      * @param month
      * @param day
-     * @return
+     * @return builder of month and day updated
      */
     T md(Month month, int day);
 
@@ -54,14 +54,14 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * @param year
      * @param month
      * @param day
-     * @return
+     * @return builder of year, month and day updated
      */
     T ymd(int year, Month month, int day);
 
     /**
      * Alias of day(int day)
      * @param day
-     * @return
+     * @return builder of day updated
      */
     T d(int day);
 
@@ -72,7 +72,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * set year to be minimum of year in computing - 1970
      *
-     * @return
+     * @return builder of year updated to 1970
      */
     T minYear();
 
@@ -80,7 +80,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * Set up year
      *
      * @param year
-     * @return
+     * @return builder of year updated
      */
     T year(final int year);
 
@@ -91,7 +91,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * set minimum month - January
      *
-     * @return
+     * @return builder of month updated to Month.JAN
      */
     T minMonth();
 
@@ -99,14 +99,14 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * Set the month
      *
      * @param month should be enum of Month
-     * @return DatetimeBuilder Object
+     * @return builder of month updated
      */
     T month(final Month month);
 
     /**
      * Maximum month - December
      *
-     * @return
+     * @return builder of month updated to Month.DEC
      */
     T maxMonth();
 
@@ -118,7 +118,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Set day to minimum day - 1
      *
-     * @return
+     * @return builder of day updated to first day of month
      */
     T minDay();
 
@@ -126,22 +126,32 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * Set day
      *
      * @param date
-     * @return
+     * @return builder of day updated to the last day of current month and year
      */
     T day(final int date);
 
     /**
+     * Return the last day of the current month,
+     * the method return depends on the year and month
+     *
+     * @return builder of last day of the current month and year
+     */
+    T maxDay();
+
+    /**
      * set the day to be first day of the month,
      * depends on current year and month
-     * @return
+     * alias of {@link #minDay()}
+     * @return builder of first day of month
      */
     T firstDayOfMonth();
 
     /**
      * Return the last day of the current month,
      * the method return depends on the year and month
+     * alias of {@link #maxDay()}
      *
-     * @return
+     * @return builder of last day of the current month and year
      */
     T endDayOfMonth();
 

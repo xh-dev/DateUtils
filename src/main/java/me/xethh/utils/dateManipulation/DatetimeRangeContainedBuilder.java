@@ -161,6 +161,13 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
+    public DatetimeRangeContainedBuilder maxDay() {
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        bd.builder=bd.builder.maxDay();
+        return bd;
+    }
+
+    @Override
     public DatetimeRangeContainedBuilder firstDayOfMonth() {
         DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
         bd.builder=bd.builder.firstDayOfMonth();

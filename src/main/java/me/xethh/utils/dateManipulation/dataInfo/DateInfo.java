@@ -3,93 +3,72 @@ package me.xethh.utils.dateManipulation.dataInfo;
 import me.xethh.utils.dateManipulation.Month;
 import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
+import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.datetimeFactory.DatetimeFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
-public class DateInfo {
-    private Calendar cal=Calendar.getInstance(DatetimeFactory.instance().getTimezone());
-    /*
-    Constructor
-     */
-    private DateInfo(Date date){
-        cal.setTime(date);
+public interface DateInfo {
+    static DateInfo from(Date date){
+        return new DateInfoImpl(DatetimeFactory.instance().getTimezone(), date);
     }
-    public static DateInfo from(Date date){
-        return new DateInfo(date);
+    static DateInfo from(TimeZone timeZone, Date date){
+        return new DateInfoImpl(timeZone, date);
     }
 
-    public Integer year(){
-        return cal.get(Calendar.YEAR);
-    }
-    public Month month(){
-        return Month.ofOrdinal(cal.get(Calendar.MONTH));
-    }
-    public Integer day(){
-        return cal.get(Calendar.DAY_OF_MONTH);
-    }
-    public Integer weekOfYear(){
-        return cal.get(Calendar.WEEK_OF_YEAR);
-    }
-    public Integer weekOfMonth(){
-        return cal.get(Calendar.WEEK_OF_MONTH);
-    }
-    public Integer dayOfYear(){
-        return cal.get(Calendar.DAY_OF_YEAR);
-    }
-    public Integer hour(){
-        return cal.get(Calendar.HOUR_OF_DAY);
-    }
-    public Integer min(){
-        return cal.get(Calendar.MINUTE);
-    }
-    public Integer second(){
-        return cal.get(Calendar.SECOND);
-    }
-    public Integer ms(){
-        return cal.get(Calendar.MILLISECOND);
-    }
-    public Weekday weekday(){
-        return Weekday.values()[cal.get(Calendar.DAY_OF_WEEK)-1];
+    static DateInfo from(BaseTimeZone baseTimeZone, Date date){
+        return new DateInfoImpl(baseTimeZone.timeZone(), date);
     }
 
 
-    public DatetimeBuilder asBuilder(){
-        return DatetimeFactory.instance().from(cal.getTime());
-    }
-    public Date asDate(){
-        return cal.getTime();
-    }
-    public Calendar asCalendar(){
-        return cal;
-    }
-    public Long asLong(){
-        return asDate().getTime();
-    }
-    public String asNumberDatetime(){
-        return DateFormatBuilderFactory.NUMBER_DATETIME().format(asDate());
-    }
-    public String asNumberDate(){
-        return DateFormatBuilderFactory.NUMBER_DATE().format(asDate());
-    }
-    public String asSimpleDateTime(){
-        return DateFormatBuilderFactory.SIMPLE_DATETIME().format(asDate());
-    }
-    public String asSimpleDate(){
-        return DateFormatBuilderFactory.SIMPLE_DATE().format(asDate());
-    }
-    public String asISO8601(){
-        return DateFormatBuilderFactory.ISO8601().format(asDate());
-    }
-    public String asFormat(DateFormatBuilder builder){
-        return asFormat(builder.build());
-    }
-    public String asFormat(SimpleDateFormat fmt){
-        return fmt.format(asDate());
-    }
+    Integer year();
+
+    Month month();
+
+    Integer day();
+
+    Integer weekOfYear();
+
+    Integer weekOfMonth();
+
+    Integer dayOfYear();
+
+    Integer hour();
+
+    Integer min();
+
+    Integer second();
+
+    Integer ms();
+
+    Weekday weekday();
+
+
+    DatetimeBuilder asBuilder();
+
+    Date asDate();
+
+    Calendar asCalendar();
+
+    Long asLong();
+
+    String asNumberDatetime();
+
+    String asNumberDate();
+
+    String asSimpleDateTime();
+
+    String asSimpleDate();
+
+    String asISO8601();
+
+    String asFormat(DateFormatBuilder builder);
+
+    String asFormat(SimpleDateFormat fmt);
+
 }
-
