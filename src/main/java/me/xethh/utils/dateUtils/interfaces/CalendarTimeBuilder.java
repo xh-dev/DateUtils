@@ -399,7 +399,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * set time zone.
      * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
-     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 TKY
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 JST
      * @param timeZone time zone in BaseTimeZone
      * @return builder updated
      */
@@ -409,7 +409,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * set time zone
      * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
-     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 TKY
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 JST
      * @param timeZone time zone
      * @return builder updated
      */
@@ -419,7 +419,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * switch time zone to new time zone
      * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
-     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 TKY
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 JST
      * @param timeZone time zone in BaseTimeZone
      * @return builder updated
      */
@@ -429,7 +429,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * switch time zone to new time zone
      * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
-     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 TKY
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 JST
      * @param timeZone time zone
      * @return builder updated
      */

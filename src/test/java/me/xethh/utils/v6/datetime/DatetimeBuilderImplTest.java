@@ -24,8 +24,8 @@ public class DatetimeBuilderImplTest {
     public void t(){
         DatetimeBuilder db = D.dt().now().timeZone(BaseTimeZone.Hongkong).ymd(2020, MAY, 7).hms(18, 1, 1);
         System.out.println(db.format(DateFormatBuilder.Format.ISO8601));
-        System.out.println(db.timeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601));
-        System.out.println(db.swapTimeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601));
+        System.out.println(db.timeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601.getFormatter(BaseTimeZone.Japan.timeZone())));
+        System.out.println(db.swapTimeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601.getFormatter(BaseTimeZone.Japan.timeZone())));
 
     }
 

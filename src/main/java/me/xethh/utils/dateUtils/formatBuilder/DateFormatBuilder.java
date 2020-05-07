@@ -51,7 +51,13 @@ public interface DateFormatBuilder<X extends DateFormatBuilder> {
         public SimpleDateFormat getFormatter(){
             return new SimpleDateFormat(formatString);
         }
-        
+
+        public SimpleDateFormat getFormatter(TimeZone timeZone){
+            SimpleDateFormat sdf = getFormatter();
+            sdf.setTimeZone(timeZone);
+            return sdf;
+        }
+
     }
     abstract class InternalFormatBuild {
         abstract void apply(StringBuilder str,Map<String,String> variables);
