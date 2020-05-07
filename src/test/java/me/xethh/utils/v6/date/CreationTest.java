@@ -1,10 +1,9 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateManipulation.date.DateFactory;
+import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import org.junit.Test;
 
-import java.sql.Time;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -17,10 +16,10 @@ public class CreationTest {
         TimeZone.setDefault(BaseTimeZone.Asia_Hong_Kong.timeZone());
         DateFactory df1 = DateFactory.instance();
         DateFactory df = DateFactory.instance();
-        assertEquals(BaseTimeZone.Asia_Hong_Kong.timeZone(),df.getTimeZone());
+        assertEquals(BaseTimeZone.Asia_Hong_Kong.timeZone(),df.getTimezone());
         TimeZone.setDefault(BaseTimeZone.Asia_Seoul.timeZone());
         df = DateFactory.instance();
-        assertEquals(BaseTimeZone.Asia_Seoul.timeZone(),df.getTimeZone());
+        assertEquals(BaseTimeZone.Asia_Seoul.timeZone(),df.getTimezone());
         TimeZone.setDefault(BaseTimeZone.Asia_Hong_Kong.timeZone());
         DateFactory df2 = DateFactory.instance();
         assertEquals(df1, df2);

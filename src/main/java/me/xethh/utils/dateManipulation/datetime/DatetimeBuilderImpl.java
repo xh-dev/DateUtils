@@ -6,7 +6,7 @@ import me.xethh.utils.dateManipulation.Weekday;
 import me.xethh.utils.dateManipulation.buildInterfaces.Build;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
-import me.xethh.utils.dateManipulation.date.DateFactory;
+import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateManipulation.formatBuilder.FormatBuilderWrapper;
@@ -409,7 +409,7 @@ public class DatetimeBuilderImpl implements DatetimeBuilder {
 
     @Override
     public DateBuilder asDateBuilder() {
-        return DateFactory.from(this);
+        return DateFactory.instance().from(this);
     }
 
     @Override

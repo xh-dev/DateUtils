@@ -359,15 +359,4 @@ public class DatetimeBuilderImplTest {
         TestCommonDateRepresentation.test(db,d);
     }
 
-    @Test
-    public void testCalendarDateBuilder() {
-        DatetimeBuilderImpl db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone());
-        TestCalendarDateBuilder.test(db);
-    }
-
-    @Test
-    public void testCalendarTimeBuilder(){
-        DatetimeBuilder builder = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7,8,9,10);
-        TestCalendarTimeBuilder.test(builder);
-    }
 }

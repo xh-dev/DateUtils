@@ -5,7 +5,7 @@ import me.xethh.utils.dateManipulation.buildInterfaces.Build;
 import me.xethh.utils.dateManipulation.buildInterfaces.DatetimeBackWrapper;
 import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
-import me.xethh.utils.dateManipulation.date.DateFactory;
+import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
@@ -321,7 +321,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public DateBuilder asDateBuilder() {
-        return DateFactory.from(builder);
+        return DateFactory.instance().from(builder);
     }
 
     @Override

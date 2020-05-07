@@ -1,6 +1,5 @@
 package me.xethh.utils.v6.range;
 
-import me.xethh.utils.dateManipulation.date.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
@@ -54,19 +53,4 @@ public class DatetimeRange_DatetimeBuilderTest {
         TestCommonDateRepresentation.test(range.editEnd(),d);
     }
 
-    @Test
-    public void testCalendarDateBuilder() {
-        DatetimeBuilderImpl db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone());
-        DatetimeRange range = DatetimeFactory.rangeOf(db.asDate(), db.asDate());
-        TestCalendarDateBuilder.test(range.editStart());
-        TestCalendarDateBuilder.test(range.editEnd());
-    }
-
-    @Test
-    public void testCalendarTimeBuilder(){
-        DatetimeBuilder db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7,8,9,10);
-        DatetimeRange range = DatetimeFactory.rangeOf(db.asDate(), db.asDate());
-        TestCalendarTimeBuilder.test(range.editStart());
-        TestCalendarTimeBuilder.test(range.editEnd());
-    }
 }

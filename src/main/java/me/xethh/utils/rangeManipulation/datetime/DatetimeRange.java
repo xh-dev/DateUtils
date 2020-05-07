@@ -2,7 +2,7 @@ package me.xethh.utils.rangeManipulation.datetime;
 
 import me.xethh.utils.dateManipulation.*;
 import me.xethh.utils.dateManipulation.date.DateBuilder;
-import me.xethh.utils.dateManipulation.date.DateFactory;
+import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
 import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
@@ -134,12 +134,12 @@ public class DatetimeRange extends Range {
 
     @Override
     public DateBuilder startAsDateBuilder() {
-        return DateFactory.from(start);
+        return DateFactory.instance().from(start);
     }
 
     @Override
     public DateBuilder endAsDateBuilder() {
-        return DateFactory.from(end);
+        return DateFactory.instance().from(end);
     }
 
     @Override

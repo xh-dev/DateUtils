@@ -196,11 +196,6 @@ public class DateBuilderImplTest {
         TestCommonDateRepresentation.test(db, d);
     }
 
-    @Test
-    public void testCalendarDateBuilder() {
-        DateBuilderImpl db = new DateBuilderImpl();
-        TestCalendarDateBuilder.test(db);
-    }
 
 
 }
