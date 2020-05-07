@@ -1,7 +1,7 @@
 package me.xethh.utils.v6.date;
 
 import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.date.DateBuilderImpl;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;

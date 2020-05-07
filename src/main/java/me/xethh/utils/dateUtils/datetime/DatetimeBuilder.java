@@ -7,7 +7,7 @@ import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.util.Calendar;
 import java.util.Date;

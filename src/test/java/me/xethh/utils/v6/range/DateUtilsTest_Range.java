@@ -3,7 +3,7 @@ package me.xethh.utils.v6.range;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.OverlapType;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static me.xethh.utils.dateUtils.month.Month.*;
-import static me.xethh.utils.weekday.Weekday.Sunday;
+import static me.xethh.utils.dateUtils.weekday.Weekday.Sunday;
 import static org.junit.Assert.*;
 
 /**

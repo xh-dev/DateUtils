@@ -10,7 +10,7 @@ import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.sql.Time;
 import java.sql.Timestamp;

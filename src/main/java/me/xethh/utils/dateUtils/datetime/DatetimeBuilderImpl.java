@@ -2,7 +2,7 @@ package me.xethh.utils.dateUtils.datetime;
 
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
@@ -24,8 +24,8 @@ import java.util.TimeZone;
 
 import static me.xethh.utils.dateUtils.month.Month.DEC;
 import static me.xethh.utils.dateUtils.month.Month.JAN;
-import static me.xethh.utils.weekday.Weekday.Saturday;
-import static me.xethh.utils.weekday.Weekday.Sunday;
+import static me.xethh.utils.dateUtils.weekday.Weekday.Saturday;
+import static me.xethh.utils.dateUtils.weekday.Weekday.Sunday;
 
 public class DatetimeBuilderImpl implements DatetimeBuilder {
     private Calendar cal;

@@ -1,7 +1,7 @@
 package me.xethh.utils.dateUtils.dataInfo;
 
 import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;

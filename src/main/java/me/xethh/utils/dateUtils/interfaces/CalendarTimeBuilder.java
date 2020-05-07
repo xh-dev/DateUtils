@@ -9,45 +9,45 @@ import java.util.TimeZone;
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Return the datetime of current datetime
-     * @return
+     * @return builder of current datetime
      */
     T now();
 
     /**
      * Set hour, minute, second and millisecond
      *
-     * @param hour
-     * @param minute
-     * @param second
-     * @param mSecond
-     * @return
+     * @param hour hour(s)
+     * @param minute minute(s)
+     * @param second second(s)
+     * @param mSecond millisecond(s)
+     * @return builder of updated hour, minute, second and millisecond
      */
     T hmsms(int hour, int minute, int second, int mSecond);
 
     /**
      * Set hour, minute, second and minimize millisecond
      *
-     * @param hour
-     * @param minute
-     * @param second
-     * @return
+     * @param hour hour(s)
+     * @param minute minute(s)
+     * @param second second(s)
+     * @return builder of updated hour, minute and second
      */
     T hms(int hour, int minute, int second);
 
     /**
      * Set hour, minute and minimize second and millisecond
      *
-     * @param hour
-     * @param minute
-     * @return
+     * @param hour hour(s)
+     * @param minute minute(s)
+     * @return builder of updated hour and minute
      */
     T hm(int hour, int minute);
 
     /**
      * Set hour and minimize minute, second, millisecond
      *
-     * @param hour
-     * @return
+     * @param hour hour(s)
+     * @return builder of updated hour
      */
     T h(int hour);
 
@@ -57,24 +57,24 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      */
 
     /**
-     * Minimize hour to 0
+     * Minimize hour - 0
      *
-     * @return
+     * @return builder of hour set to 0
      */
     T minHour();
 
     /**
-     * Maximize hour to 23
+     * Maximize hour - 23
      *
-     * @return
+     * @return builder of hour set to 23
      */
     T maxHour();
 
     /**
      * Set hour
      *
-     * @param hour
-     * @return
+     * @param hour hour
+     * @return builder of hour set
      */
     T hour(final int hour);
 
@@ -83,24 +83,24 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      */
 
     /**
-     * Minimize minute to 0
+     * Minimize minute - 0
      *
-     * @return
+     * @return builder of minute set to 0
      */
     T minMinute();
 
     /**
-     * Maximize minute to 59
+     * Maximize minute - 59
      *
-     * @return
+     * @return builder of minute set to 59
      */
     T maxMinute();
 
     /**
      * Set minute
      *
-     * @param min
-     * @return
+     * @param min minute(s)
+     * @return builder of minute set
      */
     T minute(final int min);
 
@@ -111,22 +111,22 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Minimize second
      *
-     * @return
+     * @return builder of second set to 0
      */
     T minSecond();
 
     /**
-     * Maximize second
+     * Maximize second - 59
      *
-     * @return
+     * @return  builder of second set 59
      */
     T maxSecond();
 
     /**
      * Set second
      *
-     * @param second
-     * @return
+     * @param second second(s)
+     * @return builder of second set
      */
     T second(final int second);
 
@@ -135,24 +135,24 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      */
 
     /**
-     * Minimize millisecond
+     * Minimize millisecond - 0
      *
-     * @return
+     * @return builder of millisecond to 0
      */
     T minMs();
 
     /**
-     * Maximize millisecond
+     * Maximize millisecond - 999
      *
-     * @return
+     * @return builder of millisecond to 999
      */
     T maxMs();
 
     /**
      * Set millisecond
      *
-     * @param ms
-     * @return
+     * @param ms millisecond
+     * @return builder of millisecond set
      */
     T ms(final int ms);
 
@@ -192,72 +192,254 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      */
     T minDayTime();
 
+    /**
+     * return whether builder and input date are the same
+     * @param longDate date in long form
+     * @return boolean
+     */
     boolean sameDatetime(Long longDate);
 
+    /**
+     * return whether builder and input date are the same
+     * @param date date in date form
+     * @return boolean
+     */
     boolean sameDatetime(Date date);
 
+    /**
+     * return whether builder and input date are the same
+     * @param cal date in calendar form
+     * @return boolean
+     */
     boolean sameDatetime(Calendar cal);
 
+    /**
+     * return whether builder and input date are the same in time part
+     * @param dateLong date in long form
+     * @return boolean
+     */
     boolean sameTime(Long dateLong);
 
+    /**
+     * return whether builder and input date are the same in time part
+     * @param date date in date form
+     * @return boolean
+     */
     boolean sameTime(Date date);
 
+    /**
+     * return whether builder and input date are the same in time part
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean sameTime(Calendar calendar);
 
+    /**
+     * return whether builder's hour, minute and second are the same of {@code dateLong}
+     * @param dateLong date in long form
+     * @return boolean
+     */
     boolean sameHMS(Long dateLong);
 
+    /**
+     * return whether builder's hour, minute and second are the same of {@code date}
+     * @param date date in date form
+     * @return boolean
+     */
     boolean sameHMS(Date date);
 
+    /**
+     * return whether builder's hour, minute and second are the same of {@code calendar}
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean sameHMS(Calendar calendar);
 
+    /**
+     * return whether builder's hour and minute are the same of input
+     * @param dateLong date in long form
+     * @return boolean
+     */
     boolean sameHM(Long dateLong);
 
+    /**
+     * return whether builder's hour and minute are the same of input
+     * @param date date in date form
+     * @return boolean
+     */
     boolean sameHM(Date date);
 
+    /**
+     * return whether builder's hour and minute are the same of input
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean sameHM(Calendar calendar);
 
+    /**
+     * return whether builder later than the input
+     * @param date date in date form
+     * @return boolean
+     */
     boolean laterThan(Date date);
 
+    /**
+     * return whether builder later than the input
+     * @param longDate date in long form
+     * @return boolean
+     */
     boolean laterThan(Long longDate);
 
+    /**
+     * return whether builder later than the input
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean laterThan(Calendar calendar);
 
+    /**
+     * return whether builder later equal than input
+     * @param date date in calendar form
+     * @return boolean
+     */
     boolean laterEqualThan(Date date);
 
+    /**
+     * return whether builder later equal than input
+     * @param longDate date in long form
+     * @return boolean
+     */
     boolean laterEqualThan(Long longDate);
 
+    /**
+     * return whether builder later equal than input
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean laterEqualThan(Calendar calendar);
 
+    /**
+     * return whether builder before input
+     * @param date date in date form
+     * @return boolean
+     */
     boolean before(Date date);
 
+    /**
+     * return whether builder before input
+     * @param longDate date in long form
+     * @return boolean
+     */
     boolean before(Long longDate);
 
+    /**
+     * return whether builder before input
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean before(Calendar calendar);
 
+    /**
+     * return whether builder before or equals input
+     * @param date date in date form
+     * @return boolean
+     */
     boolean beforeEqual(Date date);
 
+    /**
+     * return whether builder before or equals input
+     * @param longDate date in long form
+     * @return boolean
+     */
     boolean beforeEqual(Long longDate);
 
+    /**
+     * return whether builder before or equals input
+     * @param calendar date in calendar form
+     * @return boolean
+     */
     boolean beforeEqual(Calendar calendar);
 
+    /**
+     * Add time in millisecond
+     * @param time millisecond
+     * @return builder updated
+     */
     T addTime(final long time);
 
+    /**
+     * Add hour(s) to builder
+     * @param hours hour(s)
+     * @return builder updated
+     */
     T addHours(final int hours);
 
+    /**
+     * Add minute(s) to builder
+     * @param mins minute(s)
+     * @return builder updated
+     */
     T addMins(final int mins);
 
+    /**
+     * Add second(s) to builder
+     * @param sec second(s)
+     * @return builder updated
+     */
     T addSecond(final int sec);
 
+    /**
+     * Add millisecond
+     * @param ms millisecond
+     * @return builder updated
+     */
     T addMS(final int ms);
 
+    /**
+     * set time zone.
+     * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
+     * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 TKY
+     * @param timeZone time zone in BaseTimeZone
+     * @return builder updated
+     */
     T timeZone(final BaseTimeZone timeZone);
 
+    /**
+     * set time zone
+     * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
+     * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 TKY
+     * @param timeZone time zone
+     * @return builder updated
+     */
     T timeZone(final TimeZone timeZone);
 
+    /**
+     * switch time zone to new time zone
+     * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
+     * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 TKY
+     * @param timeZone time zone in BaseTimeZone
+     * @return builder updated
+     */
     T swapTimeZone(final BaseTimeZone timeZone);
 
+    /**
+     * switch time zone to new time zone
+     * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
+     * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
+     * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 TKY
+     * @param timeZone time zone
+     * @return builder updated
+     */
     T swapTimeZone(final TimeZone timeZone);
 
+    /**
+     * Eliminate the date part and leaving the time part only in builder
+     * 2020-02-12T13:12:14.998 to 1970-01-01T13:12:12.998
+     * @return updated builder
+     */
     T timePartOnly();
 
 

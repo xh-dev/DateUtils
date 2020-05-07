@@ -1,4 +1,4 @@
-package me.xethh.utils.weekday;
+package me.xethh.utils.dateUtils.weekday;
 
 public enum Weekday {
     Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday;

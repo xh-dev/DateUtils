@@ -2,7 +2,7 @@ package me.xethh.utils.dateUtils.range;
 
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;

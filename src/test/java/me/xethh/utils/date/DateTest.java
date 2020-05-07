@@ -2,7 +2,7 @@ package me.xethh.utils.date;
 
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.date.DateBuilderImpl;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;

@@ -1,7 +1,7 @@
 package me.xethh.utils.dateUtils.interfaces;
 
 import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -43,7 +43,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * alias of month(Month month)
      *
      * @param month month
-     * @param day
+     * @param day day
      * @return builder of month and day updated
      */
     T md(Month month, int day);
@@ -320,7 +320,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * check if date input the same date(ymd) of the datebuilder
      * @param date date in date form
-     * @return
+     * @return boolean result
      */
     boolean sameDate(Date date);
 

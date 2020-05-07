@@ -1,7 +1,11 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.dateUtils.D;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
@@ -16,6 +20,15 @@ import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 public class DatetimeBuilderImplTest {
+    @Test
+    public void t(){
+        DatetimeBuilder db = D.dt().now().timeZone(BaseTimeZone.Hongkong).ymd(2020, MAY, 7).hms(18, 1, 1);
+        System.out.println(db.format(DateFormatBuilder.Format.ISO8601));
+        System.out.println(db.timeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601));
+        System.out.println(db.swapTimeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601));
+
+    }
+
     /**
      * Test calendar date builder interface
      */

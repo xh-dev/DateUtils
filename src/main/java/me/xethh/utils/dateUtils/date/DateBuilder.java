@@ -9,14 +9,14 @@ import me.xethh.utils.dateUtils.interfaces.TimeUnitConverter;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
-import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * DateBuilder interface ind
- * @param <T>
+ * @param <T> generic type of DateBuilder
  */
 public interface DateBuilder<T extends DateBuilder<T>>
         extends
