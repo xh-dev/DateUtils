@@ -17,7 +17,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * alias of year(final int year)
      *
-     * @param year
+     * @param year year
      * @return builder of year updated
      */
     T y(int year);
@@ -25,7 +25,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * alias of month(final Month month)
      *
-     * @param month
+     * @param month month
      * @return builder of month updated
      */
     T m(Month month);
@@ -33,8 +33,8 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * combine of setting year and month
      *
-     * @param year
-     * @param month
+     * @param year year
+     * @param month month
      * @return builder of year and month updated
      */
     T ym(int year, Month month);
@@ -42,7 +42,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * alias of month(Month month)
      *
-     * @param month
+     * @param month month
      * @param day
      * @return builder of month and day updated
      */
@@ -51,16 +51,16 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * combine of setting year, month and day
      *
-     * @param year
-     * @param month
-     * @param day
+     * @param year year
+     * @param month month
+     * @param day day
      * @return builder of year, month and day updated
      */
     T ymd(int year, Month month, int day);
 
     /**
      * Alias of day(int day)
-     * @param day
+     * @param day day
      * @return builder of day updated
      */
     T d(int day);
@@ -79,7 +79,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Set up year
      *
-     * @param year
+     * @param year year
      * @return builder of year updated
      */
     T year(final int year);
@@ -125,7 +125,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Set day
      *
-     * @param date
+     * @param date date
      * @return builder of day updated to the last day of current month and year
      */
     T day(final int date);
@@ -162,7 +162,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Add number of years to current datebuilder
-     * @param years
+     * @param years year(s)
      * @return builder after add year
      */
     T addYear(final int years);
@@ -193,7 +193,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Add number of month to current datebuilder
-     * @param months
+     * @param months month(s)
      * @return builder after adding month
      */
     T addMonths(final int months);
@@ -202,7 +202,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * Days after specific date time, inclusive
      * e.g. 40 days after 01th Jan 2020, should 10th Feb 2020, instead of 11th Feb 2020
      *
-     * @param days
+     * @param days day(s)
      * @return builder after adding day
      */
     T addDays(final int days);
@@ -249,168 +249,168 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input is the same year of datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the same year of current builder
      */
     boolean sameYear(Long longDate);
 
     /**
      * check if date input is the same year of datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the same year of current builder
      */
     boolean sameYear(Date date);
 
     /**
      * check if date input the same year of datebuilder
-     * @param cal
+     * @param cal date in calendar form
      * @return result of input date(Calendar form) the same year of current builder
      */
     boolean sameYear(Calendar cal);
 
     /**
      * check if date input the same month of datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the same month of current builder
      */
     boolean sameMonth(Long longDate);
 
     /**
      * check if date input the same month of datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the same month of current builder
      */
     boolean sameMonth(Date date);
 
     /**
      * check if date input the same month of datebuilder
-     * @param cal
+     * @param cal date in calendar form
      * @return result of input date(calendar form) the same month of current builder
      */
     boolean sameMonth(Calendar cal);
 
     /**
      * check if date input the same day of datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the same day of current builder
      */
     boolean sameDay(Long longDate);
 
     /**
      * check if date input the same day of datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the same day of current builder
      */
     boolean sameDay(Date date);
 
     /**
      * check if date input the same day of datebuilder
-     * @param cal
+     * @param cal date in calendar form
      * @return result of input date(calendar form) the same day of current builder
      */
     boolean sameDay(Calendar cal);
 
     /**
      * check if date input the same date(ymd) of the datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the same date of current builder
      */
     boolean sameDate(Long longDate);
 
     /**
      * check if date input the same date(ymd) of the datebuilder
-     * @param date
+     * @param date date in date form
      * @return
      */
     boolean sameDate(Date date);
 
     /**
      * check if date input the same date(ymd) of the datebuilder
-     * @param cal
+     * @param cal date in calendar form
      * @return result of input date(calendar form) the same date of current builder
      */
     boolean sameDate(Calendar cal);
 
     /**
      * check if the date input is earlier than datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the same date of current builder
      */
     boolean laterThan(Date date);
 
     /**
      * check if the date input is earlier than datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the later than date of current builder
      */
     boolean laterThan(Long longDate);
 
     /**
      * check if the date input is earlier than datebuilder
-     * @param calendar
+     * @param calendar date in calendar form
      * @return result of input date(calendar form) the later than date of current builder
      */
     boolean laterThan(Calendar calendar);
 
     /**
      * check if the date input is earlier or equal to the datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the later or equals than date of current builder
      */
     boolean laterEqualThan(Date date);
 
     /**
      * check if the date input is earlier or equal to the datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the later or equals than date of current builder
      */
     boolean laterEqualThan(Long longDate);
 
     /**
      * check if the date input is earlier or equal to the datebuilder
-     * @param calendar
+     * @param calendar date in calendar form
      * @return result of input date(calendar form) the later or equals than date of current builder
      */
     boolean laterEqualThan(Calendar calendar);
 
     /**
      * check if the date input is later than the datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the before date of current builder
      */
     boolean before(Date date);
 
     /**
      * check if the date input is later than the datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the before date of current builder
      */
     boolean before(Long longDate);
 
     /**
      * check if the date input is later than the datebuilder
-     * @param calendar
+     * @param calendar date in calendar form
      * @return result of input date(calendar form) the before date of current builder
      */
     boolean before(Calendar calendar);
 
     /**
      * check if the date input is later or equal to the datebuilder
-     * @param date
+     * @param date date in date form
      * @return result of input date(date form) the before or equals date of current builder
      */
     boolean beforeEqual(Date date);
 
     /**
      * check if the date input is later or equal to the datebuilder
-     * @param longDate
+     * @param longDate date in long form
      * @return result of input date(long form) the before or equals date of current builder
      */
     boolean beforeEqual(Long longDate);
 
     /**
      * check if the date input is later or equal to the datebuilder
-     * @param calendar
+     * @param calendar date in calendar form
      * @return result of input date(calendar form) the before or equals date of current builder
      */
     boolean beforeEqual(Calendar calendar);
