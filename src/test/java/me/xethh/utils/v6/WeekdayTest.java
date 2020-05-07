@@ -1,9 +1,9 @@
 package me.xethh.utils.v6;
 
-import me.xethh.utils.dateManipulation.Weekday;
+import me.xethh.utils.weekday.Weekday;
 import org.junit.Test;
 
-import static me.xethh.utils.dateManipulation.Weekday.*;
+import static me.xethh.utils.weekday.Weekday.*;
 import static org.junit.Assert.assertEquals;
 
 /**

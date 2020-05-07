@@ -1,7 +1,7 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
-import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.dateFactory.DateFactory;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import org.junit.Test;
 
 import java.util.TimeZone;

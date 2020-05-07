@@ -1,13 +1,13 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateManipulation.Weekday;
-import me.xethh.utils.dateManipulation.buildInterfaces.CalendarDateBuilder;
-import me.xethh.utils.dateManipulation.buildInterfaces.CommonDateRepresentation;
+import me.xethh.utils.weekday.Weekday;
+import me.xethh.utils.dateUtils.interfaces.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.interfaces.CommonDateRepresentation;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import static me.xethh.utils.dateManipulation.Month.*;
+import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 public class TestCalendarDateBuilder {

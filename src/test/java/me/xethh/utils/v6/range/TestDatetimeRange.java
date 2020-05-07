@@ -1,17 +1,17 @@
 package me.xethh.utils.v6.range;
 
-import me.xethh.utils.dateManipulation.*;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
-import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
-import me.xethh.utils.rangeManipulation.OverlapType;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.range.OverlapType;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 
-import static me.xethh.utils.dateManipulation.Month.*;
+import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 /**

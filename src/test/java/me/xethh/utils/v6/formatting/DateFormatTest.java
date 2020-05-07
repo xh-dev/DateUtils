@@ -1,11 +1,11 @@
 package me.xethh.utils.v6.formatting;
 
-import me.xethh.utils.dateManipulation.*;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
-import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;

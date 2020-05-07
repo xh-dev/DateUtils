@@ -1,17 +1,18 @@
 package me.xethh.utils.v6.operations;
 
-import me.xethh.utils.dateManipulation.*;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
-import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.weekday.Weekday;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static me.xethh.utils.dateManipulation.Month.*;
-import static me.xethh.utils.dateManipulation.Weekday.Sunday;
+import static me.xethh.utils.dateUtils.month.Month.*;
+import static me.xethh.utils.weekday.Weekday.Sunday;
 import static org.junit.Assert.*;
 
 /**

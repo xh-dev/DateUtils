@@ -1,10 +1,10 @@
 package me.xethh.utils.v6.datetime;
 
-import me.xethh.utils.dateManipulation.date.DateBuilder;
-import me.xethh.utils.dateManipulation.dateFactory.DateFactory;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.date.DateBuilder;
+import me.xethh.utils.dateUtils.dateFactory.DateFactory;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import org.junit.Test;
 
 import java.util.Calendar;

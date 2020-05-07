@@ -1,10 +1,10 @@
 package me.xethh.utils.v6.range;
 
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.rangeManipulation.datetime.AcceptingFilter;
-import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
-import me.xethh.utils.rangeManipulation.OverlapType;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.range.datetime.AcceptingFilter;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.range.OverlapType;
 import org.junit.Test;
 
 import java.util.Arrays;

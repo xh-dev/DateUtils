@@ -1,6 +1,6 @@
 package me.xethh.utils.v6;
 
-import me.xethh.utils.dateManipulation.Month;
+import me.xethh.utils.dateUtils.month.Month;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

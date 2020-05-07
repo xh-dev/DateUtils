@@ -1,12 +1,12 @@
 package me.xethh.utils.v6.dateInfo;
 
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.dataInfo.DateInfo;
-import me.xethh.utils.dateManipulation.Weekday;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.dataInfo.DateInfo;
+import me.xethh.utils.weekday.Weekday;
 import org.junit.Test;
 
-import static me.xethh.utils.dateManipulation.Month.*;
+import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.assertEquals;
 
 /**

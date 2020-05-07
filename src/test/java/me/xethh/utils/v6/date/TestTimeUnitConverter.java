@@ -1,10 +1,10 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateManipulation.buildInterfaces.CommonDateRepresentation;
-import me.xethh.utils.dateManipulation.buildInterfaces.FormatterBuilder;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderFactory;
-import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.interfaces.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.interfaces.FormatterBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
 import java.text.SimpleDateFormat;
 

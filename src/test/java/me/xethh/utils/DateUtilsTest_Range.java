@@ -1,9 +1,9 @@
 package me.xethh.utils;
 
-import me.xethh.utils.dateManipulation.*;
-import me.xethh.utils.dateManipulation.datetime.DatetimeBuilder;
-import me.xethh.utils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateManipulation.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
+import me.xethh.utils.dateUtils.month.Month;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +28,7 @@ public class DateUtilsTest_Range
     @Test
     public void timeSetupV2(){
         assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().y(2018).asDate()),"2018-01-01T00:00:00.000");
-        assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().ym(2018,Month.JAN).asDate()),"2018-01-01T00:00:00.000");
+        assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().ym(2018, Month.JAN).asDate()),"2018-01-01T00:00:00.000");
         assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().ym(2018,Month.FEB).asDate()),"2018-02-01T00:00:00.000");
         assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().ym(2018,Month.MAR).asDate()),"2018-03-01T00:00:00.000");
         assertEquals(sdf2.format(DatetimeFactory.instance().raw().rangeTo(new Date()).editStart().ym(2018,Month.APR).asDate()),"2018-04-01T00:00:00.000");
