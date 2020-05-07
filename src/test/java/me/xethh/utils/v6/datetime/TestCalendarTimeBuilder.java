@@ -39,8 +39,10 @@ public class TestCalendarTimeBuilder {
         assertEquals("2021-06-22T23:59:59.000+0800",builder.maxDayTimeSec().format(sdf));
         assertEquals("2021-06-22T23:59:00.000+0800",builder.maxDayTimeMin().format(sdf));
         assertEquals("2021-06-22T00:00:00.000+0800",builder.minDayTime().format(sdf));
+    }
 
-        Date date = new Date();
-        assertEquals(sdf.format(date),builder.now().format(sdf));
+    public static void testNow(Date dFromNewDate, Date builderDate){
+        SimpleDateFormat sdf = DateFormatBuilder.Format.ISO8601.getFormatter();
+        assertEquals(sdf.format(dFromNewDate),sdf.format(builderDate));
     }
 }

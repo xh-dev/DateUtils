@@ -7,7 +7,6 @@ import me.xethh.utils.dateManipulation.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateManipulation.timezone.BaseTimeZone;
 import me.xethh.utils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.rangeManipulation.datetime.DatetimeRange;
-import me.xethh.utils.v6.date.TestCommonDateRepresentation;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -15,7 +14,7 @@ import java.util.Date;
 
 import static me.xethh.utils.dateManipulation.Month.MAY;
 
-public class testCommonDateRepresentation {
+public class TestCommonDateRepresentation {
     @Test
     public void testDatetimeBuilder() {
         DatetimeBuilder db = new DatetimeBuilderImpl(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1,2,3,4);
@@ -29,7 +28,7 @@ public class testCommonDateRepresentation {
         cal.set(Calendar.SECOND, 3);
         cal.set(Calendar.MILLISECOND, 4);
         Date d = cal.getTime();
-        TestCommonDateRepresentation.test(db,d);
+        me.xethh.utils.v6.date.TestCommonDateRepresentation.test(db,d);
     }
     @Test
     public void testDateBuilder() {
@@ -44,7 +43,7 @@ public class testCommonDateRepresentation {
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         Date d = cal.getTime();
-        TestCommonDateRepresentation.test(db, d);
+        me.xethh.utils.v6.date.TestCommonDateRepresentation.test(db, d);
     }
     @Test
     public void testDatetimeRange() {
@@ -60,7 +59,7 @@ public class testCommonDateRepresentation {
         cal.set(Calendar.SECOND, 3);
         cal.set(Calendar.MILLISECOND, 4);
         Date d = cal.getTime();
-        TestCommonDateRepresentation.test(range.editStart(),d);
-        TestCommonDateRepresentation.test(range.editEnd(),d);
+        me.xethh.utils.v6.date.TestCommonDateRepresentation.test(range.editStart(),d);
+        me.xethh.utils.v6.date.TestCommonDateRepresentation.test(range.editEnd(),d);
     }
 }
