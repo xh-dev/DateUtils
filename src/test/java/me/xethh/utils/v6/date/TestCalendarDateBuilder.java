@@ -11,7 +11,7 @@ import static me.xethh.utils.dateManipulation.Month.*;
 import static org.junit.Assert.*;
 
 public class TestCalendarDateBuilder {
-    public static <T extends CalendarDateBuilder<T> & CommonDateRepresentation> void test(T db){
+    public static <T extends CalendarDateBuilder<T> & CommonDateRepresentation> void test(T db) {
         Calendar cal = Calendar.getInstance();
         Date date = null;
 
@@ -228,5 +228,14 @@ public class TestCalendarDateBuilder {
         assertTrue(db.ymd(2016, JAN, 6).beforeEqual(date));
         cal.setTime(date);
         assertTrue(db.ymd(2016, JAN, 6).beforeEqual(cal));
+
+        date = new Date();
+        Date d = db.now().asDate();
+        cal.setTime(date);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(d);
+        assertEquals(cal.get(Calendar.YEAR), cal2.get(Calendar.YEAR));
+        assertEquals(cal.get(Calendar.MONTH), cal2.get(Calendar.MONTH));
+        assertEquals(cal.get(Calendar.DAY_OF_MONTH), cal2.get(Calendar.DAY_OF_MONTH));
     }
 }

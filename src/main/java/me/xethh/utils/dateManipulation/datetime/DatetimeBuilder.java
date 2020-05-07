@@ -162,6 +162,8 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
 
     @Override
     T minDayTime();
+
+    @Override
     T now();
 
 

@@ -99,6 +99,7 @@ public interface DateBuilder<T extends DateBuilder<T>>
     @Override
     T endOfWeek(Weekday startDay);
 
+    @Override
     T now();
 
 

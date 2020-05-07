@@ -9,6 +9,12 @@ import java.util.TimeZone;
 
 public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
+     * Return the date of current time
+     * @return
+     */
+    T now();
+
+    /**
      * alias of year(final int year)
      *
      * @param year

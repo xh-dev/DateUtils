@@ -167,34 +167,8 @@ public class DateBuilderImplTest {
         assertFalse(db.md(AUG, 23).equals(db.md(JUL, 23)));
     }
 
-    @Test
-    public void testFormatterBuilder() {
-        DateBuilder db = new DateBuilderImpl().ymd(2020, MAY, 12);
-        TestFormatBuilder.test(db);
 
-    }
 
-    @Test
-    public void testTimeUnitConverter() {
-        DateBuilder db = new DateBuilderImpl().ymd(2020, MAY, 12);
-        TestTimeUnitConverter.test(db);
-    }
-
-    @Test
-    public void testCommonDateRepresentation() {
-        DateBuilder db = new DateBuilderImpl().ymd(2020, MAY, 12);
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2020);
-        cal.set(Calendar.MONTH, MAY.toJavaCalNumber());
-        cal.set(Calendar.DAY_OF_MONTH, 12);
-
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        Date d = cal.getTime();
-        TestCommonDateRepresentation.test(db, d);
-    }
 
 
 

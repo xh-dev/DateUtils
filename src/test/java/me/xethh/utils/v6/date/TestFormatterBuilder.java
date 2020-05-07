@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestFormatBuilder {
+public class TestFormatterBuilder {
     public static <T extends TimeUnitConverter & CalendarDateBuilder<T> & CommonDateRepresentation> void test(T db){
         TimeUnit unit;
         unit = db.diffFrom(db.addDays(1).asDate());

@@ -8,6 +8,12 @@ import java.util.TimeZone;
 
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
+     * Return the datetime of current datetime
+     * @return
+     */
+    T now();
+
+    /**
      * Set hour, minute, second and millisecond
      *
      * @param hour
