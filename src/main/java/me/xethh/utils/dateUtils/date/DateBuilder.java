@@ -5,7 +5,7 @@ import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.CommonDateRepresentation;
 import me.xethh.utils.dateUtils.FormatterBuilder;
-import me.xethh.utils.dateUtils.interfaces.TimeUnitConverter;
+import me.xethh.utils.dateUtils.TimeUnitConverter;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;

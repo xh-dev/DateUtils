@@ -3,7 +3,7 @@ package me.xethh.utils.v6.date;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.interfaces.TimeUnitConverter;
+import me.xethh.utils.dateUtils.TimeUnitConverter;
 
 import static org.junit.Assert.assertEquals;
 
