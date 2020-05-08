@@ -34,6 +34,7 @@ public enum Weekday {
      * 5 {@literal ->} Friday <br>
      * 6 {@literal ->} Saturday <br>
      *
+     * @param day day of ordinal
      * @return Weekday
      */
     public static Weekday getByOrdinal(int day) {
@@ -57,6 +58,7 @@ public enum Weekday {
      * 6 {@literal ->} Saturday <br>
      * 7 {@literal ->} Sunday <br>
      *
+     * @param day day in number form
      * @return Weekday
      */
     public static Weekday getByCalWeekday(int day) {
@@ -70,7 +72,8 @@ public enum Weekday {
 
     /**
      * The next weekday <br>
-     * e.g. Saturday {@literal ->} Sunday <br>
+     * {@literal e.g.} Saturday {@literal ->} Sunday <br>
+     *
      * @return Weekday
      */
     public Weekday nextDay() {
@@ -82,7 +85,8 @@ public enum Weekday {
 
     /**
      * The previous weekday <br>
-     * e.g. Monday {@literal ->} Sunday
+     * {@literal e.g.} Monday {@literal ->} Sunday
+     *
      * @return Weekday
      */
     public Weekday prevDay() {
