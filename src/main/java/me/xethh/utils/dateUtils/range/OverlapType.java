@@ -22,6 +22,7 @@ public enum OverlapType {
 
     TargetIsNull,       //Compare target is null
     TargetInvalid,      //Compare target is not a valid datetime range
-    Invalid,;           //datetime range is not valid
+    Invalid,
+    ;           //datetime range is not valid
 
 }

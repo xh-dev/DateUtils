@@ -7,9 +7,14 @@ import java.util.Date;
 
 public interface TimeUnitConverter {
     TimeUnit diffFrom(Date date);
+
     TimeUnit diffTo(Date date);
+
     TimeUnit diffFrom(long date);
+
     TimeUnit diffTo(long date);
+
     TimeUnit diffFrom(Calendar date);
+
     TimeUnit diffTo(Calendar date);
 }

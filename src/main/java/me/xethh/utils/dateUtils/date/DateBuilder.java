@@ -2,9 +2,9 @@ package me.xethh.utils.dateUtils.date;
 
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
-import me.xethh.utils.dateUtils.interfaces.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.interfaces.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.interfaces.FormatterBuilder;
+import me.xethh.utils.dateUtils.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.FormatterBuilder;
 import me.xethh.utils.dateUtils.interfaces.TimeUnitConverter;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
@@ -16,6 +16,7 @@ import java.util.Date;
 
 /**
  * DateBuilder interface ind
+ *
  * @param <T> generic type of DateBuilder
  */
 public interface DateBuilder<T extends DateBuilder<T>>
@@ -23,8 +24,7 @@ public interface DateBuilder<T extends DateBuilder<T>>
         CalendarDateBuilder<T>,
         CommonDateRepresentation,
         TimeUnitConverter,
-        FormatterBuilder
-{
+        FormatterBuilder {
     @Override
     T y(int year);
 
@@ -107,45 +107,69 @@ public interface DateBuilder<T extends DateBuilder<T>>
     DateInfo view();
 
     DatetimeRange rangeTo(DateBuilder date);
+
     DatetimeRange rangeTo(DatetimeBuilder date);
 
     DatetimeRange rangeFrom(DateBuilder date);
+
     DatetimeRange rangeFrom(DatetimeBuilder date);
 
     DatetimeRange rangeTo(Date date);
+
     DatetimeRange rangeTo(Long dateLong);
+
     DatetimeRange rangeTo(Calendar cal);
 
     DatetimeRange rangeToSelf();
 
     DatetimeRange rangeFrom(Date date);
+
     DatetimeRange rangeFrom(Long dateLong);
+
     DatetimeRange rangeFrom(Calendar cal);
 
     boolean sameDate(DateBuilder builder);
+
     boolean sameDate(Long longDate);
+
     boolean sameDate(Date date);
+
     boolean sameDate(Calendar cal);
 
     boolean sameYear(DateBuilder builder);
+
     boolean sameYear(DatetimeBuilder builder);
+
     boolean sameMonth(DateBuilder builder);
+
     boolean sameMonth(DatetimeBuilder builder);
+
     boolean sameDay(DateBuilder builder);
+
     boolean sameDay(DatetimeBuilder builder);
 
     boolean laterThan(DateBuilder datetimeBuilder);
+
     boolean laterThan(DatetimeBuilder datetimeBuilder);
+
     boolean laterEqualThan(DateBuilder datetimeBuilder);
+
     boolean laterEqualThan(DatetimeBuilder datetimeBuilder);
+
     boolean before(DateBuilder datetimeBuilder);
+
     boolean before(DatetimeBuilder datetimeBuilder);
+
     boolean beforeEqual(DateBuilder datetimeBuilder);
+
     boolean beforeEqual(DatetimeBuilder datetimeBuilder);
 
     TimeUnit diffFrom(DateBuilder date);
+
     TimeUnit diffFrom(DatetimeBuilder date);
+
     TimeUnit diffTo(DateBuilder date);
+
     TimeUnit diffTo(DatetimeBuilder date);
 
     DatetimeBuilder asDatetimeBuilder();

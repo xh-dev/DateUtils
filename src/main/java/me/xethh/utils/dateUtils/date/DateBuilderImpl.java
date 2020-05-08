@@ -3,7 +3,7 @@ package me.xethh.utils.dateUtils.date;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.interfaces.Build;
-import me.xethh.utils.dateUtils.interfaces.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -22,24 +22,31 @@ import java.util.TimeZone;
 
 public class DateBuilderImpl implements DateBuilder {
     private DatetimeBuilder builder;
-    public DateBuilderImpl(){
+
+    public DateBuilderImpl() {
         this(DatetimeFactory.instance().raw());
     }
-    public DateBuilderImpl(Date builder, Build build){
-        this(DatetimeFactory.instance().from(builder,build));
+
+    public DateBuilderImpl(Date builder, Build build) {
+        this(DatetimeFactory.instance().from(builder, build));
     }
-    public DateBuilderImpl(Date builder){
+
+    public DateBuilderImpl(Date builder) {
         this(DatetimeFactory.instance().from(builder));
     }
-    public DateBuilderImpl(Calendar cal, Build build){
-        this(DatetimeFactory.instance().from(cal,build));
+
+    public DateBuilderImpl(Calendar cal, Build build) {
+        this(DatetimeFactory.instance().from(cal, build));
     }
-    public DateBuilderImpl(Calendar cal){
+
+    public DateBuilderImpl(Calendar cal) {
         this(DatetimeFactory.instance().from(cal));
     }
-    public DateBuilderImpl(DatetimeBuilder builder){
+
+    public DateBuilderImpl(DatetimeBuilder builder) {
         this.builder = builder.minDayTime();
     }
+
     @Override
     public DateBuilder y(int year) {
         return new DateBuilderImpl(builder.y(year));
@@ -52,12 +59,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public DateBuilder ym(int year, Month month) {
-        return new DateBuilderImpl(builder.ym(year,month));
+        return new DateBuilderImpl(builder.ym(year, month));
     }
 
     @Override
     public DateBuilder md(Month month, int day) {
-        return new DateBuilderImpl(builder.md(month,day));
+        return new DateBuilderImpl(builder.md(month, day));
     }
 
     @Override
@@ -532,12 +539,12 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String format(TimeZone timeZone, String format) {
-        return builder.format(timeZone,format);
+        return builder.format(timeZone, format);
     }
 
     @Override
     public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
-        return builder.format(timeZone,format);
+        return builder.format(timeZone, format);
     }
 
     @Override
@@ -547,7 +554,7 @@ public class DateBuilderImpl implements DateBuilder {
 
     @Override
     public String format(TimeZone timeZone, SimpleDateFormat fmt) {
-        return builder.format(timeZone,fmt);
+        return builder.format(timeZone, fmt);
     }
 
     @Override

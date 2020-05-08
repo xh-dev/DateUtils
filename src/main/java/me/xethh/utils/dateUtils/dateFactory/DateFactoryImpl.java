@@ -82,7 +82,7 @@ public class DateFactoryImpl implements DateFactory {
 
     @Override
     public DateBuilder from(Long longDate, Build build) {
-        return new DateBuilderImpl(new Date(longDate),build);
+        return new DateBuilderImpl(new Date(longDate), build);
     }
 
     @Override

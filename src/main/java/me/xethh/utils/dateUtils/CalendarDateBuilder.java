@@ -1,4 +1,4 @@
-package me.xethh.utils.dateUtils.interfaces;
+package me.xethh.utils.dateUtils;
 
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.weekday.Weekday;
@@ -10,11 +10,13 @@ import java.util.TimeZone;
 /**
  * Interface provide operations to date fields
  * e.g. year, month and date
- * @param <T>
+ *
+ * @param <T> generic type T which is subclass of CalendarDateBuilder itself
  */
 public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Return the date of current time
+     *
      * @return current time builder
      */
     T now();
@@ -38,7 +40,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * combine of setting year and month
      *
-     * @param year year
+     * @param year  year
      * @param month month
      * @return builder of year and month updated
      */
@@ -48,7 +50,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * alias of month(Month month)
      *
      * @param month month
-     * @param day day
+     * @param day   day
      * @return builder of month and day updated
      */
     T md(Month month, int day);
@@ -56,15 +58,16 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * combine of setting year, month and day
      *
-     * @param year year
+     * @param year  year
      * @param month month
-     * @param day day
+     * @param day   day
      * @return builder of year, month and day updated
      */
     T ymd(int year, Month month, int day);
 
     /**
      * Alias of day(int day)
+     *
      * @param day day
      * @return builder of day updated
      */
@@ -147,6 +150,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
      * set the day to be first day of the month,
      * depends on current year and month
      * alias of {@link #minDay()}
+     *
      * @return builder of first day of month
      */
     T firstDayOfMonth();
@@ -167,6 +171,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Add number of years to current datebuilder
+     *
      * @param years year(s)
      * @return builder after add year
      */
@@ -174,30 +179,35 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Switch the datebuilder to the last year
+     *
      * @return builder of previous year
      */
     T lastYear();
 
     /**
      * Swtich the datebuilder to the next year
+     *
      * @return builder of coming year
      */
     T nextYear();
 
     /**
      * Switch the datebuilder to the last month
+     *
      * @return builder of previous month
      */
     T lastMonth();
 
     /**
      * Switch the datebuuilder to the next month
+     *
      * @return builder of coming month
      */
     T nextMonth();
 
     /**
      * Add number of month to current datebuilder
+     *
      * @param months month(s)
      * @return builder after adding month
      */
@@ -214,18 +224,21 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Switch the datebuilder to yesterday
+     *
      * @return builder of previous day
      */
     T yesterday();
 
     /**
      * Switch the datebuilder to tomorrow
+     *
      * @return builder of the coming day
      */
     T tomorrow();
 
     /**
      * Switch to the next weekday
+     *
      * @param startDay start of week day
      * @return builder of the coming same week day
      */
@@ -233,6 +246,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Switch to the previous weekday
+     *
      * @param startDay start of week day
      * @return builder of the previous same week day
      */
@@ -240,6 +254,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Switch to start of week
+     *
      * @param startDay start of week day
      * @return builder of the start day of week
      */
@@ -247,6 +262,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Switch to end of week
+     *
      * @param startDay start of week day
      * @return builder of the end day of week
      */
@@ -254,6 +270,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input is the same year of datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the same year of current builder
      */
@@ -261,6 +278,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input is the same year of datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the same year of current builder
      */
@@ -268,6 +286,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same year of datebuilder
+     *
      * @param cal date in calendar form
      * @return result of input date(Calendar form) the same year of current builder
      */
@@ -275,6 +294,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same month of datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the same month of current builder
      */
@@ -282,6 +302,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same month of datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the same month of current builder
      */
@@ -289,6 +310,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same month of datebuilder
+     *
      * @param cal date in calendar form
      * @return result of input date(calendar form) the same month of current builder
      */
@@ -296,6 +318,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same day of datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the same day of current builder
      */
@@ -303,6 +326,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same day of datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the same day of current builder
      */
@@ -310,6 +334,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same day of datebuilder
+     *
      * @param cal date in calendar form
      * @return result of input date(calendar form) the same day of current builder
      */
@@ -317,6 +342,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same date(ymd) of the datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the same date of current builder
      */
@@ -324,6 +350,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same date(ymd) of the datebuilder
+     *
      * @param date date in date form
      * @return boolean result
      */
@@ -331,6 +358,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if date input the same date(ymd) of the datebuilder
+     *
      * @param cal date in calendar form
      * @return result of input date(calendar form) the same date of current builder
      */
@@ -338,6 +366,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier than datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the same date of current builder
      */
@@ -345,6 +374,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier than datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the later than date of current builder
      */
@@ -352,6 +382,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier than datebuilder
+     *
      * @param calendar date in calendar form
      * @return result of input date(calendar form) the later than date of current builder
      */
@@ -359,6 +390,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier or equal to the datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the later or equals than date of current builder
      */
@@ -366,6 +398,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier or equal to the datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the later or equals than date of current builder
      */
@@ -373,6 +406,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is earlier or equal to the datebuilder
+     *
      * @param calendar date in calendar form
      * @return result of input date(calendar form) the later or equals than date of current builder
      */
@@ -380,6 +414,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later than the datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the before date of current builder
      */
@@ -387,6 +422,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later than the datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the before date of current builder
      */
@@ -394,6 +430,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later than the datebuilder
+     *
      * @param calendar date in calendar form
      * @return result of input date(calendar form) the before date of current builder
      */
@@ -401,6 +438,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later or equal to the datebuilder
+     *
      * @param date date in date form
      * @return result of input date(date form) the before or equals date of current builder
      */
@@ -408,6 +446,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later or equal to the datebuilder
+     *
      * @param longDate date in long form
      * @return result of input date(long form) the before or equals date of current builder
      */
@@ -415,6 +454,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * check if the date input is later or equal to the datebuilder
+     *
      * @param calendar date in calendar form
      * @return result of input date(calendar form) the before or equals date of current builder
      */
@@ -422,6 +462,7 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
 
     /**
      * Get time zone applied to this builder
+     *
      * @return time zone object
      */
     TimeZone getTimeZone();

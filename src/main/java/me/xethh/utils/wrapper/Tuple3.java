@@ -2,18 +2,19 @@ package me.xethh.utils.wrapper;
 
 import java.util.Objects;
 
-public class Tuple3<V1,V2,V3> {
+public class Tuple3<V1, V2, V3> {
     private V1 v1;
     private V2 v2;
     private V3 v3;
 
-    private Tuple3(V1 v1, V2 v2, V3 v3){
+    private Tuple3(V1 v1, V2 v2, V3 v3) {
         this.v1 = v1;
         this.v2 = v2;
         this.v3 = v3;
     }
-    public static <V1,V2,V3> Tuple3<V1,V2,V3> of(V1 v1, V2 v2, V3 v3){
-        return new Tuple3(v1,v2,v3);
+
+    public static <V1, V2, V3> Tuple3<V1, V2, V3> of(V1 v1, V2 v2, V3 v3) {
+        return new Tuple3(v1, v2, v3);
     }
 
     public V1 getV1() {

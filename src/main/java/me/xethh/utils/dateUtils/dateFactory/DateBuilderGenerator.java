@@ -22,7 +22,7 @@ public interface DateBuilderGenerator {
 
     DateBuilder from(Long longDate, Build build);
 
-    default DateBuilder from(Long longDate){
+    default DateBuilder from(Long longDate) {
         return from(new Date(longDate));
     }
 

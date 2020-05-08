@@ -13,14 +13,17 @@ import java.util.TimeZone;
 public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<FormatBuilderWrapper> {
     DatetimeBuilder builder;
     DateFormatBuilder formatBuilder;
-    public FormatBuilderWrapper(DatetimeBuilder builder){
+
+    public FormatBuilderWrapper(DatetimeBuilder builder) {
         this.builder = builder;
         this.formatBuilder = DateFormatBuilderImpl.get();
     }
-    public FormatBuilderWrapper(DatetimeBuilder builder, DateFormatBuilder formatBuilder){
+
+    public FormatBuilderWrapper(DatetimeBuilder builder, DateFormatBuilder formatBuilder) {
         this.builder = builder;
         this.formatBuilder = formatBuilder;
     }
+
     @Override
     public String format() {
         return build().format(builder.asDate());
@@ -228,7 +231,7 @@ public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<Fo
 
     @Override
     public FormatBuilderWrapper v4(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder. v4(v));
+        return new FormatBuilderWrapper(builder, formatBuilder.v4(v));
     }
 
     @Override
@@ -263,7 +266,7 @@ public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<Fo
 
     @Override
     public FormatBuilderWrapper v(String k, String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v(k,v));
+        return new FormatBuilderWrapper(builder, formatBuilder.v(k, v));
     }
 
     @Override
@@ -273,7 +276,7 @@ public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<Fo
 
     @Override
     public FormatBuilderWrapper setVariable(String k, String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.setVariable(k,v));
+        return new FormatBuilderWrapper(builder, formatBuilder.setVariable(k, v));
     }
 
     @Override

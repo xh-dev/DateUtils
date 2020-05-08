@@ -62,11 +62,12 @@ public enum BaseTimeZone {
     Japan("Japan"),
     ;
     private String id;
-    BaseTimeZone(String value){
+
+    BaseTimeZone(String value) {
         this.id = value;
     }
 
-    public TimeZone timeZone(){
+    public TimeZone timeZone() {
         return TimeZone.getTimeZone(id);
     }
 

@@ -1,4 +1,4 @@
-package me.xethh.utils.dateUtils.interfaces;
+package me.xethh.utils.dateUtils;
 
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
@@ -9,11 +9,13 @@ import java.util.TimeZone;
 /**
  * Interface provide operation to time fields
  * e.g. hour, minute, second and millisecond
- * @param <T>
+ *
+ * @param <T> generic type T which the subclass of CalendarTimeBuilder of itself
  */
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Return the datetime of current datetime
+     *
      * @return builder of current datetime
      */
     T now();
@@ -21,9 +23,9 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Set hour, minute, second and millisecond
      *
-     * @param hour hour(s)
-     * @param minute minute(s)
-     * @param second second(s)
+     * @param hour    hour(s)
+     * @param minute  minute(s)
+     * @param second  second(s)
      * @param mSecond millisecond(s)
      * @return builder of updated hour, minute, second and millisecond
      */
@@ -32,7 +34,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Set hour, minute, second and minimize millisecond
      *
-     * @param hour hour(s)
+     * @param hour   hour(s)
      * @param minute minute(s)
      * @param second second(s)
      * @return builder of updated hour, minute and second
@@ -42,7 +44,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Set hour, minute and minimize second and millisecond
      *
-     * @param hour hour(s)
+     * @param hour   hour(s)
      * @param minute minute(s)
      * @return builder of updated hour and minute
      */
@@ -123,7 +125,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Maximize second - 59
      *
-     * @return  builder of second set 59
+     * @return builder of second set 59
      */
     T maxSecond();
 
@@ -199,6 +201,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same
+     *
      * @param longDate date in long form
      * @return boolean
      */
@@ -206,6 +209,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -213,6 +217,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same
+     *
      * @param cal date in calendar form
      * @return boolean
      */
@@ -220,6 +225,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same in time part
+     *
      * @param dateLong date in long form
      * @return boolean
      */
@@ -227,6 +233,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same in time part
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -234,6 +241,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder and input date are the same in time part
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -241,6 +249,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour, minute and second are the same of {@code dateLong}
+     *
      * @param dateLong date in long form
      * @return boolean
      */
@@ -248,6 +257,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour, minute and second are the same of {@code date}
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -255,6 +265,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour, minute and second are the same of {@code calendar}
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -262,6 +273,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour and minute are the same of input
+     *
      * @param dateLong date in long form
      * @return boolean
      */
@@ -269,6 +281,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour and minute are the same of input
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -276,6 +289,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder's hour and minute are the same of input
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -283,6 +297,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later than the input
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -290,6 +305,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later than the input
+     *
      * @param longDate date in long form
      * @return boolean
      */
@@ -297,6 +313,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later than the input
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -304,6 +321,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later equal than input
+     *
      * @param date date in calendar form
      * @return boolean
      */
@@ -311,6 +329,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later equal than input
+     *
      * @param longDate date in long form
      * @return boolean
      */
@@ -318,6 +337,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder later equal than input
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -325,6 +345,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before input
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -332,6 +353,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before input
+     *
      * @param longDate date in long form
      * @return boolean
      */
@@ -339,6 +361,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before input
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -346,6 +369,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before or equals input
+     *
      * @param date date in date form
      * @return boolean
      */
@@ -353,6 +377,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before or equals input
+     *
      * @param longDate date in long form
      * @return boolean
      */
@@ -360,6 +385,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * return whether builder before or equals input
+     *
      * @param calendar date in calendar form
      * @return boolean
      */
@@ -367,6 +393,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * Add time in millisecond
+     *
      * @param time millisecond
      * @return builder updated
      */
@@ -374,6 +401,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * Add hour(s) to builder
+     *
      * @param hours hour(s)
      * @return builder updated
      */
@@ -381,6 +409,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * Add minute(s) to builder
+     *
      * @param mins minute(s)
      * @return builder updated
      */
@@ -388,6 +417,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * Add second(s) to builder
+     *
      * @param sec second(s)
      * @return builder updated
      */
@@ -395,6 +425,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
 
     /**
      * Add millisecond
+     *
      * @param ms millisecond
      * @return builder updated
      */
@@ -405,6 +436,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
      * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 JST
+     *
      * @param timeZone time zone in BaseTimeZone
      * @return builder updated
      */
@@ -415,6 +447,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * timeZone method is <strong>passively</strong> applied, will not leading date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will not shift to corresponding timezone
      * 2020-05-07T18:01:01 HKT to 2020-05-07T18:01:01 JST
+     *
      * @param timeZone time zone
      * @return builder updated
      */
@@ -425,6 +458,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
      * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 JST
+     *
      * @param timeZone time zone in BaseTimeZone
      * @return builder updated
      */
@@ -435,6 +469,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
      * timeZone method is <strong>actively</strong> applied, will lead to date value update(timezone shifting).
      * e.g. set timezone to TKY, when call asDate() method, the hour field will shift to corresponding timezone
      * 2020-05-07T18:01:01 HKT to 2020-05-07T19:01:01 JST
+     *
      * @param timeZone time zone
      * @return builder updated
      */
@@ -443,6 +478,7 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Eliminate the date part and leaving the time part only in builder
      * 2020-02-12T13:12:14.998 to 1970-01-01T13:12:12.998
+     *
      * @return updated builder
      */
     T timePartOnly();

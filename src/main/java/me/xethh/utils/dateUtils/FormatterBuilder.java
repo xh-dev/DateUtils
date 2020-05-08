@@ -1,4 +1,4 @@
-package me.xethh.utils.dateUtils.interfaces;
+package me.xethh.utils.dateUtils;
 
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
@@ -78,8 +78,9 @@ public interface FormatterBuilder {
 
     /**
      * Format builder with time zone and {@link java.text.SimpleDateFormat}
+     *
      * @param timeZone time zone
-     * @param fmt {@link java.text.SimpleDateFormat}
+     * @param fmt      {@link java.text.SimpleDateFormat}
      * @return formatted date
      */
     String format(TimeZone timeZone, SimpleDateFormat fmt);

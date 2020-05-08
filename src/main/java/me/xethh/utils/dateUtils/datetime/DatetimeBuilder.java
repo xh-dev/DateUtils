@@ -1,5 +1,9 @@
 package me.xethh.utils.dateUtils.datetime;
 
+import me.xethh.utils.dateUtils.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.CalendarTimeBuilder;
+import me.xethh.utils.dateUtils.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.FormatterBuilder;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.interfaces.*;
@@ -18,8 +22,7 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
         CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
         CommonDateRepresentation,
         TimeUnitConverter,
-        FormatterBuilder
-{
+        FormatterBuilder {
     @Override
     T y(int year);
 
@@ -178,43 +181,62 @@ public interface DatetimeBuilder<T extends DatetimeBuilder<T>>
     DatetimeRange rangeFrom(DatetimeBuilder date);
 
     DatetimeRange rangeTo(Date date);
+
     DatetimeRange rangeTo(Long dateLong);
+
     DatetimeRange rangeTo(Calendar cal);
 
     DatetimeRange rangeToSelf();
 
     DatetimeRange rangeFrom(Date date);
+
     DatetimeRange rangeFrom(Long dateLong);
+
     DatetimeRange rangeFrom(Calendar cal);
 
     //Compare operation
     boolean sameDate(DatetimeBuilder builder);
+
     boolean sameDate(Long longDate);
+
     boolean sameDate(Date date);
+
     boolean sameDate(Calendar cal);
 
     boolean sameDatetime(DatetimeBuilder builder);
+
     @Override
     boolean sameDatetime(Long longDate);
+
     @Override
     boolean sameDatetime(Date date);
+
     @Override
     boolean sameDatetime(Calendar cal);
 
     boolean sameYear(DatetimeBuilder builder);
+
     boolean sameMonth(DatetimeBuilder builder);
+
     boolean sameDay(DatetimeBuilder builder);
+
     boolean sameTime(DatetimeBuilder datetimeBuilder);
+
     boolean sameHMS(DatetimeBuilder datetimeBuilder);
+
     boolean sameHM(DatetimeBuilder datetimeBuilder);
 
 
     boolean laterThan(DatetimeBuilder datetimeBuilder);
+
     boolean laterEqualThan(DatetimeBuilder datetimeBuilder);
+
     boolean before(DatetimeBuilder datetimeBuilder);
+
     boolean beforeEqual(DatetimeBuilder datetimeBuilder);
 
     TimeUnit diffFrom(DatetimeBuilder date);
+
     TimeUnit diffTo(DatetimeBuilder date);
 
     @Override

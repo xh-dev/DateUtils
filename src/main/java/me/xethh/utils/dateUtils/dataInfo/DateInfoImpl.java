@@ -14,97 +14,121 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DateInfoImpl implements DateInfo {
-    private Calendar cal=Calendar.getInstance(DatetimeFactory.instance().getTimezone());
+    private Calendar cal = Calendar.getInstance(DatetimeFactory.instance().getTimezone());
+
     /*
     Constructor
      */
-    public DateInfoImpl(Date date){
+    public DateInfoImpl(Date date) {
         this(DatetimeFactory.instance().getTimezone(), date);
     }
-    public DateInfoImpl(TimeZone timeZone, Date date){
+
+    public DateInfoImpl(TimeZone timeZone, Date date) {
         cal = Calendar.getInstance(timeZone);
         cal.setTime(date);
     }
-    public DateInfoImpl(BaseTimeZone baseTimeZone, Date date){
+
+    public DateInfoImpl(BaseTimeZone baseTimeZone, Date date) {
         this(baseTimeZone.timeZone(), date);
     }
+
     @Override
-    public Integer year(){
+    public Integer year() {
         return cal.get(Calendar.YEAR);
     }
+
     @Override
-    public Month month(){
+    public Month month() {
         return Month.ofOrdinal(cal.get(Calendar.MONTH));
     }
+
     @Override
-    public Integer day(){
+    public Integer day() {
         return cal.get(Calendar.DAY_OF_MONTH);
     }
+
     @Override
-    public Integer weekOfYear(){
+    public Integer weekOfYear() {
         return cal.get(Calendar.WEEK_OF_YEAR);
     }
+
     @Override
-    public Integer weekOfMonth(){
+    public Integer weekOfMonth() {
         return cal.get(Calendar.WEEK_OF_MONTH);
     }
+
     @Override
-    public Integer dayOfYear(){
+    public Integer dayOfYear() {
         return cal.get(Calendar.DAY_OF_YEAR);
     }
+
     @Override
-    public Integer hour(){
+    public Integer hour() {
         return cal.get(Calendar.HOUR_OF_DAY);
     }
+
     @Override
-    public Integer min(){
+    public Integer min() {
         return cal.get(Calendar.MINUTE);
     }
+
     @Override
-    public Integer second(){
+    public Integer second() {
         return cal.get(Calendar.SECOND);
     }
+
     @Override
-    public Integer ms(){
+    public Integer ms() {
         return cal.get(Calendar.MILLISECOND);
     }
+
     @Override
-    public Weekday weekday(){
-        return Weekday.values()[cal.get(Calendar.DAY_OF_WEEK)-1];
+    public Weekday weekday() {
+        return Weekday.values()[cal.get(Calendar.DAY_OF_WEEK) - 1];
     }
 
 
-    public DatetimeBuilder asBuilder(){
+    public DatetimeBuilder asBuilder() {
         return DatetimeFactory.instance().from(cal.getTime());
     }
-    public Date asDate(){
+
+    public Date asDate() {
         return cal.getTime();
     }
-    public Calendar asCalendar(){
+
+    public Calendar asCalendar() {
         return cal;
     }
-    public Long asLong(){
+
+    public Long asLong() {
         return asDate().getTime();
     }
-    public String asNumberDatetime(){
+
+    public String asNumberDatetime() {
         return DateFormatBuilderFactory.NUMBER_DATETIME().format(asDate());
     }
-    public String asNumberDate(){
+
+    public String asNumberDate() {
         return DateFormatBuilderFactory.NUMBER_DATE().format(asDate());
     }
-    public String asSimpleDateTime(){
+
+    public String asSimpleDateTime() {
         return DateFormatBuilderFactory.SIMPLE_DATETIME().format(asDate());
     }
-    public String asSimpleDate(){
+
+    public String asSimpleDate() {
         return DateFormatBuilderFactory.SIMPLE_DATE().format(asDate());
     }
-    public String asISO8601(){
+
+    public String asISO8601() {
         return DateFormatBuilderFactory.ISO8601().format(asDate());
     }
-    public String asFormat(DateFormatBuilder builder){
+
+    public String asFormat(DateFormatBuilder builder) {
         return asFormat(builder.build());
     }
-    public String asFormat(SimpleDateFormat fmt){
+
+    public String asFormat(SimpleDateFormat fmt) {
         return fmt.format(asDate());
     }
 }

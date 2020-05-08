@@ -10,25 +10,28 @@ import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 public class D {
     /**
      * Provide access to DatetimeFactory
+     *
      * @return Default DatetimeFactory Object
      */
-    public static DatetimeFactory dt(){
+    public static DatetimeFactory dt() {
         return DatetimeFactory.instance();
     }
 
     /**
      * Provide access to DateFactory
+     *
      * @return Default DateFactory Object
      */
-    public static DateFactory d(){
+    public static DateFactory d() {
         return DateFactory.instance();
     }
 
     /**
      * Provide access to DateFormatBuilder
+     *
      * @return Raw DateFormatBuilder instance
      */
-    public static DateFormatBuilder f(){
+    public static DateFormatBuilder f() {
         return DateFormatBuilder.get();
     }
 }

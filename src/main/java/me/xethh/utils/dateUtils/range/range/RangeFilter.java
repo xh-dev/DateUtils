@@ -11,8 +11,12 @@ import java.util.Collection;
  */
 public interface RangeFilter<Filter extends RangeFilter<Filter>> {
     Filter item(OverlapType type);
+
     Filter items(Collection<OverlapType> types);
+
     Filter items(OverlapType[] types);
+
     boolean isAccepted(DatetimeRange newRange);
+
     boolean isRejected(DatetimeRange newRange);
 }

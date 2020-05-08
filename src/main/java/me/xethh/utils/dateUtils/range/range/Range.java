@@ -9,19 +9,21 @@ public abstract class Range implements
         RangeValidator,
         TimeRangeOperation,
         BackWrapper<DatetimeRangeContainedBuilder, DatetimeRange>,
-        DatetimeRangeRepresentation
-{
-    public enum EDITING{
-        NONE,START,END
+        DatetimeRangeRepresentation {
+    public enum EDITING {
+        NONE, START, END
     }
+
     @Override
     public EDITING getEditingMode() {
         return editing;
     }
+
     @Override
     public EDITING clearEditingMode() {
-        this.editing=EDITING.NONE;
+        this.editing = EDITING.NONE;
         return editing;
     }
+
     protected EDITING editing;
 }

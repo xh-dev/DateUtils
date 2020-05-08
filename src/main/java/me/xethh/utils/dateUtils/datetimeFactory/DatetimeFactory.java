@@ -25,8 +25,8 @@ public interface DatetimeFactory extends
 
     <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T raw(E parent);
 
-    static DatetimeRange rangeOf(Date start, Date end){
-        return new DatetimeRange(start,end);
+    static DatetimeRange rangeOf(Date start, Date end) {
+        return new DatetimeRange(start, end);
     }
 
     static <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Date date, E parent) {

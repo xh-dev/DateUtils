@@ -1,8 +1,8 @@
 package me.xethh.utils.v6.date;
 
 import me.xethh.utils.dateUtils.weekday.Weekday;
-import me.xethh.utils.dateUtils.interfaces.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.interfaces.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.CommonDateRepresentation;
 
 import java.util.Calendar;
 import java.util.Date;

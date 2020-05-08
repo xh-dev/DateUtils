@@ -13,14 +13,15 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public interface DateInfo {
-    static DateInfo from(Date date){
+    static DateInfo from(Date date) {
         return new DateInfoImpl(DatetimeFactory.instance().getTimezone(), date);
     }
-    static DateInfo from(TimeZone timeZone, Date date){
+
+    static DateInfo from(TimeZone timeZone, Date date) {
         return new DateInfoImpl(timeZone, date);
     }
 
-    static DateInfo from(BaseTimeZone baseTimeZone, Date date){
+    static DateInfo from(BaseTimeZone baseTimeZone, Date date) {
         return new DateInfoImpl(baseTimeZone.timeZone(), date);
     }
 
