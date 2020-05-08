@@ -11,7 +11,7 @@
   <url>https://xeth0102.atlassian.net/wiki/spaces/DAT/overview</url>
   <groupId>me.xethh.utils</groupId>
   <artifactId>DateUtils</artifactId>
-  <version>6.0.0.RC4-RELEASE</version>
+  <version>6.0.0.RC5-SNAPSHOT</version>
   <licenses>
     <license>
       <name>The Apache License, Version 2.0</name>

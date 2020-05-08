@@ -6,6 +6,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * Interface provide operation to time fields
+ * e.g. hour, minute, second and millisecond
+ * @param <T>
+ */
 public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
     /**
      * Return the datetime of current datetime

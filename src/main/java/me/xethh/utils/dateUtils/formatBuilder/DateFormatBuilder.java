@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public interface DateFormatBuilder<X extends DateFormatBuilder> {
+    static DateFormatBuilder get(){
+        return new DateFormatBuilderImpl();
+    }
     String YEAR_4_DIGIT = "yyyy";
     String YEAR_2_DIGIT = "yy";
     String MONTH_2_DIGIT = "MM";

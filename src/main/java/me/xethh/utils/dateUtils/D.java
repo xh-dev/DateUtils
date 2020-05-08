@@ -2,6 +2,7 @@ package me.xethh.utils.dateUtils;
 
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 
 /**
  * Short cut for accessing DatetimeBuilderFactor and DateBuilderFactory
@@ -21,5 +22,13 @@ public class D {
      */
     public static DateFactory d(){
         return DateFactory.instance();
+    }
+
+    /**
+     * Provide access to DateFormatBuilder
+     * @return Raw DateFormatBuilder instance
+     */
+    public static DateFormatBuilder f(){
+        return DateFormatBuilder.get();
     }
 }

@@ -7,6 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * Interface provide operations to date fields
+ * e.g. year, month and date
+ * @param <T>
+ */
 public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> {
     /**
      * Return the date of current time
