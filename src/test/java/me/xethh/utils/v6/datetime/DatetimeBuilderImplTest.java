@@ -1,15 +1,16 @@
 package me.xethh.utils.v6.datetime;
 
 import me.xethh.utils.dateUtils.D;
-import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
-import me.xethh.utils.dateUtils.weekday.Weekday;
+import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderImpl;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
+import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -21,7 +22,88 @@ import static org.junit.Assert.*;
 
 public class DatetimeBuilderImplTest {
     @Test
+    public void Demo(){
+        //create date of current time
+        Date dateNow = D.dt().now().asDate();
+        //create date of 2020-04-21 23:11:08.777 under Japan timezone
+        System.out.println(dateNow);
+
+        Date dateJp = D.dt().now().ymd(2020, APR, 21).hmsms(23, 11, 8, 777).asDate();
+        //Tue Apr 21 23:11:08 CST 2020
+        System.out.println(dateJp);
+
+        //Modifiable date builder object
+        DatetimeBuilder db = D.dt().now().ymd(2020, APR, 21).hmsms(23, 11, 8, 777);
+        System.out.println(db);
+        // DatetimeBuilder[2020-04-21T23:11:08.777+0800]
+
+        //add day
+        db = db.addDays(3);
+        System.out.println(db);
+        // DatetimeBuilder[2020-04-24T23:11:08.777+0800]
+
+        // add hour
+        db = db.addHours(1);
+        System.out.println(db);
+        // DatetimeBuilder[2020-04-25T00:11:08.777+0800]
+
+        //View the date info wit DateInfo object
+        DateInfo view = db.view();
+
+        //year: 2020
+        System.out.println("year: "+view.year());
+        // month: APR
+        System.out.println("month: "+view.month());
+        // day: 25
+        System.out.println("day: "+view.day());
+        // hour: 0
+        System.out.println("hour: "+view.hour());
+        // minute: 11
+        System.out.println("minute: "+view.min());
+        // second: 8
+        System.out.println("second: "+view.second());
+        // millisecond: 777
+        System.out.println("millisecond: "+view.ms());
+
+        //Date range
+
+        //Date range from 2019-04-25T00:11:08.777+0800 to 2020-04-29T04:11:08.777+0800
+        DatetimeRange range = db.rangeTo(db.addDays(4).addHours(4));
+        //DatetimeRange[2019-04-25T00:11:08.777+0800 to 2020-04-29T04:11:08.777+0800]
+        System.out.println(range);
+
+        //Date range from 2019-04-25T00:11:08.777+0800 to 2020-04-29T04:11:08.777+0800
+        range = db.rangeToSelf()
+                .editEnd().addDays(4).addHours(4).back();
+        //DatetimeRange[2019-04-25T00:11:08.777+0800 to 2020-04-29T04:11:08.777+0800]
+        System.out.println(range);
+
+        //Is 2019-04-24T00:11:08.777+0800 in side range: false
+        System.out.println("Is 2019-04-24T00:11:08.777+0800 in side range: "+range.timeInRange(db.addDays(-1).asDate()));
+        // Is 2019-04-25T00:11:08.777+0800 in side range: true
+        System.out.println("Is 2019-04-25T00:11:08.777+0800 in side range: "+range.timeInRange(db.asDate()));
+        // Is 2019-04-26T00:11:08.777+0800 in side range: true
+        System.out.println("Is 2019-04-26T00:11:08.777+0800 in side range: "+range.timeInRange(db.addDays(1).asDate()));
+
+        //Create SimpleDateFormat of format ISO8601
+        SimpleDateFormat sdf = DateFormatBuilder.Format.ISO8601.getFormatter();
+        //2020-04-25T00:11:08.777+0800
+        System.out.println(sdf.format(db.asDate()));
+
+        sdf = D.f()
+                .year4Digit().hyphen().month2Digit().hyphen().day2Digit().v1().v1("T")
+                .hourInDay24().colon().minute().colon().second().dot().ms().TimeZoneRFC822()
+                .build();
+        // 2020-04-25T00:11:08.777+0800
+        System.out.println(sdf.format(db.asDate()));
+
+
+
+    }
+
+    @Test
     public void t(){
+
         DatetimeBuilder db = D.dt().now().timeZone(BaseTimeZone.Hongkong).ymd(2020, MAY, 7).hms(18, 1, 1);
         System.out.println(db.format(DateFormatBuilder.Format.ISO8601));
         System.out.println(db.timeZone(BaseTimeZone.Japan).format(DateFormatBuilder.Format.ISO8601.getFormatter(BaseTimeZone.Japan.timeZone())));
