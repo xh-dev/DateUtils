@@ -1,7 +1,7 @@
 package me.xethh.utils.dateUtils.range;
 
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 
 public abstract class BuilderOperation {
-    public abstract DatetimeBuilder oper();
+    public abstract DatetimeBuilderInterface oper();
 }

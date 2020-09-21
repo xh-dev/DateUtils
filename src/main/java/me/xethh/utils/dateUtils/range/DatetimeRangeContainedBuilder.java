@@ -1,19 +1,20 @@
 package me.xethh.utils.dateUtils.range;
 
-import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
-import me.xethh.utils.dateUtils.weekday.Weekday;
-import me.xethh.utils.dateUtils.interfaces.Build;
-import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
-import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.interfaces.Build;
+import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
+import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -27,8 +28,8 @@ import java.util.TimeZone;
  * Created on 7/19/2018
  */
 public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<DatetimeRangeContainedBuilder, DatetimeRange> {
-    private DatetimeBuilder builder;
     DatetimeRange parent;
+    private DatetimeBuilder builder;
 
     /*
     Constructors
@@ -380,12 +381,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public DatetimeRange rangeTo(DatetimeBuilder date) {
+    public DatetimeRange rangeTo(DatetimeBuilderInterface date) {
         return builder.rangeTo(date);
     }
 
     @Override
-    public DatetimeRange rangeFrom(DatetimeBuilder date) {
+    public DatetimeRange rangeFrom(DatetimeBuilderInterface date) {
         return builder.rangeFrom(date);
     }
 
@@ -425,7 +426,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameDate(DatetimeBuilder builder) {
+    public boolean sameDate(DatetimeBuilderInterface builder) {
         return this.builder.sameDate(builder);
     }
 
@@ -571,7 +572,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameDatetime(DatetimeBuilder builder) {
+    public boolean sameDatetime(DatetimeBuilderInterface builder) {
         return this.builder.sameDatetime(builder);
     }
 
@@ -591,7 +592,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameYear(DatetimeBuilder builder) {
+    public boolean sameYear(DatetimeBuilderInterface builder) {
         return this.builder.sameYear(builder);
     }
 
@@ -611,7 +612,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameMonth(DatetimeBuilder builder) {
+    public boolean sameMonth(DatetimeBuilderInterface builder) {
         return this.builder.sameMonth(builder);
     }
 
@@ -631,7 +632,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameDay(DatetimeBuilder builder) {
+    public boolean sameDay(DatetimeBuilderInterface builder) {
         return this.builder.sameDay(builder);
     }
 
@@ -651,7 +652,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameTime(DatetimeBuilder datetimeBuilder) {
+    public boolean sameTime(DatetimeBuilderInterface datetimeBuilder) {
         return this.builder.sameTime(datetimeBuilder);
     }
 
@@ -671,7 +672,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameHMS(DatetimeBuilder datetimeBuilder) {
+    public boolean sameHMS(DatetimeBuilderInterface datetimeBuilder) {
         return builder.sameHMS(datetimeBuilder);
     }
 
@@ -691,7 +692,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameHM(DatetimeBuilder datetimeBuilder) {
+    public boolean sameHM(DatetimeBuilderInterface datetimeBuilder) {
         return builder.sameHM(datetimeBuilder);
     }
 
@@ -711,7 +712,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean laterThan(DatetimeBuilder datetimeBuilder) {
+    public boolean laterThan(DatetimeBuilderInterface datetimeBuilder) {
         return builder.laterThan(datetimeBuilder);
     }
 
@@ -731,7 +732,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean laterEqualThan(DatetimeBuilder datetimeBuilder) {
+    public boolean laterEqualThan(DatetimeBuilderInterface datetimeBuilder) {
         return builder.laterEqualThan(datetimeBuilder);
     }
 
@@ -751,7 +752,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean before(DatetimeBuilder datetimeBuilder) {
+    public boolean before(DatetimeBuilderInterface datetimeBuilder) {
         return builder.before(datetimeBuilder);
     }
 
@@ -771,7 +772,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean beforeEqual(DatetimeBuilder datetimeBuilder) {
+    public boolean beforeEqual(DatetimeBuilderInterface datetimeBuilder) {
         return builder.beforeEqual(datetimeBuilder);
     }
 
@@ -806,12 +807,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public TimeUnit diffFrom(DatetimeBuilder date) {
+    public TimeUnit diffFrom(DatetimeBuilderInterface date) {
         return builder.diffFrom(date);
     }
 
     @Override
-    public TimeUnit diffTo(DatetimeBuilder date) {
+    public TimeUnit diffTo(DatetimeBuilderInterface date) {
         return builder.diffTo(date);
     }
 
@@ -841,7 +842,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public String format(DateFormatBuilder.Format format) {
+    public String format(DateFormatBuilderInterface.Format format) {
         return this.builder.format(format);
     }
 
@@ -851,7 +852,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public String format(DateFormatBuilder fmtBuilder) {
+    public String format(DateFormatBuilderInterface fmtBuilder) {
         return fmtBuilder.build().format(asDate());
     }
 
@@ -866,12 +867,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public String format(TimeZone timeZone, DateFormatBuilder.Format format) {
+    public String format(TimeZone timeZone, DateFormatBuilderInterface.Format format) {
         return builder.format(timeZone, format);
     }
 
     @Override
-    public String format(TimeZone timeZone, DateFormatBuilder fmtBuilder) {
+    public String format(TimeZone timeZone, DateFormatBuilderInterface fmtBuilder) {
         return this.format(timeZone, fmtBuilder.build());
     }
 

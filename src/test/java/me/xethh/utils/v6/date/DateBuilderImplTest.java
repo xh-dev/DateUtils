@@ -1,11 +1,11 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.dateUtils.date.DateBuilder;
+import me.xethh.utils.dateUtils.date.DateBuilderInterface;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.weekday.Weekday;
-import me.xethh.utils.dateUtils.date.DateBuilder;
-import me.xethh.utils.dateUtils.date.DateBuilderImpl;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -20,7 +20,7 @@ public class DateBuilderImplTest {
      */
     @Test
     public void normalTest() {
-        DateBuilder db = new DateBuilderImpl();
+        DateBuilder db = new DateBuilder();
         SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         assertEquals("1970-01-01T00:00:00.000+0800", sdf.format(db.asDate()));
         assertEquals("1971-02-02T00:00:00.000+0800", sdf.format(db.addYear(1).addMonths(1).addDays(1).asDate()));
@@ -119,7 +119,7 @@ public class DateBuilderImplTest {
         assertTrue(db.md(JUL, 23).sameDate(db.md(JUL, 23)));
         assertFalse(db.md(JUL, 21).sameDate(db.md(JUL, 23)));
 
-        db = new DateBuilderImpl().ymd(1970, JUL, 23);
+        db = new DateBuilder().ymd(1970, JUL, 23);
         // boolean laterThan(Date date);
         assertTrue(db.month(Month.AUG).laterThan(db.asDate()));
         // boolean laterThan(Long longDate);
@@ -156,19 +156,15 @@ public class DateBuilderImplTest {
 
     @Test
     public void testImutability() {
-        DateBuilder db = new DateBuilderImpl();
+        DateBuilder db = new DateBuilder();
         SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         Date d1 = db.now().asDate();
         Date d2 = new Date();
-        assertEquals(DateFormatBuilderImpl.get().year4Digit().hyphen().month2Digit().hyphen().day2Digit().build().format(d2) + "T00:00:00.000+0800", sdf.format(d1));
+        assertEquals(DateFormatBuilder.get().year4Digit().hyphen().month2Digit().hyphen().day2Digit().build().format(d2) + "T00:00:00.000+0800", sdf.format(d1));
         assertEquals("1970-01-01T00:00:00.000+0800", sdf.format(db.asDate()));
         assertTrue(db.md(JUL, 23).equals(db.md(JUL, 23)));
         assertFalse(db.md(AUG, 23).equals(db.md(JUL, 23)));
     }
-
-
-
-
 
 
 }

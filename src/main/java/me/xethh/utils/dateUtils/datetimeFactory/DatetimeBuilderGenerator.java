@@ -1,8 +1,8 @@
 package me.xethh.utils.dateUtils.datetimeFactory;
 
-import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.interfaces.Build;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,7 +26,7 @@ public interface DatetimeBuilderGenerator {
         return from(new Date(longDate));
     }
 
-    DatetimeBuilder from(DatetimeBuilder db);
+    <X extends DatetimeBuilder> DatetimeBuilder from(X db);
 
-    DatetimeBuilder from(DateBuilder db);
+    <X extends DateBuilder> DatetimeBuilder from(X db);
 }

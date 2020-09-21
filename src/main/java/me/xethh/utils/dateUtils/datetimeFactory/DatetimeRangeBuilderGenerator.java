@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public interface DatetimeRangeBuilderGenerator extends DatetimeBuilderGenerator {
-    DatetimeRange rangeOn(DatetimeBuilder datetimeBuilder);
+    <X extends DatetimeBuilder> DatetimeRange rangeOn(X datetimeBuilder);
 
     default DatetimeRange rangeOnNow() {
         return rangeOn(now());

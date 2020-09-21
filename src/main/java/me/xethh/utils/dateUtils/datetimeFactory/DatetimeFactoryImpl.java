@@ -1,11 +1,11 @@
 package me.xethh.utils.dateUtils.datetimeFactory;
 
+import me.xethh.utils.dateUtils.date.DateBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
 import me.xethh.utils.dateUtils.interfaces.EditModeStatus;
-import me.xethh.utils.dateUtils.date.DateBuilder;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilderImpl;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
@@ -16,9 +16,7 @@ import java.util.*;
  * Created on 7/19/2018
  */
 public class DatetimeFactoryImpl implements DatetimeFactory {
-    private static DatetimeFactory _instance;
-    private TimeZone timeZone;
-    private static Map<TimeZone, DatetimeFactory> factoryMap = new WeakHashMap<>();
+    private final TimeZone timeZone;
 
     public DatetimeFactoryImpl(TimeZone timeZone) {
         this.timeZone = timeZone;
@@ -27,57 +25,57 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
 
     @Override
     public DatetimeBuilder from(Date date) {
-        return new DatetimeBuilderImpl(timeZone, date);
+        return new DatetimeBuilder(timeZone, date);
     }
 
     @Override
     public DatetimeBuilder from(Date date, Build build) {
-        DatetimeBuilderImpl builder = new DatetimeBuilderImpl(timeZone, date);
+        DatetimeBuilder builder = new DatetimeBuilder(timeZone, date);
         return from(builder.asCalendar(), build);
     }
 
     @Override
     public DatetimeBuilder raw() {
-        return new DatetimeBuilderImpl(timeZone);
+        return new DatetimeBuilder(timeZone);
     }
 
     @Override
     public DatetimeBuilder now() {
-        return new DatetimeBuilderImpl(timeZone, new Date());
+        return new DatetimeBuilder(timeZone, new Date());
     }
 
     @Override
     public DatetimeBuilder from(Calendar cal) {
-        return new DatetimeBuilderImpl(timeZone, cal);
+        return new DatetimeBuilder(timeZone, cal);
     }
 
     @Override
     public DatetimeBuilder from(Calendar cal, Build build) {
-        return new DatetimeBuilderImpl(timeZone, cal, build);
+        return new DatetimeBuilder(timeZone, cal, build);
     }
 
     @Override
     public DatetimeBuilder from(Long longDate, Build build) {
-        return new DatetimeBuilderImpl(timeZone, from(longDate).asCalendar(), build);
+        return new DatetimeBuilder(timeZone, from(longDate).asCalendar(), build);
     }
 
     @Override
-    public DatetimeBuilder from(DatetimeBuilder db) {
-        return new DatetimeBuilderImpl(db.getTimeZone(), db.asCalendar());
+    public <X extends DatetimeBuilder> DatetimeBuilder from(X db) {
+        return new DatetimeBuilder(db.getTimeZone(), db.asCalendar());
     }
 
     @Override
-    public DatetimeBuilder from(DateBuilder db) {
-        return new DatetimeBuilderImpl(db.getTimeZone(), db.asCalendar());
+    public <X extends DateBuilder> DatetimeBuilder from(X db) {
+        return new DatetimeBuilder(db.getTimeZone(), db.asCalendar());
     }
 
     @Override
-    public DatetimeRange rangeOn(DatetimeBuilder datetimeBuilder) {
+    public <X extends DatetimeBuilder> DatetimeRange rangeOn(X datetimeBuilder) {
         return datetimeBuilder.rangeToSelf();
     }
 
     @Override
-    public <T extends DatetimeBuilder<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T raw(E parent) {
+    public <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T raw(E parent) {
         if (parent instanceof DatetimeRange) {
             return (T) new DatetimeRangeContainedBuilder(raw().asCalendar(), (DatetimeRange) parent);
         }

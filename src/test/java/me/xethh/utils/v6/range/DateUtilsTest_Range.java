@@ -1,14 +1,15 @@
 package me.xethh.utils.v6.range;
 
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.OverlapType;
-import me.xethh.utils.dateUtils.weekday.Weekday;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
-import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderImpl;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -109,14 +110,14 @@ public class DateUtilsTest_Range {
 
     @Test
     public void baseTest() {
-        DatetimeBuilder builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilderInterface builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0800 to 2018-02-17T00:00:00.000+0800]", DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).toString());
         assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0800 to 2018-01-18T00:00:00.000+0800]", DatetimeFactory.rangeOf(builder.addDays(30).asDate(), builder.asDate()).toString());
     }
 
     @Test
     public void testIsValid() {
-        DatetimeBuilder builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilderInterface builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(true, DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).isValid());
         assertEquals(false, DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(-30).asDate()).isValid());
         assertEquals(false, DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).isInvalid());
@@ -128,7 +129,7 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testTimeRangeSinglePoint() {
-        DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilderInterface builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
         assertEquals(false, DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).singlePointRange());
         assertEquals(false, DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(-30).asDate()).singlePointRange());
         assertEquals(true, DatetimeFactory.rangeOf(builder.asDate(), builder.asDate()).singlePointRange());
@@ -136,14 +137,14 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testTimeRangeOperateDaytime() {
-        DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(18).minDayTime();
+        DatetimeBuilder builder = DatetimeFactory.instance().raw().year(2018).month(JAN).day(18).minDayTime();
         assertEquals(builder.rangeTo(builder.addDays(2).asDate()), DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(2).asDate()));
         assertNotEquals(builder.rangeTo(builder.addDays(2).asDate()), DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(2).addMins(2).asDate()));
     }
 
     @Test
     public void testOverlap() {
-        DatetimeBuilder start11 = DatetimeFactory.instance().raw().year(2018).month(Month.JAN).day(10).minDayTime();
+        DatetimeBuilder start11 = DatetimeFactory.instance().raw().year(2018).month(JAN).day(10).minDayTime();
         DatetimeBuilder start12 = start11.addDays(5);
         DatetimeBuilder start21 = start11.addDays(5).addDays(3);
         DatetimeBuilder start22 = start11.addDays(5).addDays(3).addDays(3);
@@ -226,7 +227,7 @@ public class DateUtilsTest_Range {
     public void testEditWithStartAneEnd() {
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20880422-000000000", ymdhhmmssSSS.format(range.startAsDate()));
@@ -251,7 +252,7 @@ public class DateUtilsTest_Range {
     public void testEditStartAndEndV2() {
         DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2088, APR, 22);
         DatetimeRange range = d.rangeTo(d.addMonths(2));
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         assertEquals("20880422-000000000", ymdhhmmssSSS.format(range.startAsDate()));
@@ -276,7 +277,7 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testRangeTo() {
-        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilderImpl.get()
+        SimpleDateFormat ymdhhmmssSSS = DateFormatBuilder.get()
                 .year4Digit().month2Digit().day2Digit().v1()
                 .hourInDay24().minute().second().ms().v1("-").build();
         DatetimeRange range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime());
@@ -332,10 +333,10 @@ public class DateUtilsTest_Range {
                 .addSecond(24)
                 .addMS(10)
                 .back();
-        SimpleDateFormat formatter = DateFormatBuilder.Format.FULL_DATETIME.getFormatter();
+        SimpleDateFormat formatter = DateFormatBuilderInterface.Format.FULL_DATETIME.getFormatter();
         assertEquals("2018-11-03 22:23:44.888", formatter.format(range.startAsDate()));
-        assertEquals("2018-11-03 22:23:44.888", range.startAsDTBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
-        assertEquals("2018-11-03 00:00:00.000", range.startAsDateBuilder().format(DateFormatBuilder.Format.FULL_DATETIME));
+        assertEquals("2018-11-03 22:23:44.888", range.startAsDTBuilder().format(DateFormatBuilderInterface.Format.FULL_DATETIME));
+        assertEquals("2018-11-03 00:00:00.000", range.startAsDateBuilder().format(DateFormatBuilderInterface.Format.FULL_DATETIME));
 
         // assertEquals("2020-11-03 22:23:44.888",formatter.format(range.endAsDate()));
         assertEquals("2021-12-10 04:31:08.898", formatter.format(range.endAsDate()));
@@ -448,7 +449,7 @@ public class DateUtilsTest_Range {
 
     @Test
     public void nextWeekday() {
-        DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilderInterface d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("2018-07-22T00:00:00.000+0800", sdf.format(d.nextWeekday(Sunday).asDate()));
         assertEquals("2018-07-23T00:00:00.000+0800", sdf.format(d.nextWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-24T00:00:00.000+0800", sdf.format(d.nextWeekday(Weekday.Tuesday).asDate()));
@@ -469,7 +470,7 @@ public class DateUtilsTest_Range {
 
     @Test
     public void prevWeekday() {
-        DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilderInterface d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("2018-07-15T00:00:00.000+0800", sdf.format(d.prevWeekday(Sunday).asDate()));
         assertEquals("2018-07-16T00:00:00.000+0800", sdf.format(d.prevWeekday(Weekday.Monday).asDate()));
         assertEquals("2018-07-10T00:00:00.000+0800", sdf.format(d.prevWeekday(Weekday.Tuesday).asDate()));
@@ -490,8 +491,8 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testStartOfWeek() {
-        DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
-        DatetimeBuilder d2 = d.addDays(-2);
+        DatetimeRangeContainedBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeBuilderInterface d2 = d.addDays(-2);
         assertEquals(d2.asLong(), d.startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(), d.addDays(-1).startOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(), d.addDays(1).startOfWeek(Sunday).asLong());
@@ -505,8 +506,8 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testEndOfWeek() {
-        DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
-        DatetimeBuilder d2 = d.addDays(4);
+        DatetimeRangeContainedBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        DatetimeRangeContainedBuilder d2 = d.addDays(4);
         assertEquals(d2.asLong(), d.endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(), d.addDays(-1).endOfWeek(Sunday).asLong());
         assertEquals(d2.asLong(), d.addDays(1).endOfWeek(Sunday).asLong());
@@ -520,8 +521,8 @@ public class DateUtilsTest_Range {
 
     @Test
     public void testAddTime() {
-        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
-        DatetimeBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
+        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        DatetimeRangeContainedBuilder d = DatetimeFactory.instance().raw().ymd(2018, JUL, 17).rangeTo(new Date()).editStart();
         assertEquals("20180717-000000001", sdfx.format(d.addTime(1).asDate()));
         assertEquals("20180717-000000002", sdfx.format(d.addTime(2).asDate()));
         assertEquals("20180717-000001000", sdfx.format(d.addTime(1000).asDate()));
@@ -558,7 +559,7 @@ public class DateUtilsTest_Range {
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));
 
-        SimpleDateFormat sdfx = DateFormatBuilderImpl.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
+        SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
         DatetimeRangeContainedBuilder dStart = DatetimeFactory.instance().rangeOnNow()
                 .editStart().ymd(2018, JUL, 17);
         assertEquals("20180717-000000001", sdfx.format(dStart.addTime(1).asDate()));

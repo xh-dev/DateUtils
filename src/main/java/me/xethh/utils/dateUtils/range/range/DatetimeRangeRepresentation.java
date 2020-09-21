@@ -1,7 +1,7 @@
 package me.xethh.utils.dateUtils.range.range;
 
-import me.xethh.utils.dateUtils.date.DateBuilder;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.date.DateBuilderInterface;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
 import java.util.Date;
@@ -14,12 +14,12 @@ public interface DatetimeRangeRepresentation {
 
     Date endAsDate();
 
-    DatetimeBuilder startAsDTBuilder();
+    DatetimeBuilderInterface startAsDTBuilder();
 
-    DatetimeBuilder endAsDTBuilder();
+    DatetimeBuilderInterface endAsDTBuilder();
 
-    DateBuilder startAsDateBuilder();
+    DateBuilderInterface startAsDateBuilder();
 
-    DateBuilder endAsDateBuilder();
+    DateBuilderInterface endAsDateBuilder();
 
 }

@@ -1,10 +1,11 @@
 package me.xethh.utils.v6.range;
 
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.range.OverlapType;
 import me.xethh.utils.dateUtils.range.datetime.AcceptingFilter;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
-import me.xethh.utils.dateUtils.range.OverlapType;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class RangeFilterTest {
     @Test
-    public void testAcceptingFilter(){
+    public void testAcceptingFilter() {
         DatetimeBuilder db1 = DatetimeFactory.instance().now();
 
         // 0 to 2
@@ -48,112 +49,112 @@ public class RangeFilterTest {
         DatetimeRange comeLater = db1.addDays(-1).rangeTo(db1.addHours(-1));
         // 0 to 2
         AcceptingFilter acceptingFilter = db1.rangeTo(db1.addDays(2)).accepting();
-        assertEquals(true,acceptingFilter.item(OverlapType.Same).isAccepted(dbSame));
-        assertEquals(true,acceptingFilter.item(OverlapType.Same).isRejected(dbCovering));
+        assertEquals(true, acceptingFilter.item(OverlapType.Same).isAccepted(dbSame));
+        assertEquals(true, acceptingFilter.item(OverlapType.Same).isRejected(dbCovering));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.Same)
                 .item(OverlapType.Covering)
                 .isAccepted(dbCovering));
 
-        assertEquals(true,acceptingFilter
-                .items(new OverlapType[]{OverlapType.Same,OverlapType.Covering})
+        assertEquals(true, acceptingFilter
+                .items(new OverlapType[]{OverlapType.Same, OverlapType.Covering})
                 .isAccepted(dbCovering));
 
-        assertEquals(true,acceptingFilter
-                .items(Arrays.asList(new OverlapType[]{OverlapType.Same,OverlapType.Covering}))
+        assertEquals(true, acceptingFilter
+                .items(Arrays.asList(new OverlapType[]{OverlapType.Same, OverlapType.Covering}))
                 .isAccepted(dbCovering));
 
-        assertEquals(false,acceptingFilter
+        assertEquals(false, acceptingFilter
                 .item(OverlapType.Same)
                 .item(OverlapType.Covering)
                 .isRejected(dbCovering));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.ComesLater)
                 .item(OverlapType.ComesFirst)
                 .isRejected(dbCovering));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.Covering)
                 .isAccepted(dbCovering));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.CoveredBy)
                 .isAccepted(dbCovered));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.CoveringOnRight)
                 .isAccepted(coveringOnRight));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.CoveredOnRight)
                 .isAccepted(coveredOnRight));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.OverLapOnRight)
                 .isAccepted(overlapOnRight));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.CoveringOnLeft)
                 .isAccepted(coveringOnLeft));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.CoveredOnLeft)
                 .isAccepted(coveredOnLeft));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.OverlapOnLeft)
                 .isAccepted(overlapOnLeft));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.JoinOnLeft)
                 .isAccepted(joinOnLeft));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.JoinOnRight)
                 .isAccepted(joinOnRight));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.ComesFirst)
                 .isAccepted(comeFirst));
 
-        assertEquals(true,acceptingFilter
+        assertEquals(true, acceptingFilter
                 .item(OverlapType.ComesLater)
                 .isAccepted(comeLater));
 
-        assertEquals(true,db1.rangeTo(db1.addDays(1)).swrap().accepting()
+        assertEquals(true, db1.rangeTo(db1.addDays(1)).swrap().accepting()
                 .item(OverlapType.Invalid)
                 .isAccepted(null));
-        assertEquals(true,db1.rangeTo(db1.addDays(1)).accepting()
+        assertEquals(true, db1.rangeTo(db1.addDays(1)).accepting()
                 .item(OverlapType.TargetIsNull)
                 .isAccepted(null));
-        assertEquals(true,db1.rangeTo(db1.addDays(1)).accepting()
+        assertEquals(true, db1.rangeTo(db1.addDays(1)).accepting()
                 .item(OverlapType.TargetInvalid)
                 .isAccepted(comeLater.swrap()));
     }
 
     @Test
-    public void testRejectingFilter(){
+    public void testRejectingFilter() {
         DatetimeBuilder db1 = DatetimeFactory.instance().now();
 
         // 0.1 to 1.1
         DatetimeRange dbCovering = db1.addHours(1).rangeTo(db1.addDays(1).addHours(1));
         // -1 to -0.1
         DatetimeRange comeLater = db1.addDays(-1).rangeTo(db1.addHours(-1));
-        assertEquals(true,db1.rangeTo(db1.addDays(2)).rejecting()
+        assertEquals(true, db1.rangeTo(db1.addDays(2)).rejecting()
                 .item(OverlapType.Invalid)
                 .item(OverlapType.TargetInvalid)
                 .item(OverlapType.TargetIsNull)
                 .isAccepted(dbCovering));
 
-        assertEquals(true,db1.rangeTo(db1.addDays(2)).swrap().rejecting()
+        assertEquals(true, db1.rangeTo(db1.addDays(2)).swrap().rejecting()
                 .item(OverlapType.Invalid)
                 .isRejected(null));
-        assertEquals(true,db1.rangeTo(db1.addDays(1)).rejecting()
+        assertEquals(true, db1.rangeTo(db1.addDays(1)).rejecting()
                 .item(OverlapType.TargetIsNull)
                 .isRejected(null));
-        assertEquals(true,db1.rangeTo(db1.addDays(1)).rejecting()
+        assertEquals(true, db1.rangeTo(db1.addDays(1)).rejecting()
                 .item(OverlapType.TargetInvalid)
                 .isRejected(comeLater.swrap()));
     }

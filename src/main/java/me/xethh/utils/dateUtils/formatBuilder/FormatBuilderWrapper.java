@@ -1,6 +1,6 @@
 package me.xethh.utils.dateUtils.formatBuilder;
 
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
 import java.text.SimpleDateFormat;
@@ -10,16 +10,16 @@ import java.util.TimeZone;
  * @author xethhung
  * Created on 7/19/2018
  */
-public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<FormatBuilderWrapper> {
-    DatetimeBuilder builder;
+public class FormatBuilderWrapper<D extends DatetimeBuilderInterface<D>> implements FormatWrapper, DateFormatBuilderInterface<FormatBuilderWrapper<D>> {
+    D builder;
     DateFormatBuilder formatBuilder;
 
-    public FormatBuilderWrapper(DatetimeBuilder builder) {
+    public FormatBuilderWrapper(D builder) {
         this.builder = builder;
-        this.formatBuilder = DateFormatBuilderImpl.get();
+        this.formatBuilder = DateFormatBuilder.get();
     }
 
-    public FormatBuilderWrapper(DatetimeBuilder builder, DateFormatBuilder formatBuilder) {
+    public FormatBuilderWrapper(D builder, DateFormatBuilder formatBuilder) {
         this.builder = builder;
         this.formatBuilder = formatBuilder;
     }
@@ -30,243 +30,243 @@ public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<Fo
     }
 
     @Override
-    public FormatBuilderWrapper year4Digit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.year4Digit());
+    public FormatBuilderWrapper<D> year4Digit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.year4Digit());
     }
 
     @Override
-    public FormatBuilderWrapper year2Digit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.year2Digit());
+    public FormatBuilderWrapper<D> year2Digit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.year2Digit());
     }
 
     @Override
-    public FormatBuilderWrapper month2Digit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.month2Digit());
+    public FormatBuilderWrapper<D> month2Digit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.month2Digit());
     }
 
     @Override
-    public FormatBuilderWrapper month3Letters() {
-        return new FormatBuilderWrapper(builder, formatBuilder.month3Letters());
+    public FormatBuilderWrapper<D> month3Letters() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.month3Letters());
     }
 
     @Override
-    public FormatBuilderWrapper monthFullName() {
-        return new FormatBuilderWrapper(builder, formatBuilder.monthFullName());
+    public FormatBuilderWrapper<D> monthFullName() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.monthFullName());
     }
 
     @Override
-    public FormatBuilderWrapper dayWithDigit(int digit) {
-        return new FormatBuilderWrapper(builder, formatBuilder.dayWithDigit(digit));
+    public FormatBuilderWrapper<D> dayWithDigit(int digit) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.dayWithDigit(digit));
     }
 
     @Override
-    public FormatBuilderWrapper day2Digit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.day2Digit());
+    public FormatBuilderWrapper<D> day2Digit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.day2Digit());
     }
 
     @Override
-    public FormatBuilderWrapper day1Digit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.day1Digit());
+    public FormatBuilderWrapper<D> day1Digit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.day1Digit());
     }
 
     @Override
-    public FormatBuilderWrapper hourInDay24() {
-        return new FormatBuilderWrapper(builder, formatBuilder.hourInDay24());
+    public FormatBuilderWrapper<D> hourInDay24() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.hourInDay24());
     }
 
     @Override
-    public FormatBuilderWrapper hourInDay12() {
-        return new FormatBuilderWrapper(builder, formatBuilder.hourInDay12());
+    public FormatBuilderWrapper<D> hourInDay12() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.hourInDay12());
     }
 
     @Override
-    public FormatBuilderWrapper apm() {
-        return new FormatBuilderWrapper(builder, formatBuilder.apm());
+    public FormatBuilderWrapper<D> apm() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.apm());
     }
 
     @Override
-    public FormatBuilderWrapper minute() {
-        return new FormatBuilderWrapper(builder, formatBuilder.minute());
+    public FormatBuilderWrapper<D> minute() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.minute());
     }
 
     @Override
-    public FormatBuilderWrapper second() {
-        return new FormatBuilderWrapper(builder, formatBuilder.second());
+    public FormatBuilderWrapper<D> second() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.second());
     }
 
     @Override
-    public FormatBuilderWrapper ms() {
-        return new FormatBuilderWrapper(builder, formatBuilder.ms());
+    public FormatBuilderWrapper<D> ms() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.ms());
     }
 
     @Override
-    public FormatBuilderWrapper GeneralTimeZone() {
-        return new FormatBuilderWrapper(builder, formatBuilder.GeneralTimeZone());
+    public FormatBuilderWrapper<D> GeneralTimeZone() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.GeneralTimeZone());
     }
 
     @Override
-    public FormatBuilderWrapper TimeZoneRFC822() {
-        return new FormatBuilderWrapper(builder, formatBuilder.TimeZoneRFC822());
+    public FormatBuilderWrapper<D> TimeZoneRFC822() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.TimeZoneRFC822());
     }
 
     @Override
-    public FormatBuilderWrapper TimeZoneISO8601OneDigit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.TimeZoneISO8601OneDigit());
+    public FormatBuilderWrapper<D> TimeZoneISO8601OneDigit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.TimeZoneISO8601OneDigit());
     }
 
     @Override
-    public FormatBuilderWrapper TimeZoneISO8601TwoDigit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.TimeZoneISO8601TwoDigit());
+    public FormatBuilderWrapper<D> TimeZoneISO8601TwoDigit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.TimeZoneISO8601TwoDigit());
     }
 
     @Override
-    public FormatBuilderWrapper TimeZoneISO8601ThreeDigit() {
-        return new FormatBuilderWrapper(builder, formatBuilder.TimeZoneISO8601ThreeDigit());
+    public FormatBuilderWrapper<D> TimeZoneISO8601ThreeDigit() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.TimeZoneISO8601ThreeDigit());
     }
 
     @Override
-    public FormatBuilderWrapper custFormat(String string) {
-        return new FormatBuilderWrapper(builder, formatBuilder.custFormat(string));
+    public FormatBuilderWrapper<D> custFormat(String string) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.custFormat(string));
     }
 
     @Override
-    public FormatBuilderWrapper pad(String string) {
-        return new FormatBuilderWrapper(builder, formatBuilder.pad(string));
+    public FormatBuilderWrapper<D> pad(String string) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.pad(string));
     }
 
     @Override
-    public FormatBuilderWrapper hyphen() {
-        return new FormatBuilderWrapper(builder, formatBuilder.hyphen());
+    public FormatBuilderWrapper<D> hyphen() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.hyphen());
     }
 
     @Override
-    public FormatBuilderWrapper space() {
-        return new FormatBuilderWrapper(builder, formatBuilder.space());
+    public FormatBuilderWrapper<D> space() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.space());
     }
 
     @Override
-    public FormatBuilderWrapper colon() {
-        return new FormatBuilderWrapper(builder, formatBuilder.colon());
+    public FormatBuilderWrapper<D> colon() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.colon());
     }
 
     @Override
-    public FormatBuilderWrapper dot() {
-        return new FormatBuilderWrapper(builder, formatBuilder.dot());
+    public FormatBuilderWrapper<D> dot() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.dot());
     }
 
     @Override
-    public FormatBuilderWrapper underLine() {
-        return new FormatBuilderWrapper(builder, formatBuilder.underLine());
+    public FormatBuilderWrapper<D> underLine() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.underLine());
     }
 
     @Override
-    public FormatBuilderWrapper v1() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v1());
+    public FormatBuilderWrapper<D> v1() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v1());
     }
 
     @Override
-    public FormatBuilderWrapper v2() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v2());
+    public FormatBuilderWrapper<D> v2() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v2());
     }
 
     @Override
-    public FormatBuilderWrapper v3() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v3());
+    public FormatBuilderWrapper<D> v3() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v3());
     }
 
     @Override
-    public FormatBuilderWrapper v4() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v4());
+    public FormatBuilderWrapper<D> v4() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v4());
     }
 
     @Override
-    public FormatBuilderWrapper v5() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v5());
+    public FormatBuilderWrapper<D> v5() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v5());
     }
 
     @Override
-    public FormatBuilderWrapper v6() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v6());
+    public FormatBuilderWrapper<D> v6() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v6());
     }
 
     @Override
-    public FormatBuilderWrapper v7() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v7());
+    public FormatBuilderWrapper<D> v7() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v7());
     }
 
     @Override
-    public FormatBuilderWrapper v8() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v8());
+    public FormatBuilderWrapper<D> v8() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v8());
     }
 
     @Override
-    public FormatBuilderWrapper v9() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v9());
+    public FormatBuilderWrapper<D> v9() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v9());
     }
 
     @Override
-    public FormatBuilderWrapper v10() {
-        return new FormatBuilderWrapper(builder, formatBuilder.v10());
+    public FormatBuilderWrapper<D> v10() {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v10());
     }
 
     @Override
-    public FormatBuilderWrapper v(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v(v));
+    public FormatBuilderWrapper<D> v(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v(v));
     }
 
     @Override
-    public FormatBuilderWrapper v1(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v1(v));
+    public FormatBuilderWrapper<D> v1(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v1(v));
     }
 
     @Override
-    public FormatBuilderWrapper v2(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v2(v));
+    public FormatBuilderWrapper<D> v2(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v2(v));
     }
 
     @Override
-    public FormatBuilderWrapper v3(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v3(v));
+    public FormatBuilderWrapper<D> v3(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v3(v));
     }
 
     @Override
-    public FormatBuilderWrapper v4(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v4(v));
+    public FormatBuilderWrapper<D> v4(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v4(v));
     }
 
     @Override
-    public FormatBuilderWrapper v5(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v5(v));
+    public FormatBuilderWrapper<D> v5(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v5(v));
     }
 
     @Override
-    public FormatBuilderWrapper v6(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v6(v));
+    public FormatBuilderWrapper<D> v6(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v6(v));
     }
 
     @Override
-    public FormatBuilderWrapper v7(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v7(v));
+    public FormatBuilderWrapper<D> v7(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v7(v));
     }
 
     @Override
-    public FormatBuilderWrapper v8(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v8(v));
+    public FormatBuilderWrapper<D> v8(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v8(v));
     }
 
     @Override
-    public FormatBuilderWrapper v9(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v9(v));
+    public FormatBuilderWrapper<D> v9(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v9(v));
     }
 
     @Override
-    public FormatBuilderWrapper v10(String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v10(v));
+    public FormatBuilderWrapper<D> v10(String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v10(v));
     }
 
     @Override
-    public FormatBuilderWrapper v(String k, String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.v(k, v));
+    public FormatBuilderWrapper<D> v(String k, String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.v(k, v));
     }
 
     @Override
@@ -275,18 +275,18 @@ public class FormatBuilderWrapper implements FormatWrapper, DateFormatBuilder<Fo
     }
 
     @Override
-    public FormatBuilderWrapper setVariable(String k, String v) {
-        return new FormatBuilderWrapper(builder, formatBuilder.setVariable(k, v));
+    public FormatBuilderWrapper<D> setVariable(String k, String v) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.setVariable(k, v));
     }
 
     @Override
-    public FormatBuilderWrapper timeZone(BaseTimeZone timeZone) {
-        return new FormatBuilderWrapper(builder, formatBuilder.timeZone(timeZone));
+    public FormatBuilderWrapper<D> timeZone(BaseTimeZone timeZone) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.timeZone(timeZone));
     }
 
     @Override
-    public FormatBuilderWrapper timeZone(TimeZone timeZone) {
-        return new FormatBuilderWrapper(builder, formatBuilder.timeZone(timeZone));
+    public FormatBuilderWrapper<D> timeZone(TimeZone timeZone) {
+        return new FormatBuilderWrapper<>(builder, formatBuilder.timeZone(timeZone));
     }
 
     @Override

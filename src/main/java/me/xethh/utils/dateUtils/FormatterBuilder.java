@@ -1,6 +1,6 @@
 package me.xethh.utils.dateUtils;
 
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +24,7 @@ public interface FormatterBuilder {
      * @param format Format Enum included in this library
      * @return formatted date
      */
-    String format(DateFormatBuilder.Format format);
+    String format(DateFormatBuilderInterface.Format format);
 
     /**
      * formatting date builder with format builder
@@ -32,7 +32,7 @@ public interface FormatterBuilder {
      * @param fmtBuilder format builder
      * @return formatted date
      */
-    String format(DateFormatBuilder fmtBuilder);
+    String format(DateFormatBuilderInterface fmtBuilder);
 
     /**
      * formatting date builder with {@link java.text.SimpleDateFormat}
@@ -65,7 +65,7 @@ public interface FormatterBuilder {
      * @param format   date format builder predefined formats
      * @return formatted date
      */
-    String format(TimeZone timeZone, DateFormatBuilder.Format format);
+    String format(TimeZone timeZone, DateFormatBuilderInterface.Format format);
 
     /**
      * Format builder with time zone and date format builder
@@ -74,7 +74,7 @@ public interface FormatterBuilder {
      * @param fmtBuilder date format builder
      * @return formatted date
      */
-    String format(TimeZone timeZone, DateFormatBuilder fmtBuilder);
+    String format(TimeZone timeZone, DateFormatBuilderInterface fmtBuilder);
 
     /**
      * Format builder with time zone and {@link java.text.SimpleDateFormat}

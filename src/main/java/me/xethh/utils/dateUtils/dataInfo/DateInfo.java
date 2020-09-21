@@ -1,11 +1,11 @@
 package me.xethh.utils.dateUtils.dataInfo;
 
-import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.dateUtils.weekday.Weekday;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
-import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
-import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
+import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -49,7 +49,7 @@ public interface DateInfo {
     Weekday weekday();
 
 
-    DatetimeBuilder asBuilder();
+    DatetimeBuilderInterface asBuilder();
 
     Date asDate();
 
@@ -67,7 +67,7 @@ public interface DateInfo {
 
     String asISO8601();
 
-    String asFormat(DateFormatBuilder builder);
+    String asFormat(DateFormatBuilderInterface builder);
 
     String asFormat(SimpleDateFormat fmt);
 

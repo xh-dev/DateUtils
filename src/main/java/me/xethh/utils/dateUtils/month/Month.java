@@ -7,14 +7,6 @@ package me.xethh.utils.dateUtils.month;
 public enum Month {
     JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;
 
-    public int toCalNumber() {
-        return ordinal() + 1;
-    }
-
-    public int toJavaCalNumber() {
-        return ordinal();
-    }
-
     public static Month ofCalendar(int num) {
         for (Month value : Month.values())
             if (num == value.ordinal() + 1)
@@ -27,6 +19,14 @@ public enum Month {
             if (num == value.ordinal())
                 return value;
         throw new RuntimeException(String.format("Value[%d] not support for month", num));
+    }
+
+    public int toCalNumber() {
+        return ordinal() + 1;
+    }
+
+    public int toJavaCalNumber() {
+        return ordinal();
     }
 
     public Month previous() {

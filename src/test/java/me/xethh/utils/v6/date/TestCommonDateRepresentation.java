@@ -7,7 +7,7 @@ import java.util.Date;
 import static org.junit.Assert.assertTrue;
 
 public class TestCommonDateRepresentation {
-    public static <T extends CommonDateRepresentation> void test(T db, Date d){
+    public static <T extends CommonDateRepresentation> void test(T db, Date d) {
 
         try {
             assertTrue(db.asDate().getTime() == d.getTime());
@@ -16,8 +16,7 @@ public class TestCommonDateRepresentation {
             assertTrue(db.asSqlDate().getTime() == d.getTime());
             assertTrue(db.asSqlTime().getTime() == d.getTime());
             assertTrue(db.asSqlTimestamp().getTime() == d.getTime());
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

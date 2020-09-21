@@ -7,24 +7,6 @@ public enum Weekday {
     Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
 
     /**
-     * Weekday in number form <br>
-     * 1 {@literal ->} Monday <br>
-     * 2 {@literal ->} Tuesday <br>
-     * 3 {@literal ->} Wednesday <br>
-     * 4 {@literal ->} Thursday <br>
-     * 5 {@literal ->} Friday <br>
-     * 6 {@literal ->} Saturday <br>
-     * 7 {@literal ->} Sunday <br>
-     *
-     * @return number liberal of weekday
-     */
-    public int getCalWeekDay() {
-        if (ordinal() == 0)
-            return 7;
-        return ordinal();
-    }
-
-    /**
      * Weekday from ordinal form <br>
      * 0 {@literal ->} Sunday <br>
      * 1 {@literal ->} Monday <br>
@@ -68,6 +50,24 @@ public enum Weekday {
             return Sunday;
         else
             return getByOrdinal(day);
+    }
+
+    /**
+     * Weekday in number form <br>
+     * 1 {@literal ->} Monday <br>
+     * 2 {@literal ->} Tuesday <br>
+     * 3 {@literal ->} Wednesday <br>
+     * 4 {@literal ->} Thursday <br>
+     * 5 {@literal ->} Friday <br>
+     * 6 {@literal ->} Saturday <br>
+     * 7 {@literal ->} Sunday <br>
+     *
+     * @return number liberal of weekday
+     */
+    public int getCalWeekDay() {
+        if (ordinal() == 0)
+            return 7;
+        return ordinal();
     }
 
     /**

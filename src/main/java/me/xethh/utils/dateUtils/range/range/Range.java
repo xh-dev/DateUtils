@@ -1,8 +1,8 @@
 package me.xethh.utils.dateUtils.range.range;
 
 import me.xethh.utils.dateUtils.interfaces.EditModeStatus;
-import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
+import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
 public abstract class Range implements
         EditModeStatus<Range.EDITING>,
@@ -10,9 +10,7 @@ public abstract class Range implements
         TimeRangeOperation,
         BackWrapper<DatetimeRangeContainedBuilder, DatetimeRange>,
         DatetimeRangeRepresentation {
-    public enum EDITING {
-        NONE, START, END
-    }
+    protected EDITING editing;
 
     @Override
     public EDITING getEditingMode() {
@@ -25,5 +23,7 @@ public abstract class Range implements
         return editing;
     }
 
-    protected EDITING editing;
+    public enum EDITING {
+        NONE, START, END
+    }
 }

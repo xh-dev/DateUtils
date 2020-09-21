@@ -1,13 +1,13 @@
 package me.xethh.utils.dateUtils.dateFactory;
 
-import me.xethh.utils.dateUtils.date.DateBuilder;
+import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public interface DateRangeBuilderGenerator extends DateBuilderGenerator {
-    DatetimeRange rangeOn(DateBuilder dateBuilder);
+    DatetimeRange rangeOn(DateBuilderInterface dateBuilder);
 
     default DatetimeRange rangeOnNow() {
         return rangeOn(now());

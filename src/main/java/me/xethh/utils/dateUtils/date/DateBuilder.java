@@ -1,176 +1,558 @@
 package me.xethh.utils.dateUtils.date;
 
-import me.xethh.utils.dateUtils.month.Month;
-import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.FormatterBuilder;
-import me.xethh.utils.dateUtils.TimeUnitConverter;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
+import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
+import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
+import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
+import me.xethh.utils.dateUtils.interfaces.Build;
+import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import me.xethh.utils.dateUtils.weekday.Weekday;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
+import java.util.TimeZone;
 
-/**
- * DateBuilder interface ind
- *
- * @param <T> generic type of DateBuilder
- */
-public interface DateBuilder<T extends DateBuilder<T>>
-        extends
-        CalendarDateBuilder<T>,
-        CommonDateRepresentation,
-        TimeUnitConverter,
-        FormatterBuilder {
-    @Override
-    T y(int year);
+public class DateBuilder implements DateBuilderInterface<DateBuilder> {
+    private DatetimeBuilder builder;
 
-    @Override
-    T ym(int year, Month month);
+    public DateBuilder() {
+        this(DatetimeFactory.instance().raw());
+    }
 
-    @Override
-    T md(Month month, int day);
+    public DateBuilder(Date builder, Build build) {
+        this(DatetimeFactory.instance().from(builder, build));
+    }
 
-    @Override
-    T ymd(int year, Month month, int day);
+    public DateBuilder(Date builder) {
+        this(DatetimeFactory.instance().from(builder));
+    }
 
-    @Override
-    T minYear();
+    public DateBuilder(Calendar cal, Build build) {
+        this(DatetimeFactory.instance().from(cal, build));
+    }
 
-    @Override
-    T year(final int year);
+    public DateBuilder(Calendar cal) {
+        this(DatetimeFactory.instance().from(cal));
+    }
 
-    @Override
-    T minMonth();
+    public DateBuilder(DatetimeBuilder builder) {
+        this.builder = builder.minDayTime();
+    }
 
     @Override
-    T month(final Month month);
+    public DateBuilder y(int year) {
+        return new DateBuilder(builder.y(year));
+    }
 
     @Override
-    T minDay();
+    public DateBuilder m(Month month) {
+        return new DateBuilder(builder.m(month));
+    }
 
     @Override
-    T day(final int date);
+    public DateBuilder ym(int year, Month month) {
+        return new DateBuilder(builder.ym(year, month));
+    }
 
     @Override
-    T firstDayOfMonth();
+    public DateBuilder md(Month month, int day) {
+        return new DateBuilder(builder.md(month, day));
+    }
 
     @Override
-    T endDayOfMonth();
+    public DateBuilder ymd(int year, Month month, int day) {
+        return new DateBuilder(builder.ymd(year, month, day));
+    }
 
     @Override
-    T addYear(final int years);
+    public DateBuilder d(int day) {
+        return new DateBuilder(builder.d(day));
+    }
 
     @Override
-    T lastYear();
+    public DateBuilder minYear() {
+        return new DateBuilder(builder.minYear());
+    }
 
     @Override
-    T nextYear();
+    public DateBuilder year(int year) {
+        return new DateBuilder(builder.year(year));
+    }
 
     @Override
-    T lastMonth();
+    public DateBuilder minMonth() {
+        return new DateBuilder(builder.minMonth());
+    }
 
     @Override
-    T nextMonth();
+    public DateBuilder month(Month month) {
+        return new DateBuilder(builder.month(month));
+    }
 
     @Override
-    T addMonths(final int months);
+    public DateBuilder maxMonth() {
+        return new DateBuilder(builder.maxMonth());
+    }
 
     @Override
-    T addDays(final int days);
+    public DateBuilder minDay() {
+        return new DateBuilder(builder.minDay());
+    }
 
     @Override
-    T yesterday();
+    public DateBuilder day(int date) {
+        return new DateBuilder(builder.day(date));
+    }
 
     @Override
-    T tomorrow();
+    public DateBuilder maxDay() {
+        return new DateBuilder(builder.maxDay());
+    }
 
     @Override
-    T nextWeekday(Weekday startDay);
+    public DateBuilder firstDayOfMonth() {
+        return new DateBuilder(builder.firstDayOfMonth());
+    }
 
     @Override
-    T prevWeekday(Weekday startDay);
+    public DateBuilder endDayOfMonth() {
+        return new DateBuilder(builder.endDayOfMonth());
+    }
 
     @Override
-    T startOfWeek(Weekday startDay);
+    public DateBuilder addYear(int years) {
+        return new DateBuilder(builder.addYear(years));
+    }
 
     @Override
-    T endOfWeek(Weekday startDay);
+    public DateBuilder lastYear() {
+        return new DateBuilder(builder.lastYear());
+    }
 
     @Override
-    T now();
+    public DateBuilder nextYear() {
+        return new DateBuilder(builder.nextYear());
+    }
 
+    @Override
+    public DateBuilder lastMonth() {
+        return new DateBuilder(builder.lastMonth());
+    }
 
-    DateInfo view();
+    @Override
+    public DateBuilder nextMonth() {
+        return new DateBuilder(builder.nextMonth());
+    }
 
-    DatetimeRange rangeTo(DateBuilder date);
+    @Override
+    public DateBuilder addMonths(int months) {
+        return new DateBuilder(builder.addMonths(months));
+    }
 
-    DatetimeRange rangeTo(DatetimeBuilder date);
+    @Override
+    public DateBuilder addDays(int days) {
+        return new DateBuilder(builder.addDays(days));
+    }
 
-    DatetimeRange rangeFrom(DateBuilder date);
+    @Override
+    public DateBuilder yesterday() {
+        return new DateBuilder(builder.yesterday());
+    }
 
-    DatetimeRange rangeFrom(DatetimeBuilder date);
+    @Override
+    public DateBuilder tomorrow() {
+        return new DateBuilder(builder.tomorrow());
+    }
 
-    DatetimeRange rangeTo(Date date);
+    @Override
+    public DateBuilder nextWeekday(Weekday startDay) {
+        return new DateBuilder(builder.nextWeekday(startDay));
+    }
 
-    DatetimeRange rangeTo(Long dateLong);
+    @Override
+    public DateBuilder prevWeekday(Weekday startDay) {
+        return new DateBuilder(builder.prevWeekday(startDay));
+    }
 
-    DatetimeRange rangeTo(Calendar cal);
+    @Override
+    public DateBuilder startOfWeek(Weekday startDay) {
+        return new DateBuilder(builder.startOfWeek(startDay));
+    }
 
-    DatetimeRange rangeToSelf();
+    @Override
+    public DateBuilder endOfWeek(Weekday startDay) {
+        return new DateBuilder(builder.endOfWeek(startDay));
+    }
 
-    DatetimeRange rangeFrom(Date date);
+    @Override
+    public boolean sameYear(Long longDate) {
+        return builder.sameYear(longDate);
+    }
 
-    DatetimeRange rangeFrom(Long dateLong);
+    @Override
+    public boolean sameYear(Date date) {
+        return builder.sameYear(date);
+    }
 
-    DatetimeRange rangeFrom(Calendar cal);
+    @Override
+    public boolean sameYear(Calendar cal) {
+        return builder.sameYear(cal);
+    }
 
-    boolean sameDate(DateBuilder builder);
+    @Override
+    public boolean sameMonth(Long longDate) {
+        return builder.sameMonth(longDate);
+    }
 
-    boolean sameDate(Long longDate);
+    @Override
+    public boolean sameMonth(Date date) {
+        return builder.sameMonth(date);
+    }
 
-    boolean sameDate(Date date);
+    @Override
+    public boolean sameMonth(Calendar cal) {
+        return builder.sameMonth(cal);
+    }
 
-    boolean sameDate(Calendar cal);
+    @Override
+    public boolean sameDay(Long longDate) {
+        return builder.sameDay(longDate);
+    }
 
-    boolean sameYear(DateBuilder builder);
+    @Override
+    public boolean sameDay(Date date) {
+        return builder.sameDay(date);
+    }
 
-    boolean sameYear(DatetimeBuilder builder);
+    @Override
+    public boolean sameDay(Calendar cal) {
+        return builder.sameDay(cal);
+    }
 
-    boolean sameMonth(DateBuilder builder);
+    @Override
+    public boolean laterThan(Date date) {
+        return builder.laterThan(date);
+    }
 
-    boolean sameMonth(DatetimeBuilder builder);
+    @Override
+    public boolean laterThan(Long longDate) {
+        return builder.laterThan(longDate);
+    }
 
-    boolean sameDay(DateBuilder builder);
+    @Override
+    public boolean laterThan(Calendar calendar) {
+        return builder.laterThan(calendar);
+    }
 
-    boolean sameDay(DatetimeBuilder builder);
+    @Override
+    public boolean laterEqualThan(Date date) {
+        return builder.laterEqualThan(date);
+    }
 
-    boolean laterThan(DateBuilder datetimeBuilder);
+    @Override
+    public boolean laterEqualThan(Long longDate) {
+        return builder.laterEqualThan(longDate);
+    }
 
-    boolean laterThan(DatetimeBuilder datetimeBuilder);
+    @Override
+    public boolean laterEqualThan(Calendar calendar) {
+        return builder.laterEqualThan(calendar);
+    }
 
-    boolean laterEqualThan(DateBuilder datetimeBuilder);
+    @Override
+    public boolean before(Date date) {
+        return builder.before(date);
+    }
 
-    boolean laterEqualThan(DatetimeBuilder datetimeBuilder);
+    @Override
+    public boolean before(Long longDate) {
+        return builder.before(longDate);
+    }
 
-    boolean before(DateBuilder datetimeBuilder);
+    @Override
+    public boolean before(Calendar calendar) {
+        return builder.before(calendar);
+    }
 
-    boolean before(DatetimeBuilder datetimeBuilder);
+    @Override
+    public boolean beforeEqual(Date date) {
+        return builder.beforeEqual(date);
+    }
 
-    boolean beforeEqual(DateBuilder datetimeBuilder);
+    @Override
+    public boolean beforeEqual(Long longDate) {
+        return builder.beforeEqual(longDate);
+    }
 
-    boolean beforeEqual(DatetimeBuilder datetimeBuilder);
+    @Override
+    public boolean beforeEqual(Calendar calendar) {
+        return builder.beforeEqual(calendar);
+    }
 
-    TimeUnit diffFrom(DateBuilder date);
+    @Override
+    public TimeZone getTimeZone() {
+        return asCalendar().getTimeZone();
+    }
 
-    TimeUnit diffFrom(DatetimeBuilder date);
+    @Override
+    public DateBuilder now() {
+        return new DateBuilder(builder.now());
+    }
 
-    TimeUnit diffTo(DateBuilder date);
+    @Override
+    public DateInfo view() {
+        return builder.view();
+    }
 
-    TimeUnit diffTo(DatetimeBuilder date);
+    @Override
+    public DatetimeRange rangeTo(DateBuilderInterface date) {
+        return builder.rangeTo(date.asDatetimeBuilder());
+    }
 
-    DatetimeBuilder asDatetimeBuilder();
+    @Override
+    public DatetimeRange rangeTo(DatetimeBuilderInterface date) {
+        return builder.rangeTo(date);
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(DateBuilderInterface date) {
+        return builder.rangeFrom(date.asDatetimeBuilder());
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(DatetimeBuilderInterface date) {
+        return builder.rangeFrom(date);
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Date date) {
+        return builder.rangeTo(date);
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Long dateLong) {
+        return builder.rangeTo(dateLong);
+    }
+
+    @Override
+    public DatetimeRange rangeTo(Calendar cal) {
+        return builder.rangeTo(cal);
+    }
+
+    @Override
+    public DatetimeRange rangeToSelf() {
+        return builder.minDayTime().rangeTo(builder.maxDayTime().asDate());
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Date date) {
+        return builder.rangeFrom(date);
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Long dateLong) {
+        return builder.rangeFrom(dateLong);
+    }
+
+    @Override
+    public DatetimeRange rangeFrom(Calendar cal) {
+        return builder.rangeFrom(cal);
+    }
+
+    @Override
+    public boolean sameDate(DateBuilderInterface builder) {
+        return this.builder.sameDate(builder.asDatetimeBuilder());
+    }
+
+    @Override
+    public boolean sameDate(Long longDate) {
+        return builder.sameDate(longDate);
+    }
+
+    @Override
+    public boolean sameDate(Date date) {
+        return builder.sameDate(date);
+    }
+
+    @Override
+    public boolean sameDate(Calendar cal) {
+        return builder.sameDate(cal);
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean sameYear(X builder) {
+        return this.builder.sameYear(builder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean sameMonth(X builder) {
+        return this.builder.sameMonth(builder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean sameDay(X builder) {
+        return this.builder.sameDay(builder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean laterThan(X datetimeBuilder) {
+        return builder.laterThan(datetimeBuilder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean laterEqualThan(X datetimeBuilder) {
+        return builder.laterEqualThan(datetimeBuilder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean before(X datetimeBuilder) {
+        return builder.before(datetimeBuilder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> boolean beforeEqual(X datetimeBuilder) {
+        return builder.beforeEqual(datetimeBuilder.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> TimeUnit diffFrom(X date) {
+        return builder.diffFrom(date.asDate());
+    }
+
+    @Override
+    public <X extends CalendarDateBuilder<X>> TimeUnit diffTo(X date) {
+        return builder.diffTo(date.asDate());
+    }
+
+    @Override
+    public DatetimeBuilder asDatetimeBuilder() {
+        return builder;
+    }
+
+    @Override
+    public Date asDate() {
+        return builder.asDate();
+    }
+
+    @Override
+    public Calendar asCalendar() {
+        return builder.asCalendar();
+    }
+
+    @Override
+    public Long asLong() {
+        return builder.asLong();
+    }
+
+    @Override
+    public java.sql.Date asSqlDate() {
+        return builder.asSqlDate();
+    }
+
+    @Override
+    public Time asSqlTime() {
+        return builder.asSqlTime();
+    }
+
+    @Override
+    public Timestamp asSqlTimestamp() {
+        return builder.asSqlTimestamp();
+    }
+
+    @Override
+    public String format(String format) {
+        return builder.format(format);
+    }
+
+    @Override
+    public String format(DateFormatBuilderInterface.Format format) {
+        return builder.format(format);
+    }
+
+    @Override
+    public String format(DateFormatBuilderInterface fmtBuilder) {
+        return builder.format(fmtBuilder);
+    }
+
+    @Override
+    public String format(SimpleDateFormat fmt) {
+        return builder.format(fmt);
+    }
+
+    @Override
+    public FormatBuilderWrapper format() {
+        return builder.format();
+    }
+
+    @Override
+    public String format(TimeZone timeZone, String format) {
+        return builder.format(timeZone, format);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilderInterface.Format format) {
+        return builder.format(timeZone, format);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, DateFormatBuilderInterface fmtBuilder) {
+        return builder.format(timeZone, fmtBuilder);
+    }
+
+    @Override
+    public String format(TimeZone timeZone, SimpleDateFormat fmt) {
+        return builder.format(timeZone, fmt);
+    }
+
+    @Override
+    public TimeUnit diffFrom(Date date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(Date date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(long date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(long date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public TimeUnit diffFrom(Calendar date) {
+        return builder.diffFrom(date);
+    }
+
+    @Override
+    public TimeUnit diffTo(Calendar date) {
+        return builder.diffTo(date);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateBuilder builder1 = (DateBuilder) o;
+        return Objects.equals(builder, builder1.builder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(builder);
+    }
 }

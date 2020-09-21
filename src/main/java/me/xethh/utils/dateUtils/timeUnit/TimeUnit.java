@@ -1,6 +1,6 @@
 package me.xethh.utils.dateUtils.timeUnit;
 
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 
 import java.util.Calendar;
@@ -12,28 +12,15 @@ import java.util.Objects;
  * Created on 8/3/2018
  */
 public class TimeUnit {
-    public TimeUnit add(TimeUnit other) {
-        return new TimeUnit(this.diff + other.diff);
-    }
+    private static long MS_BASE = 1000;
+    private static long SECOND_BASE = 60;
+    private static long MIN_BASE = 60;
+    private static long HOUR_BASE = 24;
+    private static long WEEK_BASE = 7;
+    private long diff;
 
-    public TimeUnit addDay(int day) {
-        return add(day(day));
-    }
-
-    public TimeUnit addHour(int hour) {
-        return add(hour(hour));
-    }
-
-    public TimeUnit addMinute(int minute) {
-        return add(minute(minute));
-    }
-
-    public TimeUnit addSecond(int second) {
-        return add(second(second));
-    }
-
-    public TimeUnit addMS(int ms) {
-        return add(ms(ms));
+    public TimeUnit(long diff) {
+        this.diff = diff;
     }
 
     public static TimeUnit day() {
@@ -76,12 +63,6 @@ public class TimeUnit {
         return new TimeUnit(ms);
     }
 
-    private long diff;
-
-    public TimeUnit(long diff) {
-        this.diff = diff;
-    }
-
     public static TimeUnit timeDiff(Date t1, Date t2) {
         return timeDiff(t1.getTime(), t2.getTime());
     }
@@ -104,59 +85,6 @@ public class TimeUnit {
 
     public static TimeUnit to(long diff) {
         return timeDiff(new Date().getTime(), diff);
-    }
-
-    public Date asDate() {
-        return new Date(diff);
-    }
-
-    public long asLong() {
-        return diff;
-    }
-
-    public DatetimeBuilder asBuilder() {
-        return DatetimeFactory.instance().from(diff);
-    }
-
-    public Calendar asCalendar() {
-        Calendar d = Calendar.getInstance(DatetimeFactory.instance().getTimezone());
-        d.setTimeInMillis(diff);
-        return d;
-    }
-
-    private static long MS_BASE = 1000;
-    private static long SECOND_BASE = 60;
-    private static long MIN_BASE = 60;
-    private static long HOUR_BASE = 24;
-    private static long WEEK_BASE = 7;
-
-
-    public long numberOfWeeks() {
-        return numberOfWeeks(diff);
-    }
-
-    public long remindOfWeeks() {
-        return remindOfWeeks(diff);
-    }
-
-    public long numberOfDays() {
-        return numberOfDays(diff);
-    }
-
-    public long numberOfHour() {
-        return numberOfHour(diff);
-    }
-
-    public long numberOfMin() {
-        return numberOfMin(diff);
-    }
-
-    public long numberOfSecond() {
-        return numberOfSecond(diff);
-    }
-
-    public long numberOfMS() {
-        return diff;
     }
 
     public static long numberOfWeeks(long diff) {
@@ -225,6 +153,76 @@ public class TimeUnit {
 
     public static long msOnly(long diff) {
         return eliminateSecond(diff);
+    }
+
+    public TimeUnit add(TimeUnit other) {
+        return new TimeUnit(this.diff + other.diff);
+    }
+
+    public TimeUnit addDay(int day) {
+        return add(day(day));
+    }
+
+    public TimeUnit addHour(int hour) {
+        return add(hour(hour));
+    }
+
+    public TimeUnit addMinute(int minute) {
+        return add(minute(minute));
+    }
+
+    public TimeUnit addSecond(int second) {
+        return add(second(second));
+    }
+
+    public TimeUnit addMS(int ms) {
+        return add(ms(ms));
+    }
+
+    public Date asDate() {
+        return new Date(diff);
+    }
+
+    public long asLong() {
+        return diff;
+    }
+
+    public DatetimeBuilderInterface asBuilder() {
+        return DatetimeFactory.instance().from(diff);
+    }
+
+    public Calendar asCalendar() {
+        Calendar d = Calendar.getInstance(DatetimeFactory.instance().getTimezone());
+        d.setTimeInMillis(diff);
+        return d;
+    }
+
+    public long numberOfWeeks() {
+        return numberOfWeeks(diff);
+    }
+
+    public long remindOfWeeks() {
+        return remindOfWeeks(diff);
+    }
+
+    public long numberOfDays() {
+        return numberOfDays(diff);
+    }
+
+    public long numberOfHour() {
+        return numberOfHour(diff);
+    }
+
+    public long numberOfMin() {
+        return numberOfMin(diff);
+    }
+
+    public long numberOfSecond() {
+        return numberOfSecond(diff);
+    }
+
+    public long numberOfMS() {
+        return diff;
     }
 
     public long dayOnly() {

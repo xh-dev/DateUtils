@@ -8,6 +8,7 @@ import java.util.Date;
 public interface TimeUnitConverter {
     /**
      * Time difference from date to builder
+     *
      * @param date date in {@link java.util.Date} form
      * @return TimeUnit
      */
@@ -15,6 +16,7 @@ public interface TimeUnitConverter {
 
     /**
      * Time difference from builder to date
+     *
      * @param date date in {@link java.util.Date} form
      * @return TimeUnit
      */
@@ -22,6 +24,7 @@ public interface TimeUnitConverter {
 
     /**
      * Time difference from date to builder
+     *
      * @param date date in long form
      * @return TimeUnit
      */
@@ -29,6 +32,7 @@ public interface TimeUnitConverter {
 
     /**
      * Time difference from builder to date
+     *
      * @param date date in long form
      * @return TimeUnit
      */
@@ -36,13 +40,15 @@ public interface TimeUnitConverter {
 
     /**
      * Time difference from date to builder
+     *
      * @param date date in {@link java.util.Calendar} form
-     * @return  TimeUnit
+     * @return TimeUnit
      */
     TimeUnit diffFrom(Calendar date);
 
     /**
      * Time difference from builder to date
+     *
      * @param date date in {@link java.util.Calendar} form
      * @return TimeUnit
      */

@@ -1,8 +1,8 @@
 package me.xethh.utils.dateUtils.range.datetime;
 
-import me.xethh.utils.dateUtils.date.DateBuilder;
+import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
@@ -123,22 +123,22 @@ public class DatetimeRange extends Range {
     }
 
     @Override
-    public DatetimeBuilder startAsDTBuilder() {
+    public DatetimeBuilderInterface startAsDTBuilder() {
         return DatetimeFactory.instance().from(start);
     }
 
     @Override
-    public DatetimeBuilder endAsDTBuilder() {
+    public DatetimeBuilderInterface endAsDTBuilder() {
         return DatetimeFactory.instance().from(end);
     }
 
     @Override
-    public DateBuilder startAsDateBuilder() {
+    public DateBuilderInterface startAsDateBuilder() {
         return DateFactory.instance().from(start);
     }
 
     @Override
-    public DateBuilder endAsDateBuilder() {
+    public DateBuilderInterface endAsDateBuilder() {
         return DateFactory.instance().from(end);
     }
 
@@ -166,11 +166,11 @@ public class DatetimeRange extends Range {
         if (range.isInvalid())
             return OverlapType.TargetInvalid;
 
-        DatetimeBuilder startComparator = DatetimeFactory.instance().from(start);
-        DatetimeBuilder endComparator = DatetimeFactory.instance().from(end);
+        DatetimeBuilderInterface startComparator = DatetimeFactory.instance().from(start);
+        DatetimeBuilderInterface endComparator = DatetimeFactory.instance().from(end);
 
-        DatetimeBuilder targetStartComparator = DatetimeFactory.instance().from(range.start);
-        DatetimeBuilder targetEndComparator = DatetimeFactory.instance().from(range.end);
+        DatetimeBuilderInterface targetStartComparator = DatetimeFactory.instance().from(range.start);
+        DatetimeBuilderInterface targetEndComparator = DatetimeFactory.instance().from(range.end);
 
         if (startComparator.sameDatetime(range.start) && endComparator.sameDatetime(range.end))
             return OverlapType.Same;
