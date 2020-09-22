@@ -1,8 +1,8 @@
 package me.xethh.utils.v6.datetime;
 
-import me.xethh.utils.dateUtils.CalendarTimeBuilder;
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.FormatterBuilder;
+import me.xethh.utils.dateUtils.baseInterface.CalendarTimeBuilder;
+import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.baseInterface.FormatterBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 
 import java.text.SimpleDateFormat;

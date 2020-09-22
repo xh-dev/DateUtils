@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.datetime;
 
+import me.xethh.utils.dateUtils.baseInterface.DateRangeBuilderInterface;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
@@ -526,6 +527,16 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
     @Override
     public DatetimeRange rangeFrom(Calendar cal) {
         return rangeFrom(DatetimeFactory.instance().from(cal));
+    }
+
+    @Override
+    public <X extends DateRangeBuilderInterface> DatetimeRange rangeTo(X date) {
+        return rangeTo(date.asDate());
+    }
+
+    @Override
+    public <X extends DateRangeBuilderInterface> DatetimeRange rangeFrom(X date) {
+        return rangeFrom(date.asDate());
     }
 
 

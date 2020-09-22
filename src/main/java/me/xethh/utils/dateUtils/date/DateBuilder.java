@@ -1,6 +1,7 @@
 package me.xethh.utils.dateUtils.date;
 
-import me.xethh.utils.dateUtils.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.baseInterface.DateRangeBuilderInterface;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
@@ -314,26 +315,6 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     }
 
     @Override
-    public DatetimeRange rangeTo(DateBuilderInterface date) {
-        return builder.rangeTo(date.asDatetimeBuilder());
-    }
-
-    @Override
-    public DatetimeRange rangeTo(DatetimeBuilderInterface date) {
-        return builder.rangeTo(date);
-    }
-
-    @Override
-    public DatetimeRange rangeFrom(DateBuilderInterface date) {
-        return builder.rangeFrom(date.asDatetimeBuilder());
-    }
-
-    @Override
-    public DatetimeRange rangeFrom(DatetimeBuilderInterface date) {
-        return builder.rangeFrom(date);
-    }
-
-    @Override
     public DatetimeRange rangeTo(Date date) {
         return builder.rangeTo(date);
     }
@@ -366,6 +347,16 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     @Override
     public DatetimeRange rangeFrom(Calendar cal) {
         return builder.rangeFrom(cal);
+    }
+
+    @Override
+    public <X extends DateRangeBuilderInterface> DatetimeRange rangeTo(X date) {
+        return builder.rangeTo(date.asDate());
+    }
+
+    @Override
+    public <X extends DateRangeBuilderInterface> DatetimeRange rangeFrom(X date) {
+        return builder.rangeFrom(date.asDate());
     }
 
     @Override

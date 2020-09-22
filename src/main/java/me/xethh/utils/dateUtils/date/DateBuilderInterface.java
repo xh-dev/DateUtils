@@ -1,10 +1,9 @@
 package me.xethh.utils.dateUtils.date;
 
-import me.xethh.utils.dateUtils.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.FormatterBuilder;
-import me.xethh.utils.dateUtils.TimeUnitConverter;
-import me.xethh.utils.dateUtils.dataInfo.DateInfo;
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.baseInterface.FormatterBuilder;
+import me.xethh.utils.dateUtils.baseInterface.DateRangeBuilderInterface;
+import me.xethh.utils.dateUtils.baseInterface.TimeUnitConverter;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
@@ -20,32 +19,10 @@ import java.util.Date;
  */
 public interface DateBuilderInterface<T extends DateBuilderInterface<T>>
         extends
+        DateRangeBuilderInterface,
         CalendarDateBuilder<T>,
-        CommonDateRepresentation,
         TimeUnitConverter,
         FormatterBuilder {
-
-    <X extends DateBuilderInterface<X>> DatetimeRange rangeTo(X date);
-
-    <X extends DatetimeBuilderInterface<X>> DatetimeRange rangeTo(X date);
-
-    <X extends DateBuilderInterface<X>> DatetimeRange rangeFrom(X date);
-
-    <X extends DatetimeBuilderInterface<X>> DatetimeRange rangeFrom(X date);
-
-    DatetimeRange rangeTo(Date date);
-
-    DatetimeRange rangeTo(Long dateLong);
-
-    DatetimeRange rangeTo(Calendar cal);
-
-    DatetimeRange rangeToSelf();
-
-    DatetimeRange rangeFrom(Date date);
-
-    DatetimeRange rangeFrom(Long dateLong);
-
-    DatetimeRange rangeFrom(Calendar cal);
 
     <X extends DateBuilderInterface<X>> boolean sameDate(X builder);
 

@@ -1,7 +1,7 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.FormatterBuilder;
+import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.baseInterface.FormatterBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;

@@ -1,4 +1,4 @@
-package me.xethh.utils.dateUtils;
+package me.xethh.utils.dateUtils.baseInterface;
 
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
@@ -12,7 +12,7 @@ import java.util.TimeZone;
  *
  * @param <T> generic type T which the subclass of CalendarTimeBuilder of itself
  */
-public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> {
+public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> extends DateViewable{
     /**
      * Return the datetime of current datetime
      *

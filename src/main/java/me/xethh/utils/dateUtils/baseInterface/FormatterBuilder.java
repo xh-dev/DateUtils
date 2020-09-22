@@ -1,4 +1,4 @@
-package me.xethh.utils.dateUtils;
+package me.xethh.utils.dateUtils.baseInterface;
 
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;

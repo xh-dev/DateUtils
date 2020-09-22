@@ -1,23 +1,18 @@
 package me.xethh.utils.dateUtils.datetime;
 
-import me.xethh.utils.dateUtils.*;
-import me.xethh.utils.dateUtils.dataInfo.DateInfo;
+import me.xethh.utils.dateUtils.baseInterface.*;
 import me.xethh.utils.dateUtils.date.DateBuilderInterface;
-import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
-import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
-import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 public interface DatetimeBuilderInterface<T extends DatetimeBuilderInterface<T>>
         extends
+        DateRangeBuilderInterface,
         DateViewable,
         CalendarDateBuilder<T>, CalendarTimeBuilder<T>,
-        CommonDateRepresentation,
         TimeUnitConverter,
         FormatterBuilder {
 
@@ -42,22 +37,7 @@ public interface DatetimeBuilderInterface<T extends DatetimeBuilderInterface<T>>
     //Compare operation
     <X extends DatetimeBuilderInterface<X>> boolean sameDate(X builder);
 
-    boolean sameDate(Long longDate);
-
-    boolean sameDate(Date date);
-
-    boolean sameDate(Calendar cal);
-
     <X extends DatetimeBuilderInterface<X>> boolean sameDatetime(X builder);
-
-    @Override
-    boolean sameDatetime(Long longDate);
-
-    @Override
-    boolean sameDatetime(Date date);
-
-    @Override
-    boolean sameDatetime(Calendar cal);
 
     <X extends DatetimeBuilderInterface<X>> boolean sameYear(X builder);
 

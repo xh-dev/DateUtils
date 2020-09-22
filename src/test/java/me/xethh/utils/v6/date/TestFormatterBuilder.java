@@ -1,8 +1,8 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateUtils.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
-import me.xethh.utils.dateUtils.TimeUnitConverter;
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
+import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.baseInterface.TimeUnitConverter;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 
 import static org.junit.Assert.assertEquals;

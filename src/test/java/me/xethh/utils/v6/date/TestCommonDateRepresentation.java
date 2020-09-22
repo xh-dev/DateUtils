@@ -1,6 +1,6 @@
 package me.xethh.utils.v6.date;
 
-import me.xethh.utils.dateUtils.CommonDateRepresentation;
+import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
 
 import java.util.Date;
 
