@@ -1,5 +1,7 @@
 package me.xethh.utils.dateUtils.dateFactory;
 
+import me.xethh.utils.dateUtils.D;
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
@@ -92,17 +94,13 @@ public class DateFactoryImpl implements DateFactory {
     }
 
     @Override
-    public DatetimeRange rangeOnNow() {
-        return DatetimeFactory.instance().now().minDayTime().rangeTo(DatetimeFactory.instance().now().maxDayTime());
+    public <X extends CalendarDateBuilder<X>> DatetimeRange rangeOn(X dateBuilder) {
+        return DatetimeFactory.instance().from(dateBuilder.asDate()).minDayTime().rangeTo(DatetimeFactory.instance().from(dateBuilder.asDate()).maxDayTime());
     }
 
     @Override
-    public DatetimeRange rangeOn(DateBuilderInterface dateBuilder) {
-        return dateBuilder.rangeToSelf();
-    }
-
-    public DatetimeRange rangeOn(DatetimeBuilderInterface datetimeBuilder) {
-        return datetimeBuilder.rangeToSelf();
+    public DatetimeRange rangeOnNow() {
+        return DatetimeFactory.instance().now().minDayTime().rangeTo(DatetimeFactory.instance().now().maxDayTime());
     }
 
     @Override

@@ -6,5 +6,4 @@ import java.util.WeakHashMap;
 
 public class DateFactoryData {
     static DateFactory _instance = null;
-    static Map<TimeZone, DateFactory> factoryMap = new WeakHashMap<>();
 }

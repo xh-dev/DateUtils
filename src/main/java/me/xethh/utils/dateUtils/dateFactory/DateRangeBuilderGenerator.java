@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.dateFactory;
 
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
@@ -7,7 +8,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public interface DateRangeBuilderGenerator extends DateBuilderGenerator {
-    DatetimeRange rangeOn(DateBuilderInterface dateBuilder);
+    default <X extends CalendarDateBuilder<X>> DatetimeRange rangeOn(X dateBuilder){
+        return DateFactory.instance().from(dateBuilder.asDate()).rangeTo(dateBuilder.asDate());
+    }
 
     default DatetimeRange rangeOnNow() {
         return rangeOn(now());
