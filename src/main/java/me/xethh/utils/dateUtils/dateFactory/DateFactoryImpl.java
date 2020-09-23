@@ -17,7 +17,7 @@ import java.util.TimeZone;
  * Created on 7/19/2018
  */
 public class DateFactoryImpl implements DateFactory {
-    private TimeZone timeZone;
+    private final TimeZone timeZone;
 
     protected DateFactoryImpl(TimeZone timezone) {
         this.timeZone = timezone;

@@ -1,7 +1,6 @@
 package me.xethh.utils.dateUtils.date;
 
 import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
-import me.xethh.utils.dateUtils.baseInterface.DateRangeBuilderInterface;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -349,18 +348,18 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     }
 
     @Override
-    public <X extends DateRangeBuilderInterface> DatetimeRange rangeTo(X date) {
+    public <X extends CalendarDateBuilder<X>> DatetimeRange rangeTo(X date) {
         return builder.rangeTo(date.asDate());
     }
 
     @Override
-    public <X extends DateRangeBuilderInterface> DatetimeRange rangeFrom(X date) {
+    public <X extends CalendarDateBuilder<X>> DatetimeRange rangeFrom(X date) {
         return builder.rangeFrom(date.asDate());
     }
 
     @Override
-    public boolean sameDate(DateBuilderInterface builder) {
-        return this.builder.sameDate(builder.asDatetimeBuilder());
+    public <X extends CalendarDateBuilder<X>> boolean sameDate(X builder) {
+        return this.builder.sameDate(builder.asDate());
     }
 
     @Override
@@ -469,7 +468,7 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     }
 
     @Override
-    public String format(DateFormatBuilderInterface fmtBuilder) {
+    public <X extends DateFormatBuilderInterface<X>> String format(X fmtBuilder) {
         return builder.format(fmtBuilder);
     }
 
@@ -494,7 +493,7 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     }
 
     @Override
-    public String format(TimeZone timeZone, DateFormatBuilderInterface fmtBuilder) {
+    public<X extends DateFormatBuilderInterface<X>> String format(TimeZone timeZone, X fmtBuilder) {
         return builder.format(timeZone, fmtBuilder);
     }
 

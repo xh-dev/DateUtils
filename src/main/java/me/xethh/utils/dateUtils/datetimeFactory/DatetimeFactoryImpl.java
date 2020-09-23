@@ -2,10 +2,7 @@ package me.xethh.utils.dateUtils.datetimeFactory;
 
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.interfaces.Build;
-import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
-import me.xethh.utils.dateUtils.interfaces.EditModeStatus;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
@@ -78,11 +75,8 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
     }
 
     @Override
-    public <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T raw(E parent) {
-        if (parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(raw().asCalendar(), (DatetimeRange) parent);
-        }
-        return null;
+    public DatetimeRangeContainedBuilder raw(DatetimeRange parent) {
+        return new DatetimeRangeContainedBuilder(raw().asCalendar(), parent);
     }
 
     @Override

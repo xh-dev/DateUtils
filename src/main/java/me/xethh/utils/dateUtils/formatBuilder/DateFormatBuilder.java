@@ -8,10 +8,10 @@ import java.util.*;
 import static me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory.Const.*;
 
 public class DateFormatBuilder implements DateFormatBuilderInterface<DateFormatBuilder> {
-    private static String VARIABLE_PREFIX = "/***xxxxdafd/";
+    private static final String VARIABLE_PREFIX = "/***xxxxdafd/";
 
-    private Map<String, String> variables = new HashMap<>();
-    private List<InternalFormatBuild> internalFormatBuilds = new ArrayList<>();
+    private final Map<String, String> variables = new HashMap<>();
+    private final List<InternalFormatBuild> internalFormatBuilds = new ArrayList<>();
     private TimeZone timeZone;
 
     protected DateFormatBuilder() {

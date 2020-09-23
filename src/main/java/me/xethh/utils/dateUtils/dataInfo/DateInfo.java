@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.dataInfo;
 
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
@@ -48,8 +49,7 @@ public interface DateInfo {
 
     Weekday weekday();
 
-
-    DatetimeBuilderInterface asBuilder();
+    DatetimeBuilder asBuilder();
 
     Date asDate();
 

@@ -1,9 +1,6 @@
 package me.xethh.utils.dateUtils.datetimeFactory;
 
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.interfaces.Build;
-import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
-import me.xethh.utils.dateUtils.interfaces.EditModeStatus;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
@@ -24,48 +21,33 @@ public interface DatetimeFactory extends
         return new DatetimeRange(start, end);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Date date, E parent) {
-        if (parent instanceof DatetimeRange)
-            return (T) new DatetimeRangeContainedBuilder(date, (DatetimeRange) parent);
-        return null;
+    static DatetimeRangeContainedBuilder from(Date date, DatetimeRange parent) {
+        return new DatetimeRangeContainedBuilder(date, parent);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Date date, Build build, E parent) {
-        if (parent instanceof DatetimeRange) {
-            DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date, (DatetimeRange) parent);
-            return (T) new DatetimeRangeContainedBuilder(builder.asCalendar(), build, (DatetimeRange) parent);
-        }
-        return null;
+    static DatetimeRangeContainedBuilder from(Date date, Build build, DatetimeRange parent) {
+        DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date, parent);
+        return new DatetimeRangeContainedBuilder(builder.asCalendar(), build, parent);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Calendar cal, E parent) {
-        if (parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(cal, (DatetimeRange) parent);
-        }
-        return null;
+    static DatetimeRangeContainedBuilder from(Calendar cal, DatetimeRange parent) {
+        return new DatetimeRangeContainedBuilder(cal, parent);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Calendar cal, Build build, E parent) {
-        if (parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(cal, build, (DatetimeRange) parent);
-        }
-        return null;
+    static DatetimeRangeContainedBuilder from(Calendar cal, Build build, DatetimeRange parent) {
+        return new DatetimeRangeContainedBuilder(cal, build, parent);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T now(E parent) {
-        if (parent instanceof DatetimeRange) {
-            return (T) new DatetimeRangeContainedBuilder(new Date(), (DatetimeRange) parent);
-        }
-        return null;
+    static DatetimeRangeContainedBuilder now(DatetimeRange parent) {
+        return new DatetimeRangeContainedBuilder(new Date(), parent);
     }
 
-    static <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T from(Long longDate, E parent) {
-        return (T) from(new Date(longDate), parent);
+    static DatetimeRangeContainedBuilder from(Long longDate, DatetimeRange parent) {
+        return from(new Date(longDate), parent);
     }
 
     static void addDatetimeMap(DatetimeFactory factory) {
-        if (factoryMap.get(factory.getTimezone()) == null)
-            factoryMap.put(factory.getTimezone(), factory);
+        factoryMap.putIfAbsent(factory.getTimezone(), factory);
     }
 
     static DatetimeFactory instance(BaseTimeZone baseTimeZone) {
@@ -97,6 +79,6 @@ public interface DatetimeFactory extends
 
     TimeZone getTimezone();
 
-    <T extends DatetimeBuilderInterface<T> & DatetimeBackWrapper<T, E>, E extends EditModeStatus<F>, F extends Object> T raw(E parent);
+    DatetimeRangeContainedBuilder raw(DatetimeRange parent);
 
 }

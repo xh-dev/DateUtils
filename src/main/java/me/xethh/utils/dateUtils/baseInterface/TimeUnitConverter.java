@@ -5,7 +5,7 @@ import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-public interface TimeUnitConverter {
+public interface TimeUnitConverter extends DateViewable{
     /**
      * Time difference from date to builder
      *
@@ -53,4 +53,8 @@ public interface TimeUnitConverter {
      * @return TimeUnit
      */
     TimeUnit diffTo(Calendar date);
+
+    <X extends CalendarDateBuilder<X>> TimeUnit diffFrom(X date);
+
+    <X extends CalendarDateBuilder<X>> TimeUnit diffTo(X date);
 }

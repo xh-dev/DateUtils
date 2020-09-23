@@ -20,7 +20,7 @@ public interface DateRangeBuilderInterface extends DateViewable {
 
     DatetimeRange rangeFrom(Calendar cal);
 
-    <X extends DateRangeBuilderInterface> DatetimeRange rangeTo(X date);
+    <X extends CalendarDateBuilder<X>> DatetimeRange rangeTo(X date);
 
-    <X extends DateRangeBuilderInterface> DatetimeRange rangeFrom(X date);
+    <X extends CalendarDateBuilder<X>> DatetimeRange rangeFrom(X date);
 }

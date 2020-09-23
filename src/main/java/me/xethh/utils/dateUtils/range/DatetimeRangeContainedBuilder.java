@@ -1,6 +1,8 @@
 package me.xethh.utils.dateUtils.range;
 
+import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.baseInterface.DateRangeBuilderInterface;
+import me.xethh.utils.dateUtils.baseInterface.TimeUnitConverter;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
@@ -382,12 +384,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public DatetimeRange rangeTo(DatetimeBuilderInterface date) {
+    public <X extends CalendarDateBuilder<X>> DatetimeRange rangeTo(X date) {
         return builder.rangeTo(date);
     }
 
     @Override
-    public DatetimeRange rangeFrom(DatetimeBuilderInterface date) {
+    public <X extends CalendarDateBuilder<X>> DatetimeRange rangeFrom(X date) {
         return builder.rangeFrom(date);
     }
 
@@ -427,17 +429,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public <X extends DateRangeBuilderInterface> DatetimeRange rangeTo(X date) {
-        return rangeTo(date.asDate());
-    }
-
-    @Override
-    public <X extends DateRangeBuilderInterface> DatetimeRange rangeFrom(X date) {
-        return rangeFrom(date.asDate());
-    }
-
-    @Override
-    public boolean sameDate(DatetimeBuilderInterface builder) {
+    public <X extends CalendarDateBuilder<X>> boolean sameDate(X builder) {
         return this.builder.sameDate(builder);
     }
 
@@ -603,7 +595,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameYear(DatetimeBuilderInterface builder) {
+    public <X extends CalendarDateBuilder<X>> boolean sameYear(X builder) {
         return this.builder.sameYear(builder);
     }
 
@@ -623,7 +615,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameMonth(DatetimeBuilderInterface builder) {
+    public <X extends CalendarDateBuilder<X>> boolean sameMonth(X builder) {
         return this.builder.sameMonth(builder);
     }
 
@@ -643,7 +635,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean sameDay(DatetimeBuilderInterface builder) {
+    public <X extends CalendarDateBuilder<X>> boolean sameDay(X builder) {
         return this.builder.sameDay(builder);
     }
 
@@ -723,7 +715,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean laterThan(DatetimeBuilderInterface datetimeBuilder) {
+    public <X extends CalendarDateBuilder<X>> boolean laterThan(X datetimeBuilder) {
         return builder.laterThan(datetimeBuilder);
     }
 
@@ -743,7 +735,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean laterEqualThan(DatetimeBuilderInterface datetimeBuilder) {
+    public <X extends CalendarDateBuilder<X>> boolean laterEqualThan(X datetimeBuilder) {
         return builder.laterEqualThan(datetimeBuilder);
     }
 
@@ -763,7 +755,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean before(DatetimeBuilderInterface datetimeBuilder) {
+    public <X extends CalendarDateBuilder<X>> boolean before(X datetimeBuilder) {
         return builder.before(datetimeBuilder);
     }
 
@@ -783,7 +775,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public boolean beforeEqual(DatetimeBuilderInterface datetimeBuilder) {
+    public <X extends CalendarDateBuilder<X>> boolean beforeEqual(X datetimeBuilder) {
         return builder.beforeEqual(datetimeBuilder);
     }
 
@@ -818,13 +810,13 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     }
 
     @Override
-    public TimeUnit diffFrom(DatetimeBuilderInterface date) {
-        return builder.diffFrom(date);
+    public <X extends CalendarDateBuilder<X>> TimeUnit diffFrom(X date) {
+        return builder.diffFrom(date.asDate());
     }
 
     @Override
-    public TimeUnit diffTo(DatetimeBuilderInterface date) {
-        return builder.diffTo(date);
+    public <X extends CalendarDateBuilder<X>> TimeUnit diffTo(X date) {
+        return builder.diffTo(date.asDate());
     }
 
     @Override

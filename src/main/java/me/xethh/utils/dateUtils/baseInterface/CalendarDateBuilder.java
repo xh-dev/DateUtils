@@ -466,4 +466,20 @@ public interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> extends D
      * @return time zone object
      */
     TimeZone getTimeZone();
+
+    <X extends CalendarDateBuilder<X>> boolean sameDate(X builder);
+
+    <X extends CalendarDateBuilder<X>> boolean sameYear(X builder);
+
+    <X extends CalendarDateBuilder<X>> boolean sameMonth(X builder);
+
+    <X extends CalendarDateBuilder<X>> boolean sameDay(X builder);
+
+    <X extends CalendarDateBuilder<X>> boolean laterThan(X datetimeBuilder);
+
+    <X extends CalendarDateBuilder<X>> boolean laterEqualThan(X datetimeBuilder);
+
+    <X extends CalendarDateBuilder<X>> boolean before(X datetimeBuilder);
+
+    <X extends CalendarDateBuilder<X>> boolean beforeEqual(X datetimeBuilder);
 }

@@ -1,6 +1,6 @@
 package me.xethh.utils.dateUtils.dataInfo;
 
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DateInfoImpl implements DateInfo {
-    private Calendar cal = Calendar.getInstance(DatetimeFactory.instance().getTimezone());
+    private final Calendar cal;
 
     /*
     Constructor
@@ -88,7 +88,8 @@ public class DateInfoImpl implements DateInfo {
     }
 
 
-    public DatetimeBuilderInterface asBuilder() {
+    @Override
+    public DatetimeBuilder asBuilder() {
         return DatetimeFactory.instance().from(cal.getTime());
     }
 

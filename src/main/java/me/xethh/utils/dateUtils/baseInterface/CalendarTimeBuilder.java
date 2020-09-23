@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.baseInterface;
 
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
 import java.util.Calendar;
@@ -482,6 +483,14 @@ public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> extends D
      * @return updated builder
      */
     T timePartOnly();
+
+    <X extends DatetimeBuilderInterface<X>> boolean sameDatetime(X builder);
+
+    <X extends DatetimeBuilderInterface<X>> boolean sameTime(X datetimeBuilder);
+
+    <X extends DatetimeBuilderInterface<X>> boolean sameHMS(X datetimeBuilder);
+
+    <X extends DatetimeBuilderInterface<X>> boolean sameHM(X datetimeBuilder);
 
 
 }
