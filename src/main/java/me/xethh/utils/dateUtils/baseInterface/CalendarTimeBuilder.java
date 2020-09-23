@@ -12,7 +12,7 @@ import java.util.TimeZone;
  *
  * @param <T> generic type T which the subclass of CalendarTimeBuilder of itself
  */
-public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> extends DateViewable{
+public interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> extends DateViewable {
     /**
      * Return the datetime of current datetime
      *
