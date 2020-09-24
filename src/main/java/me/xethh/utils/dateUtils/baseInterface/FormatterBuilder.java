@@ -31,6 +31,7 @@ public interface FormatterBuilder {
      * formatting date builder with format builder
      *
      * @param fmtBuilder format builder
+     * @param <X> generic type of any sub class of {@link DateFormatBuilderInterface}
      * @return formatted date
      */
     <X extends DateFormatBuilderInterface<X>> String format(X fmtBuilder);
@@ -46,6 +47,7 @@ public interface FormatterBuilder {
     /**
      * Access the format builder wrapper to modify format freely
      *
+     * @param <D> generic type of any sub class of {@link DatetimeBuilderInterface}
      * @return FormatBuilderWrapper
      */
     <D extends DatetimeBuilderInterface<D>> FormatBuilderWrapper<D> format();
@@ -73,6 +75,7 @@ public interface FormatterBuilder {
      *
      * @param timeZone   time zone
      * @param fmtBuilder date format builder
+     * @param <X> generic type
      * @return formatted date
      */
     <X extends DateFormatBuilderInterface<X>> String format(TimeZone timeZone, X fmtBuilder);
