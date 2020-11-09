@@ -2,9 +2,8 @@ package me.xethh.utils.date;
 
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
-import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
-import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
+import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
@@ -25,392 +24,392 @@ public class DateTest {
     @Test
     public void extractDate() {
         DateBuilder builder = new DateBuilder();
-        DatetimeBuilderInterface nowTime = DatetimeFactory.instance().from(new Date());
-        DateBuilderInterface nowDate = builder.now();
+        DatetimeBuilder nowTime = DatetimeFactory.instance().from(new Date());
+        DateBuilder nowDate = builder.now();
         assertEquals(nowTime.view().year(), nowDate.view().year());
         assertEquals(nowTime.view().month(), nowDate.view().month());
         assertEquals(nowTime.view().day(), nowDate.view().day());
-        assertEquals(new Integer(0), nowDate.view().hour());
-        assertEquals(new Integer(0), nowDate.view().min());
-        assertEquals(new Integer(0), nowDate.view().second());
+        assertEquals(Integer.valueOf(0), nowDate.view().hour());
+        assertEquals(Integer.valueOf(0), nowDate.view().min());
+        assertEquals(Integer.valueOf(0), nowDate.view().second());
 
         DateInfo dateView = builder.ymd(2018, SEP, 2).view();
 
-        assertEquals(new Integer(2018), dateView.year());
+        assertEquals(Integer.valueOf(2018), dateView.year());
         assertEquals(SEP, dateView.month());
-        assertEquals(new Integer(2), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(2), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
     }
 
     @Test
     public void testRawMethod() {
-        DateInfo dateView = null;
+        DateInfo dateView;
 
         DateBuilder date = DateFactory.instance().raw().ymd(2033, OCT, 17);
         dateView = date.view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.y(2077).view();
-        assertEquals(new Integer(2077), dateView.year());
+        assertEquals(Integer.valueOf(2077), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ym(2077, JAN).view();
-        assertEquals(new Integer(2077), dateView.year());
+        assertEquals(Integer.valueOf(2077), dateView.year());
         assertEquals(JAN, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.md(DEC, 18).view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(DEC, dateView.month());
-        assertEquals(new Integer(18), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(18), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(3000, NOV, 8).view();
-        assertEquals(new Integer(3000), dateView.year());
+        assertEquals(Integer.valueOf(3000), dateView.year());
         assertEquals(NOV, dateView.month());
-        assertEquals(new Integer(8), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(8), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.minYear().view();
-        assertEquals(new Integer(1970), dateView.year());
+        assertEquals(Integer.valueOf(1970), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.year(2011).view();
-        assertEquals(new Integer(2011), dateView.year());
+        assertEquals(Integer.valueOf(2011), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.minMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(JAN, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.month(JUL).view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(JUL, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.minDay().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.day(10).view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(10), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(10), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.firstDayOfMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.endDayOfMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(31), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(31), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.month(FEB).endDayOfMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(28), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(28), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ym(2020, FEB).endDayOfMonth().view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(29), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(29), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addYear(1).view();
-        assertEquals(new Integer(2034), dateView.year());
+        assertEquals(Integer.valueOf(2034), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addYear(-1).view();
-        assertEquals(new Integer(2032), dateView.year());
+        assertEquals(Integer.valueOf(2032), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addYear(-200).view();
-        assertEquals(new Integer(1833), dateView.year());
+        assertEquals(Integer.valueOf(1833), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addYear(1000).view();
-        assertEquals(new Integer(3033), dateView.year());
+        assertEquals(Integer.valueOf(3033), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.lastMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(SEP, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.nextYear().view();
-        assertEquals(new Integer(2034), dateView.year());
+        assertEquals(Integer.valueOf(2034), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.nextMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(NOV, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.nextMonth().nextMonth().nextMonth().view();
-        assertEquals(new Integer(2034), dateView.year());
+        assertEquals(Integer.valueOf(2034), dateView.year());
         assertEquals(JAN, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.month(FEB).lastMonth().lastMonth().view();
-        assertEquals(new Integer(2032), dateView.year());
+        assertEquals(Integer.valueOf(2032), dateView.year());
         assertEquals(DEC, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.month(FEB).lastMonth().view();
-        assertEquals(new Integer(2033), dateView.year());
+        assertEquals(Integer.valueOf(2033), dateView.year());
         assertEquals(JAN, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addMonths(11).view();
-        assertEquals(new Integer(2034), dateView.year());
+        assertEquals(Integer.valueOf(2034), dateView.year());
         assertEquals(SEP, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.addMonths(-11).view();
-        assertEquals(new Integer(2032), dateView.year());
+        assertEquals(Integer.valueOf(2032), dateView.year());
         assertEquals(NOV, dateView.month());
-        assertEquals(new Integer(17), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(17), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 1).addDays(28).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(29), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(29), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 1).addDays(29).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 1).addDays(-31).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(JAN, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).yesterday().view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(27), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(27), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).yesterday().yesterday().view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(26), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(26), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).tomorrow().view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(29), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(29), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).tomorrow().tomorrow().view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).nextWeekday(Weekday.Saturday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(29), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(29), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).nextWeekday(Weekday.Saturday).nextWeekday(Weekday.Saturday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(7), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(7), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).nextWeekday(Weekday.Saturday).nextWeekday(Weekday.Sunday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(1), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(1), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).nextWeekday(Weekday.Friday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(6), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(6), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).prevWeekday(Weekday.Friday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(21), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(21), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).prevWeekday(Weekday.Friday).prevWeekday(Weekday.Friday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(14), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(14), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).startOfWeek(Weekday.Sunday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(23), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(23), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).startOfWeek(Weekday.Friday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(28), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(28), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).endOfWeek(Weekday.Sunday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(FEB, dateView.month());
-        assertEquals(new Integer(29), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(29), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
 
         dateView = date.ymd(2020, FEB, 28).endOfWeek(Weekday.Friday).view();
-        assertEquals(new Integer(2020), dateView.year());
+        assertEquals(Integer.valueOf(2020), dateView.year());
         assertEquals(MAR, dateView.month());
-        assertEquals(new Integer(5), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(5), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
     }
 
     @Test
     public void testView() {
         DateInfo dateView = DateFactory.instance().now().ymd(2122, OCT, 7).view();
-        assertEquals(new Integer(2122), dateView.year());
+        assertEquals(Integer.valueOf(2122), dateView.year());
         assertEquals(OCT, dateView.month());
-        assertEquals(new Integer(7), dateView.day());
-        assertEquals(new Integer(0), dateView.hour());
-        assertEquals(new Integer(0), dateView.min());
-        assertEquals(new Integer(0), dateView.second());
+        assertEquals(Integer.valueOf(7), dateView.day());
+        assertEquals(Integer.valueOf(0), dateView.hour());
+        assertEquals(Integer.valueOf(0), dateView.min());
+        assertEquals(Integer.valueOf(0), dateView.second());
     }
 
     @Test
@@ -478,13 +477,13 @@ public class DateTest {
 
     @Test
     public void testComparison() {
-        DateBuilderInterface d1 = DateFactory.instance().raw().ymd(2019, FEB, 1);
-        DateBuilderInterface d2 = DateFactory.instance().raw().ymd(2079, FEB, 13);
-        DateBuilderInterface d3 = DateFactory.instance().raw().ymd(2019, OCT, 12);
-        DatetimeBuilderInterface d4 = DatetimeFactory.instance().raw().ymd(2079, FEB, 13);
-        DatetimeBuilderInterface d5 = DatetimeFactory.instance().raw().ymd(2019, APR, 17);
-        DateBuilderInterface d6 = DateFactory.instance().raw().ymd(2019, FEB, 1);
-        DatetimeBuilderInterface d7 = DatetimeFactory.instance().raw().ymd(2019, FEB, 1);
+        DateBuilder d1 = DateFactory.instance().raw().ymd(2019, FEB, 1);
+        DateBuilder d2 = DateFactory.instance().raw().ymd(2079, FEB, 13);
+        DateBuilder  d3 = DateFactory.instance().raw().ymd(2019, OCT, 12);
+        DatetimeBuilder d4 = DatetimeFactory.instance().raw().ymd(2079, FEB, 13);
+        DatetimeBuilder d5 = DatetimeFactory.instance().raw().ymd(2019, APR, 17);
+        DateBuilder d6 = DateFactory.instance().raw().ymd(2019, FEB, 1);
+        DatetimeBuilder d7 = DatetimeFactory.instance().raw().ymd(2019, FEB, 1);
 
         assertFalse(d1.sameYear(d2));
         assertTrue(d1.sameYear(d3));
@@ -532,9 +531,9 @@ public class DateTest {
 
     @Test
     public void testTimeUnit() {
-        DateBuilderInterface d1 = DateFactory.instance().raw().ymd(2000, OCT, 3);
-        DateBuilderInterface d2 = DateFactory.instance().raw().ymd(2000, OCT, 3).addDays(1);
-        DatetimeBuilderInterface d3 = DatetimeFactory.instance().raw().ymd(2000, NOV, 5);
+        DateBuilder d1 = DateFactory.instance().raw().ymd(2000, OCT, 3);
+        DateBuilder d2 = DateFactory.instance().raw().ymd(2000, OCT, 3).addDays(1);
+        DatetimeBuilder d3 = DatetimeFactory.instance().raw().ymd(2000, NOV, 5);
         assertEquals(1, d1.diffTo(d2).numberOfDays());
         assertEquals(24, d1.diffTo(d2).numberOfHour());
         assertEquals(33, d1.diffTo(d3).numberOfDays());
