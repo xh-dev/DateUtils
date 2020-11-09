@@ -2,7 +2,7 @@
 A java date utils library which focusing on intuitive operation to date and datetime.
 
 ## Dependency - RC version  
-[Link to javadoc](https://apidocs.xethh.me/date-utils/6.0.0.RC5/)
+[Link to javadoc](https://apidocs.xethh.me/date-utils/6.0.0.RC9/)
 ```xml
 <dependency>
   <groupId>me.xethh.utils</groupId>
