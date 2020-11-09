@@ -7,7 +7,7 @@ A java date utils library which focusing on intuitive operation to date and date
 <dependency>
   <groupId>me.xethh.utils</groupId>
   <artifactId>DateUtils</artifactId>
-  <version>6.0.0.RC8</version>
+  <version>6.0.0.RC9</version>
 </dependency>
 ```
 ## Get start
