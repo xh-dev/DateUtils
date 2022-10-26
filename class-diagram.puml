@@ -1,0 +1,132 @@
+@startuml
+title DateUtils Class Diagram
+package me.xethh.utils.dateUtils {
+class D
+package weekday{
+enum Weekday
+}
+package timezone{
+enum BaseTimeZone
+}
+package timeUnit{
+class TimeUnit
+}
+package range {
+package datetime as secondLevelDatetime{
+class AcceptingFilter
+class DatetimeRange
+class RejectingFilter
+}
+package "range" as range2 {
+interface BackWrapper
+interface DatetimeRangeRepresentation
+abstract class Range
+interface RangeFilter
+interface RangeValidator
+interface TimeRangeOperation
+}
+
+class BuilderOperation
+class DatetimeRangeContainedBuilder
+enum OverlapTye
+class RangeEditByBuilder
+}
+
+package month {
+enum Month {
+}
+}
+
+package interfaces{
+interface BackWrapper
+interface Build
+interface DatetimeBackWrapper
+interface EditModeStatus
+}
+
+package formatBuilder{
+class DateFormatBuilder
+class DateFormatBuilderFactory
+interface DateFormatBuilderInterface
+enum DateFormatBuilderInterface.Format
+class FormatBuilderWrapper
+interface FormatWrapper
+}
+
+package datetimeFactory{
+interface DatetimeBuilderGenerator
+interface DatetimeFactory
+class DatetimeFactoryData
+class DatetimeFactoryImpl
+interface DatetimeRangeBuilderGenerator
+interface FormatBuilderProvider
+}
+
+package datetime as mainDatetime{
+class DatetimeBuilder
+interface DatetimeBuilderInterface
+}
+
+
+class D
+}
+
+package datetimeFactory as df1{
+interface DateBuilderGenerator
+interface DateFactory
+class DateFactoryData
+class DateFactoryImpl
+interface DateRangeBuilderGenerator
+}
+
+package date {
+class DateBuilder
+interface DateBuilderInterface
+}
+
+package dateInfo #yellow {
+interface DateInfo  #yellow
+class DateInfoImpl #yellow extends DateInfo
+}
+
+package baseInterface {
+
+interface CommonDateRepresentation #green {
+asDate():Date
+asCalendar():Calendar
+asLong():Long
+asSqlDate():java.sql.Date
+asSqlTime():java.sql.Time
+asSqlTimestamp():java.sql.Timestamp
+}
+
+interface DateViewable #green {
+view: DateInfo
+}
+CommonDateRepresentation <|-- DateViewable
+
+interface CalendarDateBuilder<T extends CalendarDateBuilder<T>> extends DateViewable
+interface CalendarTimeBuilder<T extends CalendarTimeBuilder<T>> extends DateViewable
+interface DateRangeBuilderInterface extends DateViewable
+interface TimeUnitConverter extends DateViewable
+
+interface FormatterBuilder #green{
+format(String format):String
+format(DateFormatBuilderInterface.Format format):String
+format<X extends DateFormatBuilderInterface<X>>(X fmtBuilder):String
+format(SimpleDateFormat fmt):String
+format<D extends DatetimeBuilderInterface<D>>():FormatBuilderWrapper<D>
+format(TimeZone timeZone, String format):String;
+format(TimeZone timeZone, DateFormatBuilderInterface.Format format):String
+format<X extends DateFormatBuilderInterface<X>>(TimeZone timeZone, X fmtBuilder):String
+format(TimeZone timeZone, SimpleDateFormat fmt):String
+}
+FormatterBuilder--|>DatetimeBuilderInterface
+FormatterBuilder--|>DateFormatBuilderInterface
+FormatterBuilder--|>DateFormatBuilderInterface.Format
+
+
+}
+
+DateViewable ..> DateInfo: reply with
+@enduml
