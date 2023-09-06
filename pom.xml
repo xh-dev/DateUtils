@@ -11,7 +11,7 @@
     <url>https://xeth0102.atlassian.net/wiki/spaces/DAT/overview</url>
     <groupId>me.xethh.utils</groupId>
     <artifactId>DateUtils</artifactId>
-    <version>6.0.0.RC9</version>
+    <version>7.0.0-SNAPSHOT</version>
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
@@ -22,7 +22,7 @@
         <developer>
             <name>Xeth Hung</name>
             <email>admin@xethh.me</email>
-            <organizationUrl>http://blog.xethh.me</organizationUrl>
+            <organizationUrl>http://www.xethh.me</organizationUrl>
         </developer>
     </developers>
     <scm>
@@ -33,8 +33,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <distributionManagement>
