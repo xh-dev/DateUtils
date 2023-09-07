@@ -29,7 +29,8 @@ public class DateBuilderImplTest {
         // T ym(int year, Month month);
         assertEquals("0001-02-01T00:00:00.000+0800", sdf.format(db.ym(1, Month.FEB).asDate()));
         // T md(Month month, int day);
-        assertEquals("1970-09-13T00:00:00.000+0800", sdf.format(db.md(Month.SEP, 13).asDate()));
+        /* TODO update for timezone database change (7.0.0-RC1) */
+        assertEquals("1970-09-13T00:00:00.000+0900", sdf.format(db.md(Month.SEP, 13).asDate()));
         // T ymd(int year, Month month, int day);
         assertEquals("0001-02-20T00:00:00.000+0800", sdf.format(db.ymd(1, Month.FEB, 20).asDate()));
         assertEquals("0001-02-01T00:00:00.000+0800", sdf.format(db.ymd(1, Month.JAN, 32).asDate()));

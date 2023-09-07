@@ -8,8 +8,10 @@ import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import org.junit.Test;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -98,6 +100,10 @@ public class FormatBuilderWrapperTest {
     public void testAPM() {
         SimpleDateFormat format = DatetimeFactory.instance().now().format().apm().v1("||").build();
         DatetimeBuilder date = DatetimeFactory.instance().raw().year(2088).month(Month.JAN).day(10).hour(0);
+        /* TODO update for symbol change (7.0.0-RC1) */
+        var dfs = new DateFormatSymbols(Locale.getDefault());
+        dfs.setAmPmStrings(new String[]{"AM", "PM"});
+        format.setDateFormatSymbols(dfs);
         assertEquals("AM", format.format(date.asDate()));
         assertEquals("AM", format.format(date.addHours(1).asDate()));
         assertEquals("AM", format.format(date.addHours(11).asDate()));
