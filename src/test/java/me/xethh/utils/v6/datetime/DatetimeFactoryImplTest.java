@@ -1,11 +1,13 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.month.Month;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +16,10 @@ import java.util.Calendar;
 import static org.junit.Assert.assertEquals;
 
 public class DatetimeFactoryImplTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void datetimeFactoryDefaultTest() {

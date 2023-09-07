@@ -1,11 +1,13 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -17,6 +19,10 @@ import static org.junit.Assert.assertNotEquals;
  * Unit test for simple App.
  */
 public class DateUtilsTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 

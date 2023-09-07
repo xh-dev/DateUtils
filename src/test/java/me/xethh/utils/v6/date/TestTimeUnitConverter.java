@@ -1,16 +1,22 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
 import me.xethh.utils.dateUtils.baseInterface.FormatterBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 
 import java.text.SimpleDateFormat;
 
 import static org.junit.Assert.assertEquals;
 
 public class TestTimeUnitConverter {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     public static <T extends FormatterBuilder & CommonDateRepresentation> void test(T db) {
         SimpleDateFormat sdf = DateFormatBuilderFactory.ISO8601();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");

@@ -1,5 +1,6 @@
 package me.xethh.utils.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
@@ -8,6 +9,7 @@ import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +22,10 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 public class DateTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void extractDate() {

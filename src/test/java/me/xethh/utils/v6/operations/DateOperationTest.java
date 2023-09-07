@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.operations;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -8,9 +9,11 @@ import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 import static me.xethh.utils.dateUtils.month.Month.*;
 import static me.xethh.utils.dateUtils.weekday.Weekday.Sunday;
@@ -20,6 +23,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class DateOperationTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     @Test

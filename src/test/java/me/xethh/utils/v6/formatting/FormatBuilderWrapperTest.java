@@ -1,11 +1,13 @@
 package me.xethh.utils.v6.formatting;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.DateFormatSymbols;
@@ -21,6 +23,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class FormatBuilderWrapperTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void simpleFormatBuilderTest() {
         FormatBuilderWrapper f = DatetimeFactory.instance().now().ymd(1988, Month.JAN, 01).hmsms(0, 0, 0, 0)

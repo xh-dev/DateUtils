@@ -1,13 +1,17 @@
 package me.xethh.utils.v6.range;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.range.OverlapType;
 import me.xethh.utils.dateUtils.range.datetime.AcceptingFilter;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +20,10 @@ import static org.junit.Assert.assertEquals;
  * Created on 8/30/2018
  */
 public class RangeFilterTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void testAcceptingFilter() {
         DatetimeBuilder db1 = DatetimeFactory.instance().now();

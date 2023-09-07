@@ -1,8 +1,10 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.baseInterface.CalendarDateBuilder;
 import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +13,10 @@ import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 public class TestCalendarDateBuilder {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     public static <T extends CalendarDateBuilder<T> & CommonDateRepresentation> void test(T db) {
         Calendar cal = Calendar.getInstance();
         Date date = null;

@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.formatting;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -7,6 +8,7 @@ import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.DateFormatSymbols;
@@ -21,6 +23,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class DateFormatTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void testDateFormat() {
         SimpleDateFormat format = DatetimeFactory.instance().format().v1().v2().v3().v4().v5().v6().v7().v8().v9().v10().v("XXX").v("yyyy")

@@ -1,9 +1,11 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.baseInterface.CalendarTimeBuilder;
 import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
 import me.xethh.utils.dateUtils.baseInterface.FormatterBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
+import org.junit.Before;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +13,10 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
 public class TestCalendarTimeBuilder {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     public static <T extends FormatterBuilder & CalendarTimeBuilder<T> & CommonDateRepresentation> void test(T builder) {
         SimpleDateFormat sdf = DateFormatBuilderInterface.Format.ISO8601.getFormatter();
         assertEquals("2021-06-22T07:08:09.010+0800", builder.format(sdf));

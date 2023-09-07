@@ -1,11 +1,20 @@
 package me.xethh.utils.v6.month;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
 public class MonthTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void monthTest() {
         Month month = null;

@@ -1,10 +1,12 @@
 package me.xethh.utils.dateUtils.interfaces;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
@@ -12,6 +14,10 @@ import java.util.Date;
 import static me.xethh.utils.dateUtils.month.Month.JUN;
 
 public class TestCalendarTimeBuilder {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void testDatetimeBuilder() {
         DatetimeBuilder builder = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7, 8, 9, 10);

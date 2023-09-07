@@ -1,10 +1,15 @@
 package me.xethh.utils.v6;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,6 +17,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class TimeUnitTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void baseDiffTest() {

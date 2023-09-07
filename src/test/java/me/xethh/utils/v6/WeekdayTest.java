@@ -1,7 +1,12 @@
 package me.xethh.utils.v6;
 
+import me.xethh.utils.Config;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.TimeZone;
 
 import static me.xethh.utils.dateUtils.weekday.Weekday.*;
 import static org.junit.Assert.assertEquals;
@@ -10,6 +15,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class WeekdayTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void nextDay() {

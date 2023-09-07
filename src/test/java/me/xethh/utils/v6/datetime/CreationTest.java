@@ -1,11 +1,13 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.date.DateBuilderInterface;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -15,6 +17,10 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 public class CreationTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void equaltyOfTimezone() {

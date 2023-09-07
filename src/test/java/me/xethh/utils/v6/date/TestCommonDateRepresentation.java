@@ -1,12 +1,18 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.baseInterface.CommonDateRepresentation;
+import org.junit.Before;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
 
 public class TestCommonDateRepresentation {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     public static <T extends CommonDateRepresentation> void test(T db, Date d) {
 
         try {

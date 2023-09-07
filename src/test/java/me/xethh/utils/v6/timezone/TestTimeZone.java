@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.timezone;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -8,6 +9,7 @@ import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -19,6 +21,10 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 public class TestTimeZone {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void testTimezone() {

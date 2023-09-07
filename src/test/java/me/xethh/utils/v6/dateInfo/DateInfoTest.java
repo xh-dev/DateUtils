@@ -1,9 +1,11 @@
 package me.xethh.utils.v6.dateInfo;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import static me.xethh.utils.dateUtils.month.Month.*;
@@ -13,6 +15,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class DateInfoTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void extractDate() {

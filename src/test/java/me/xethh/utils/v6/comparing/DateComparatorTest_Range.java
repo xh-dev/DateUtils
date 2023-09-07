@@ -1,8 +1,10 @@
 package me.xethh.utils.v6.comparing;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
@@ -14,6 +16,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class DateComparatorTest_Range {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void sameDatetime() {
         DatetimeRangeContainedBuilder d1 = DatetimeFactory.instance().raw().hour(10).minute(20).second(23).ms(345).rangeTo(DatetimeFactory.instance().raw()).editStart();

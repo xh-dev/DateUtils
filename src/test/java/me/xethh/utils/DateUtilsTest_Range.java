@@ -4,10 +4,13 @@ import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.month.Month;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,6 +18,10 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 public class DateUtilsTest_Range {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 

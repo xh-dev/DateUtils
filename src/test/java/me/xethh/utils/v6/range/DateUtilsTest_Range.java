@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.range;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilderInterface;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
@@ -9,11 +10,14 @@ import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.OverlapType;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
+import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static me.xethh.utils.dateUtils.month.Month.*;
 import static me.xethh.utils.dateUtils.weekday.Weekday.Sunday;
@@ -23,6 +27,10 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 public class DateUtilsTest_Range {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 

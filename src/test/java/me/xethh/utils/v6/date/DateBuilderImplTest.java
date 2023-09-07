@@ -1,10 +1,12 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilder;
 import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderFactory;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -14,6 +16,10 @@ import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 public class DateBuilderImplTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     /**
      * Test calendar date builder interface
      */

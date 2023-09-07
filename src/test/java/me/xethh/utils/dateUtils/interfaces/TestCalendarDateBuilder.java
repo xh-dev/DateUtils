@@ -1,17 +1,23 @@
 package me.xethh.utils.dateUtils.interfaces;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.datetimeFactory.DatetimeFactory;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class TestCalendarDateBuilder {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void testDateBuilderImpl() {
         DateBuilder db = new DateBuilder();

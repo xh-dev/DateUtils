@@ -1,5 +1,6 @@
 package me.xethh.utils.v6.datetime;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.D;
 import me.xethh.utils.dateUtils.dataInfo.DateInfo;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
@@ -9,6 +10,7 @@ import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.weekday.Weekday;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +21,10 @@ import static me.xethh.utils.dateUtils.month.Month.*;
 import static org.junit.Assert.*;
 
 public class DatetimeBuilderImplTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
     @Test
     public void Demo() {
         //create date of current time

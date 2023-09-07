@@ -1,7 +1,9 @@
 package me.xethh.utils.v6.date;
 
+import me.xethh.utils.Config;
 import me.xethh.utils.dateUtils.dateFactory.DateFactory;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.TimeZone;
@@ -9,6 +11,10 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 public class CreationTest {
+    @Before
+    public void setup() {
+        Config.CentralizeTimeZone();
+    }
 
     @Test
     public void createDatetimeFactoryTest() {
