@@ -49,6 +49,8 @@ public class TestCalendarTimeBuilder {
 
     public static void testNow(Date dFromNewDate, Date builderDate) {
         SimpleDateFormat sdf = DateFormatBuilderInterface.Format.ISO8601.getFormatter();
+        dFromNewDate = new Date(dFromNewDate.getTime()/1000*1000);
+        builderDate = new Date(builderDate.getTime()/1000*1000);
         assertEquals(sdf.format(dFromNewDate), sdf.format(builderDate));
     }
 }

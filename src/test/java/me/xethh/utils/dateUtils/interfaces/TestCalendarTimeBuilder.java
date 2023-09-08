@@ -40,7 +40,6 @@ public class TestCalendarTimeBuilder {
 
         d2 = range.editEnd().now().ms(0).asDate();
         d = new Date();
-        d = new Date(d.getTime()/1000*1000);
         me.xethh.utils.v6.datetime.TestCalendarTimeBuilder.testNow(d, d2);
     }
 }
