@@ -13,6 +13,7 @@ import me.xethh.utils.dateUtils.formatBuilder.DateFormatBuilderInterface;
 import me.xethh.utils.dateUtils.formatBuilder.FormatBuilderWrapper;
 import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.interfaces.DatetimeBackWrapper;
+import me.xethh.utils.dateUtils.interfaces.EDITING;
 import me.xethh.utils.dateUtils.month.Month;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timeUnit.TimeUnit;
@@ -887,12 +888,12 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     @Override
     public DatetimeRange back() {
         DatetimeRange range;
-        if (parent.getEditingMode() == DatetimeRange.EDITING.START) {
+        if (parent.getEditingMode() == EDITING.START) {
             range = DatetimeFactory.rangeOf(asDate(), parent.endAsDate());
             range.clearEditingMode();
             return range;
         }
-        if (parent.getEditingMode() == DatetimeRange.EDITING.END) {
+        if (parent.getEditingMode() == EDITING.END) {
             range = DatetimeFactory.rangeOf(parent.startAsDate(), asDate());
             range.clearEditingMode();
             return range;
