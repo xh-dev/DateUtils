@@ -13,6 +13,6 @@ steps:
     mvn clean
     mvn package
   displayName: 'build'
-- script: |
-    mvn -X deploy
-  displayName: 'publish'
+#- script: |
+#    mvn -X deploy
+#  displayName: 'publish'
