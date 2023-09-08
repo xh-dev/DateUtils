@@ -95,4 +95,8 @@ public enum Weekday {
         else
             return getByOrdinal(ordinal() - 1);
     }
+
+    public java.time.DayOfWeek asDayOfWeek(){
+        return java.time.DayOfWeek.of(getCalWeekDay());
+    }
 }

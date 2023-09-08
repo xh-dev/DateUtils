@@ -6,6 +6,8 @@ import me.xethh.utils.dateUtils.weekday.Weekday;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.DayOfWeek;
+import java.time.Instant;
 import java.util.TimeZone;
 
 import static me.xethh.utils.dateUtils.weekday.Weekday.*;
@@ -74,6 +76,17 @@ public class WeekdayTest {
         assertEquals(Thursday, Weekday.getByOrdinal(4));
         assertEquals(Friday, Weekday.getByOrdinal(5));
         assertEquals(Saturday, Weekday.getByOrdinal(6));
+    }
+
+    @Test
+    public void asDayOfWeek(){
+        assertEquals(DayOfWeek.SUNDAY, Sunday.asDayOfWeek());
+        assertEquals(DayOfWeek.MONDAY, Monday.asDayOfWeek());
+        assertEquals(DayOfWeek.TUESDAY, Tuesday.asDayOfWeek());
+        assertEquals(DayOfWeek.WEDNESDAY, Wednesday.asDayOfWeek());
+        assertEquals(DayOfWeek.THURSDAY, Thursday.asDayOfWeek());
+        assertEquals(DayOfWeek.FRIDAY, Friday.asDayOfWeek());
+        assertEquals(DayOfWeek.SATURDAY, Saturday.asDayOfWeek());
     }
 
 }
