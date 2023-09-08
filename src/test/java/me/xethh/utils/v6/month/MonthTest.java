@@ -91,4 +91,21 @@ public class MonthTest {
         assertEquals(Month.NOV, month.previous());
         assertEquals(Month.JAN, month.next());
     }
+
+    @Test
+    public void testTimeMonth(){
+        assertEquals(java.time.Month.JANUARY, Month.JAN.asTimeMonth());
+        assertEquals(java.time.Month.FEBRUARY, Month.FEB.asTimeMonth());
+        assertEquals(java.time.Month.MARCH, Month.MAR.asTimeMonth());
+        assertEquals(java.time.Month.APRIL, Month.APR.asTimeMonth());
+        assertEquals(java.time.Month.MAY, Month.MAY.asTimeMonth());
+        assertEquals(java.time.Month.JUNE, Month.JUN.asTimeMonth());
+        assertEquals(java.time.Month.JULY, Month.JUL.asTimeMonth());
+        assertEquals(java.time.Month.AUGUST, Month.AUG.asTimeMonth());
+        assertEquals(java.time.Month.SEPTEMBER, Month.SEP.asTimeMonth());
+        assertEquals(java.time.Month.OCTOBER, Month.OCT.asTimeMonth());
+        assertEquals(java.time.Month.NOVEMBER, Month.NOV.asTimeMonth());
+        assertEquals(java.time.Month.DECEMBER, Month.DEC.asTimeMonth());
+    }
+
 }

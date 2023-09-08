@@ -42,5 +42,9 @@ public enum Month {
         else
             return Month.values()[ordinal() + 1];
     }
+
+    public java.time.Month asTimeMonth(){
+        return java.time.Month.of(toCalNumber());
+    }
 }
 
