@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.baseInterface;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,6 +21,8 @@ public interface CommonDateRepresentation {
      * @return {@link java.util.Calendar}
      */
     Calendar asCalendar();
+
+    ZonedDateTime asZonedDateTime();
 
     /**
      * Represent the builder as {@link java.lang.Long}

@@ -4,6 +4,7 @@ import me.xethh.utils.dateUtils.date.DateBuilder;
 import me.xethh.utils.dateUtils.datetime.DatetimeBuilder;
 import me.xethh.utils.dateUtils.interfaces.Build;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,9 +17,14 @@ public interface DatetimeBuilderGenerator {
 
     DatetimeBuilder now();
 
+    @Deprecated
     DatetimeBuilder from(Calendar cal);
 
+    DatetimeBuilder from(ZonedDateTime cal);
+
+    @Deprecated
     DatetimeBuilder from(Calendar cal, Build build);
+    DatetimeBuilder from(ZonedDateTime cal, Build build);
 
     DatetimeBuilder from(Long longDate, Build build);
 

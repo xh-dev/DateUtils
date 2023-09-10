@@ -32,8 +32,8 @@ public class TestDatetimeRange {
     @Test
     public void baseTest() {
         DatetimeBuilderInterface builder = DatetimeFactory.instance().now().year(2018).month(Month.JAN).day(18).minDayTime();
-        assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0800 to 2018-02-17T00:00:00.000+0800]", DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).toString());
-        assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0800 to 2018-01-18T00:00:00.000+0800]", DatetimeFactory.rangeOf(builder.addDays(30).asDate(), builder.asDate()).toString());
+        assertEquals("DatetimeRange[2018-01-18T00:00:00.000+0000 to 2018-02-17T00:00:00.000+0000]", DatetimeFactory.rangeOf(builder.asDate(), builder.addDays(30).asDate()).toString());
+        assertEquals("DatetimeRange[2018-02-17T00:00:00.000+0000 to 2018-01-18T00:00:00.000+0000]", DatetimeFactory.rangeOf(builder.addDays(30).asDate(), builder.asDate()).toString());
     }
 
     @Test

@@ -23,6 +23,7 @@ import me.xethh.utils.dateUtils.weekday.Weekday;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -43,249 +44,254 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
         builder = DatetimeFactory.instance().from(date);
     }
 
-    public DatetimeRangeContainedBuilder(Calendar cal, DatetimeRange range) {
+    public DatetimeRangeContainedBuilder(ZonedDateTime cal, DatetimeRange range) {
         this.parent = range;
         builder = DatetimeFactory.instance().from(cal);
     }
 
+    @Deprecated
     public DatetimeRangeContainedBuilder(Calendar cal, Build build, DatetimeRange range) {
+//        this(build.apply(ZonedDateTime.ofInstant(cal.getTime().toInstant(), cal.getTimeZone().toZoneId())), range);
+        this(ZonedDateTime.ofInstant(cal.getTime().toInstant(), cal.getTimeZone().toZoneId()), build, range);
+    }
+    public DatetimeRangeContainedBuilder(ZonedDateTime cal, Build build, DatetimeRange range) {
         this(build.apply(cal), range);
     }
 
     @Override
     public DatetimeRangeContainedBuilder y(int year) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.y(year);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder m(Month month) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.m(month);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder ym(int year, Month month) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.ym(year, month);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder md(Month month, int day) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.md(month, day);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder ymd(int year, Month month, int day) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.ymd(year, month, day);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder d(int day) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.d(day);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder hmsms(int hour, int minute, int second, int mSecond) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.hmsms(hour, minute, second, mSecond);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder hms(int hour, int minute, int second) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.hms(hour, minute, second);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder hm(int hour, int minute) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.hm(hour, minute);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder h(int hour) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.h(hour);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minYear() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minYear();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder year(int year) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.year(year);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder month(Month month) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.month(month);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minDay() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minDay();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder day(int date) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.day(date);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxDay() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxDay();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder firstDayOfMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.firstDayOfMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder endDayOfMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.endDayOfMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minHour() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minHour();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxHour() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxHour();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder hour(int hour) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.hour(hour);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minMinute() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minMinute();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxMinute() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxMinute();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minute(int min) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minute(min);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minSecond() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minSecond();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxSecond() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxSecond();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder second(int second) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.second(second);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minMs() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minMs();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxMs() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxMs();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder ms(int ms) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.ms(ms);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder timeZone(BaseTimeZone timeZone) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.timeZone(timeZone);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder timeZone(TimeZone timeZone) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.timeZone(timeZone);
         return bd;
     }
@@ -297,42 +303,42 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public DatetimeRangeContainedBuilder swapTimeZone(TimeZone timeZone) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.swapTimeZone(timeZone);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxDayTime() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxDayTime();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxDayTimeSec() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxDayTimeSec();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder maxDayTimeMin() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.maxDayTimeMin();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder minDayTime() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.minDayTime();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder timePartOnly() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.timePartOnly();
         return bd;
     }
@@ -344,7 +350,7 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public DatetimeRangeContainedBuilder now() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.now();
         return bd;
     }
@@ -357,6 +363,11 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
     @Override
     public Calendar asCalendar() {
         return builder.asCalendar();
+    }
+
+    @Override
+    public ZonedDateTime asZonedDateTime() {
+        return this.builder.asZonedDateTime();
     }
 
     @Override
@@ -451,126 +462,126 @@ public class DatetimeRangeContainedBuilder implements DatetimeBackWrapper<Dateti
 
     @Override
     public DatetimeRangeContainedBuilder addYear(int years) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addYear(years);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder lastYear() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.lastYear();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder nextYear() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.nextYear();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder lastMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.lastMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder nextMonth() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.nextMonth();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addMonths(int months) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addMonths(months);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addDays(int days) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addDays(days);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder yesterday() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.yesterday();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder tomorrow() {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.tomorrow();
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder nextWeekday(Weekday startDay) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.nextWeekday(startDay);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder prevWeekday(Weekday startDay) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.prevWeekday(startDay);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder startOfWeek(Weekday startDay) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.startOfWeek(startDay);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder endOfWeek(Weekday startDay) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.endOfWeek(startDay);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addTime(long time) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addTime(time);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addHours(int hours) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addHours(hours);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addMins(int mins) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addMins(mins);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addSecond(int sec) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addSecond(sec);
         return bd;
     }
 
     @Override
     public DatetimeRangeContainedBuilder addMS(int ms) {
-        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asCalendar(), parent);
+        DatetimeRangeContainedBuilder bd = new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), parent);
         bd.builder = bd.builder.addMS(ms);
         return bd;
     }

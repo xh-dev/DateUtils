@@ -6,6 +6,7 @@ import me.xethh.utils.dateUtils.interfaces.Build;
 import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -50,8 +51,18 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
     }
 
     @Override
+    public DatetimeBuilder from(ZonedDateTime cal) {
+        return new DatetimeBuilder(cal);
+    }
+
+    @Override
     public DatetimeBuilder from(Calendar cal, Build build) {
         return new DatetimeBuilder(timeZone, cal, build);
+    }
+
+    @Override
+    public DatetimeBuilder from(ZonedDateTime cal, Build build) {
+        return new DatetimeBuilder(cal, build);
     }
 
     @Override
@@ -76,7 +87,7 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
 
     @Override
     public DatetimeRangeContainedBuilder raw(DatetimeRange parent) {
-        return new DatetimeRangeContainedBuilder(raw().asCalendar(), parent);
+        return new DatetimeRangeContainedBuilder(raw().asZonedDateTime(), parent);
     }
 
     @Override

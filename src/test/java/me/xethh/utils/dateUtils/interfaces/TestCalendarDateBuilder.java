@@ -38,7 +38,7 @@ public class TestCalendarDateBuilder {
 
     @Test
     public void testDatetimeBuilderImpl() {
-        DatetimeBuilder db = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone());
+        DatetimeBuilder db = new DatetimeBuilder(BaseTimeZone.UTC.timeZone());
         me.xethh.utils.v6.date.TestCalendarDateBuilder.test(db);
 
         Date d2 = db.now().asDate();

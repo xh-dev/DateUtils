@@ -5,6 +5,7 @@ import me.xethh.utils.dateUtils.range.DatetimeRangeContainedBuilder;
 import me.xethh.utils.dateUtils.range.datetime.DatetimeRange;
 import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -31,7 +32,7 @@ public interface DatetimeFactory extends
     }
 
     static DatetimeRangeContainedBuilder from(Calendar cal, DatetimeRange parent) {
-        return new DatetimeRangeContainedBuilder(cal, parent);
+        return new DatetimeRangeContainedBuilder(ZonedDateTime.ofInstant(cal.getTime().toInstant(), cal.getTimeZone().toZoneId()), parent);
     }
 
     static DatetimeRangeContainedBuilder from(Calendar cal, Build build, DatetimeRange parent) {

@@ -36,13 +36,13 @@ public class TestTimeUnitConverter {
         );
 
 
-        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.Hongkong.timeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
-        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.Hongkong.timeZone(), DateFormatBuilderInterface.Format.ISO8601));
-        assertEquals(sdf1.format(db.asDate()), db.format(BaseTimeZone.Hongkong.timeZone(), db.format(DateFormatBuilderFactory.get()
+        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.UTC.timeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.UTC.timeZone(), DateFormatBuilderInterface.Format.ISO8601));
+        assertEquals(sdf1.format(db.asDate()), db.format(BaseTimeZone.UTC.timeZone(), db.format(DateFormatBuilderFactory.get()
                 .year4Digit().hyphen().month2Digit().hyphen().day2Digit()
                 .space()
                 .hourInDay24().colon().minute().colon().second().dot().ms()
         )));
-        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.Hongkong.timeZone(), sdf));
+        assertEquals(sdf.format(db.asDate()), db.format(BaseTimeZone.UTC.timeZone(), sdf));
     }
 }

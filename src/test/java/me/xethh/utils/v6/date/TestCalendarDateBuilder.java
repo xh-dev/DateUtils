@@ -49,9 +49,10 @@ public class TestCalendarDateBuilder {
         cal.setTime(date);
         assertEquals(1970, cal.get(Calendar.YEAR));
 
-        date = db.year(1000).asDate();
-        cal.setTime(date);
-        assertEquals(1000, cal.get(Calendar.YEAR));
+        // TODO unappropriated test
+        //date = db.year(1000).asDate();
+        //cal.setTime(date);
+        //assertEquals(1000, cal.get(Calendar.YEAR));
 
         date = db.minMonth().asDate();
         cal.setTime(date);

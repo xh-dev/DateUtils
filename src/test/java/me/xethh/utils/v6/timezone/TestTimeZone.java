@@ -12,6 +12,10 @@ import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -49,7 +53,7 @@ public class TestTimeZone {
         assertEquals(-32400000l, DatetimeFactory.instance().raw().timeZone(BaseTimeZone.Japan).asLong().longValue());
 
         //Test dateformat
-        DatetimeBuilder t2 = DatetimeFactory.instance().raw().ymd(2018, Month.JAN, 01).hmsms(13, 21, 33, 789);
+        DatetimeBuilder t2 = DatetimeFactory.instance().raw().ymd(2018, Month.JAN, 1).hmsms(13, 21, 33, 789);
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         cal.set(Calendar.YEAR, 2018);
         cal.set(Calendar.MONTH, 0);

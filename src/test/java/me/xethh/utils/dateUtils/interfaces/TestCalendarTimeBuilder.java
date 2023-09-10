@@ -20,7 +20,7 @@ public class TestCalendarTimeBuilder {
     }
     @Test
     public void testDatetimeBuilder() {
-        DatetimeBuilder builder = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7, 8, 9, 10);
+        DatetimeBuilder builder = new DatetimeBuilder(BaseTimeZone.UTC.timeZone()).ymd(2021, JUN, 22).hmsms(7, 8, 9, 10);
         Date d2 = builder.now().asDate();
         Date d = new Date();
         me.xethh.utils.v6.datetime.TestCalendarTimeBuilder.test(builder);
@@ -29,7 +29,7 @@ public class TestCalendarTimeBuilder {
 
     @Test
     public void testDatetimeRange() {
-        DatetimeBuilder db = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone()).ymd(2021, JUN, 22).hmsms(7, 8, 9, 10);
+        DatetimeBuilder db = new DatetimeBuilder(BaseTimeZone.UTC.timeZone()).ymd(2021, JUN, 22).hmsms(7, 8, 9, 10);
         DatetimeRange range = DatetimeFactory.rangeOf(db.asDate(), db.asDate());
         me.xethh.utils.v6.datetime.TestCalendarTimeBuilder.test(range.editStart());
         me.xethh.utils.v6.datetime.TestCalendarTimeBuilder.test(range.editEnd());

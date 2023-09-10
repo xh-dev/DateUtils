@@ -1,5 +1,6 @@
 package me.xethh.utils.dateUtils.interfaces;
 
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 /**
@@ -7,5 +8,5 @@ import java.util.Calendar;
  * Created on 7/19/2018
  */
 public interface Build {
-    Calendar apply(Calendar cal);
+    ZonedDateTime apply(ZonedDateTime cal);
 }

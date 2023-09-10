@@ -15,6 +15,7 @@ import me.xethh.utils.dateUtils.weekday.Weekday;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -435,6 +436,12 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
     @Override
     public Calendar asCalendar() {
         return builder.asCalendar();
+    }
+
+    @Override
+    public ZonedDateTime asZonedDateTime() {
+        var cal = asCalendar();
+        return ZonedDateTime.ofInstant(cal.getTime().toInstant(), cal.getTimeZone().toZoneId());
     }
 
     @Override

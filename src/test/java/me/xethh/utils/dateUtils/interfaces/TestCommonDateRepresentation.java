@@ -23,7 +23,7 @@ public class TestCommonDateRepresentation {
     }
     @Test
     public void testDatetimeBuilder() {
-        DatetimeBuilderInterface db = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1, 2, 3, 4);
+        DatetimeBuilderInterface db = new DatetimeBuilder(BaseTimeZone.UTC.timeZone()).ymd(2020, MAY, 12).hmsms(1, 2, 3, 4);
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2020);
         cal.set(Calendar.MONTH, MAY.toJavaCalNumber());
@@ -55,7 +55,7 @@ public class TestCommonDateRepresentation {
 
     @Test
     public void testDatetimeRange() {
-        DatetimeBuilderInterface db = new DatetimeBuilder(BaseTimeZone.Hongkong.timeZone()).ymd(2020, MAY, 12).hmsms(1, 2, 3, 4);
+        DatetimeBuilderInterface db = new DatetimeBuilder(BaseTimeZone.UTC.timeZone()).ymd(2020, MAY, 12).hmsms(1, 2, 3, 4);
         DatetimeRange range = DatetimeFactory.rangeOf(db.asDate(), db.asDate());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2020);

@@ -58,8 +58,8 @@ public class FormatBuilderWrapperTest {
                 .hourInDay24().colon().minute().colon().second().dot().ms().pad("===").TimeZoneRFC822().build();
         SimpleDateFormat sdf = new SimpleDateFormat("'Hello' ._:yyyy - MM-dd'T'HH:mm:ss.SSS===Z");
         Date date = DatetimeFactory.instance().raw().year(2088).month(Month.NOV).day(10).hour(21).minute(56).second(58).ms(888).asDate();
-        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0800", format.format(date));
-        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0800", sdf.format(date));
+        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0000", format.format(date));
+        assertEquals("Hello ._:2088 - 11-10T21:56:58.888===+0000", sdf.format(date));
     }
 
     @Test

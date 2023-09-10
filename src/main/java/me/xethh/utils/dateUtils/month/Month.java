@@ -21,10 +21,19 @@ public enum Month {
         throw new RuntimeException(String.format("Value[%d] not support for month", num));
     }
 
+
+    /**
+     * Range 1..12
+     * @return
+     */
     public int toCalNumber() {
         return ordinal() + 1;
     }
 
+    /**
+     * Range 0..11
+     * @return
+     */
     public int toJavaCalNumber() {
         return ordinal();
     }
