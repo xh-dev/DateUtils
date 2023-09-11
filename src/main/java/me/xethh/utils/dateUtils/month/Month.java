@@ -21,6 +21,10 @@ public enum Month {
         throw new RuntimeException(String.format("Value[%d] not support for month", num));
     }
 
+    public static Month ofTimeMonth(java.time.Month month){
+        return ofCalendar(month.getValue());
+    }
+
 
     /**
      * Range 1..12

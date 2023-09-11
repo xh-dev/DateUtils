@@ -9,12 +9,15 @@ import me.xethh.utils.dateUtils.timezone.BaseTimeZone;
 import me.xethh.utils.dateUtils.weekday.Weekday;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
 public class DateInfoImpl implements DateInfo {
-    private final Calendar cal;
+//    private final Calendar cal;
+    private ZonedDateTime cal;
 
     /*
     Constructor
@@ -24,8 +27,9 @@ public class DateInfoImpl implements DateInfo {
     }
 
     public DateInfoImpl(TimeZone timeZone, Date date) {
-        cal = Calendar.getInstance(timeZone);
-        cal.setTime(date);
+        cal = ZonedDateTime.ofInstant(date.toInstant(), timeZone.toZoneId());
+//        cal = Calendar.getInstance(timeZone);
+//        cal.setTime(date);
     }
 
     public DateInfoImpl(BaseTimeZone baseTimeZone, Date date) {
@@ -34,71 +38,86 @@ public class DateInfoImpl implements DateInfo {
 
     @Override
     public Integer year() {
-        return cal.get(Calendar.YEAR);
+        return cal.getYear();
     }
 
     @Override
     public Month month() {
-        return Month.ofOrdinal(cal.get(Calendar.MONTH));
+        return Month.ofTimeMonth(cal.getMonth());
     }
 
     @Override
     public Integer day() {
-        return cal.get(Calendar.DAY_OF_MONTH);
+        return cal.getDayOfMonth();
     }
 
     @Override
     public Integer weekOfYear() {
-        return cal.get(Calendar.WEEK_OF_YEAR);
+        var c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone(cal.getZone()));
+        c.setTime(new Date(cal.toInstant().toEpochMilli()));
+        return c.get(Calendar.WEEK_OF_YEAR);
     }
 
     @Override
     public Integer weekOfMonth() {
-        return cal.get(Calendar.WEEK_OF_MONTH);
+        var c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone(cal.getZone()));
+        c.setTime(new Date(cal.toInstant().toEpochMilli()));
+        return c.get(Calendar.WEEK_OF_MONTH);
     }
 
     @Override
     public Integer dayOfYear() {
-        return cal.get(Calendar.DAY_OF_YEAR);
+        return cal.getDayOfYear();
     }
 
     @Override
     public Integer hour() {
-        return cal.get(Calendar.HOUR_OF_DAY);
+        return cal.getHour();
     }
 
     @Override
     public Integer min() {
-        return cal.get(Calendar.MINUTE);
+        return cal.getMinute();
     }
 
     @Override
     public Integer second() {
-        return cal.get(Calendar.SECOND);
+        return cal.getSecond();
     }
 
     @Override
     public Integer ms() {
-        return cal.get(Calendar.MILLISECOND);
+        return Math.toIntExact(Duration.ofNanos(cal.getNano()).toMillis());
     }
 
     @Override
     public Weekday weekday() {
-        return Weekday.values()[cal.get(Calendar.DAY_OF_WEEK) - 1];
+        if(cal.getDayOfWeek().ordinal() == 6){
+            return Weekday.Sunday;
+        } else {
+            return Weekday.values()[cal.getDayOfWeek().ordinal()+1];
+        }
+//        return Weekday.values()[cal.getDayOfWeek() - 1];
     }
 
 
     @Override
     public DatetimeBuilder asBuilder() {
-        return DatetimeFactory.instance().from(cal.getTime());
+//        return DatetimeFactory.instance().from(cal.getTime());
+        return DatetimeFactory.instance().from(cal);
     }
 
     public Date asDate() {
-        return cal.getTime();
+        return new Date(cal.toInstant().toEpochMilli());
     }
 
     public Calendar asCalendar() {
-        return cal;
+        var calendar = Calendar.getInstance();
+        calendar.setTime(new Date(cal.toInstant().toEpochMilli()));
+        calendar.setTimeZone(TimeZone.getTimeZone(cal.getZone()));
+        return calendar;
     }
 
     public Long asLong() {
