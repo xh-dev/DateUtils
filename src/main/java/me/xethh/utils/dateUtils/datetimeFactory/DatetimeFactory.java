@@ -28,7 +28,7 @@ public interface DatetimeFactory extends
 
     static DatetimeRangeContainedBuilder from(Date date, Build build, DatetimeRange parent) {
         DatetimeRangeContainedBuilder builder = new DatetimeRangeContainedBuilder(date, parent);
-        return new DatetimeRangeContainedBuilder(builder.asCalendar(), build, parent);
+        return new DatetimeRangeContainedBuilder(builder.asZonedDateTime(), build, parent);
     }
 
     static DatetimeRangeContainedBuilder from(Calendar cal, DatetimeRange parent) {

@@ -438,11 +438,11 @@ public class DateTest {
         assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.startAsDate()));
         assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.endAsDate()));
 
-        dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeTo(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asCalendar());
-        assertTrue(dr.isValid());
-        fmt = DateFormatBuilderInterface.Format.FULL_DATETIME.getFormatter();
-        assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.startAsDate()));
-        assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.endAsDate()));
+//        dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeTo(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asCalendar());
+//        assertTrue(dr.isValid());
+//        fmt = DateFormatBuilderInterface.Format.FULL_DATETIME.getFormatter();
+//        assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.startAsDate()));
+//        assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.endAsDate()));
 
         dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeTo(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asLong());
         assertTrue(dr.isValid());
@@ -465,10 +465,10 @@ public class DateTest {
         assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.endAsDate()));
         assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.startAsDate()));
 
-        dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeFrom(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asCalendar());
-        assertTrue(dr.isInvalid());
-        assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.endAsDate()));
-        assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.startAsDate()));
+//        dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeFrom(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asCalendar());
+//        assertTrue(dr.isInvalid());
+//        assertEquals("2019-01-01 00:00:00.000", fmt.format(dr.endAsDate()));
+//        assertEquals("2019-01-11 00:00:00.000", fmt.format(dr.startAsDate()));
 
         dr = DateFactory.instance().now().ymd(2019, JAN, 1).rangeFrom(DatetimeFactory.instance().raw().ymd(2019, JAN, 1).addDays(10).asLong());
         assertTrue(dr.isInvalid());
@@ -497,7 +497,7 @@ public class DateTest {
         assertTrue(d1.sameYear(d5));
         assertTrue(d1.sameYear(d5.asLong()));
         assertTrue(d1.sameYear(d5.asDate()));
-        assertTrue(d1.sameYear(d5.asCalendar()));
+//        assertTrue(d1.sameYear(d5.asCalendar()));
 
         assertTrue(d1.sameMonth(d2));
         assertFalse(d1.sameMonth(d3));
@@ -505,7 +505,7 @@ public class DateTest {
         assertFalse(d1.sameMonth(d5));
         assertTrue(d1.sameMonth(d4.asLong()));
         assertTrue(d1.sameMonth(d4.asDate()));
-        assertTrue(d1.sameMonth(d4.asCalendar()));
+//        assertTrue(d1.sameMonth(d4.asCalendar()));
 
         assertFalse(d1.sameDay(d2));
         assertTrue(d1.sameDay(d6));
@@ -513,7 +513,7 @@ public class DateTest {
         assertTrue(d1.sameDay(d7));
         assertTrue(d1.sameDay(d7.asLong()));
         assertTrue(d1.sameDay(d7.asDate()));
-        assertTrue(d1.sameDay(d7.asCalendar()));
+//        assertTrue(d1.sameDay(d7.asCalendar()));
 
         assertFalse(d1.laterThan(d2));
         assertFalse(d1.laterEqualThan(d2));

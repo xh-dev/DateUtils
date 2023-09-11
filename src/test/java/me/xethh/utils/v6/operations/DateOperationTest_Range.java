@@ -252,7 +252,7 @@ public class DateOperationTest_Range {
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));
 
-        range = DatetimeFactory.instance().rangeOn(DatetimeFactory.instance().raw().ymd(2022, FEB, 18).maxDayTime().asCalendar());
+//        range = DatetimeFactory.instance().rangeOn(DatetimeFactory.instance().raw().ymd(2022, FEB, 18).maxDayTime().asCalendar());
         assertTrue(range.startAsDate().equals(range.endAsDate()));
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));

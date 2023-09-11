@@ -90,6 +90,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
         this.cal = build.apply(this.cal);
     }
 
+
     @Override
     public DatetimeBuilder y(int year) {
         return year(year);
@@ -440,13 +441,13 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
         return new Date(asLong());
     }
 
-    @Override
-    public Calendar asCalendar() {
-        var cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone(this.cal.getZone()));
-        cal.setTime(new Date(this.cal.toInstant().toEpochMilli()));
-        return cal;
-    }
+//    @Override
+//    public Calendar asCalendar() {
+//        var cal = Calendar.getInstance();
+//        cal.setTimeZone(TimeZone.getTimeZone(this.cal.getZone()));
+//        cal.setTime(new Date(this.cal.toInstant().toEpochMilli()));
+//        return cal;
+//    }
 
     @Override
     public ZonedDateTime asZonedDateTime() {
@@ -553,7 +554,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
      */
     @Override
     public DatetimeBuilder addYear(final int years) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusYears(years);
 //            cal.add(Calendar.YEAR, years);
 //            return cal;
@@ -603,7 +604,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addMonths(final int months) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusMonths(months);
 //            cal.add(Calendar.MONTH, months);
 //            return cal;
@@ -613,7 +614,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addDays(final int days) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusDays(days);
 //            cal.add(Calendar.DAY_OF_MONTH, days);
 //            return cal;
@@ -686,7 +687,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addTime(final long time) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plus(time, ChronoUnit.MILLIS);
 //            cal.setTimeInMillis(cal.getTimeInMillis() + time);
 //            return cal;
@@ -697,7 +698,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
     @Override
     public DatetimeBuilder addHours(final int hours) {
 //        return addHours(hours);
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusHours(hours);
 //            cal.add(Calendar.HOUR_OF_DAY, hours);
 //            return cal;
@@ -707,7 +708,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addMins(final int mins) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusMinutes(mins);
 //            cal.add(Calendar.MINUTE, mins);
 //            return cal;
@@ -717,7 +718,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addSecond(final int sec) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plusSeconds(sec);
 //            cal.add(Calendar.SECOND, sec);
 //            return cal;
@@ -727,7 +728,7 @@ public class DatetimeBuilder implements DatetimeBuilderInterface<DatetimeBuilder
 
     @Override
     public DatetimeBuilder addMS(final int ms) {
-        return new DatetimeBuilder(asCalendar().getTimeZone(), asCalendar(), cal -> {
+        return new DatetimeBuilder(asZonedDateTime(), cal -> {
             return cal.plus(ms, ChronoUnit.MILLIS);
 //            return cal;
 

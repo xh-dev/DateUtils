@@ -202,19 +202,19 @@ public class DatetimeBuilderImplTest {
         // boolean sameYear(Date date);
         assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asDate()));
         // boolean sameYear(Calendar cal);
-        assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asCalendar()));
+//        assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asCalendar()));
         // boolean sameMonth(Long longDate);
         assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asLong()));
         // boolean sameMonth(Date date);
         assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asDate()));
         // boolean sameMonth(Calendar cal);
-        assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asCalendar()));
+//        assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asCalendar()));
         // boolean sameDay(Long longDate);
         assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asLong()));
         // boolean sameDay(Date date);
         assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asDate()));
         // boolean sameDay(Calendar cal);
-        assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asCalendar()));
+//        assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asCalendar()));
 
         // boolean sameDate(Long longDate);
         assertTrue(db.md(JUL, 23).sameDate(db.md(JUL, 23).asLong()));
@@ -235,7 +235,7 @@ public class DatetimeBuilderImplTest {
         // boolean laterThan(Long longDate);
         assertTrue(db.month(Month.AUG).laterThan(db.asLong()));
         // boolean laterThan(Calendar calendar);
-        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
+//        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
         assertTrue(db.month(Month.AUG).laterThan(db));
 
         // boolean laterEqualThan(Date date);
@@ -243,7 +243,7 @@ public class DatetimeBuilderImplTest {
         // boolean laterEqualThan(Long longDate);
         assertTrue(db.md(JUL, 23).laterEqualThan(db.asLong()));
         // boolean laterEqualThan(Calendar calendar);
-        assertTrue(db.md(JUL, 23).laterEqualThan(db.asCalendar()));
+//        assertTrue(db.md(JUL, 23).laterEqualThan(db.asCalendar()));
         assertTrue(db.md(JUL, 23).laterEqualThan(db));
 
         // boolean before(Date date);
@@ -251,7 +251,7 @@ public class DatetimeBuilderImplTest {
         // boolean before(Long longDate);
         assertTrue(db.month(Month.JUN).before(db.asLong()));
         // boolean before(Calendar calendar);
-        assertTrue(db.month(Month.JUN).before(db.asCalendar()));
+//        assertTrue(db.month(Month.JUN).before(db.asCalendar()));
         assertTrue(db.month(Month.JUN).before(db));
 
         // boolean beforeEqual(Date date);
@@ -259,7 +259,7 @@ public class DatetimeBuilderImplTest {
         // boolean beforeEqual(Long longDate);
         assertTrue(db.md(JUL, 23).beforeEqual(db.asLong()));
         // boolean beforeEqual(Calendar calendar);
-        assertTrue(db.md(JUL, 23).beforeEqual(db.asCalendar()));
+//        assertTrue(db.md(JUL, 23).beforeEqual(db.asCalendar()));
         assertTrue(db.md(JUL, 23).beforeEqual(db));
 
     }
@@ -321,7 +321,7 @@ public class DatetimeBuilderImplTest {
         // boolean sameDatetime(Date date);
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).sameDatetime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asDate()));
         // boolean sameDatetime(Calendar cal);
-        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).sameDatetime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
+//        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).sameDatetime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).sameDatetime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500)));
 
         // boolean sameTime(Long dateLong);
@@ -329,7 +329,7 @@ public class DatetimeBuilderImplTest {
         // boolean sameTime(Date date);
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 500).sameTime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asDate()));
         // boolean sameTime(Calendar calendar);
-        assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 500).sameTime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
+//        assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 500).sameTime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 500).sameTime(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500)));
 
         // boolean sameHMS(Long dateLong);
@@ -337,7 +337,7 @@ public class DatetimeBuilderImplTest {
         // boolean sameHMS(Date date);
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 700).sameHMS(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asDate()));
         // boolean sameHMS(Calendar calendar);
-        assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 700).sameHMS(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
+//        assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 700).sameHMS(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 30, 700).sameHMS(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500)));
 
         // boolean sameHM(Long dateLong);
@@ -345,7 +345,7 @@ public class DatetimeBuilderImplTest {
         // boolean sameHM(Date date);
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 40, 700).sameHM(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asDate()));
         // boolean sameHM(Calendar calendar);
-        assertTrue(db.md(AUG, 24).hmsms(1, 20, 40, 700).sameHM(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
+//        assertTrue(db.md(AUG, 24).hmsms(1, 20, 40, 700).sameHM(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
         assertTrue(db.md(AUG, 24).hmsms(1, 20, 40, 700).sameHM(db.addMonths(6).addDays(22).addHours(1).addMins(20).addSecond(30).addMS(500)));
 
         // boolean laterThan(Date date);
@@ -353,7 +353,7 @@ public class DatetimeBuilderImplTest {
         // boolean laterThan(Long longDate);
         assertTrue(db.month(Month.AUG).laterThan(db.asLong()));
         // boolean laterThan(Calendar calendar);
-        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
+//        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
         assertTrue(db.month(Month.AUG).laterThan(db));
 
         // boolean laterEqualThan(Date date);
@@ -361,7 +361,7 @@ public class DatetimeBuilderImplTest {
         // boolean laterEqualThan(Long longDate);
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).laterEqualThan(db.asLong()));
         // boolean laterEqualThan(Calendar calendar);
-        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).laterEqualThan(db.asCalendar()));
+//        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).laterEqualThan(db.asCalendar()));
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).laterEqualThan(db));
 
         // boolean before(Date date);
@@ -369,7 +369,7 @@ public class DatetimeBuilderImplTest {
         // boolean before(Long longDate);
         assertTrue(db.month(Month.JUN).before(db.month(AUG).asLong()));
         // boolean before(Calendar calendar);
-        assertTrue(db.month(Month.JUN).before(db.month(AUG).asCalendar()));
+//        assertTrue(db.month(Month.JUN).before(db.month(AUG).asCalendar()));
         assertTrue(db.month(Month.JUN).before(db.month(AUG)));
 
         // boolean beforeEqual(Date date);
@@ -377,7 +377,7 @@ public class DatetimeBuilderImplTest {
         // boolean beforeEqual(Long longDate);
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).beforeEqual(db.month(JUL).day(23).addHours(1).addMins(20).addSecond(30).addMS(500).asLong()));
         // boolean beforeEqual(Calendar calendar);
-        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).beforeEqual(db.month(AUG).day(23).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
+//        assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).beforeEqual(db.month(AUG).day(23).addHours(1).addMins(20).addSecond(30).addMS(500).asCalendar()));
         assertTrue(db.md(JUL, 23).hmsms(1, 20, 30, 500).beforeEqual(db.month(AUG).day(23).addHours(1).addMins(20).addSecond(30).addMS(500)));
 
         // T addTime(final long time);

@@ -32,7 +32,7 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
     @Override
     public DatetimeBuilder from(Date date, Build build) {
         DatetimeBuilder builder = new DatetimeBuilder(timeZone, date);
-        return from(builder.asCalendar(), build);
+        return from(builder.asZonedDateTime(), build);
     }
 
     @Override
@@ -67,17 +67,17 @@ public class DatetimeFactoryImpl implements DatetimeFactory {
 
     @Override
     public DatetimeBuilder from(Long longDate, Build build) {
-        return new DatetimeBuilder(timeZone, from(longDate).asCalendar(), build);
+        return new DatetimeBuilder(ZonedDateTime.ofInstant(new Date(longDate).toInstant(), timeZone.toZoneId()), build);
     }
 
     @Override
     public <X extends DatetimeBuilder> DatetimeBuilder from(X db) {
-        return new DatetimeBuilder(db.getTimeZone(), db.asCalendar());
+        return new DatetimeBuilder(db.asZonedDateTime());
     }
 
     @Override
     public <X extends DateBuilder> DatetimeBuilder from(X db) {
-        return new DatetimeBuilder(db.getTimeZone(), db.asCalendar());
+        return new DatetimeBuilder(db.asZonedDateTime());
     }
 
     @Override

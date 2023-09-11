@@ -54,10 +54,10 @@ public class DateUtilsTest_Range {
         assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.endAsDate()));
         assertEquals(true, range.isValid());
 
-        range = DatetimeFactory.instance().rangeOn(db.asCalendar());
-        assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.startAsDate()));
-        assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.endAsDate()));
-        assertEquals(true, range.isValid());
+//        range = DatetimeFactory.instance().rangeOn(db.asCalendar());
+//        assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.startAsDate()));
+//        assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.endAsDate()));
+//        assertEquals(true, range.isValid());
 
         range = DatetimeFactory.instance().rangeOn(db);
         assertEquals("2087-01-05T01:02:03.004+0800", sdf.format(range.startAsDate()));
@@ -303,10 +303,10 @@ public class DateUtilsTest_Range {
         assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.endAsDate()));
         assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.startAsDate()));
 
-        range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime().asCalendar());
-        assertTrue(range.isInvalid());
-        assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.endAsDate()));
-        assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.startAsDate()));
+//        range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeFrom(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime().asCalendar());
+//        assertTrue(range.isInvalid());
+//        assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.endAsDate()));
+//        assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.startAsDate()));
 
         range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime());
         assertTrue(range.isValid());
@@ -323,10 +323,10 @@ public class DateUtilsTest_Range {
         assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.startAsDate()));
         assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.endAsDate()));
 
-        range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime().asCalendar());
-        assertTrue(range.isValid());
-        assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.startAsDate()));
-        assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.endAsDate()));
+//        range = DatetimeFactory.instance().now().ymd(2018, MAR, 15).minDayTime().rangeTo(DatetimeFactory.instance().now().ymd(2018, APR, 15).minDayTime().asCalendar());
+//        assertTrue(range.isValid());
+//        assertEquals("20180315-000000000", ymdhhmmssSSS.format(range.startAsDate()));
+//        assertEquals("20180415-000000000", ymdhhmmssSSS.format(range.endAsDate()));
     }
 
     @Test
@@ -562,10 +562,10 @@ public class DateUtilsTest_Range {
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
         assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));
 
-        range = DatetimeFactory.instance().rangeOn(DatetimeFactory.instance().raw().ymd(2022, FEB, 18).maxDayTime().asCalendar());
-        assertTrue(range.startAsDate().equals(range.endAsDate()));
-        assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
-        assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));
+//        range = DatetimeFactory.instance().rangeOn(DatetimeFactory.instance().raw().ymd(2022, FEB, 18).maxDayTime().asCalendar());
+//        assertTrue(range.startAsDate().equals(range.endAsDate()));
+//        assertEquals("2022-02-18T23:59:59.999", sdf.format(range.startAsDate()));
+//        assertEquals("2022-02-18T23:59:59.999", sdf.format(range.endAsDate()));
 
         SimpleDateFormat sdfx = DateFormatBuilder.get().year4Digit().month2Digit().day2Digit().v1().hourInDay24().minute().second().ms().v1("-").build();
         DatetimeRangeContainedBuilder dStart = DatetimeFactory.instance().rangeOnNow()

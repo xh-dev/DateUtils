@@ -20,14 +20,14 @@ public class TestFormatterBuilder {
         assertEquals(-1, unit.numberOfDays());
         unit = db.diffFrom(db.addDays(1).asLong());
         assertEquals(-1, unit.numberOfDays());
-        unit = db.diffFrom(db.addDays(1).asCalendar());
+//        unit = db.diffFrom(db.addDays(1).asCalendar());
         assertEquals(-1, unit.numberOfDays());
 
         unit = db.diffTo(db.addDays(1).asDate());
         assertEquals(1, unit.numberOfDays());
         unit = db.diffTo(db.addDays(1).asLong());
         assertEquals(1, unit.numberOfDays());
-        unit = db.diffTo(db.addDays(1).asCalendar());
+//        unit = db.diffTo(db.addDays(1).asCalendar());
         assertEquals(1, unit.numberOfDays());
     }
 }

@@ -300,7 +300,7 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
 
     @Override
     public TimeZone getTimeZone() {
-        return asCalendar().getTimeZone();
+        return TimeZone.getTimeZone(asZonedDateTime().getZone());
     }
 
     @Override
@@ -433,15 +433,14 @@ public class DateBuilder implements DateBuilderInterface<DateBuilder> {
         return builder.asDate();
     }
 
-    @Override
-    public Calendar asCalendar() {
-        return builder.asCalendar();
-    }
+//    @Override
+//    public Calendar asCalendar() {
+//        return builder.asCalendar();
+//    }
 
     @Override
     public ZonedDateTime asZonedDateTime() {
-        var cal = asCalendar();
-        return ZonedDateTime.ofInstant(cal.getTime().toInstant(), cal.getTimeZone().toZoneId());
+        return builder.asZonedDateTime();
     }
 
     @Override

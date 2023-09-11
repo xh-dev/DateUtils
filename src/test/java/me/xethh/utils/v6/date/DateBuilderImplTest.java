@@ -105,19 +105,19 @@ public class DateBuilderImplTest {
         // boolean sameYear(Date date);
         assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asDate()));
         // boolean sameYear(Calendar cal);
-        assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asCalendar()));
+//        assertTrue(db.year(2099).sameYear(db.year(2099).md(DEC, 20).asCalendar()));
         // boolean sameMonth(Long longDate);
         assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asLong()));
         // boolean sameMonth(Date date);
         assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asDate()));
         // boolean sameMonth(Calendar cal);
-        assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asCalendar()));
+//        assertTrue(db.month(SEP).sameMonth(db.month(SEP).year(1022).day(22).asCalendar()));
         // boolean sameDay(Long longDate);
         assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asLong()));
         // boolean sameDay(Date date);
         assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asDate()));
         // boolean sameDay(Calendar cal);
-        assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asCalendar()));
+//        assertTrue(db.day(13).sameMonth(db.day(13).y(1000).asCalendar()));
 
         // boolean sameDate(Long longDate);
         assertTrue(db.md(JUL, 23).sameDate(db.md(JUL, 23).asLong()));
@@ -138,7 +138,7 @@ public class DateBuilderImplTest {
         // boolean laterThan(Long longDate);
         assertTrue(db.month(Month.AUG).laterThan(db.asLong()));
         // boolean laterThan(Calendar calendar);
-        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
+//        assertTrue(db.month(Month.AUG).laterThan(db.asCalendar()));
         assertTrue(db.month(Month.AUG).laterThan(db));
 
         // boolean laterEqualThan(Date date);
@@ -146,7 +146,7 @@ public class DateBuilderImplTest {
         // boolean laterEqualThan(Long longDate);
         assertTrue(db.md(JUL, 23).laterEqualThan(db.asLong()));
         // boolean laterEqualThan(Calendar calendar);
-        assertTrue(db.md(JUL, 23).laterEqualThan(db.asCalendar()));
+//        assertTrue(db.md(JUL, 23).laterEqualThan(db.asCalendar()));
         assertTrue(db.md(JUL, 23).laterEqualThan(db));
 
         // boolean before(Date date);
@@ -154,7 +154,7 @@ public class DateBuilderImplTest {
         // boolean before(Long longDate);
         assertTrue(db.month(Month.JUN).before(db.month(AUG).asLong()));
         // boolean before(Calendar calendar);
-        assertTrue(db.month(Month.JUN).before(db.month(AUG).asCalendar()));
+//        assertTrue(db.month(Month.JUN).before(db.month(AUG).asCalendar()));
         assertTrue(db.month(Month.JUN).before(db.month(AUG)));
 
         // boolean beforeEqual(Date date);
@@ -162,7 +162,7 @@ public class DateBuilderImplTest {
         // boolean beforeEqual(Long longDate);
         assertTrue(db.md(JUL, 23).beforeEqual(db.asLong()));
         // boolean beforeEqual(Calendar calendar);
-        assertTrue(db.md(JUL, 23).beforeEqual(db.asCalendar()));
+//        assertTrue(db.md(JUL, 23).beforeEqual(db.asCalendar()));
         assertTrue(db.md(JUL, 23).beforeEqual(db));
 
     }

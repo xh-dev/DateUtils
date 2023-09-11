@@ -20,7 +20,7 @@ public interface CommonDateRepresentation {
      *
      * @return {@link java.util.Calendar}
      */
-    Calendar asCalendar();
+//    Calendar asCalendar();
 
     ZonedDateTime asZonedDateTime();
 

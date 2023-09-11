@@ -53,7 +53,7 @@ public interface DateInfo {
 
     Date asDate();
 
-    Calendar asCalendar();
+//    Calendar asCalendar();
 
     Long asLong();
 

@@ -113,12 +113,12 @@ public class DateInfoImpl implements DateInfo {
         return new Date(cal.toInstant().toEpochMilli());
     }
 
-    public Calendar asCalendar() {
-        var calendar = Calendar.getInstance();
-        calendar.setTime(new Date(cal.toInstant().toEpochMilli()));
-        calendar.setTimeZone(TimeZone.getTimeZone(cal.getZone()));
-        return calendar;
-    }
+//    public Calendar asCalendar() {
+//        var calendar = Calendar.getInstance();
+//        calendar.setTime(new Date(cal.toInstant().toEpochMilli()));
+//        calendar.setTimeZone(TimeZone.getTimeZone(cal.getZone()));
+//        return calendar;
+//    }
 
     public Long asLong() {
         return asDate().getTime();
