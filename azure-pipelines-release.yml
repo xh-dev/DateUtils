@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 name: DateUtils release pipeline
-trigger: []
+trigger: none
 
 pool: xhn-build-pool
 
